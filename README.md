@@ -39,3 +39,10 @@ Ensure you have the following installed:
    ```bash
    npm run dev
 4. Open your browser and navigate to http://localhost:5173.
+
+### Contact
+Feel free to reach out if you have any questions:
+
+- Creator: Ansh Aneja
+- Email: anshanejaa@gmail.com
+- LinkedIn: https://www.linkedin.com/in/anshaneja5
