@@ -31,7 +31,7 @@ const HomePage = () => {
           <button
             onClick={toggleDarkMode}
             className={`p-2 rounded-lg text-sm md:text-base flex items-center gap-2 transition-all duration-300 ${
-              darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-blue-100 text-blue-600'
+              darkMode ? 'bg-blue-100 text-blue-600' : 'bg-gray-800 text-yellow-400' 
             } hover:scale-105 transform`}
             aria-label="Toggle dark mode"
           >
@@ -40,14 +40,14 @@ const HomePage = () => {
                 isTransitioning ? 'scale-0' : 'scale-100'
               }`}>
                 {darkMode ? (
-                  <Moon className="w-6 h-6" />
-                ) : (
                   <Sun className="w-6 h-6" />
+                ) : (
+                  <Moon className="w-6 h-6" />
                 )}
               </div>
             </div>
             <span className="hidden md:inline">
-              {darkMode ? 'Dark Mode' : 'Light Mode'}
+              {darkMode ? 'Light Mode' : 'Dark Mode'}
             </span>
           </button>
           <ul className="flex space-x-4 md:space-x-6 mt-2 md:mt-0">
