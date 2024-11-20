@@ -152,8 +152,25 @@ const DeepLearning = () => {
       {selectedTopic && (
         <Modal topic={selectedTopic} onClose={closeModal} videoSource={categorizedDLVideos} />
       )}
+      <div className="w-full px-4 mt-6 sm:mt-12">
+        <div className="max-w-xl mx-auto bg-blue-100 dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transition-all duration-300">
+          <h2 className="text-lg sm:text-xl font-semibold text-blue-800 dark:text-white mb-3">
+            Want to strengthen your fundamentals?
+          </h2>
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
+            Check out our comprehensive Machine Learning Roadmap to build a strong foundation.
+          </p>
+          <button
+            onClick={() => window.location.href = '/machinelearning'}
+            className="bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-700 dark:hover:bg-blue-400 transition-all duration-300"
+          >
+            Explore Machine Learning Roadmap
+          </button>
+        </div>
+      </div>
+      <div className="pb-8"></div>
     </div>
-  );
+  ); 
 };
 
 export default DeepLearning;
