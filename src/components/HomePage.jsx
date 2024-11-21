@@ -1,7 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
-import { Sun, Moon, ChevronDown, ChevronUp } from 'lucide-react';
+import { Sun, Moon, ChevronDown, ChevronUp, X } from 'lucide-react';
+
+const ContributionModal = ({ isOpen, onClose, darkMode }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50 p-4">
+      <div className={`relative w-full max-w-md rounded-lg shadow-xl p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
+        <button 
+          onClick={onClose} 
+          className="absolute top-4 right-4 hover:bg-gray-200 rounded-full p-1"
+          aria-label="Close modal"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <h2 className="text-2xl font-bold mb-4">Help Us Grow! 🌱</h2>
+        <p className="mb-4">
+          mldl.study is an open-source community project. We rely on contributions 
+          from learners like you to make this resource better and more comprehensive.
+        </p>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">How Can You Contribute?</h3>
+            <ul className="list-disc list-inside text-sm">
+              <li>Add new resources</li>
+              <li>Fix typos or errors</li>
+              <li>Suggest improvements</li>
+            </ul>
+          </div>
+          <a
+            href="https://github.com/anshaneja5/mldl.study"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Visit GitHub Repository
+          </a>
+        </div>
+        <p className="text-xs mt-4 text-center opacity-70">
+          Your contribution can help someone learn! 💡
+        </p>
+      </div>
+    </div>
+  );
+};
 
 const FAQ_DATA = [
   {
@@ -56,11 +100,22 @@ const HomePage = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [openFAQs, setOpenFAQs] = useState({});
+  
+  // New state for contribution modal
+  const [isContributionModalOpen, setIsContributionModalOpen] = useState(false);
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(savedDarkMode);
     document.documentElement.classList.toggle('dark', savedDarkMode);
+
+    // Check if modal has been shown before
+    const hasSeenModal = localStorage.getItem('contributionModalSeen');
+    if (!hasSeenModal) {
+      // Open modal on first visit
+      setIsContributionModalOpen(true);
+      localStorage.setItem('contributionModalSeen', 'true');
+    }
   }, []);
 
   const toggleDarkMode = () => {
@@ -80,8 +135,15 @@ const HomePage = () => {
   };
 
   return (
-        <div className={`min-h-screen flex flex-col transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-gray-50 text-gray-900'}`}>
-          <nav className={`sticky top-0 z-50 p-4 shadow-md transition-colors duration-300 ${darkMode ? 'bg-black' : 'bg-white border-b'}`}>
+    <>
+      <ContributionModal 
+        isOpen={isContributionModalOpen} 
+        onClose={() => setIsContributionModalOpen(false)}
+        darkMode={darkMode}
+      />
+
+      <div className={`min-h-screen flex flex-col transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-gray-50 text-gray-900'}`}>
+      <nav className={`sticky top-0 z-50 p-4 shadow-md transition-colors duration-300 ${darkMode ? 'bg-black' : 'bg-white border-b'}`}>
             <div className="container mx-auto flex justify-between items-center flex-wrap">
               <h1 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-blue-600'}`}>mldl.study</h1>
               <button
@@ -173,7 +235,6 @@ const HomePage = () => {
                 <li>Simulations to practice concepts</li>
                 <li>Articles and research papers</li>
                 <li>Interactive exercises and quizzes</li>
-                <li>Community contributions</li>
               </ul>
               <p className={`mt-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 These resources are designed to give you both theoretical knowledge and hands-on experience, ensuring a well-rounded learning process.
@@ -235,8 +296,9 @@ const HomePage = () => {
               </Link>
             </div>
           </main>
-        </div>
-      );
+      </div>
+    </>
+  );
 };
 
 export default HomePage;
