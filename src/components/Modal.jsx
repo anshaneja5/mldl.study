@@ -1,26 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
-const Modal = ({ topic, onClose, videoSource }) => {
+const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressUpdate }) => {
   const topicVideos = videoSource[topic.name] || []; // Use the passed video source
-  const [completedVideos, setCompletedVideos] = useState({});
 
-  // Load completed videos from localStorage
-  useEffect(() => {
-    const savedProgress = JSON.parse(localStorage.getItem('completedVideos')) || {};
-    setCompletedVideos(savedProgress);
-  }, []);
+  // Calculate completion percentage
+  const completionPercentage = topicVideos.length > 0 
+    ? Math.round((topicVideos.filter(video => 
+        existingProgress[`${topic.name}_${video.url}`] === true
+      ).length / topicVideos.length) * 100)
+    : 0;
 
-  // Save completed videos to localStorage
   const saveProgress = (videoUrl) => {
-    const updatedProgress = { ...completedVideos, [videoUrl]: !completedVideos[videoUrl] };
-    setCompletedVideos(updatedProgress);
-    localStorage.setItem('completedVideos', JSON.stringify(updatedProgress));
+    // Toggle the progress for this specific video
+    const currentProgress = existingProgress[`${topic.name}_${videoUrl}`] || false;
+    onProgressUpdate(topic.name, videoUrl, !currentProgress);
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg max-w-2xl m-4 w-full max-h-[90vh] overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-4">{topic.name}</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold">{topic.name}</h2>
+          <div className="flex items-center">
+            <div className="w-32 bg-gray-200 rounded-full h-2.5 mr-2">
+              <div 
+                className="bg-blue-600 h-2.5 rounded-full" 
+                style={{ width: `${completionPercentage}%` }}
+              ></div>
+            </div>
+            <span className="text-sm font-medium text-gray-600">
+              {completionPercentage}%
+            </span>
+          </div>
+        </div>
+
         {topicVideos.length > 0 ? (
           <ul className="list-decimal pl-5 mb-4">
             {topicVideos.map((content, index) => (
@@ -39,12 +52,12 @@ const Modal = ({ topic, onClose, videoSource }) => {
                     <button
                       onClick={() => saveProgress(content.url)}
                       className={`ml-4 px-4 py-1 rounded ${
-                        completedVideos[content.url]
+                        existingProgress[`${topic.name}_${content.url}`]
                           ? 'bg-green-500 text-white'
                           : 'bg-gray-300 text-black'
                       }`}
                     >
-                      {completedVideos[content.url] ? 'Completed' : 'Complete'}
+                      {existingProgress[`${topic.name}_${content.url}`] ? 'Completed' : 'Complete'}
                     </button>
                   </div>
                 )}

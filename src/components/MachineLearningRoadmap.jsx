@@ -27,9 +27,14 @@ const MachineLearningRoadmap = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [hoveredTopic, setHoveredTopic] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [topicProgress, setTopicProgress] = useState({});
   const containerRef = useRef(null);
 
+  // Load progress from localStorage on component mount
   useEffect(() => {
+    const savedProgress = JSON.parse(localStorage.getItem('mlRoadmapProgress')) || {};
+    setTopicProgress(savedProgress);
+
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(savedDarkMode);
     document.documentElement.classList.toggle('dark', savedDarkMode);
@@ -42,6 +47,24 @@ const MachineLearningRoadmap = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Calculate overall roadmap progress
+  const calculateOverallProgress = () => {
+    if (Object.keys(topicProgress).length === 0) return 0;
+    
+    const totalProgress = topics.reduce((acc, topic) => {
+      const topicVideos = categorizedVideos[topic.name] || [];
+      if (topicVideos.length === 0) return acc;
+
+      const completedVideos = topicVideos.filter(video => 
+        topicProgress[`${topic.name}_${video.url}`] === true
+      ).length;
+
+      return acc + (completedVideos / topicVideos.length);
+    }, 0);
+
+    return Math.round((totalProgress / topics.length) * 100);
+  };
 
   const handleTopicClick = (topic) => {
     setSelectedTopic(topic);
@@ -64,27 +87,47 @@ const MachineLearningRoadmap = () => {
   const MobileView = () => (
     <div className="w-full max-w-lg px-4">
       <div className="space-y-3">
-        {topics.map((topic) => (
-          <button
-            key={topic.id}
-            className="w-full p-3 rounded-lg text-white shadow-sm transition-all duration-300 hover:shadow-md flex items-center space-x-3"
-            style={{ backgroundColor: topic.color }}
-            onClick={() => handleTopicClick(topic)}
-          >
-            <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-sm font-medium shrink-0">
-              {topic.id}
-            </div>
-            <span className="text-sm text-left">{topic.name}</span>
-            <svg 
-              className="w-4 h-4 ml-auto shrink-0" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
+        {topics.map((topic) => {
+          const topicVideos = categorizedVideos[topic.name] || [];
+          const completedVideos = topicVideos.filter(video => 
+            topicProgress[`${topic.name}_${video.url}`] === true
+          ).length;
+          const progressPercentage = topicVideos.length > 0 
+            ? Math.round((completedVideos / topicVideos.length) * 100) 
+            : 0;
+
+          return (
+            <div 
+              key={topic.id} 
+              className="w-full rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        ))}
+              <button
+                className="w-full p-3 rounded-lg text-white shadow-sm transition-all duration-300 flex items-center space-x-3"
+                style={{ backgroundColor: topic.color }}
+                onClick={() => handleTopicClick(topic)}
+              >
+                <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-sm font-medium shrink-0">
+                  {topic.id}
+                </div>
+                <span className="text-sm text-left flex-grow">{topic.name}</span>
+                <div className="w-16 bg-white/30 rounded-full h-2">
+                  <div 
+                    className="bg-white h-2 rounded-full" 
+                    style={{ width: `${progressPercentage}%` }}
+                  ></div>
+                </div>
+                <svg 
+                  className="w-4 h-4 ml-auto shrink-0" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -109,48 +152,104 @@ const MachineLearningRoadmap = () => {
           );
         })}
       </svg>
-      {topics.map((topic) => (
-        <div
-          key={topic.id}
-          className="absolute transform -translate-x-1/2 -translate-y-1/2"
-          style={{
-            left: `${topic.x}%`,
-            top: `${topic.y}%`,
-          }}
-        >
-          <button
-            className={`relative px-3 py-2 rounded-md text-white shadow-sm transform transition-all duration-300 hover:scale-105 hover:shadow-md ${
-              hoveredTopic && hoveredTopic.id !== topic.id ? 'opacity-60' : 'opacity-100'
-            }`}
+      {topics.map((topic) => {
+        const topicVideos = categorizedVideos[topic.name] || [];
+        const completedVideos = topicVideos.filter(video => 
+          topicProgress[`${topic.name}_${video.url}`] === true
+        ).length;
+        const progressPercentage = topicVideos.length > 0 
+          ? Math.round((completedVideos / topicVideos.length) * 100) 
+          : 0;
+
+        return (
+          <div
+            key={topic.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2"
             style={{
-              backgroundColor: topic.color,
-              maxWidth: '180px',
+              left: `${topic.x}%`,
+              top: `${topic.y}%`,
             }}
-            onClick={() => handleTopicClick(topic)}
-            onMouseEnter={() => setHoveredTopic(topic)}
-            onMouseLeave={() => setHoveredTopic(null)}
           >
-            <div className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-gray-800 text-white flex items-center justify-center text-xs font-medium">
-              {topic.id}
-            </div>
-            <span className="text-xs sm:text-sm whitespace-normal leading-tight">
-              {topic.name}
-            </span>
-          </button>
-        </div>
-      ))}
+            <button
+              className={`relative px-3 py-2 rounded-md text-white shadow-sm transform transition-all duration-300 hover:scale-105 hover:shadow-md ${
+                hoveredTopic && hoveredTopic.id !== topic.id ? 'opacity-60' : 'opacity-100'
+              }`}
+              style={{
+                backgroundColor: topic.color,
+                maxWidth: '180px',
+              }}
+              onClick={() => handleTopicClick(topic)}
+              onMouseEnter={() => setHoveredTopic(topic)}
+              onMouseLeave={() => setHoveredTopic(null)}
+            >
+              <div className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-gray-800 text-white flex items-center justify-center text-xs font-medium">
+                {topic.id}
+              </div>
+              <span className="text-xs sm:text-sm whitespace-normal leading-tight block mb-1">
+                {topic.name}
+              </span>
+              <div className="w-full bg-white/30 rounded-full h-1">
+                <div 
+                  className="bg-white h-1 rounded-full" 
+                  style={{ width: `${progressPercentage}%` }}
+                ></div>
+              </div>
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 
+  // Update progress tracking function to be passed to Modal
+  const updateTopicProgress = (topicName, videoUrl, completed) => {
+    const progressKey = `${topicName}_${videoUrl}`;
+    const newProgress = {
+      ...topicProgress,
+      [progressKey]: completed
+    };
+    
+    setTopicProgress(newProgress);
+    localStorage.setItem('mlRoadmapProgress', JSON.stringify(newProgress));
+  };
+
+  const overallProgress = calculateOverallProgress();
+
   return (
     <div className={`min-h-screen flex flex-col items-center justify-center ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center px-4">Machine Learning Roadmap</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center px-4">
+        Machine Learning Roadmap
+      </h1>
+      <div className="w-full max-w-xl px-4 mb-4">
+        <div className="bg-blue-100 dark:bg-gray-800 rounded-lg p-4">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-sm font-medium text-blue-800 dark:text-white">
+              Overall Progress
+            </span>
+            <span className="text-sm font-bold text-blue-800 dark:text-white">
+              {overallProgress}%
+            </span>
+          </div>
+          <div className="w-full bg-blue-200 dark:bg-gray-700 rounded-full h-2.5">
+            <div 
+              className="bg-blue-600 h-2.5 rounded-full" 
+              style={{ width: `${overallProgress}%` }}
+            ></div>
+          </div>
+        </div>
+      </div>
       <p className="text-sm mb-6 text-gray-600 dark:text-gray-400 text-center px-4">
         {isMobile ? 'Follow the sequence to master machine learning' : 'Follow the numbered path to master machine learning concepts'}
       </p>
       {isMobile ? <MobileView /> : <DesktopView />}
       {selectedTopic && (
-        <Modal topic={selectedTopic} onClose={closeModal} videoSource={categorizedVideos} />
+        <Modal 
+          topic={selectedTopic} 
+          onClose={closeModal} 
+          videoSource={categorizedVideos} 
+          existingProgress={topicProgress}
+          onProgressUpdate={updateTopicProgress}
+        />
       )}
       <div className="w-full px-4 mt-4 sm:mt-8">
         <div className="max-w-xl mx-auto bg-blue-100 dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transition-all duration-300">
