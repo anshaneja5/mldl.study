@@ -260,7 +260,7 @@ const DeepLearningRoadmap = () => {
             onClick={() => window.location.href = '/machinelearning'}
             className="bg-purple-600 dark:bg-purple-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-purple-700 dark:hover:bg-purple-400 transition-all duration-300"
           >
-            Explore Machine Learning Roadmap
+            Explore ML Roadmap 🎓
           </button>
         </div>
       </div>
