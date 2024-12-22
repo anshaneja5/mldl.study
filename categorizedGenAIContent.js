@@ -24,6 +24,22 @@ const genai = {
       {
         title:"5 Day LLM Foundations Roadmap",
         url:"https://github.com/aishwaryanr/awesome-generative-ai-guide/blob/main/resources/genai_roadmap.md"
+      },
+      {
+        title: "DeepLearning.AI Generative AI Specialization",
+        url: "https://www.deeplearning.ai/generative-ai-specialization/"
+      },
+      {
+        title: "Google Generative AI Learning Path",
+        url: "https://cloud.google.com/training/generative-ai"
+      },
+      {
+        title: "OpenAI GPT API Documentation",
+        url: "https://platform.openai.com/docs/"
+      },
+      {
+        title: "Andrew Ng’s Generative AI Playlist",
+        url: "https://www.youtube.com/playlist?list=PLkDaE6sCZn6GMoA0Xu5AzbKq_YKfS5xuA"
       }
     ],
     "Transformer Fundamentals": [
@@ -34,6 +50,10 @@ const genai = {
       {
         title: "[M2L 2024] Transformers - Lucas Beyer (giffmana)",
         url: "https://www.youtube.com/watch?v=bMXqnLiVgLk"
+      },
+      {
+        title: "Hugging Face Transformers Documentation",
+        url: "https://huggingface.co/docs/transformers"
       },
       {
         title: "The Illustrated GPT-2 (Visualizing Transformer Language Models)",
