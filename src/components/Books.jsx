@@ -3,7 +3,13 @@ import ReactGA from 'react-ga4';
 const books = [
   { title: 'Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow', author: 'Aurélien Géron', link: 'https://www.bayanbox.ir/view/9006149947423722897/Hands-On-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow.pdf' },
   { title: 'Introduction to Machine Learning with Python', author: 'Andreas C. Müller, Sarah Guido', link: 'https://www.nrigroupindia.com/e-book/Introduction%20to%20Machine%20Learning%20with%20Python%20(%20PDFDrive.com%20)-min.pdf' },
+  { title: 'Deep Learning', author: 'Ian Goodfellow, Yoshua Bengio, Aaron Courville', link: 'https://www.deeplearningbook.org/' },
+  { link:"https://course.fast.ai/Resources/book.html", title:"Deep Learning for Coders with fastai and PyTorch", author:"Jeremy Howard, Sylvain Gugger"},
+  { title:"Grokking Deep Learning", author:"Andrew W. Trask", link:"https://cdn.ttgtmedia.com/rms/pdf/grokking_deep_learning.pdf"},
   { title: 'ISLR (Introduction to Statistical Learning)', author: 'Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani', link: 'https://www.stat.berkeley.edu/users/rabbee/s154/ISLR_First_Printing.pdf' },
+  { title: 'The Matrix Cookbook', author: 'Kaare Brandt Petersen, Michael Syskind Pedersen', link: 'https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf' },
+  { title: 'Machine Learning Notebook',author: 'calvinfeng', link: 'https://calvinfeng.gitbook.io/machine-learning-notebook'},
+  { title: 'Python for Data Analysis',author: "Wes McKinney", link:'https://wesmckinney.com/book/'}
 ];
 
 const articles = [
@@ -13,6 +19,8 @@ const articles = [
   { title: 'TensorFlow Playground', author: 'TensorFlow', link: 'https://playground.tensorflow.org' },
   { title: 'Matrix Derivatives Cribsheet', author: 'Gatsby UCL', link: 'https://www.gatsby.ucl.ac.uk/teaching/courses/sntn/sntn-2017/resources/Matrix_derivatives_cribsheet.pdf' },
   { title: 'R2 Square', author: 'GFG', link: 'https://www.geeksforgeeks.org/ml-r-squared-in-regression-analysis/' },
+  { title: "An Illustrated Guide to Shape and Strides",author:"Haphazard investigations", link : "https://ajcr.net/stride-guide-part-1/"},
+  { title: "Understanding AI", author: "Lee Robinson", link:"https://leerob.com/n/ai"}
 ];
 
 const Books = () => {

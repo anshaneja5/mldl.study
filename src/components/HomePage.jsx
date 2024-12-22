@@ -166,7 +166,17 @@ const HomePage = () => {
               </span>
             </div>
           </header>
-    
+          <div className="flex flex-col md:flex-row gap-4 justify-center mb-12">
+          <Link to="/prerequisites" className="bg-gray-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-gray-800 transition-colors text-center hover:scale-105 transform duration-300">
+            <span className="text-base md:text-lg font-medium">Start Prerequisites Roadmap</span>
+          </Link>
+          <Link to="/machinelearning" className="bg-blue-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-blue-700 transition-colors text-center hover:scale-105 transform duration-300">
+            <span className="text-base md:text-lg font-medium">Start ML Roadmap</span>
+          </Link>
+          <Link to="/deeplearning" className="bg-gray-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-gray-800 transition-colors text-center hover:scale-105 transform duration-300">
+            <span className="text-base md:text-lg font-medium">Start DL Roadmap</span>
+          </Link>
+        </div>
             <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg rounded-lg p-6 w-full max-w-3xl mx-auto mb-12 transition-all duration-300`}>
               <h2 className="text-2xl font-semibold mb-4">What's in These Roadmaps?</h2>
               <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
@@ -214,7 +224,7 @@ const HomePage = () => {
               <p className={`mt-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 This was the sole video that sparked my interest in this field, so it is highly recommended to watch it first. It's not at all technical, but it will spark your interest in the field.
               </p>
-            </div>   
+            </div>
            <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg rounded-lg p-6 w-full max-w-3xl mx-auto mb-12 transition-all duration-300`}>
            <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
            <div className="space-y-2">
@@ -230,17 +240,6 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Link to="/prerequisites" className="bg-gray-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-gray-800 transition-colors text-center hover:scale-105 transform duration-300">
-                <span className="text-base md:text-lg font-medium">Start Prerequisites Roadmap</span>
-              </Link>
-              <Link to="/machinelearning" className="bg-blue-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-blue-700 transition-colors text-center hover:scale-105 transform duration-300">
-                <span className="text-base md:text-lg font-medium">Start ML Roadmap</span>
-              </Link>
-              <Link to="/deeplearning" className="bg-gray-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-gray-800 transition-colors text-center hover:scale-105 transform duration-300">
-                <span className="text-base md:text-lg font-medium">Start DL Roadmap</span>
-              </Link>
-            </div>
           </main>
       </div>
     </>

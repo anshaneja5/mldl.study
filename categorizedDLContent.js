@@ -46,19 +46,20 @@ const categorizedDLVideos = {
         { title: "Adam Optimizer Explained in Detail with Animations | Optimizers in Deep Learning Part 5", url: "https://youtube.com/watch?v=N5AynalXD9g" },
         { title: "Keras Tuner | Hyperparameter Tuning a Neural Network", url: "https://youtube.com/watch?v=oYnyNLj8RMA" },
         { title: "Article", url:"https://www.asimovinstitute.org/neural-network-zoo/", notes:"NOTE: This is a great article to understand the different types of neural networks and architechture." },
+        { title:"Neural Networks by 3Blue1Brown", url:"https://www.3blue1brown.com/topics/neural-networks", notes :"NOTE: You can watch this series to understand neural networks in depth."}
     ],
     "Convolutional Neural Networks (CNNs)": [
         { title: "What is Convolutional Neural Network (CNN) | CNN Intution", url: "https://youtube.com/watch?v=hDVFXf74P-U" },
         { title: "3D Simulation", url:"https://www.youtube.com/watch?v=3JQ3hYko51Y"},
         { title: "CNN Vs Visual Cortex | The Famous Cat Experiment", url: "https://youtube.com/watch?v=aslTGS9ef98" },
         { title: "CNN Part 3 | Convolution Operation", url: "https://youtube.com/watch?v=cgJx3GvQ5y8" },
-        { title: "What is Convolution", url:"https://youtu.be/KuXjwB4LzSA?si=nIqav7wLbyoa_weZ", notes:"NOTE: This is a great video to understand the concept of convolution. Its by 3Blue1Brown" },
+        { title: "What is Convolution", url:"https://youtu.be/KuXjwB4LzSA?si=nIqav7wLbyoa_weZ", notes:"NOTE: This is a great video to understand the concept of convolution. Its by 3Blue1Brown" ,articleLink:"https://medium.com/analytics-vidhya/convolution-operations-in-cnn-deep-learning-compter-vision-128906ece7d3", articleTitle:"Convolution Operations in CNN"},
         { title: "VISUALIZATION", url:"https://setosa.io/ev/image-kernels/", notes:"This is a great tool to visualize kernels." },
         { title: "VISUALIZATION", url:"https://www.youtube.com/watch?v=f0t-OCG79-U" },
         { title: "Padding & Strides in CNN", url: "https://youtube.com/watch?v=btWE6SsdDZA" },
         { title: "Pooling Layer in CNN | MaxPooling in Convolutional Neural Network", url: "https://youtube.com/watch?v=DwmGefkowCU" , articleLink:"https://www.youtube.com/watch?v=mW3KyFZDNIQ", articleTitle:"Max Pooling Visualization"},
-        { title: "CNN Architecture | LeNet -5 Architecture", url: "https://youtube.com/watch?v=ewsvsJQOuTI" },
-        { title: "Comparing CNN Vs ANN", url: "https://youtube.com/watch?v=niE5DRKvD_E" },
+        { title: "CNN Architecture | LeNet -5 Architecture", url: "https://youtube.com/watch?v=ewsvsJQOuTI" ,articleLink:"https://lunar-joke-35b.notion.site/CNN-from-Scratch-with-pure-Mathematical-Intuition-a201ef0ca1314058a1707a3ae260981e", articleTitle:"CNN from Scratch with pure  Mathematical Intuition"},
+        { title: "Comparing CNN Vs ANN", url: "https://youtube.com/watch?v=niE5DRKvD_E" ,articleLink:"https://learnopencv.com/understanding-convolutional-neural-networks-cnn/", articleTitle:"Understanding Convolutional Neural Networks (CNN)"},
         { title: "Backpropagation in CNN", url: "https://youtube.com/watch?v=RvCCFttGFMY" },
         { title: "CNN Backpropagation Part 2 | How Backpropagation works on Convolution, Maxpooling and Flatten Layers", url: "https://youtube.com/watch?v=OoSDzOodY3Y" },
         { title: "Great Indepth video on CNN", url:"https://www.youtube.com/watch?v=JB8T_zN7ZC0"},
@@ -78,6 +79,8 @@ const categorizedDLVideos = {
         { title: "RNN Sentiment Analysis | RNN Code Example in Keras", url: "https://youtube.com/watch?v=JgnbwKnHMZQ" },
         { title: "Types of RNN | Many to Many | One to Many | Many to One RNNs", url: "https://youtube.com/watch?v=TkOBxzhIySg" },
         { title: "How Backpropagation works in RNN", url: "https://youtube.com/watch?v=OvCz1acvt-k" , articleLink:"http://karpathy.github.io/2015/05/21/rnn-effectiveness/",articleTitle:"The Unreasonable Effectiveness of Recurrent Neural Networks",notes:"NOTE: This is a great article by Andrej Karpathy to understand the effectiveness of RNNs."},
+        { articleLink:"https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-1/", articleTitle:"Recurrent Neural Networks Tutorial"},
+        { title:"RNN Article ",url:"https://madewithml.com/courses/foundations/recurrent-neural-networks/"}
     ],
     "LSTMs and GRUs": [
         { title: "LSTM | Long Short Term Memory | Part 1 | The What?", url: "https://youtube.com/watch?v=z7IPBg6MyrU" },

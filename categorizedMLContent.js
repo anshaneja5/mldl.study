@@ -1,3 +1,5 @@
+import { article } from "framer-motion/client";
+
 const categorizedVideos = {
   "Introduction to Machine Learning": [
     {
@@ -91,29 +93,17 @@ const categorizedVideos = {
         url: "https://youtube.com/watch?v=E69Lg2ZgOxg"
         },
         {
-        title: "What is Feature Engineering | Day 23 | 100 Days of Machine Learning",
-        url: "https://youtube.com/watch?v=sluoVhT0ehg"
+          title: "Column Transformer in Machine Learning | How to use ColumnTransformer in Sklearn",
+          url: "https://youtube.com/watch?v=5TVj6iEBR4I"
         },
         {
-        title: "Feature Scaling - Standardization | Day 24 | 100 Days of Machine Learning",
-        url: "https://youtube.com/watch?v=1Yw9sC0PNwY"
-        },
-        {
-        title: "Feature Scaling - Normalization | MinMaxScaling | MaxAbsScaling | RobustScaling",
-        url: "https://youtube.com/watch?v=eBrGyuA2MIg"
-        },
-        {
-        title: "Encoding Categorical Data | Ordinal Encoding | Label Encoding",
-        url: "https://youtube.com/watch?v=w2GglmYHfmM"
-        },
-        {
-        title: "One Hot Encoding | Handling Categorical Data | Day 27 | 100 Days of Machine Learning",
-        url: "https://youtube.com/watch?v=U5oCv3JKWKA"
-        },
-        {
-        title: "Column Transformer in Machine Learning | How to use ColumnTransformer in Sklearn",
-        url: "https://youtube.com/watch?v=5TVj6iEBR4I"
-        },
+          title: "Encoding Categorical Data | Ordinal Encoding | Label Encoding",
+          url: "https://youtube.com/watch?v=w2GglmYHfmM"
+          },
+          {
+          title: "One Hot Encoding | Handling Categorical Data | Day 27 | 100 Days of Machine Learning",
+          url: "https://youtube.com/watch?v=U5oCv3JKWKA"
+          },
         {
         title: "Machine Learning Pipelines A-Z | Day 29 | 100 Days of Machine Learning",
         url: "https://youtube.com/watch?v=xOccYkgRV4Q"
@@ -276,7 +266,10 @@ const categorizedVideos = {
         },
         {
         title: "Logistic Regression Part 4 | Loss Function | Maximum Likelihood | Binary Cross Entropy",
-        url: "https://youtube.com/watch?v=6bXOo0sxY5c"
+        url: "https://youtube.com/watch?v=6bXOo0sxY5c",
+        articleLink:"https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a",
+        articleTitle:"Understanding Binary Cross Entropy (Log Loss): A Visual Explanation",
+        notes:"NOTE: This article is a great resource to understand the concept of Binary Cross Entropy."
         },
         {
         title: "Derivative of Sigmoid Function",
@@ -377,12 +370,20 @@ const categorizedVideos = {
           notes:"NOTE: This is a great visualization by Andrej Karpathy to understand the concept of SVM."
         },
         {
+          title:"Interactive SVM Demo",
+          url:"https://greitemann.dev/svm-demo",
+          notes:"NOTE: This is a great interactive demo to understand the concept of SVM."
+        },
+        {
         title:"Mathematics of SVM | Support Vector Machines | Hard margin SVM",
         url:"https://youtube.com/watch?v=yCAlHPDgWtM"
         },
         {
         title:"Mathematics of Support Vector Machine | Soft Margin SVM",
-        url:"https://youtube.com/watch?v=utqrvIFAE1k"
+        url:"https://youtube.com/watch?v=utqrvIFAE1k",
+        articleLink:"https://towardsdatascience.com/support-vector-machines-dual-formulation-quadratic-programming-sequential-minimal-optimization-57f4387ce4dd#d326",
+        articleTitle:"Support Vector Machines: Dual Formulation, Quadratic Programming, Sequential Minimal Optimization",
+        notes:"NOTE: This article is a great resource to understand the mathematics behind SVM."
         },
         {
         title:"Kernel Trick in SVM | Code Example",
@@ -467,6 +468,26 @@ const categorizedVideos = {
         title: "Feature Construction | Feature Splitting",
         url: "https://youtube.com/watch?v=ma-h30PoFms"
         },
+        {
+          title: "What is Feature Engineering | Day 23 | 100 Days of Machine Learning",
+          url: "https://youtube.com/watch?v=sluoVhT0ehg",
+          articleLink:"https://www.kaggle.com/code/prashant111/a-reference-guide-to-feature-engineering-methods",
+          articleTitle:"A Reference Guide to Feature Engineering Methods",
+          notes:"NOTE: This is a kaggle notebook which is a great resource to understand the different feature engineering methods."
+          },
+          {
+            articleLink:"https://www.analyticsvidhya.com/blog/2021/09/complete-guide-to-feature-engineering-zero-to-hero/",
+            articleTitle:"Complete Guide to Feature Engineering: Zero to Hero",
+          },
+          {
+          title: "Feature Scaling - Standardization | Day 24 | 100 Days of Machine Learning",
+          url: "https://youtube.com/watch?v=1Yw9sC0PNwY"
+          },
+          {
+          title: "Feature Scaling - Normalization | MinMaxScaling | MaxAbsScaling | RobustScaling",
+          url: "https://youtube.com/watch?v=eBrGyuA2MIg"
+          },
+  
     ],
     "Ensemble Learning": [
         {

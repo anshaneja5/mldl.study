@@ -8,6 +8,10 @@ const categorizedVideos = {
             title:"Mathematics for Machine Learning",
             url:"https://mml-book.github.io/book/mml-book.pdf",
             notes:"This book is a great resource for learning linear algebra for machine learning."
+        },
+        {
+            title:"The Complete Mathematics of Neural Networks and Deep Learning",
+            url:"https://www.youtube.com/watch?v=Ixl3nykKG9M"
         }
     ],
     "Calculus" : [

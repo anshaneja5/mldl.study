@@ -101,6 +101,15 @@ const NavLinks = ({ darkMode, className, onLinkClick = () => {} }) => (
       </Link>
     </li>
     <li>
+      <Link 
+        to="/researchpapers" 
+        className={`hover:text-emerald-600 transition-colors ${darkMode ? 'text-white' : 'text-gray-700'}`}
+        onClick={onLinkClick}
+      >
+        Research Papers
+      </Link>
+    </li>
+    <li>
       <a
         href="https://github.com/anshaneja5/mldl.study"
         target="_blank"

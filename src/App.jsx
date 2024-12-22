@@ -4,6 +4,7 @@ import MachineLearningRoadmap from './components/MachineLearningRoadmap';
 import DeepLearning from './components/DeepLearningRoadmap';
 import PrerequisiteRoadmap from './components/PrerequisiteRoadmap';
 import GenerativeAIRoadmap from './components/GenerativeAIRoadmap';
+import ResearchPaper from './components/ResearchPaper';
 import Error404 from './components/Error404';
 import HomePage from './components/HomePage';
 import Books from './components/Books';
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/deeplearning" element={<DeepLearning />} />
           <Route path="/machinelearning" element={<MachineLearningRoadmap />} />
           <Route path="/prerequisites" element={<PrerequisiteRoadmap />} />
+          <Route path="/researchpapers" element={<ResearchPaper />} />
           <Route path="/genai" element={<GenerativeAIRoadmap />} />
           <Route path="/books" element={<Books />} />
           <Route path="*" element={<Error404 />} />
