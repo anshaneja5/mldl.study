@@ -176,6 +176,9 @@ const HomePage = () => {
           <Link to="/deeplearning" className="bg-gray-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-gray-800 transition-colors text-center hover:scale-105 transform duration-300">
             <span className="text-base md:text-lg font-medium">Start DL Roadmap</span>
           </Link>
+          <Link to="/genai" className="bg-blue-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-blue-700 transition-colors text-center hover:scale-105 transform duration-300">
+            <span className="text-base md:text-lg font-medium">Start GenAI Roadmap</span>
+          </Link>
         </div>
             <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg rounded-lg p-6 w-full max-w-3xl mx-auto mb-12 transition-all duration-300`}>
               <h2 className="text-2xl font-semibold mb-4">What's in These Roadmaps?</h2>
