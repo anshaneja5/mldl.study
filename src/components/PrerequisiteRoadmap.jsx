@@ -266,6 +266,7 @@ const PrerequisiteRoadmap = () => {
           videoSource={categorizedVideos}
           existingProgress={topicProgress}
           onProgressUpdate={updateTopicProgress}
+          darkMode={darkMode}
         />
       )}
       

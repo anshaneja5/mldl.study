@@ -203,6 +203,7 @@ const GenerativeAIRoadmap = () => {
             setTopicProgress(newProgress);
             localStorage.setItem('genaiRoadmapProgress', JSON.stringify(newProgress));
           }}
+          darkMode={darkMode}
         />
       )}
       <div className="w-full px-4 mt-4 sm:mt-8">

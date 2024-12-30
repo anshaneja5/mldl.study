@@ -249,6 +249,7 @@ const MachineLearningRoadmap = () => {
           videoSource={categorizedVideos} 
           existingProgress={topicProgress}
           onProgressUpdate={updateTopicProgress}
+          darkMode={darkMode}
         />
       )}
       <div className="w-full px-4 mt-4 sm:mt-8">

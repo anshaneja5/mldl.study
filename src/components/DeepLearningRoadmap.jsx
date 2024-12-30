@@ -246,6 +246,7 @@ const DeepLearningRoadmap = () => {
           videoSource={categorizedDLVideos}
           existingProgress={topicProgress}
           onProgressUpdate={updateTopicProgress}
+          darkMode={darkMode}
         />
       )}
       <div className="w-full px-4 mt-4 sm:mt-8">
