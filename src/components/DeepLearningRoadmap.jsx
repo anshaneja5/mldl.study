@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import Navbar from './Navbar';
 import categorizedDLVideos from '../../categorizedDLContent'; 
 import Modal from './Modal';
 import ReactGA from 'react-ga4';
@@ -30,6 +32,7 @@ const DeepLearningRoadmap = () => {
   const [topicProgress, setTopicProgress] = useState({});
   const containerRef = useRef(null);
 
+  // Load progress and dark mode settings and check mobile view
   useEffect(() => {
     const savedProgress = JSON.parse(localStorage.getItem('dlRoadmapProgress')) || {};
     setTopicProgress(savedProgress);
@@ -82,6 +85,14 @@ const DeepLearningRoadmap = () => {
     setTopicProgress(newProgress);
     localStorage.setItem('dlRoadmapProgress', JSON.stringify(newProgress));
   };
+  
+  // Toggle dark mode and persist in localStorage
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    document.documentElement.classList.toggle('dark', newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode);
+  };
 
   const overallProgress = calculateOverallProgress();
 
@@ -103,15 +114,11 @@ const DeepLearningRoadmap = () => {
           const completedVideos = topicVideos.filter(video => 
             topicProgress[`${topic.name}_${video.url}`] === true
           ).length;
-          const progressPercentage = topicVideos.length > 0 
-            ? Math.round((completedVideos / topicVideos.length) * 100) 
-            : 0;
+          const progressPercentage =
+            topicVideos.length > 0 ? Math.round((completedVideos / topicVideos.length) * 100) : 0;
 
           return (
-            <div 
-              key={topic.id} 
-              className="w-full rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
-            >
+            <div key={topic.id} className="w-full rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
               <button
                 className="w-full p-3 rounded-lg text-white shadow-sm transition-all duration-300 flex items-center space-x-3"
                 style={{ backgroundColor: topic.color }}
@@ -122,17 +129,12 @@ const DeepLearningRoadmap = () => {
                 </div>
                 <span className="text-sm text-left flex-grow">{topic.name}</span>
                 <div className="w-16 bg-white/30 rounded-full h-2">
-                  <div 
-                    className="bg-white h-2 rounded-full" 
+                  <div
+                    className="bg-white h-2 rounded-full"
                     style={{ width: `${progressPercentage}%` }}
                   ></div>
                 </div>
-                <svg 
-                  className="w-4 h-4 ml-auto shrink-0" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
+                <svg className="w-4 h-4 ml-auto shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -165,30 +167,23 @@ const DeepLearningRoadmap = () => {
       </svg>
       {topics.map((topic) => {
         const topicVideos = categorizedDLVideos[topic.name] || [];
-        const completedVideos = topicVideos.filter(video => 
+        const completedVideos = topicVideos.filter(video =>
           topicProgress[`${topic.name}_${video.url}`] === true
         ).length;
-        const progressPercentage = topicVideos.length > 0 
-          ? Math.round((completedVideos / topicVideos.length) * 100) 
-          : 0;
+        const progressPercentage =
+          topicVideos.length > 0 ? Math.round((completedVideos / topicVideos.length) * 100) : 0;
 
         return (
           <div
             key={topic.id}
             className="absolute transform -translate-x-1/2 -translate-y-1/2"
-            style={{
-              left: `${topic.x}%`,
-              top: `${topic.y}%`,
-            }}
+            style={{ left: `${topic.x}%`, top: `${topic.y}%` }}
           >
             <button
               className={`relative px-3 py-2 rounded-md text-white shadow-sm transform transition-all duration-300 hover:scale-105 hover:shadow-md ${
                 hoveredTopic && hoveredTopic.id !== topic.id ? 'opacity-60' : 'opacity-100'
               }`}
-              style={{
-                backgroundColor: topic.color,
-                maxWidth: '180px',
-              }}
+              style={{ backgroundColor: topic.color, maxWidth: '180px' }}
               onClick={() => handleTopicClick(topic)}
               onMouseEnter={() => setHoveredTopic(topic)}
               onMouseLeave={() => setHoveredTopic(null)}
@@ -200,8 +195,8 @@ const DeepLearningRoadmap = () => {
                 {topic.name}
               </span>
               <div className="w-full bg-white/30 rounded-full h-1">
-                <div 
-                  className="bg-white h-1 rounded-full" 
+                <div
+                  className="bg-white h-1 rounded-full"
                   style={{ width: `${progressPercentage}%` }}
                 ></div>
               </div>
@@ -213,60 +208,77 @@ const DeepLearningRoadmap = () => {
   );
 
   return (
-    <div className={`min-h-screen flex flex-col items-center justify-center ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center px-4">
-        Deep Learning Roadmap
-      </h1>
-      <div className="w-full max-w-xl px-4 mb-4">
-        <div className="bg-purple-100 dark:bg-gray-800 rounded-lg p-4">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-purple-800 dark:text-white">
-              Overall Progress
-            </span>
-            <span className="text-sm font-bold text-purple-800 dark:text-white">
-              {overallProgress}%
-            </span>
-          </div>
-          <div className="w-full bg-purple-200 dark:bg-gray-700 rounded-full h-2.5">
-            <div
-              className="bg-purple-600 h-2.5 rounded-full"
-              style={{ width: `${overallProgress}%` }}
-            ></div>
-          </div>
-        </div>
-      </div>
-      <p className="text-sm mb-6 text-gray-600 dark:text-gray-400 text-center px-4">
-        {isMobile ? 'Follow the sequence to master deep learning' : 'Follow the numbered path to master deep learning concepts'}
-      </p>
-      {isMobile ? <MobileView /> : <DesktopView />}
-      {selectedTopic && (
-        <Modal
-          topic={selectedTopic}
-          onClose={closeModal}
-          videoSource={categorizedDLVideos}
-          existingProgress={topicProgress}
-          onProgressUpdate={updateTopicProgress}
-          darkMode={darkMode}
+    <>
+      <Helmet>
+        <title>Deep Learning Roadmap | Your Roadmap to AI Mastery</title>
+        <meta
+          name="description"
+          content="Navigate our comprehensive Deep Learning Roadmap featuring expert resources, tutorials, and progress tracking to master deep learning techniques."
         />
-      )}
-      <div className="w-full px-4 mt-4 sm:mt-8">
-        <div className="max-w-xl mx-auto bg-purple-100 dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transition-all duration-300">
-          <h2 className="text-lg sm:text-xl font-semibold text-purple-800 dark:text-white mb-3">
-            Want to learn more about Machine Learning?
-          </h2>
-          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-            Dive deeper into your AI learning journey with our comprehensive Machine Learning Roadmap.
-          </p>
-          <button
-            onClick={() => window.location.href = '/machinelearning'}
-            className="bg-purple-600 dark:bg-purple-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-purple-700 dark:hover:bg-purple-400 transition-all duration-300"
-          >
-            Explore ML Roadmap 🎓
-          </button>
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://mldl.study/deeplearning" />
+      </Helmet>
+
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      
+      <div className={`min-h-screen flex flex-col items-center justify-center ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center px-4">
+          Deep Learning Roadmap
+        </h1>
+        <div className="w-full max-w-xl px-4 mb-4">
+          <div className="bg-purple-100 dark:bg-gray-800 rounded-lg p-4">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-purple-800 dark:text-white">
+                Overall Progress
+              </span>
+              <span className="text-sm font-bold text-purple-800 dark:text-white">
+                {overallProgress}%
+              </span>
+            </div>
+            <div className="w-full bg-purple-200 dark:bg-gray-700 rounded-full h-2.5">
+              <div
+                className="bg-purple-600 h-2.5 rounded-full"
+                style={{ width: `${overallProgress}%` }}
+              ></div>
+            </div>
+          </div>
         </div>
+        <p className="text-sm mb-6 text-gray-600 dark:text-gray-400 text-center px-4">
+          {isMobile
+            ? 'Follow the sequence to master deep learning'
+            : 'Follow the numbered path to master deep learning concepts'}
+        </p>
+        {isMobile ? <MobileView /> : <DesktopView />}
+        {selectedTopic && (
+          <Modal
+            topic={selectedTopic}
+            onClose={closeModal}
+            videoSource={categorizedDLVideos}
+            existingProgress={topicProgress}
+            onProgressUpdate={updateTopicProgress}
+            darkMode={darkMode}
+          />
+        )}
+        <div className="w-full px-4 mt-4 sm:mt-8">
+          <div className="max-w-xl mx-auto bg-purple-100 dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transition-all duration-300">
+            <h2 className="text-lg sm:text-xl font-semibold text-purple-800 dark:text-white mb-3">
+              Want to learn more about Machine Learning?
+            </h2>
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
+              Dive deeper into your AI learning journey with our comprehensive Machine Learning Roadmap.
+            </p>
+            <button
+              onClick={() => (window.location.href = '/machinelearning')}
+              className="bg-purple-600 dark:bg-purple-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-purple-700 dark:hover:bg-purple-400 transition-all duration-300"
+            >
+              Explore ML Roadmap 🎓
+            </button>
+          </div>
+        </div>
+        <div className="pb-8"></div>
       </div>
-      <div className="pb-8"></div>
-    </div>
+    </>
   );
 };
 

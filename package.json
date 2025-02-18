@@ -22,6 +22,7 @@
     "react-flow-renderer": "^10.3.17",
     "react-force-graph-3d": "^1.24.3",
     "react-ga4": "^2.1.0",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^6.26.1",
     "react-tsparticles": "^2.9.3",
     "three-spritetext": "^1.8.2",

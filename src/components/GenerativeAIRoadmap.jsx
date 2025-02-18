@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Github } from 'lucide-react';
 import Modal from './Modal';
+import Navbar from './Navbar';
 import ReactGA from 'react-ga4';
-import genai from "../../categorizedGenAIContent"
+import genai from "../../categorizedGenAIContent";
+
 const topics = [
   { id: 1, name: 'Courses and Tutorials', x: 50, y: 10, color: '#2563eb' },
   { id: 2, name: 'Transformer Fundamentals', x: 30, y: 35, color: '#2563eb' },
@@ -54,6 +56,19 @@ const GenerativeAIRoadmap = () => {
     return darkMode ? '#4B5563' : '#d1d5db';
   };
 
+  const calculateOverallProgress = () => {
+    if (Object.keys(topicProgress).length === 0) return 0;
+    const totalProgress = topics.reduce((acc, topic) => {
+      const topicVideos = genai[topic.name] || [];
+      if (topicVideos.length === 0) return acc;
+      const completedVideos = topicVideos.filter(
+        (video) => topicProgress[`${topic.name}_${video.url}`] === true
+      ).length;
+      return acc + (completedVideos / topicVideos.length);
+    }, 0);
+    return Math.round((totalProgress / topics.length) * 100);
+  };
+
   const ContributionBanner = () => (
     <div className="w-full max-w-xl px-4 mb-6">
       <div className="bg-blue-50 bg-yellow-900/20 border border-blue-200 border-yellow-700 rounded-lg p-4 shadow-sm">
@@ -92,36 +107,51 @@ const GenerativeAIRoadmap = () => {
       </div>
     </div>
   );
-  
 
   const MobileView = () => (
     <div className="w-full max-w-lg px-4">
       <div className="space-y-3">
-        {topics.map((topic) => (
-          <div 
-            key={topic.id} 
-            className="w-full rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
-          >
-            <button
-              className="w-full p-3 rounded-lg text-white shadow-sm transition-all duration-300 flex items-center space-x-3"
-              style={{ backgroundColor: topic.color }}
-              onClick={() => setSelectedTopic(topic)}
+        {topics.map((topic) => {
+          const topicVideos = genai[topic.name] || [];
+          const completedVideos = topicVideos.filter(
+            (video) => topicProgress[`${topic.name}_${video.url}`] === true
+          ).length;
+          const progressPercentage =
+            topicVideos.length > 0
+              ? Math.round((completedVideos / topicVideos.length) * 100)
+              : 0;
+          return (
+            <div 
+              key={topic.id} 
+              className="w-full rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
             >
-              <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-sm font-medium shrink-0">
-                {topic.id}
-              </div>
-              <span className="text-sm text-left flex-grow">{topic.name}</span>
-              <svg 
-                className="w-4 h-4 ml-auto shrink-0" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
+              <button
+                className="w-full p-3 rounded-lg text-white shadow-sm transition-all duration-300 flex items-center space-x-3"
+                style={{ backgroundColor: topic.color }}
+                onClick={() => setSelectedTopic(topic)}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        ))}
+                <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-sm font-medium shrink-0">
+                  {topic.id}
+                </div>
+                <span className="text-sm text-left flex-grow">{topic.name}</span>
+                <div className="w-16 bg-white/30 rounded-full h-2">
+                  <div
+                    className="bg-white h-2 rounded-full"
+                    style={{ width: `${progressPercentage}%` }}
+                  ></div>
+                </div>
+                <svg 
+                  className="w-4 h-4 ml-auto shrink-0" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -146,84 +176,126 @@ const GenerativeAIRoadmap = () => {
           );
         })}
       </svg>
-      {topics.map((topic) => (
-        <div
-          key={topic.id}
-          className="absolute transform -translate-x-1/2 -translate-y-1/2"
-          style={{
-            left: `${topic.x}%`,
-            top: `${topic.y}%`,
-          }}
-        >
-          <button
-            className={`relative px-3 py-2 rounded-md text-white shadow-sm transform transition-all duration-300 hover:scale-105 hover:shadow-md ${
-              hoveredTopic && hoveredTopic.id !== topic.id ? 'opacity-60' : 'opacity-100'
-            }`}
+      {topics.map((topic) => {
+        const topicVideos = genai[topic.name] || [];
+        const completedVideos = topicVideos.filter(
+          (video) => topicProgress[`${topic.name}_${video.url}`] === true
+        ).length;
+        const progressPercentage =
+          topicVideos.length > 0
+            ? Math.round((completedVideos / topicVideos.length) * 100)
+            : 0;
+        return (
+          <div
+            key={topic.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2"
             style={{
-              backgroundColor: topic.color,
-              maxWidth: '180px',
+              left: `${topic.x}%`,
+              top: `${topic.y}%`,
             }}
-            onClick={() => setSelectedTopic(topic)}
-            onMouseEnter={() => setHoveredTopic(topic)}
-            onMouseLeave={() => setHoveredTopic(null)}
           >
-            <div className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-gray-800 text-white flex items-center justify-center text-xs font-medium">
-              {topic.id}
-            </div>
-            <span className="text-xs sm:text-sm whitespace-normal leading-tight block">
-              {topic.name}
-            </span>
-          </button>
-        </div>
-      ))}
+            <button
+              className={`relative px-3 py-2 rounded-md text-white shadow-sm transform transition-all duration-300 hover:scale-105 hover:shadow-md ${
+                hoveredTopic && hoveredTopic.id !== topic.id ? 'opacity-60' : 'opacity-100'
+              }`}
+              style={{
+                backgroundColor: topic.color,
+                maxWidth: '180px',
+              }}
+              onClick={() => setSelectedTopic(topic)}
+              onMouseEnter={() => setHoveredTopic(topic)}
+              onMouseLeave={() => setHoveredTopic(null)}
+            >
+              <div className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-gray-800 text-white flex items-center justify-center text-xs font-medium">
+                {topic.id}
+              </div>
+              <span className="text-xs sm:text-sm whitespace-normal leading-tight block mb-1">
+                {topic.name}
+              </span>
+              <div className="w-full bg-white/30 rounded-full h-1">
+                <div
+                  className="bg-white h-1 rounded-full"
+                  style={{ width: `${progressPercentage}%` }}
+                ></div>
+              </div>
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 
+  const overallProgress = calculateOverallProgress();
+
   return (
-    <div className={`min-h-screen flex flex-col items-center justify-center ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center px-4">
-        Generative AI Roadmap
-      </h1>
-      <ContributionBanner />
-      <p className="text-sm mb-6 text-gray-600 dark:text-gray-400 text-center px-4">
-        {isMobile ? 'Follow the sequence to master GenAI concepts' : 'Follow the numbered path to master Generative AI concepts'}
-      </p>
-      {isMobile ? <MobileView /> : <DesktopView />}
-      {selectedTopic && (
-        <Modal
-          topic={selectedTopic}
-          onClose={() => setSelectedTopic(null)}
-          videoSource={genai}
-          existingProgress={topicProgress}
-          onProgressUpdate={(topicName, videoUrl, completed) => {
-            const newProgress = {
-              ...topicProgress,
-              [`${topicName}_${videoUrl}`]: completed,
-            };
-            setTopicProgress(newProgress);
-            localStorage.setItem('genaiRoadmapProgress', JSON.stringify(newProgress));
-          }}
-          darkMode={darkMode}
-        />
-      )}
-      <div className="w-full px-4 mt-4 sm:mt-8">
-        <div className="max-w-xl mx-auto bg-blue-50 dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transition-all duration-300">
-          <h2 className="text-lg sm:text-xl font-semibold text-blue-800 dark:text-white mb-3">
-            Want to learn Deep Learning?
-          </h2>
-          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-            Check out our comprehensive Deep Learning Roadmap for a structured learning path.
-          </p>
-          <button
-            onClick={() => window.location.href = '/deeplearning'}
-            className="bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-700 dark:hover:bg-blue-400 transition-all duration-300"
-          >
-            Explore DL Roadmap 🎓
-          </button>
+    <>
+      {/* Navbar */}
+      <Navbar darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} isTransitioning={false} />
+
+      {/* Main Content */}
+      <div className={`min-h-screen flex flex-col items-center justify-center ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center px-4">
+          Generative AI Roadmap
+        </h1>
+        <ContributionBanner />
+        <div className="w-full max-w-xl px-4 mb-4">
+          <div className="bg-blue-100 dark:bg-gray-800 rounded-lg p-4">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-blue-800 dark:text-white">
+                Overall Progress
+              </span>
+              <span className="text-sm font-bold text-blue-800 dark:text-white">
+                {overallProgress}%
+              </span>
+            </div>
+            <div className="w-full bg-blue-200 dark:bg-gray-700 rounded-full h-2.5">
+              <div
+                className="bg-blue-600 h-2.5 rounded-full"
+                style={{ width: `${overallProgress}%` }}
+              ></div>
+            </div>
+          </div>
         </div>
+        <p className="text-sm mb-6 text-gray-600 dark:text-gray-400 text-center px-4">
+          {isMobile ? 'Follow the sequence to master GenAI concepts' : 'Follow the numbered path to master Generative AI concepts'}
+        </p>
+        {isMobile ? <MobileView /> : <DesktopView />}
+        {selectedTopic && (
+          <Modal
+            topic={selectedTopic}
+            onClose={() => setSelectedTopic(null)}
+            videoSource={genai}
+            existingProgress={topicProgress}
+            onProgressUpdate={(topicName, videoUrl, completed) => {
+              const newProgress = {
+                ...topicProgress,
+                [`${topicName}_${videoUrl}`]: completed,
+              };
+              setTopicProgress(newProgress);
+              localStorage.setItem('genaiRoadmapProgress', JSON.stringify(newProgress));
+            }}
+            darkMode={darkMode}
+          />
+        )}
+        <div className="w-full px-4 mt-4 sm:mt-8">
+          <div className="max-w-xl mx-auto bg-blue-50 dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transition-all duration-300">
+            <h2 className="text-lg sm:text-xl font-semibold text-blue-800 dark:text-white mb-3">
+              Want to learn Deep Learning?
+            </h2>
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
+              Check out our comprehensive Deep Learning Roadmap for a structured learning path.
+            </p>
+            <button
+              onClick={() => window.location.href = '/deeplearning'}
+              className="bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-700 dark:hover:bg-blue-400 transition-all duration-300"
+            >
+              Explore DL Roadmap 🎓
+            </button>
+          </div>
+        </div>
+        <div className="pb-8"></div>
       </div>
-      <div className="pb-8"></div>
-    </div>
+    </>
   );
 };
 
