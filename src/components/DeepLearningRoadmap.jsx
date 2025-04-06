@@ -6,14 +6,14 @@ import Modal from './Modal';
 import ReactGA from 'react-ga4';
 
 const topics = [
-  { id: 1, name: 'Introduction to Deep Learning', x: 50, y: 10, color: '#9333ea' },
-  { id: 2, name: 'Artificial Neural Networks (ANNs)', x: 25, y: 30, color: '#9333ea' },
-  { id: 3, name: 'Convolutional Neural Networks (CNNs)', x: 50, y: 30, color: '#9333ea' },
-  { id: 4, name: 'Recurrent Neural Networks (RNNs)', x: 75, y: 30, color: '#9333ea' },
-  { id: 5, name: 'LSTMs and GRUs', x: 25, y: 50, color: '#a855f7' },
-  { id: 6, name: 'Encoder-Decoder Architecture', x: 50, y: 50, color: '#a855f7' },
-  { id: 7, name: 'Transformers', x: 50, y: 70, color: '#c084fc' },
-  { id: 8, name: 'Natural Language Processing', x: 75, y: 50, color: '#a855f7' },
+  { id: 1, name: 'Introduction to Deep Learning', x: 50, y: 10, color: '#9333ea', icon: '🧠' },
+  { id: 2, name: 'Artificial Neural Networks (ANNs)', x: 25, y: 30, color: '#9333ea', icon: '🔄' },
+  { id: 3, name: 'Convolutional Neural Networks (CNNs)', x: 50, y: 30, color: '#9333ea', icon: '👁️' },
+  { id: 4, name: 'Recurrent Neural Networks (RNNs)', x: 75, y: 30, color: '#9333ea', icon: '⏱️' },
+  { id: 5, name: 'LSTMs and GRUs', x: 25, y: 50, color: '#a855f7', icon: '📊' },
+  { id: 6, name: 'Encoder-Decoder Architecture', x: 50, y: 50, color: '#a855f7', icon: '🔄' },
+  { id: 7, name: 'Transformers', x: 50, y: 70, color: '#c084fc', icon: '🤖' },
+  { id: 8, name: 'Natural Language Processing', x: 75, y: 50, color: '#a855f7', icon: '💬' },
 ];
 
 const connections = [
@@ -30,45 +30,93 @@ const DeepLearningRoadmap = () => {
   const [hoveredTopic, setHoveredTopic] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [topicProgress, setTopicProgress] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredTopics, setFilteredTopics] = useState(topics);
+  const [sortBy, setSortBy] = useState('id');
   const containerRef = useRef(null);
 
   // Load progress and dark mode settings and check mobile view
   useEffect(() => {
-    const savedProgress = JSON.parse(localStorage.getItem('dlRoadmapProgress')) || {};
-    setTopicProgress(savedProgress);
+    try {
+      const savedProgress = localStorage.getItem('dlRoadmapProgress');
+      if (savedProgress) {
+        const parsedProgress = JSON.parse(savedProgress);
+        setTopicProgress(parsedProgress);
+      }
 
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-    document.documentElement.classList.toggle('dark', savedDarkMode);
+      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+      setDarkMode(savedDarkMode);
+      document.documentElement.classList.toggle('dark', savedDarkMode);
 
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    } catch (error) {
+      console.error('Error loading progress:', error);
+      setTopicProgress({});
+    }
   }, []);
+
+  // Filter and sort topics based on search term and sort option
+  useEffect(() => {
+    let filtered = topics;
+    
+    // Apply search filter
+    if (searchTerm) {
+      filtered = topics.filter(topic => 
+        topic.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Apply sorting
+    filtered = [...filtered].sort((a, b) => {
+      if (sortBy === 'id') {
+        return a.id - b.id;
+      } else if (sortBy === 'name') {
+        return a.name.localeCompare(b.name);
+      } else if (sortBy === 'progress') {
+        const progressA = calculateTopicProgress(a.name);
+        const progressB = calculateTopicProgress(b.name);
+        return progressB - progressA;
+      }
+      return 0;
+    });
+    
+    setFilteredTopics(filtered);
+  }, [searchTerm, sortBy, topicProgress]);
+
+  const calculateTopicProgress = (topicName) => {
+    const topicVideos = categorizedDLVideos[topicName] || [];
+    if (topicVideos.length === 0) return 0;
+    
+    const completedVideos = topicVideos.filter(
+      (video) => topicProgress[`${topicName}_${video.url}`] === true
+    ).length;
+    
+    return Math.round((completedVideos / topicVideos.length) * 100);
+  };
 
   const calculateOverallProgress = () => {
     if (Object.keys(topicProgress).length === 0) return 0;
-
+    
     const totalProgress = topics.reduce((acc, topic) => {
-      const topicVideos = categorizedDLVideos[topic.name] || [];
-      if (topicVideos.length === 0) return acc;
-
-      const completedVideos = topicVideos.filter(video =>
-        topicProgress[`${topic.name}_${video.url}`] === true
-      ).length;
-
-      return acc + (completedVideos / topicVideos.length);
+      return acc + calculateTopicProgress(topic.name);
     }, 0);
-
-    return Math.round((totalProgress / topics.length) * 100);
+    
+    return Math.round(totalProgress / topics.length);
   };
 
   const handleTopicClick = (topic) => {
     setSelectedTopic(topic);
+    ReactGA.event({
+      category: 'User Interaction',
+      action: 'Topic Clicked',
+      label: topic.name
+    });
   };
 
   const closeModal = () => {
@@ -76,14 +124,17 @@ const DeepLearningRoadmap = () => {
   };
 
   const updateTopicProgress = (topicName, videoUrl, completed) => {
-    const progressKey = `${topicName}_${videoUrl}`;
-    const newProgress = {
-      ...topicProgress,
-      [progressKey]: completed,
-    };
-
-    setTopicProgress(newProgress);
-    localStorage.setItem('dlRoadmapProgress', JSON.stringify(newProgress));
+    try {
+      const progressKey = `${topicName}_${videoUrl}`;
+      const newProgress = {
+        ...topicProgress,
+        [progressKey]: completed
+      };
+      setTopicProgress(newProgress);
+      localStorage.setItem('dlRoadmapProgress', JSON.stringify(newProgress));
+    } catch (error) {
+      console.error('Error saving progress:', error);
+    }
   };
   
   // Toggle dark mode and persist in localStorage
@@ -106,106 +157,140 @@ const DeepLearningRoadmap = () => {
     return darkMode ? '#4B5563' : '#d1d5db';
   };
 
+  // Mobile View - Card Layout
   const MobileView = () => (
-    <div className="w-full max-w-lg px-4">
-      <div className="space-y-3">
-        {topics.map((topic) => {
-          const topicVideos = categorizedDLVideos[topic.name] || [];
-          const completedVideos = topicVideos.filter(video => 
-            topicProgress[`${topic.name}_${video.url}`] === true
-          ).length;
-          const progressPercentage =
-            topicVideos.length > 0 ? Math.round((completedVideos / topicVideos.length) * 100) : 0;
-
-          return (
-            <div key={topic.id} className="w-full rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
-              <button
-                className="w-full p-3 rounded-lg text-white shadow-sm transition-all duration-300 flex items-center space-x-3"
-                style={{ backgroundColor: topic.color }}
-                onClick={() => handleTopicClick(topic)}
-              >
-                <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-sm font-medium shrink-0">
-                  {topic.id}
-                </div>
-                <span className="text-sm text-left flex-grow">{topic.name}</span>
-                <div className="w-16 bg-white/30 rounded-full h-2">
-                  <div
-                    className="bg-white h-2 rounded-full"
-                    style={{ width: `${progressPercentage}%` }}
-                  ></div>
-                </div>
-                <svg className="w-4 h-4 ml-auto shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-
-  const DesktopView = () => (
-    <div ref={containerRef} className="relative w-full max-w-6xl h-[600px] rounded-lg overflow-hidden p-4">
-      <svg className="absolute top-0 left-0 w-full h-full">
-        {connections.map((conn, index) => {
-          const from = topics.find(t => t.id === conn.from);
-          const to = topics.find(t => t.id === conn.to);
-          return (
-            <line
-              key={index}
-              x1={`${from.x}%`}
-              y1={`${from.y}%`}
-              x2={`${to.x}%`}
-              y2={`${to.y}%`}
-              stroke={getConnectionColor(conn.from, conn.to)}
-              strokeWidth="1.5"
-              className="transition-all duration-300"
-            />
-          );
-        })}
-      </svg>
-      {topics.map((topic) => {
-        const topicVideos = categorizedDLVideos[topic.name] || [];
-        const completedVideos = topicVideos.filter(video =>
-          topicProgress[`${topic.name}_${video.url}`] === true
-        ).length;
-        const progressPercentage =
-          topicVideos.length > 0 ? Math.round((completedVideos / topicVideos.length) * 100) : 0;
-
+    <div className="grid grid-cols-1 gap-4">
+      {filteredTopics.map((topic) => {
+        const progress = calculateTopicProgress(topic.name);
         return (
           <div
             key={topic.id}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2"
-            style={{ left: `${topic.x}%`, top: `${topic.y}%` }}
+            className={`bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg`}
+            onClick={() => handleTopicClick(topic)}
           >
-            <button
-              className={`relative px-3 py-2 rounded-md text-white shadow-sm transform transition-all duration-300 hover:scale-105 hover:shadow-md ${
-                hoveredTopic && hoveredTopic.id !== topic.id ? 'opacity-60' : 'opacity-100'
-              }`}
-              style={{ backgroundColor: topic.color, maxWidth: '180px' }}
-              onClick={() => handleTopicClick(topic)}
-              onMouseEnter={() => setHoveredTopic(topic)}
-              onMouseLeave={() => setHoveredTopic(null)}
-            >
-              <div className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-gray-800 text-white flex items-center justify-center text-xs font-medium">
-                {topic.id}
+            <div 
+              className="h-2"
+              style={{ backgroundColor: topic.color }}
+            ></div>
+            <div className="p-4">
+              <div className="flex items-center mb-3">
+                <div 
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-xl mr-3"
+                  style={{ backgroundColor: `${topic.color}20` }}
+                >
+                  {topic.icon}
+                </div>
+                <h3 className="text-lg font-semibold">{topic.name}</h3>
               </div>
-              <span className="text-xs sm:text-sm whitespace-normal leading-tight block mb-1">
-                {topic.name}
-              </span>
-              <div className="w-full bg-white/30 rounded-full h-1">
-                <div
-                  className="bg-white h-1 rounded-full"
-                  style={{ width: `${progressPercentage}%` }}
-                ></div>
+              <div className="mb-3">
+                <div className="flex justify-between text-sm mb-1">
+                  <span>Progress</span>
+                  <span>{progress}%</span>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div
+                    className="h-2 rounded-full transition-all duration-500"
+                    style={{ 
+                      width: `${progress}%`,
+                      backgroundColor: topic.color
+                    }}
+                  ></div>
+                </div>
               </div>
-            </button>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {categorizedDLVideos[topic.name]?.length || 0} resources
+                </span>
+                <button 
+                  className="px-3 py-1 text-sm rounded-full"
+                  style={{ 
+                    backgroundColor: `${topic.color}20`,
+                    color: topic.color
+                  }}
+                >
+                  View Resources
+                </button>
+              </div>
+            </div>
           </div>
         );
       })}
     </div>
   );
+
+  // Desktop View - Graph Visualization
+  const DesktopView = () => {
+    // For graph view, we need to maintain the original positions
+    // but still respect the filtering
+    const visibleTopics = filteredTopics;
+    
+    return (
+      <div ref={containerRef} className="relative w-full max-w-7xl h-[800px] rounded-lg overflow-hidden p-4 mx-auto">
+        <svg className="absolute top-0 left-0 w-full h-full">
+          {connections.map((conn, index) => {
+            const from = topics.find((t) => t.id === conn.from);
+            const to = topics.find((t) => t.id === conn.to);
+            
+            // Only draw connections if both topics are visible
+            if (!visibleTopics.some(t => t.id === from.id) || 
+                !visibleTopics.some(t => t.id === to.id)) {
+              return null;
+            }
+            
+            return (
+              <line
+                key={index}
+                x1={`${from.x}%`}
+                y1={`${from.y}%`}
+                x2={`${to.x}%`}
+                y2={`${to.y}%`}
+                stroke={getConnectionColor(conn.from, conn.to)}
+                strokeWidth="2.5"
+                className="transition-all duration-300"
+              />
+            );
+          })}
+        </svg>
+        {visibleTopics.map((topic) => {
+          const progress = calculateTopicProgress(topic.name);
+          return (
+            <div
+              key={topic.id}
+              className="absolute transform -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${topic.x}%`, top: `${topic.y}%` }}
+            >
+              <button
+                className={`relative px-6 py-5 rounded-lg text-white shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                  hoveredTopic && hoveredTopic.id !== topic.id ? 'opacity-60' : 'opacity-100'
+                }`}
+                style={{ backgroundColor: topic.color, maxWidth: '240px', minWidth: '200px' }}
+                onClick={() => handleTopicClick(topic)}
+                onMouseEnter={() => setHoveredTopic(topic)}
+                onMouseLeave={() => setHoveredTopic(null)}
+              >
+                <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-gray-800 text-white flex items-center justify-center text-sm font-medium">
+                  {topic.id}
+                </div>
+                <div className="flex items-center mb-2">
+                  <span className="text-2xl mr-2">{topic.icon}</span>
+                  <span className="text-sm font-medium whitespace-normal leading-tight">
+                    {topic.name}
+                  </span>
+                </div>
+                <div className="w-full bg-white/30 rounded-full h-2.5">
+                  <div
+                    className="bg-white h-2.5 rounded-full transition-all duration-500"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
+                <div className="text-xs mt-1 text-right">{progress}%</div>
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -220,64 +305,118 @@ const DeepLearningRoadmap = () => {
         <link rel="canonical" href="https://mldl.study/deeplearning" />
       </Helmet>
 
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      
-      <div className={`min-h-screen flex flex-col items-center justify-center ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center px-4">
-          Deep Learning Roadmap
-        </h1>
-        <div className="w-full max-w-xl px-4 mb-4">
-          <div className="bg-purple-100 dark:bg-gray-800 rounded-lg p-4">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-purple-800 dark:text-white">
-                Overall Progress
-              </span>
-              <span className="text-sm font-bold text-purple-800 dark:text-white">
-                {overallProgress}%
-              </span>
-            </div>
-            <div className="w-full bg-purple-200 dark:bg-gray-700 rounded-full h-2.5">
-              <div
-                className="bg-purple-600 h-2.5 rounded-full"
-                style={{ width: `${overallProgress}%` }}
-              ></div>
-            </div>
-          </div>
-        </div>
-        <p className="text-sm mb-6 text-gray-600 dark:text-gray-400 text-center px-4">
-          {isMobile
-            ? 'Follow the sequence to master deep learning'
-            : 'Follow the numbered path to master deep learning concepts'}
-        </p>
-        {isMobile ? <MobileView /> : <DesktopView />}
-        {selectedTopic && (
-          <Modal
-            topic={selectedTopic}
-            onClose={closeModal}
-            videoSource={categorizedDLVideos}
-            existingProgress={topicProgress}
-            onProgressUpdate={updateTopicProgress}
-            darkMode={darkMode}
-          />
-        )}
-        <div className="w-full px-4 mt-4 sm:mt-8">
-          <div className="max-w-xl mx-auto bg-purple-100 dark:bg-gray-800 rounded-lg shadow-md p-6 text-center transition-all duration-300">
-            <h2 className="text-lg sm:text-xl font-semibold text-purple-800 dark:text-white mb-3">
-              Want to learn more about Machine Learning?
-            </h2>
-            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-              Dive deeper into your AI learning journey with our comprehensive Machine Learning Roadmap.
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />
+
+      {/* Main Content */}
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+        <div className="container mx-auto px-4 py-8">
+          {/* Header Section */}
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Deep Learning Roadmap
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Follow this comprehensive roadmap to master deep learning concepts, from fundamentals to advanced techniques.
             </p>
-            <button
-              onClick={() => (window.location.href = '/machinelearning')}
-              className="bg-purple-600 dark:bg-purple-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-purple-700 dark:hover:bg-purple-400 transition-all duration-300"
-            >
-              Explore ML Roadmap 🎓
-            </button>
+          </div>
+
+          {/* Progress Overview */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="mb-4 md:mb-0">
+                <h2 className="text-xl font-semibold mb-2">Your Progress</h2>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {overallProgress}% of the roadmap completed
+                </p>
+              </div>
+              <div className="w-full md:w-2/3">
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+                  <div
+                    className="bg-gradient-to-r from-purple-500 to-indigo-600 h-4 rounded-full transition-all duration-500"
+                    style={{ width: `${overallProgress}%` }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Search and Filter Controls */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <div className="relative w-full md:w-64">
+              <input
+                type="text"
+                placeholder="Search topics..."
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <span className="absolute right-3 top-2.5 text-gray-500">
+                🔍
+              </span>
+            </div>
+            {isMobile && (
+              <div className="flex items-center">
+                <label className="mr-2 text-sm">Sort by:</label>
+                <select
+                  className="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
+                  <option value="id">Order</option>
+                  <option value="name">Name</option>
+                  <option value="progress">Progress</option>
+                </select>
+              </div>
+            )}
+          </div>
+
+          {/* Roadmap View - Desktop or Mobile */}
+          <div className="mb-8">
+            {isMobile ? <MobileView /> : <DesktopView />}
+          </div>
+
+          {/* Empty State */}
+          {filteredTopics.length === 0 && (
+            <div className="text-center py-12">
+              <div className="text-5xl mb-4">🔍</div>
+              <h3 className="text-xl font-semibold mb-2">No topics found</h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Try adjusting your search or filter to find what you're looking for.
+              </p>
+            </div>
+          )}
+
+          {/* Next Steps Section */}
+          <div className="mt-12 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl shadow-lg p-8 text-white">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="mb-6 md:mb-0">
+                <h2 className="text-2xl font-bold mb-2">Ready to explore more?</h2>
+                <p className="text-purple-100">
+                  Continue your learning journey with our Machine Learning Roadmap.
+                </p>
+              </div>
+              <a
+                href="/machinelearning"
+                className="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
+              >
+                Explore Machine Learning
+              </a>
+            </div>
           </div>
         </div>
-        <div className="pb-8"></div>
       </div>
+
+      {/* Modal */}
+      {selectedTopic && (
+        <Modal
+          topic={selectedTopic}
+          onClose={closeModal}
+          videoSource={categorizedDLVideos}
+          existingProgress={topicProgress}
+          onProgressUpdate={updateTopicProgress}
+          darkMode={darkMode}
+        />
+      )}
     </>
   );
 };
