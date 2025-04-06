@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
-import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map } from 'lucide-react';
+import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain } from 'lucide-react';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
 
@@ -110,6 +110,7 @@ const HomePage = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [openFAQs, setOpenFAQs] = useState({});
   const [isContributionModalOpen, setIsContributionModalOpen] = useState(false);
+  const [activeRoadmap, setActiveRoadmap] = useState(null);
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
@@ -155,6 +156,49 @@ const HomePage = () => {
     }))
   };
 
+  const roadmaps = [
+    {
+      id: 'prerequisites',
+      title: 'Prerequisites',
+      description: 'Master the foundational math and programming skills needed for ML',
+      icon: <Book className="w-6 h-6" />,
+      path: '/prerequisites',
+      color: 'from-emerald-500 to-teal-500',
+      hoverColor: 'hover:from-emerald-600 hover:to-teal-600',
+      darkHoverColor: 'dark:hover:from-emerald-400 dark:hover:to-teal-400'
+    },
+    {
+      id: 'machinelearning',
+      title: 'Machine Learning',
+      description: 'Learn the core concepts and algorithms of machine learning',
+      icon: <Brain className="w-6 h-6" />,
+      path: '/machinelearning',
+      color: 'from-blue-500 to-indigo-500',
+      hoverColor: 'hover:from-blue-600 hover:to-indigo-600',
+      darkHoverColor: 'dark:hover:from-blue-400 dark:hover:to-indigo-400'
+    },
+    {
+      id: 'deeplearning',
+      title: 'Deep Learning',
+      description: 'Explore neural networks and advanced deep learning techniques',
+      icon: <Zap className="w-6 h-6" />,
+      path: '/deeplearning',
+      color: 'from-purple-500 to-pink-500',
+      hoverColor: 'hover:from-purple-600 hover:to-pink-600',
+      darkHoverColor: 'dark:hover:from-purple-400 dark:hover:to-pink-400'
+    },
+    {
+      id: 'genai',
+      title: 'Generative AI',
+      description: 'Discover the latest in generative AI and transformer models',
+      icon: <Sparkles className="w-6 h-6" />,
+      path: '/genai',
+      color: 'from-amber-500 to-orange-500',
+      hoverColor: 'hover:from-amber-600 hover:to-orange-600',
+      darkHoverColor: 'dark:hover:from-amber-400 dark:hover:to-orange-400'
+    }
+  ];
+
   return (
     <>
       <Helmet>
@@ -176,6 +220,7 @@ const HomePage = () => {
         onClose={() => setIsContributionModalOpen(false)}
         darkMode={darkMode}
       />
+      
       <div className={`min-h-screen flex flex-col transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-slate-50 text-gray-900'}`}>
         <Navbar 
           darkMode={darkMode} 
@@ -185,12 +230,15 @@ const HomePage = () => {
     
         <main className="flex-grow flex flex-col items-center justify-center px-4 py-12">
           {/* Hero Section */}
-          <header className="text-center mb-12 max-w-2xl mx-auto">
-            <h1 className={`text-4xl md:text-5xl font-bold mb-6 tracking-tight ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Your Roadmap to AI Mastery
+          <header className="text-center mb-16 max-w-3xl mx-auto">
+            <div className="inline-block mb-4 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-medium">
+              AI Learning Roadmap
+            </div>
+            <h1 className={`text-4xl md:text-6xl font-bold mb-6 tracking-tight ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Your Path to <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">AI Mastery</span>
             </h1>
             <p className={`text-lg mb-8 max-w-xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              Transform from beginner to ML professional with structured learning paths designed for practical, hands-on mastery.
+              Transform from beginner to AI professional with structured learning paths designed for practical, hands-on mastery.
             </p>
             <div className='flex justify-center items-center space-x-2'>
               <span className="text-sm text-blue-600 dark:text-blue-400 font-medium inline-flex items-center">
@@ -201,65 +249,80 @@ const HomePage = () => {
             </div>
           </header>
           
-          {/* Roadmap Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl w-full mb-16">
-            <Link to="/prerequisites" className={`flex items-center justify-center px-6 py-4 rounded-lg ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-sm hover:shadow transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-              <BookOpen className="w-5 h-5 mr-3 text-blue-500" />
-              <span className={`text-base font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>Prerequisites Roadmap</span>
-            </Link>
-            <Link to="/machinelearning" className={`flex items-center justify-center px-6 py-4 rounded-lg bg-blue-600 hover:bg-blue-700 shadow-sm hover:shadow transition-all duration-300 text-white`}>
-              <Map className="w-5 h-5 mr-3 text-white" />
-              <span className="text-base font-medium">ML Roadmap</span>
-            </Link>
-            <Link to="/deeplearning" className={`flex items-center justify-center px-6 py-4 rounded-lg ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-sm hover:shadow transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-              <BookOpen className="w-5 h-5 mr-3 text-blue-500" />
-              <span className={`text-base font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>DL Roadmap</span>
-            </Link>
-            <Link to="/genai" className={`flex items-center justify-center px-6 py-4 rounded-lg bg-blue-600 hover:bg-blue-700 shadow-sm hover:shadow transition-all duration-300 text-white`}>
-              <Map className="w-5 h-5 mr-3 text-white" />
-              <span className="text-base font-medium">GenAI Roadmap</span>
-            </Link>
+          {/* Roadmap Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full mb-20">
+            {roadmaps.map((roadmap) => (
+              <Link 
+                key={roadmap.id}
+                to={roadmap.path}
+                className={`group relative overflow-hidden rounded-xl p-6 transition-all duration-300 ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'} shadow-sm hover:shadow-md border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}
+                onMouseEnter={() => setActiveRoadmap(roadmap.id)}
+                onMouseLeave={() => setActiveRoadmap(null)}
+              >
+                <div className="flex items-start">
+                  <div className={`p-3 rounded-lg bg-gradient-to-r ${roadmap.color} text-white mr-4`}>
+                    {roadmap.icon}
+                  </div>
+                  <div>
+                    <h3 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      {roadmap.title}
+                    </h3>
+                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      {roadmap.description}
+                    </p>
+                  </div>
+                </div>
+                <div className={`absolute bottom-0 right-0 p-2 rounded-tl-lg bg-gradient-to-r ${roadmap.color} text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </Link>
+            ))}
           </div>
           
           {/* Feature Section */}
-          <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-sm rounded-lg p-6 w-full max-w-3xl mx-auto mb-12 transition-all duration-300 border ${darkMode ? 'border-gray-800' : 'border-gray-100'}`}>
-            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>What's in These Roadmaps?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className={`space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                <div className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 mr-2"></div>
-                  <p>Video lectures & animations</p>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl p-8 w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+            <h2 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>What's in These Roadmaps?</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                <div className="flex items-center mb-3">
+                  <div className="p-2 rounded-lg bg-blue-500 text-white mr-3">
+                    <BookOpen className="w-5 h-5" />
+                  </div>
+                  <h3 className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Video Lectures</h3>
                 </div>
-                <div className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 mr-2"></div>
-                  <p>Interactive simulations</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 mr-2"></div>
-                  <p>Research papers & articles</p>
-                </div>
+                <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Curated video content from top educators and practitioners in the field
+                </p>
               </div>
-              <div className={`space-y-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                <div className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 mr-2"></div>
-                  <p>Practical exercises & quizzes</p>
+              <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                <div className="flex items-center mb-3">
+                  <div className="p-2 rounded-lg bg-purple-500 text-white mr-3">
+                    <Code className="w-5 h-5" />
+                  </div>
+                  <h3 className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Hands-on Projects</h3>
                 </div>
-                <div className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 mr-2"></div>
-                  <p>Hands-on projects</p>
+                <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Practical exercises and real-world projects to apply your knowledge
+                </p>
+              </div>
+              <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                <div className="flex items-center mb-3">
+                  <div className="p-2 rounded-lg bg-amber-500 text-white mr-3">
+                    <Brain className="w-5 h-5" />
+                  </div>
+                  <h3 className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Research Papers</h3>
                 </div>
-                <div className="flex items-start">
-                  <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 mr-2"></div>
-                  <p>Community discussions</p>
-                </div>
+                <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Access to foundational and cutting-edge research in AI and ML
+                </p>
               </div>
             </div>
           </div>
           
           {/* Video Section */}
-          <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-sm rounded-lg overflow-hidden w-full max-w-3xl mx-auto mb-12 transition-all duration-300 border ${darkMode ? 'border-gray-800' : 'border-gray-100'}`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl overflow-hidden w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
             <div className="p-6">
-              <h2 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Watch This Before You Start!</h2>
+              <h2 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Watch This Before You Start!</h2>
               <p className={`mb-4 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                 This video sparked my interest in the field - it's non-technical but highly motivating!
               </p>
@@ -276,25 +339,21 @@ const HomePage = () => {
                     e.target.src = "https://img.youtube.com/vi/WXuK6gekU1Y/hqdefault.jpg";
                   }}
                 />
-                 <div className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    className="w-16 h-16 md:w-24 md:h-24 text-white opacity-80 hover:opacity-100 transition-opacity"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 12l-6 4V8l6 4z"
-                    />
-                  </svg>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 hover:bg-opacity-20 transition-all duration-300">
-                  <div className="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center">
-                    <div className="w-0 h-0 border-y-8 border-y-transparent border-l-12 border-l-red-600 ml-1"></div>
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-30 transition-all duration-300">
+                  <div className="relative">
+                    <div className="w-24 h-24 rounded-full bg-red-600 flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300">
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 24 24" 
+                        fill="white" 
+                        className="w-12 h-12 ml-1"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-red-600 text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                      WATCH
+                    </div>
                   </div>
                 </div>
               </div>
@@ -302,8 +361,8 @@ const HomePage = () => {
           </div>
     
           {/* FAQ Section */}
-          <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-sm rounded-lg p-6 w-full max-w-3xl mx-auto mb-12 transition-all duration-300 border ${darkMode ? 'border-gray-800' : 'border-gray-100'}`}>
-            <h2 className={`text-xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Frequently Asked Questions</h2>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl p-8 w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+            <h2 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Frequently Asked Questions</h2>
             <div className="space-y-1">
               {FAQ_DATA.map((faq, index) => (
                 <FAQItem
@@ -322,7 +381,7 @@ const HomePage = () => {
           <div className="flex justify-center mb-8">
             <button
               onClick={() => setIsContributionModalOpen(true)}
-              className={`flex items-center justify-center px-6 py-3 rounded-lg ${darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'} text-white shadow-sm transition-all duration-300`}
+              className={`flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white shadow-sm transition-all duration-300`}
             >
               <GitBranch className="w-5 h-5 mr-2" />
               <span className="text-base font-medium">Contribute to Roadmap</span>
@@ -331,7 +390,7 @@ const HomePage = () => {
         </main>
         
         {/* Footer */}
-        <footer className={`py-6 ${darkMode ? 'bg-gray-900 border-t border-gray-800' : 'bg-white border-t border-gray-100'}`}>
+        <footer className={`py-6 ${darkMode ? 'bg-gray-800 border-t border-gray-700' : 'bg-white border-t border-gray-100'}`}>
           <div className="max-w-5xl mx-auto px-4 text-center">
             <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
               © {new Date().getFullYear()} mldl.study • Built with ❤️ by <a href="https://www.linkedin.com/in/anshaneja5" target="_blank" rel="noopener noreferrer" className={`hover:underline ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Ansh Aneja</a>
