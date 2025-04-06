@@ -35,6 +35,9 @@ const MachineLearningRoadmap = () => {
 
   // Initialize dark mode and mobile view from localStorage and screen width
   useEffect(() => {
+    const savedProgress = JSON.parse(localStorage.getItem('mlRoadmapProgress')) || {};
+    setTopicProgress(savedProgress);
+
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(savedDarkMode);
     document.documentElement.classList.toggle('dark', savedDarkMode);
