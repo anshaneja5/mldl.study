@@ -6,7 +6,7 @@
 
 - **Interactive Roadmaps**: Easy-to-follow paths for ML and DL concepts
 - **Diverse Resources**: Video tutorials, articles, PDFs, and notes curated for each topic
-- **Community Growth**: Over 6000+ users
+- **Community Growth**: Over 10000+ users
 
 ## Getting Started 🚀
 
