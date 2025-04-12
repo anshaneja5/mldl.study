@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 
 const journeyData = [
   {
-    date: "March 2024",
+    date: "October 2024",
     title: "The Beginning",
     description: "Launched the initial version of mldl.study with a comprehensive ML/DL roadmap",
     redditLinks: [
@@ -17,7 +17,7 @@ const journeyData = [
     milestone: "Launch"
   },
   {
-    date: "April 2024",
+    date: "November 2024",
     title: "First Milestone",
     description: "Reached 450 users in just 25 days after launch",
     redditLinks: [
@@ -28,7 +28,7 @@ const journeyData = [
     milestone: "450 Users"
   },
   {
-    date: "May 2024",
+    date: "November 2024",
     title: "Growing Strong",
     description: "Hit 2000 users within 30 days, showing strong community interest",
     redditLinks: [
@@ -39,7 +39,7 @@ const journeyData = [
     milestone: "2K Users"
   },
   {
-    date: "June 2024",
+    date: "December 2024",
     title: "Open Source Release",
     description: "Project reached 4000 users and was open-sourced to the community",
     redditLinks: [
@@ -50,7 +50,7 @@ const journeyData = [
     milestone: "4K Users"
   },
   {
-    date: "July 2024",
+    date: "January 2025",
     title: "Self-Hosted Success",
     description: "Achieved 5000 users in 3 months, with strong community support",
     redditLinks: [
@@ -61,9 +61,9 @@ const journeyData = [
     milestone: "5K Users"
   },
   {
-    date: "August 2024",
+    date: "April 2025",
     title: "Startup Journey",
-    description: "Shared the inspiring story of building a startup during college",
+    description: "Shared the inspiring story of building mldl.study in college",
     redditLinks: [
       "https://www.reddit.com/r/Btechtards/comments/1jwlqys/story_of_how_i_finally_built_a_startup_in_my/",
       "https://www.reddit.com/r/developersIndia/comments/1jwosyj/story_of_how_i_finally_built_a_startup_in_my/"
