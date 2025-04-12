@@ -93,6 +93,7 @@ const NavLinks = ({ darkMode, className, onLinkClick = () => {}, isMobile = fals
     { path: '/genai', label: 'GenAI Roadmap' },
     { path: '/books', label: 'Books' },
     { path: '/researchpapers', label: 'Research Papers' },
+    { path: '/journey', label: 'Journey' },
   ];
 
   return (

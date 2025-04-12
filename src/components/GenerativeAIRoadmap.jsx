@@ -495,4 +495,3 @@ const GenerativeAIRoadmap = () => {
 };
 
 export default GenerativeAIRoadmap;
-
