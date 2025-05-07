@@ -85,16 +85,23 @@ const NavbarModal = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
 const NavLinks = ({ darkMode, className, onLinkClick = () => {}, isMobile = false }) => {
   const location = useLocation();
   
-  // Navigation items in an array for easier maintenance
+  // Simplified navigation items - reduced number for desktop
   const navItems = [
     { path: '/prerequisites', label: 'Prerequisites' },
-    { path: '/machinelearning', label: 'ML Roadmap' },
-    { path: '/deeplearning', label: 'DL Roadmap' },
-    { path: '/genai', label: 'GenAI Roadmap' },
+    { path: '/machinelearning', label: 'ML' },
+    { path: '/deeplearning', label: 'DL' },
+    { path: '/genai', label: 'GenAI' },
+    // Additional items can be moved to a dropdown menu
+  ];
+
+  // Secondary nav items for dropdown
+  const secondaryItems = [
     { path: '/books', label: 'Books' },
-    { path: '/researchpapers', label: 'Research Papers' },
+    { path: '/researchpapers', label: 'Papers' },
     { path: '/journey', label: 'Journey' },
   ];
+
+  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
     <ul className={className}>
@@ -124,6 +131,72 @@ const NavLinks = ({ darkMode, className, onLinkClick = () => {}, isMobile = fals
           </Link>
         </li>
       ))}
+      
+      {!isMobile && (
+        <li className="relative">
+          <button
+            className={`
+              flex items-center gap-1 transition-colors duration-300
+              ${darkMode ? 'text-white' : 'text-gray-700'}
+              hover:text-emerald-600
+            `}
+            onClick={() => setShowDropdown(!showDropdown)}
+            aria-expanded={showDropdown}
+          >
+            More
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          
+          {showDropdown && (
+            <div className={`
+              absolute top-full right-0 mt-2 w-48 rounded-md shadow-lg py-1 z-10
+              ${darkMode ? 'bg-gray-800' : 'bg-white'}
+              border ${darkMode ? 'border-gray-700' : 'border-gray-200'}
+            `}>
+              {secondaryItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`
+                    block px-4 py-2 text-sm
+                    ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}
+                    ${location.pathname === item.path ? 'font-medium text-emerald-500' : ''}
+                  `}
+                  onClick={() => {
+                    setShowDropdown(false);
+                    onLinkClick();
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </li>
+      )}
+      
+      {isMobile && secondaryItems.map((item) => (
+        <li key={item.path}>
+          <Link 
+            to={item.path} 
+            className={`
+              relative flex items-center transition-colors duration-300
+              ${darkMode ? 'text-white' : 'text-gray-700'}
+              ${location.pathname === item.path 
+                ? 'text-emerald-500 font-medium' 
+                : 'hover:text-emerald-600'
+              }
+              text-lg py-1.5
+            `}
+            onClick={onLinkClick}
+          >
+            {item.label}
+          </Link>
+        </li>
+      ))}
+      
       <li>
         <a
           href="https://github.com/anshaneja5/mldl.study"
@@ -147,12 +220,7 @@ const NavLinks = ({ darkMode, className, onLinkClick = () => {}, isMobile = fals
           >
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
-          <span className="whitespace-nowrap">Star on GitHub</span>
-          <img 
-            src="https://img.shields.io/github/stars/anshaneja5/mldl.study?style=social" 
-            alt="GitHub stars"
-            className={isMobile ? "h-6" : "h-5"}
-          />
+          <span className="whitespace-nowrap">GitHub</span>
         </a>
       </li>
     </ul>
@@ -186,7 +254,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           <Link 
             to="/" 
             className={`
-              text-2xl font-bold tracking-tight transition-all duration-300 
+              text-2xl font-bold tracking-tight transition-all duration-300
               ${darkMode 
                 ? 'text-white hover:text-emerald-400' 
                 : 'text-emerald-600 hover:text-emerald-700'
@@ -197,30 +265,40 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <NavLinks darkMode={darkMode} className="flex items-center space-x-6" />
-            <button
-              onClick={toggleDarkMode}
-              className={`
-                p-2 rounded-lg flex items-center gap-2 transition-all duration-300
-                ${darkMode 
-                  ? 'bg-blue-100/90 text-blue-600 hover:bg-blue-200' 
-                  : 'bg-gray-800/95 text-yellow-400 hover:bg-gray-700'
-                }
-                hover:scale-105 transform
-              `}
-              aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-            >
-              <span className="relative w-5 h-5 flex items-center justify-center">
+          <div className="hidden md:flex items-center space-x-6">
+            <NavLinks darkMode={darkMode} className="flex items-center space-x-5" />
+            
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={toggleDarkMode}
+                className={`
+                  p-2 rounded-lg transition-all duration-300
+                  ${darkMode 
+                    ? 'bg-blue-100/90 text-blue-600 hover:bg-blue-200' 
+                    : 'bg-gray-800/95 text-yellow-400 hover:bg-gray-700'
+                  }
+                `}
+                aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
                 {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </span>
-              <span className="text-sm font-medium">
-                {darkMode ? 'Light' : 'Dark'}
-              </span>
-            </button>
+              </button>
+              
+              <a 
+                href="https://buymeacoffee.com/anshaneja" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transition-transform hover:scale-105"
+              >
+                <img 
+                  src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+                  alt="Buy Me A Coffee"
+                  className="h-8"
+                />
+              </a>
+            </div>
           </div>
 
-          {/* Mobile Menu Button with improved tap target */}
+          {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsModalOpen(true)}
             className={`
