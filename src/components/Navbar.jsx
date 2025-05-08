@@ -76,6 +76,22 @@ const NavbarModal = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
+          {/* Buy Me A Coffee Button for Mobile */}
+          <div className="mt-4 flex justify-center">
+            <a 
+              href="https://buymeacoffee.com/anshaneja" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="transition-transform hover:scale-105"
+              onClick={onClose}
+            >
+              <img 
+                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+                alt="Buy Me A Coffee"
+                className="h-10"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>
