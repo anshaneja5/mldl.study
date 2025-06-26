@@ -133,6 +133,7 @@ const MachineLearningRoadmap = () => {
     return darkMode ? '#4B5563' : '#d1d5db';
   };
 
+<<<<<<< HEAD
   const updateTopicProgress = (topicName, videoUrl, completed) => {
     try {
       const progressKey = `${topicName}_${videoUrl}`;
@@ -140,6 +141,27 @@ const MachineLearningRoadmap = () => {
         ...topicProgress,
         [progressKey]: completed
       };
+=======
+  const updateTopicProgress = (topicName, videoUrl, completed, bulkUpdates = null) => {
+    try {
+      let newProgress;
+      
+      if (bulkUpdates) {
+        // Handle bulk updates for "Mark as Complete" functionality
+        newProgress = {
+          ...topicProgress,
+          ...bulkUpdates
+        };
+      } else {
+        // Handle single video update
+        const progressKey = `${topicName}_${videoUrl}`;
+        newProgress = {
+          ...topicProgress,
+          [progressKey]: completed
+        };
+      }
+      
+>>>>>>> f2c4935 (course completed feature)
       setTopicProgress(newProgress);
       localStorage.setItem('mlRoadmapProgress', JSON.stringify(newProgress));
     } catch (error) {

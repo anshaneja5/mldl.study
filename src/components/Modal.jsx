@@ -10,11 +10,39 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
       ).length / topicVideos.length) * 100)
     : 0;
 
+<<<<<<< HEAD
+=======
+  // Check if all videos are completed
+  const isFullyCompleted = topicVideos.length > 0 && topicVideos.every(video => 
+    existingProgress[`${topic.name}_${video.url}`] === true
+  );
+
+>>>>>>> f2c4935 (course completed feature)
   const saveProgress = (videoUrl) => {
     const currentProgress = existingProgress[`${topic.name}_${videoUrl}`] || false;
     onProgressUpdate(topic.name, videoUrl, !currentProgress);
   };
 
+<<<<<<< HEAD
+=======
+  // Mark all videos as complete/incomplete
+  const markAllAsComplete = () => {
+    const newCompletionState = !isFullyCompleted;
+    
+    // Create a bulk update object for all videos at once
+    const bulkUpdates = {};
+    topicVideos.forEach(video => {
+      if (video.url) {
+        const progressKey = `${topic.name}_${video.url}`;
+        bulkUpdates[progressKey] = newCompletionState;
+      }
+    });
+    
+    // Call onProgressUpdate with bulk updates
+    onProgressUpdate(topic.name, null, null, bulkUpdates);
+  };
+
+>>>>>>> f2c4935 (course completed feature)
   // Disable body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden"; // Prevent body scroll when modal is open
@@ -35,6 +63,7 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
         <div className={modalClasses}>
           {/* Header */}
           <div className="relative px-6 pt-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+<<<<<<< HEAD
             <h2 className="text-2xl font-bold pr-8">{topic.name}</h2>
             <button 
               onClick={onClose}
@@ -45,6 +74,34 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
             >
               <X size={20} />
             </button>
+=======
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-4 flex-1">
+                <h2 className="text-2xl font-bold">{topic.name}</h2>
+                {topicVideos.length > 0 && (
+                  <button 
+                    onClick={markAllAsComplete}
+                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 whitespace-nowrap ${
+                      isFullyCompleted 
+                        ? 'bg-green-500 text-white hover:bg-green-600' 
+                        : 'bg-blue-500 text-white hover:bg-blue-600'
+                    }`}
+                  >
+                    {isFullyCompleted ? 'Mark as Incomplete' : 'Mark as Complete'}
+                  </button>
+                )}
+              </div>
+              <button 
+                onClick={onClose}
+                className={`p-2 rounded-full transition-colors flex-shrink-0 ml-4
+                  ${darkMode 
+                    ? 'hover:bg-gray-800 text-gray-400 hover:text-white' 
+                    : 'hover:bg-gray-100 text-gray-500 hover:text-gray-700'}`}
+              >
+                <X size={20} />
+              </button>
+            </div>
+>>>>>>> f2c4935 (course completed feature)
           </div>
 
           {/* Progress Bar */}
