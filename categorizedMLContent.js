@@ -58,6 +58,10 @@ const categorizedVideos = {
       title: "How to Frame a Machine Learning Problem | How to plan a Data Science Project Effectively",
       url: "https://youtube.com/watch?v=A9SezQlvakw"
     },
+    {
+      title:"Stanford CS229: Machine Learning Full",
+      url: "https://youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU&si=k0S2u3vhjrYVyaKW"
+    },
     ],
     "Data Preprocessing": [
         {
