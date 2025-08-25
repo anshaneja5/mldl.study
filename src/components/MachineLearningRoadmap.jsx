@@ -133,15 +133,6 @@ const MachineLearningRoadmap = () => {
     return darkMode ? '#4B5563' : '#d1d5db';
   };
 
-<<<<<<< HEAD
-  const updateTopicProgress = (topicName, videoUrl, completed) => {
-    try {
-      const progressKey = `${topicName}_${videoUrl}`;
-      const newProgress = {
-        ...topicProgress,
-        [progressKey]: completed
-      };
-=======
   const updateTopicProgress = (topicName, videoUrl, completed, bulkUpdates = null) => {
     try {
       let newProgress;
@@ -161,7 +152,6 @@ const MachineLearningRoadmap = () => {
         };
       }
       
->>>>>>> f2c4935 (course completed feature)
       setTopicProgress(newProgress);
       localStorage.setItem('mlRoadmapProgress', JSON.stringify(newProgress));
     } catch (error) {
