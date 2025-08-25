@@ -10,8 +10,8 @@ import HomePage from './components/HomePage';
 import Books from './components/Books';
 import Journey from './components/Journey';
 import ReactGA from 'react-ga4';
-// const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
-// ReactGA.initialize(trackingId);
+const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
+ReactGA.initialize(trackingId);
 
 const App = () => {
   return (
