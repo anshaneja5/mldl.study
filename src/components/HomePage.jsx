@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
-import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain } from 'lucide-react';
+import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Clock, Globe, Users } from 'lucide-react';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
 
@@ -102,6 +102,69 @@ const FAQItem = ({ question, answer, isOpen, onClick, darkMode }) => (
     </div>
   </div>
 );
+
+// Countdown Timer Component
+const CountdownTimer = ({ darkMode }) => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const targetDate = new Date('2025-09-02T00:00:00').getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="text-center mb-6">
+      <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+            {timeLeft.days.toString().padStart(2, '0')}
+          </div>
+          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Days</div>
+        </div>
+        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+            {timeLeft.hours.toString().padStart(2, '0')}
+          </div>
+          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Hours</div>
+        </div>
+        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+            {timeLeft.minutes.toString().padStart(2, '0')}
+          </div>
+          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Minutes</div>
+        </div>
+        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+            {timeLeft.seconds.toString().padStart(2, '0')}
+          </div>
+          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Seconds</div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Home Page Component
 const HomePage = () => {
@@ -258,60 +321,160 @@ const HomePage = () => {
             </div>
           </header>
 
-          {/* Perplexity Pro Section */}
-          <div className={`w-full max-w-4xl mx-auto mb-16 p-8 rounded-2xl shadow-xl ${darkMode ? 'bg-gradient-to-br from-gray-800 to-gray-900' : 'bg-gradient-to-br from-blue-50 to-indigo-50'} border border-gray-200 dark:border-gray-700 relative overflow-hidden`}>
-            {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+          {/* Perplexity Comet Section */}
+          <div className={`w-full max-w-5xl mx-auto mb-16 p-8 rounded-3xl shadow-2xl ${darkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'} border border-gray-200 dark:border-gray-700 relative overflow-hidden`}>
+            {/* Enhanced Decorative Elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-pulse" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 animate-pulse" />
+            <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2" />
             
-            <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
-              <div className="flex-shrink-0">
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    shapeRendering="geometricPrecision" 
-                    textRendering="geometricPrecision" 
-                    imageRendering="optimizeQuality" 
-                    fillRule="evenodd" 
-                    clipRule="evenodd" 
-                    viewBox="0 0 512 509.64"
-                    className="w-32 h-32"
-                  >
-                    <path fill="#1F1F1F" d="M115.613 0h280.774C459.974 0 512 52.025 512 115.612v278.415c0 63.587-52.026 115.613-115.613 115.613H115.613C52.026 509.64 0 457.614 0 394.027V115.612C0 52.025 52.026 0 115.613 0z"/>
-                    <path fill="#fff" fillRule="nonzero" d="M348.851 128.063l-68.946 58.302h68.946v-58.302zm-83.908 48.709l100.931-85.349v94.942h32.244v143.421h-38.731v90.004l-94.442-86.662v83.946h-17.023v-83.906l-96.596 86.246v-89.628h-37.445V186.365h38.732V90.768l95.309 84.958v-83.16h17.023l-.002 84.206zm-29.209 26.616c-34.955.02-69.893 0-104.83 0v109.375h20.415v-27.121l84.415-82.254zm41.445 0l82.208 82.324v27.051h21.708V203.388c-34.617 0-69.274.02-103.916 0zm-42.874-17.023l-64.669-57.646v57.646h64.669zm13.617 124.076v-95.2l-79.573 77.516v88.731l79.573-71.047zm17.252-95.022v94.863l77.19 70.83c0-29.485-.012-58.943-.012-88.425l-77.178-77.268z"/>
-                  </svg>
+            <div className="relative z-10">
+              {/* Header Section with Logo */}
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-medium mb-6 shadow-lg">
+                  <Clock className="w-4 h-4 mr-2" />
+                  Coming Soon - September 2nd, 2025
+                </div>
+                
+                {/* Comet Logo */}
+                <div className="flex justify-center mb-6">
+                  <div className="p-6 rounded-3xl shadow-2xl">
+                    <img 
+                      src="https://cdn.prod.website-files.com/5f15081919fdf673994ab5fd/6807f205d9da98a89a158c03_comet-browser-icon.svg"
+                      alt="Perplexity Comet Logo"
+                      className="w-32 h-32 object-contain"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' fill='%23f3f4f6'/%3E%3Ctext x='64' y='64' font-family='Arial' font-size='12' fill='%236b7280' text-anchor='middle' dy='.3em'%3EComet Logo%3C/text%3E%3C/svg%3E";
+                      }}
+                    />
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 leading-tight pb-2">
+                  Perplexity Comet Browser Launch
+                </h2>
+                <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  Perplexity Comet in collaboration with mldl.study brings you the revolutionary AI-powered browser that's launching soon. 
+                  Get ready for a new way to browse the web with integrated AI assistance, designed specifically for learners and researchers.
+                </p>
+                
+                {/* Enhanced Countdown Timer */}
+                <div className="mb-8">
+                  <CountdownTimer darkMode={darkMode} />
+                </div>
+                
+                <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 font-medium">
+                  ⏰ Comet invites will be sent starting September 2nd, 2025
+                </p>
+              </div>
+
+              {/* Comet Browser Features with Better Use Cases */}
+              <div className="mb-12">
+                <h3 className={`text-3xl font-bold mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  What Can You Do with Perplexity Comet?
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}>
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <Sparkles className="w-6 h-6" />
+                      </div>
+                      <h4 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>AI-Powered Research</h4>
+                    </div>
+                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+                      Conduct comprehensive research with AI assistance that summarizes web pages, finds related content, and answers complex questions in real-time.
+                    </p>
+                  </div>
+                  
+                  <div className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}>
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <Brain className="w-6 h-6" />
+                      </div>
+                      <h4 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Smart Content Creation</h4>
+                    </div>
+                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+                      Generate articles, emails, and social media posts with AI help while browsing. Get writing suggestions and content ideas instantly.
+                    </p>
+                  </div>
+                  
+                  <div className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}>
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-r from-green-500 to-teal-500 text-white mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <Zap className="w-6 h-6" />
+                      </div>
+                      <h4 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Learning & Education</h4>
+                    </div>
+                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+                      Learn new topics faster with AI explanations, study guides, and interactive Q&A sessions while browsing educational content.
+                    </p>
+                  </div>
+                  
+                  <div className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}>
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <Users className="w-6 h-6" />
+                      </div>
+                      <h4 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Productivity Boost</h4>
+                    </div>
+                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+                      Automate repetitive tasks, schedule meetings, manage emails, and organize information with AI assistance while browsing.
+                    </p>
+                  </div>
+                  
+                  <div className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}>
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-r from-red-500 to-pink-500 text-white mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <BookOpen className="w-6 h-6" />
+                      </div>
+                      <h4 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Code & Development</h4>
+                    </div>
+                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+                      Get coding help, debug issues, and learn new programming languages with AI assistance while browsing documentation and tutorials.
+                    </p>
+                  </div>
+                  
+                  <div className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}>
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white mr-3 group-hover:scale-110 transition-transform duration-300">
+                        <Map className="w-6 h-6" />
+                      </div>
+                      <h4 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Travel & Planning</h4>
+                    </div>
+                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+                      Plan trips, find the best deals, and get personalized recommendations for hotels, restaurants, and activities with AI assistance.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="flex-grow">
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-medium mb-4">
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Exclusive Student Offer
-                </div>
-                <h2 className="text-3xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-                  Get Free Perplexity Pro Access!
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg">
-                  Unlock the power of advanced AI models including GPT-4, Claude 3.7, and more. 
-                  Perfect for students and researchers - sign up with your college email today!
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="https://plex.it/referrals/8LG9KPNX"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                  >
-                    <span className="text-lg">Get Started Now</span>
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </a>
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <div className="flex -space-x-2 mr-2">
-                      <div className="w-6 h-6 rounded-full bg-blue-500 border-2 border-white dark:border-gray-800" />
-                      <div className="w-6 h-6 rounded-full bg-indigo-500 border-2 border-white dark:border-gray-800" />
-                      <div className="w-6 h-6 rounded-full bg-purple-500 border-2 border-white dark:border-gray-800" />
-                    </div>
-                    <span>Join 1000+ students already using Pro</span>
+
+              {/* Enhanced Waitlist CTA */}
+              <div className="text-center">
+                <div className={`inline-block p-8 rounded-3xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-2xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'}`}>
+                  <h3 className={`text-3xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                    Get Early Access to Comet
+                  </h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                    Be among the first to experience the future of browsing! Join our exclusive waitlist and get notified 
+                    when Perplexity Comet becomes available.
+                  </p>
+                  
+                  {/* Embedded MakeForm */}
+                  <div className="mb-6">
+                    <iframe 
+                      src="https://makeform.ai/e/5gpFSEN5"
+                      height="280"
+                      width="100%"
+                      style={{ border: 'none', margin: '0', padding: '0', borderRadius: '16px' }}
+                      title="Perplexity Comet Waitlist"
+                      className="rounded-2xl"
+                    />
                   </div>
+                  
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    🎯 Priority access for early subscribers • 📧 Instant confirmation • 🚀 First to know when Comet launches
+                  </p>
                 </div>
               </div>
             </div>
