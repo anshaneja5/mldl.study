@@ -121,13 +121,25 @@ const GenerativeAIRoadmap = () => {
     setSelectedTopic(null);
   };
 
-  const updateTopicProgress = (topicName, videoUrl, completed) => {
+  const updateTopicProgress = (topicName, videoUrl, completed, bulkUpdates = null) => {
     try {
-      const progressKey = `${topicName}_${videoUrl}`;
-      const newProgress = {
-        ...topicProgress,
-        [progressKey]: completed
-      };
+      let newProgress;
+      
+      if (bulkUpdates) {
+        // Handle bulk updates for "Mark as Complete" functionality
+        newProgress = {
+          ...topicProgress,
+          ...bulkUpdates
+        };
+      } else {
+        // Handle single video update
+        const progressKey = `${topicName}_${videoUrl}`;
+        newProgress = {
+          ...topicProgress,
+          [progressKey]: completed
+        };
+      }
+      
       setTopicProgress(newProgress);
       localStorage.setItem('genaiRoadmapProgress', JSON.stringify(newProgress));
     } catch (error) {
@@ -479,14 +491,7 @@ const GenerativeAIRoadmap = () => {
           onClose={() => setSelectedTopic(null)}
           videoSource={genai}
           existingProgress={topicProgress}
-          onProgressUpdate={(topicName, videoUrl, completed) => {
-            const newProgress = {
-              ...topicProgress,
-              [`${topicName}_${videoUrl}`]: completed,
-            };
-            setTopicProgress(newProgress);
-            localStorage.setItem('genaiRoadmapProgress', JSON.stringify(newProgress));
-          }}
+          onProgressUpdate={updateTopicProgress}
           darkMode={darkMode}
         />
       )}

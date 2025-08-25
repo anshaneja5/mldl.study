@@ -124,13 +124,25 @@ const PrerequisiteRoadmap = () => {
     setSelectedTopic(null);
   };
 
-  const updateTopicProgress = (topicName, videoUrl, completed) => {
+  const updateTopicProgress = (topicName, videoUrl, completed, bulkUpdates = null) => {
     try {
-      const progressKey = `${topicName}_${videoUrl}`;
-      const newProgress = {
-        ...topicProgress,
-        [progressKey]: completed
-      };
+      let newProgress;
+      
+      if (bulkUpdates) {
+        // Handle bulk updates for "Mark as Complete" functionality
+        newProgress = {
+          ...topicProgress,
+          ...bulkUpdates
+        };
+      } else {
+        // Handle single video update
+        const progressKey = `${topicName}_${videoUrl}`;
+        newProgress = {
+          ...topicProgress,
+          [progressKey]: completed
+        };
+      }
+      
       setTopicProgress(newProgress);
       localStorage.setItem('prerequisiteRoadmapProgress', JSON.stringify(newProgress));
     } catch (error) {
@@ -420,4 +432,3 @@ const PrerequisiteRoadmap = () => {
 };
 
 export default PrerequisiteRoadmap;
-
