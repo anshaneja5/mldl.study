@@ -103,69 +103,6 @@ const FAQItem = ({ question, answer, isOpen, onClick, darkMode }) => (
   </div>
 );
 
-// Countdown Timer Component
-const CountdownTimer = ({ darkMode }) => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  useEffect(() => {
-    const targetDate = new Date('2025-09-02T00:00:00').getTime();
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        setTimeLeft({ days, hours, minutes, seconds });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="text-center mb-6">
-      <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
-        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-            {timeLeft.days.toString().padStart(2, '0')}
-          </div>
-          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Days</div>
-        </div>
-        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-            {timeLeft.hours.toString().padStart(2, '0')}
-          </div>
-          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Hours</div>
-        </div>
-        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-            {timeLeft.minutes.toString().padStart(2, '0')}
-          </div>
-          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Minutes</div>
-        </div>
-        <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-white'} shadow-lg border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-          <div className={`text-3xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-            {timeLeft.seconds.toString().padStart(2, '0')}
-          </div>
-          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Seconds</div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // Home Page Component
 const HomePage = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
@@ -332,8 +269,8 @@ const HomePage = () => {
               {/* Header Section with Logo */}
               <div className="text-center mb-12">
                 <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-medium mb-6 shadow-lg">
-                  <Clock className="w-4 h-4 mr-2" />
-                  Coming Soon - September 2nd, 2025
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Student Offer: Free Pro + Early Comet Access
                 </div>
                 
                 {/* Comet Logo */}
@@ -359,14 +296,18 @@ const HomePage = () => {
                   Get ready for a new way to browse the web with integrated AI assistance, designed specifically for learners and researchers.
                 </p>
                 
-                {/* Enhanced Countdown Timer */}
-                <div className="mb-8">
-                  <CountdownTimer darkMode={darkMode} />
+                {/* Referral CTA */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                  <a
+                    href="https://pplx.ai/ansh-aneja"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    <span className="text-base md:text-lg">Get Perplexity Pro + Early Comet Access</span>
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </a>
                 </div>
-                
-                <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 font-medium">
-                  ⏰ Comet invites will be sent starting September 2nd, 2025
-                </p>
               </div>
 
               {/* Comet Browser Features with Better Use Cases */}
@@ -449,34 +390,7 @@ const HomePage = () => {
                 </div>
               </div>
 
-              {/* Enhanced Waitlist CTA */}
-              <div className="text-center">
-                <div className={`inline-block p-8 rounded-3xl ${darkMode ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'} shadow-2xl border ${darkMode ? 'border-gray-600/50' : 'border-gray-200/50'}`}>
-                  <h3 className={`text-3xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                    Get Early Access to Comet
-                  </h3>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                    Be among the first to experience the future of browsing! Join our exclusive waitlist and get notified 
-                    when Perplexity Comet becomes available.
-                  </p>
-                  
-                  {/* Embedded MakeForm */}
-                  <div className="mb-6">
-                    <iframe 
-                      src="https://makeform.ai/e/5gpFSEN5"
-                      height="280"
-                      width="100%"
-                      style={{ border: 'none', margin: '0', padding: '0', borderRadius: '16px' }}
-                      title="Perplexity Comet Waitlist"
-                      className="rounded-2xl"
-                    />
-                  </div>
-                  
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    🎯 Priority access for early subscribers • 📧 Instant confirmation • 🚀 First to know when Comet launches
-                  </p>
-                </div>
-              </div>
+              
             </div>
           </div>
 
