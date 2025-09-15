@@ -71,14 +71,6 @@ const categorizedVideos = {
     ],
     "Python" : [
         {
-            title : "Python Programming MOOC by University of Helsinki"
-            url : "https://programming-25.mooc.fi/"    
-        },
-        {
-            title : "CS50’s Introduction to Programming with Python by Harvard University",
-            url : "https://cs50.harvard.edu/python/"
-        },
-        {
             title : "Python OneShot by Programming with Mosh",
             url : "https://youtu.be/_uQrJ0TkZlc?si=oguXvxcUqD8R9Jxm"
         },
