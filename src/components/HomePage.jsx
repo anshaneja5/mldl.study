@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
-import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Clock, Globe, Users } from 'lucide-react';
+import { ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Users } from 'lucide-react';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import { getInitialTheme, applyTheme, setupThemeListener } from '../utils/themeUtils';
 
 // FAQ Data
 const FAQ_DATA = [
@@ -113,17 +114,16 @@ const HomePage = () => {
   const [activeRoadmap, setActiveRoadmap] = useState(null);
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode');
-    // If no preference is saved (first visit), default to dark mode
-    const shouldUseDarkMode = savedDarkMode === null ? true : savedDarkMode === 'true';
+    // Initialize theme based on user preference or browser preference
+    const initialTheme = getInitialTheme();
+    setDarkMode(initialTheme);
+    applyTheme(initialTheme, false); // Don't save since getInitialTheme already handles saved preferences
     
-    setDarkMode(shouldUseDarkMode);
-    document.documentElement.classList.toggle('dark', shouldUseDarkMode);
-    
-    // Save the default preference if it's a first visit
-    if (savedDarkMode === null) {
-      localStorage.setItem('darkMode', 'true');
-    }
+    // Set up listener for browser theme changes
+    const removeThemeListener = setupThemeListener((isDark) => {
+      setDarkMode(isDark);
+      applyTheme(isDark, false); // Don't save automatic changes
+    });
   
     // Check if modal has been shown before
     const hasSeenModal = localStorage.getItem('contributionModalSeen');
@@ -132,6 +132,11 @@ const HomePage = () => {
       setIsContributionModalOpen(true);
       localStorage.setItem('contributionModalSeen', 'true');
     }
+
+    // Cleanup listener on unmount
+    return () => {
+      removeThemeListener();
+    };
   }, []);
   
 
@@ -139,8 +144,7 @@ const HomePage = () => {
     setIsTransitioning(true);
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode, true); // Save user's manual choice
     setTimeout(() => setIsTransitioning(false), 300);
   };
 

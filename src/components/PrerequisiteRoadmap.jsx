@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 import Navbar from './Navbar';
 import categorizedVideos from '../../categorizedPrerequisiteContent';
 import Modal from './Modal';
 import ReactGA from 'react-ga4';
+import { getInitialTheme, applyTheme, setupThemeListener } from '../utils/themeUtils';
 
 const topics = [
   { id: 1, name: 'Linear Algebra', x: 25, y: 30, color: '#10b981', icon: '📐' },
@@ -41,9 +42,14 @@ const PrerequisiteRoadmap = () => {
         setTopicProgress(parsedProgress);
       }
 
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
+      const initialTheme = getInitialTheme();
+      setDarkMode(initialTheme);
+      applyTheme(initialTheme, false);
+      
+      const removeThemeListener = setupThemeListener((isDark) => {
+        setDarkMode(isDark);
+        applyTheme(isDark, false);
+      });
 
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 768);
@@ -51,7 +57,11 @@ const PrerequisiteRoadmap = () => {
 
       checkMobile();
       window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
+      
+      return () => {
+        window.removeEventListener('resize', checkMobile);
+        removeThemeListener();
+      };
     } catch (error) {
       console.error('Error loading progress:', error);
       setTopicProgress({});
@@ -81,16 +91,15 @@ const PrerequisiteRoadmap = () => {
     });
     
     setFilteredTopics(filtered);
-  }, [searchTerm, sortBy, topicProgress]);
+  }, [searchTerm, sortBy, topicProgress, calculateTopicProgress]);
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode, true);
   };
 
-  const calculateTopicProgress = (topicName) => {
+  const calculateTopicProgress = useCallback((topicName) => {
     const topicVideos = categorizedVideos[topicName] || [];
     if (topicVideos.length === 0) return 0;
     
@@ -99,7 +108,7 @@ const PrerequisiteRoadmap = () => {
     ).length;
     
     return Math.round((completedVideos / topicVideos.length) * 100);
-  };
+  }, [topicProgress]);
 
   const calculateOverallProgress = () => {
     if (Object.keys(topicProgress).length === 0) return 0;

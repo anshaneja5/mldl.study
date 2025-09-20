@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReactGA from 'react-ga4';
 import { Book, ExternalLink, Search } from 'lucide-react';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import { getInitialTheme, applyTheme, setupThemeListener } from '../utils/themeUtils';
 
 const books = [
   { title: 'Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow', author: 'Aurélien Géron', link: 'https://www.bayanbox.ir/view/9006149947423722897/Hands-On-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow.pdf', category: 'Machine Learning' },
@@ -35,16 +36,24 @@ const Books = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-    document.documentElement.classList.toggle('dark', savedDarkMode);
+    const initialTheme = getInitialTheme();
+    setDarkMode(initialTheme);
+    applyTheme(initialTheme, false);
+    
+    const removeThemeListener = setupThemeListener((isDark) => {
+      setDarkMode(isDark);
+      applyTheme(isDark, false);
+    });
+
+    return () => {
+      removeThemeListener();
+    };
   }, []);
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode, true);
   };
 
   const categories = ['all', ...new Set([...books, ...articles].map(item => item.category))];
