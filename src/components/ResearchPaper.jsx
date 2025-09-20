@@ -1,23 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Book, ExternalLink, ChevronDown, ChevronUp, Search } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Book, ExternalLink, ChevronDown, Search } from 'lucide-react';
 import researchPapers from "../../categorizedRPContent";
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import { getInitialTheme, applyTheme, setupThemeListener } from '../utils/themeUtils';
 
 const ResearchPaper = () => {
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [darkMode, setDarkMode] = useState(false);
+
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode, true);
   };
+
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-    document.documentElement.classList.toggle('dark', savedDarkMode);
+    const initialTheme = getInitialTheme();
+    setDarkMode(initialTheme);
+    applyTheme(initialTheme, false);
+    
+    const removeThemeListener = setupThemeListener((isDark) => {
+      setDarkMode(isDark);
+      applyTheme(isDark, false);
+    });
+
+    return () => {
+      removeThemeListener();
+    };
   }, []);
 
   const categoryInfo = {

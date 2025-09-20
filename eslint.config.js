@@ -33,6 +33,23 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'react/prop-types': 'off', // Disable prop-types validation
+      'no-unused-vars': 'warn',  // Change to warning instead of error
+      'react/no-unescaped-entities': 'off', // Allow apostrophes in JSX
+    },
+  },
+  {
+    files: ['*.config.js', 'categorized*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        module: true,
+        process: true,
+      },
+    },
+    rules: {
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
     },
   },
 ]

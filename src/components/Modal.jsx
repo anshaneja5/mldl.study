@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { X } from 'lucide-react';
 
 const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressUpdate, darkMode }) => {

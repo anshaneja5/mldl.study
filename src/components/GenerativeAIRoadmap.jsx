@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 import { Github } from 'lucide-react';
 import Modal from './Modal';
 import Navbar from './Navbar';
 import ReactGA from 'react-ga4';
 import genai from "../../categorizedGenAIContent";
+import { getInitialTheme, applyTheme, setupThemeListener } from '../utils/themeUtils';
 
 const topics = [
   { id: 1, name: 'Courses and Tutorials', x: 50, y: 10, color: '#2563eb', icon: '📚' },
@@ -42,9 +43,14 @@ const GenerativeAIRoadmap = () => {
         setTopicProgress(parsedProgress);
       }
 
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
+      const initialTheme = getInitialTheme();
+      setDarkMode(initialTheme);
+      applyTheme(initialTheme, false);
+      
+      const removeThemeListener = setupThemeListener((isDark) => {
+        setDarkMode(isDark);
+        applyTheme(isDark, false);
+      });
 
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 768);
@@ -52,7 +58,11 @@ const GenerativeAIRoadmap = () => {
 
       checkMobile();
       window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
+      
+      return () => {
+        window.removeEventListener('resize', checkMobile);
+        removeThemeListener();
+      };
     } catch (error) {
       console.error('Error loading progress:', error);
       setTopicProgress({});
@@ -85,9 +95,9 @@ const GenerativeAIRoadmap = () => {
     });
     
     setFilteredTopics(filtered);
-  }, [searchTerm, sortBy, topicProgress]);
+  }, [searchTerm, sortBy, topicProgress, calculateTopicProgress]);
 
-  const calculateTopicProgress = (topicName) => {
+  const calculateTopicProgress = useCallback((topicName) => {
     const topicVideos = genai[topicName] || [];
     if (topicVideos.length === 0) return 0;
     
@@ -96,7 +106,7 @@ const GenerativeAIRoadmap = () => {
     ).length;
     
     return Math.round((completedVideos / topicVideos.length) * 100);
-  };
+  }, [topicProgress]);
 
   const calculateOverallProgress = () => {
     if (Object.keys(topicProgress).length === 0) return 0;
@@ -115,10 +125,6 @@ const GenerativeAIRoadmap = () => {
       action: 'Topic Clicked',
       label: topic.name
     });
-  };
-
-  const closeModal = () => {
-    setSelectedTopic(null);
   };
 
   const updateTopicProgress = (topicName, videoUrl, completed, bulkUpdates = null) => {
@@ -151,8 +157,7 @@ const GenerativeAIRoadmap = () => {
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode, true);
   };
 
   const overallProgress = calculateOverallProgress();
@@ -166,45 +171,6 @@ const GenerativeAIRoadmap = () => {
     }
     return darkMode ? '#4B5563' : '#d1d5db';
   };
-
-  const ContributionBanner = () => (
-    <div className="w-full max-w-xl px-4 mb-6">
-      <div className="bg-blue-50 dark:bg-gray-800 border border-blue-200 dark:border-gray-700 rounded-lg p-4 shadow-sm">
-        <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 mt-1">
-            <svg 
-              className="h-5 w-5 text-blue-600 dark:text-blue-400" 
-              viewBox="0 0 20 20" 
-              fill="currentColor"
-            >
-              <path 
-                fillRule="evenodd" 
-                d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" 
-                clipRule="evenodd" 
-              />
-            </svg>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-blue-800 dark:text-blue-200">
-              Under Construction
-            </h3>
-            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-              This roadmap is actively being developed. We welcome contributions!
-            </p>
-            <a
-              href="https://github.com/anshaneja5/mldl.study"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center mt-2 text-blue-700 dark:text-blue-200 hover:text-blue-800 dark:hover:text-blue-100 hover:underline font-medium"
-            >
-              <Github className="w-4 h-4 mr-1.5" />
-              Contribute on GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
   // Mobile View - Card Layout
   const MobileView = () => (
@@ -354,7 +320,7 @@ const GenerativeAIRoadmap = () => {
         <link rel="canonical" href="https://mldl.study/genai" />
       </Helmet>
 
-      <Navbar darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} isTransitioning={false} />
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />
 
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
         <div className="container mx-auto px-4 py-8">

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReactGA from 'react-ga4';
 import { Helmet } from 'react-helmet';
-import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target, Zap } from 'lucide-react';
+import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target } from 'lucide-react';
 import Navbar from './Navbar';
+import { getInitialTheme, applyTheme, setupThemeListener } from '../utils/themeUtils';
 
 const journeyData = [
   {
@@ -76,9 +77,6 @@ const journeyData = [
 
 // Reddit Embed Component
 const RedditEmbed = ({ url }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://embed.reddit.com/widgets.js';
@@ -112,17 +110,25 @@ const Journey = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-    document.documentElement.classList.toggle('dark', savedDarkMode);
+    const initialTheme = getInitialTheme();
+    setDarkMode(initialTheme);
+    applyTheme(initialTheme, false);
+    
+    const removeThemeListener = setupThemeListener((isDark) => {
+      setDarkMode(isDark);
+      applyTheme(isDark, false);
+    });
+
+    return () => {
+      removeThemeListener();
+    };
   }, []);
 
   const toggleDarkMode = () => {
     setIsTransitioning(true);
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode, true);
     setTimeout(() => setIsTransitioning(false), 300);
   };
 
