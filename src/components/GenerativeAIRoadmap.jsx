@@ -5,6 +5,7 @@ import Modal from './Modal';
 import Navbar from './Navbar';
 import ReactGA from 'react-ga4';
 import genai from "../../categorizedGenAIContent";
+import { getInitialThemePreference, applyTheme, setupThemeChangeListener } from '../utils/themeUtils';
 
 const topics = [
   { id: 1, name: 'Courses and Tutorials', x: 50, y: 10, color: '#2563eb', icon: '📚' },
@@ -42,9 +43,16 @@ const GenerativeAIRoadmap = () => {
         setTopicProgress(parsedProgress);
       }
 
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
+      // Initialize theme based on user preference or browser preference
+      const shouldUseDarkMode = getInitialThemePreference();
+      setDarkMode(shouldUseDarkMode);
+      applyTheme(shouldUseDarkMode);
+
+      // Set up listener for browser theme changes
+      const cleanup = setupThemeChangeListener((prefersDark) => {
+        setDarkMode(prefersDark);
+        applyTheme(prefersDark);
+      });
 
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 768);
@@ -52,7 +60,11 @@ const GenerativeAIRoadmap = () => {
 
       checkMobile();
       window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
+      
+      return () => {
+        cleanup();
+        window.removeEventListener('resize', checkMobile);
+      };
     } catch (error) {
       console.error('Error loading progress:', error);
       setTopicProgress({});
@@ -151,8 +163,7 @@ const GenerativeAIRoadmap = () => {
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode);
   };
 
   const overallProgress = calculateOverallProgress();

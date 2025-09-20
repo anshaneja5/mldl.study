@@ -4,6 +4,7 @@ import ReactGA from 'react-ga4';
 import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Clock, Globe, Users } from 'lucide-react';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import { getInitialThemePreference, applyTheme, setupThemeChangeListener } from '../utils/themeUtils';
 
 // FAQ Data
 const FAQ_DATA = [
@@ -113,17 +114,16 @@ const HomePage = () => {
   const [activeRoadmap, setActiveRoadmap] = useState(null);
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode');
-    // If no preference is saved (first visit), default to dark mode
-    const shouldUseDarkMode = savedDarkMode === null ? true : savedDarkMode === 'true';
-    
+    // Initialize theme based on user preference or browser preference
+    const shouldUseDarkMode = getInitialThemePreference();
     setDarkMode(shouldUseDarkMode);
-    document.documentElement.classList.toggle('dark', shouldUseDarkMode);
-    
-    // Save the default preference if it's a first visit
-    if (savedDarkMode === null) {
-      localStorage.setItem('darkMode', 'true');
-    }
+    applyTheme(shouldUseDarkMode);
+
+    // Set up listener for browser theme changes
+    const cleanup = setupThemeChangeListener((prefersDark) => {
+      setDarkMode(prefersDark);
+      applyTheme(prefersDark);
+    });
   
     // Check if modal has been shown before
     const hasSeenModal = localStorage.getItem('contributionModalSeen');
@@ -132,6 +132,9 @@ const HomePage = () => {
       setIsContributionModalOpen(true);
       localStorage.setItem('contributionModalSeen', 'true');
     }
+
+    // Cleanup function
+    return cleanup;
   }, []);
   
 
@@ -139,8 +142,7 @@ const HomePage = () => {
     setIsTransitioning(true);
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode);
     setTimeout(() => setIsTransitioning(false), 300);
   };
 

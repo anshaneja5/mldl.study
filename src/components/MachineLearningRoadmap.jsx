@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import Navbar from './Navbar';
 import categorizedVideos from '../../categorizedMLContent';
 import Modal from './Modal';
+import { getInitialThemePreference, applyTheme, setupThemeChangeListener } from '../utils/themeUtils';
 
 const topics = [
   { id: 1, name: 'Introduction to Machine Learning', color: '#7C3AED', icon: '📚', x: 50, y: 10 },
@@ -42,9 +43,16 @@ const MachineLearningRoadmap = () => {
         setTopicProgress(parsedProgress);
       }
 
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
+      // Initialize theme based on user preference or browser preference
+      const shouldUseDarkMode = getInitialThemePreference();
+      setDarkMode(shouldUseDarkMode);
+      applyTheme(shouldUseDarkMode);
+
+      // Set up listener for browser theme changes
+      const cleanup = setupThemeChangeListener((prefersDark) => {
+        setDarkMode(prefersDark);
+        applyTheme(prefersDark);
+      });
 
       // Check if mobile
       const checkMobile = () => {
@@ -52,7 +60,11 @@ const MachineLearningRoadmap = () => {
       };
       checkMobile();
       window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
+      
+      return () => {
+        cleanup();
+        window.removeEventListener('resize', checkMobile);
+      };
     } catch (error) {
       console.error('Error loading progress:', error);
       setTopicProgress({});
@@ -90,8 +102,7 @@ const MachineLearningRoadmap = () => {
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    applyTheme(newDarkMode);
   };
 
   const calculateTopicProgress = (topicName) => {

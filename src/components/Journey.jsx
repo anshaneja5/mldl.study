@@ -3,6 +3,7 @@ import ReactGA from 'react-ga4';
 import { Helmet } from 'react-helmet';
 import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target, Zap } from 'lucide-react';
 import Navbar from './Navbar';
+import { getInitialThemePreference, applyTheme, setupThemeChangeListener } from '../utils/themeUtils';
 
 const journeyData = [
   {
@@ -112,21 +113,17 @@ const Journey = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-    document.documentElement.classList.toggle('dark', savedDarkMode);
-  }, []);
+    // Initialize theme based on user preference or browser preference
+    const shouldUseDarkMode = getInitialThemePreference();
+    setDarkMode(shouldUseDarkMode);
+    applyTheme(shouldUseDarkMode);
 
-  const toggleDarkMode = () => {
-    setIsTransitioning(true);
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
-    setTimeout(() => setIsTransitioning(false), 300);
-  };
+    // Set up listener for browser theme changes
+    const cleanup = setupThemeChangeListener((prefersDark) => {
+      setDarkMode(prefersDark);
+      applyTheme(prefersDark);
+    });
 
-  useEffect(() => {
     // Load Reddit embed script
     const script = document.createElement('script');
     script.src = 'https://embed.reddit.com/widgets.js';
@@ -135,9 +132,18 @@ const Journey = () => {
     document.body.appendChild(script);
 
     return () => {
+      cleanup();
       document.body.removeChild(script);
     };
   }, []);
+
+  const toggleDarkMode = () => {
+    setIsTransitioning(true);
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    applyTheme(newDarkMode);
+    setTimeout(() => setIsTransitioning(false), 300);
+  };
 
   return (
     <>
