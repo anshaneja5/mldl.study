@@ -17,13 +17,13 @@ const genai = {
       url: "https://towardsdatascience.com/how-i-studied-llms-in-two-weeks-a-comprehensive-roadmap-e8ac19667a31"
     },
     {
-      title:"LLM Bootcamp Course",
-      url:"https://fullstackdeeplearning.com/llm-bootcamp/",
-      notes:"It teaches prompt engineering, LLMOps, UX for LLMs, and how to launch an LLM app in an hour."
+      title: "LLM Bootcamp Course",
+      url: "https://fullstackdeeplearning.com/llm-bootcamp/",
+      notes: "It teaches prompt engineering, LLMOps, UX for LLMs, and how to launch an LLM app in an hour."
     },
     {
-      title:"5 Day LLM Foundations Roadmap",
-      url:"https://github.com/aishwaryanr/awesome-generative-ai-guide/blob/main/resources/genai_roadmap.md"
+      title: "5 Day LLM Foundations Roadmap",
+      url: "https://github.com/aishwaryanr/awesome-generative-ai-guide/blob/main/resources/genai_roadmap.md"
     },
     {
       title: "DeepLearning.AI Generative AI Specialization",
@@ -38,8 +38,33 @@ const genai = {
       url: "https://platform.openai.com/docs/"
     },
     {
-      title: "Andrew Ng’s Generative AI Playlist",
+      title: "Andrew Ng's Generative AI Playlist",
       url: "https://www.youtube.com/playlist?list=PLkDaE6sCZn6GMoA0Xu5AzbKq_YKfS5xuA"
+    },
+    {
+      title: "Stanford CS224N: NLP with Deep Learning",
+      url: "https://web.stanford.edu/class/cs224n/",
+      notes: "Comprehensive course covering neural networks for NLP, transformers, and modern language models."
+    },
+    {
+      title: "Fast.ai Practical Deep Learning for Coders",
+      url: "https://course.fast.ai/",
+      notes: "Hands-on course teaching deep learning from a practical perspective with real-world applications."
+    },
+    {
+      title: "MIT 6.S191: Introduction to Deep Learning",
+      url: "https://introtodeeplearning.com/",
+      notes: "Official MIT course covering foundations of deep learning with lab sessions."
+    },
+    {
+      title: "LangChain for LLM Application Development",
+      url: "https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/",
+      notes: "Short course by DeepLearning.AI on building LLM applications with LangChain framework."
+    },
+    {
+      title: "Prompt Engineering for Developers - OpenAI",
+      url: "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+      notes: "Learn best practices and advanced techniques for prompt engineering from OpenAI experts."
     }
   ],
   "Transformer Fundamentals": [
@@ -62,16 +87,41 @@ const genai = {
     {
       title: "Linear Relationships in the Transformer's Positional Encoding",
       url: "https://blog.timodenk.com/linear-relationships-in-the-transformers-positional-encoding/"
+    },
+    {
+      title: "Attention Is All You Need - Original Paper",
+      url: "https://arxiv.org/abs/1706.03762",
+      notes: "The foundational paper that introduced the Transformer architecture."
+    },
+    {
+      title: "The Illustrated Transformer - Jay Alammar",
+      url: "https://jalammar.github.io/illustrated-transformer/",
+      notes: "Visual guide to understanding transformer architecture with intuitive explanations."
+    },
+    {
+      title: "Annotated Transformer - Harvard NLP",
+      url: "https://nlp.seas.harvard.edu/2018/04/03/attention.html",
+      notes: "Line-by-line implementation of the Transformer paper with detailed annotations."
+    },
+    {
+      title: "BERT Explained - Jay Alammar",
+      url: "https://jalammar.github.io/illustrated-bert/",
+      notes: "Visual explanation of BERT and bidirectional transformer models."
+    },
+    {
+      title: "Understanding Self-Attention - Lilian Weng",
+      url: "https://lilianweng.github.io/posts/2018-06-24-attention/",
+      notes: "Deep dive into attention mechanisms and their variants in neural networks."
     }
   ],
   "Implementation Guides": [
     {
-      title:"Introduction to LLMs - Roadmap.sh",
-      url:"https://roadmap.sh/guides/introduction-to-llms#base-llms"
+      title: "Introduction to LLMs - Roadmap.sh",
+      url: "https://roadmap.sh/guides/introduction-to-llms#base-llms"
     },
     {
-      title:"Large Language Models in Five Formulas",
-      url:"https://www.youtube.com/watch?v=KCXDr-UOb9A"
+      title: "Large Language Models in Five Formulas",
+      url: "https://www.youtube.com/watch?v=KCXDr-UOb9A"
     },
     {
       title: "Build a Large Language Model (From Scratch) - Sebastian Raschka",
@@ -90,18 +140,78 @@ const genai = {
       url: "https://www.youtube.com/watch?v=Vonyoz6Yt9c"
     },
     {
-      title:"LLM Training Guide",
-      url:"https://rentry.org/llm-training"
+      title: "LLM Training Guide",
+      url: "https://rentry.org/llm-training"
     },
     {
-      title:"Application Development using Large Language Models - Andrew Ng",
-      url:"https://nips.cc/virtual/2023/tutorial/73948"
+      title: "Application Development using Large Language Models - Andrew Ng",
+      url: "https://nips.cc/virtual/2023/tutorial/73948"
+    },
+    {
+      title: "nanoGPT - Andrej Karpathy",
+      url: "https://github.com/karpathy/nanoGPT",
+      notes: "Minimalist implementation of GPT for educational purposes - perfect for understanding LLM internals."
+    },
+    {
+      title: "Building LLM Applications with LangChain",
+      url: "https://github.com/gkamradt/langchain-tutorials",
+      notes: "Comprehensive tutorials for building production-ready LLM applications."
+    },
+    {
+      title: "Fine-tuning LLMs with PEFT and LoRA",
+      url: "https://huggingface.co/docs/peft/index",
+      notes: "Parameter-efficient fine-tuning techniques for adapting large models with limited resources."
+    },
+    {
+      title: "Retrieval Augmented Generation (RAG) Implementation",
+      url: "https://www.pinecone.io/learn/retrieval-augmented-generation/",
+      notes: "Complete guide to implementing RAG systems for knowledge-grounded LLM applications."
+    },
+    {
+      title: "LLaMA from Scratch - Understanding Modern LLMs",
+      url: "https://github.com/meta-llama/llama",
+      notes: "Meta's LLaMA implementation with architectural insights and training methodology."
     }
   ],
   "Educational Channels": [
     {
       title: "Umar Jamil",
       url: "https://www.youtube.com/@umarjamilai"
+    },
+    {
+      title: "Andrej Karpathy",
+      url: "https://www.youtube.com/@AndrejKarpathy",
+      notes: "Former Tesla AI director and OpenAI founding member sharing deep learning insights."
+    },
+    {
+      title: "Two Minute Papers",
+      url: "https://www.youtube.com/@TwoMinutePapers",
+      notes: "Latest AI research papers explained in an accessible and engaging format."
+    },
+    {
+      title: "StatQuest with Josh Starmer",
+      url: "https://www.youtube.com/@statquest",
+      notes: "Clear explanations of machine learning and statistics concepts with great visualizations."
+    },
+    {
+      title: "Yannic Kilcher",
+      url: "https://www.youtube.com/@YannicKilcher",
+      notes: "In-depth paper reviews and discussions on cutting-edge AI research."
+    },
+    {
+      title: "AI Coffee Break with Letitia",
+      url: "https://www.youtube.com/@AICoffeeBreak",
+      notes: "Accessible explanations of AI concepts and latest developments in machine learning."
+    },
+    {
+      title: "3Blue1Brown",
+      url: "https://www.youtube.com/@3blue1brown",
+      notes: "Mathematical foundations of neural networks with stunning visualizations."
+    },
+    {
+      title: "Sentdex",
+      url: "https://www.youtube.com/@sentdex",
+      notes: "Python programming tutorials for machine learning and AI applications."
     }
   ],
   "Visualization and Research": [
@@ -114,9 +224,49 @@ const genai = {
       url: "https://www.anthropic.com/research/building-effective-agents"
     },
     {
-      title:"Awesome Generative AI Guide",
-      url:"https://github.com/aishwaryanr/awesome-generative-ai-guide",
-      notes:"NOTE: This is a GitHub repository containing a curated list of resources and papers related to Generative AI. A must visit for everyone." 
+      title: "Awesome Generative AI Guide",
+      url: "https://github.com/aishwaryanr/awesome-generative-ai-guide",
+      notes: "NOTE: This is a GitHub repository containing a curated list of resources and papers related to Generative AI. A must visit for everyone."
+    },
+    {
+      title: "Papers With Code - Language Models",
+      url: "https://paperswithcode.com/methods/category/language-models",
+      notes: "Latest research papers with code implementations for language models and benchmarks."
+    },
+    {
+      title: "Transformer Explainer",
+      url: "https://poloclub.github.io/transformer-explainer/",
+      notes: "Interactive visualization showing how transformers process text step-by-step."
+    },
+    {
+      title: "TensorFlow Playground",
+      url: "https://playground.tensorflow.org/",
+      notes: "Interactive neural network visualization for understanding how networks learn."
+    },
+    {
+      title: "Distill.pub - Research Distillery",
+      url: "https://distill.pub/",
+      notes: "High-quality interactive articles explaining machine learning research with clear visualizations."
+    },
+    {
+      title: "The Gradient - AI Research Community",
+      url: "https://thegradient.pub/",
+      notes: "Digital magazine featuring perspectives on AI research, policy, and applications."
+    },
+    {
+      title: "OpenAI Research Publications",
+      url: "https://openai.com/research",
+      notes: "Latest research from OpenAI including GPT models, DALL-E, and safety research."
+    },
+    {
+      title: "Google AI Research",
+      url: "https://ai.google/research/",
+      notes: "Cutting-edge research papers and projects from Google's AI teams."
+    },
+    {
+      title: "Anthropic Research",
+      url: "https://www.anthropic.com/research",
+      notes: "Research on AI safety, interpretability, and building reliable AI systems."
     }
   ]
 };
