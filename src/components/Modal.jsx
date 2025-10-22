@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
+
 const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressUpdate, darkMode }) => {
   const topicVideos = videoSource[topic.name] || [];
+
 
   const completionPercentage = topicVideos.length > 0
     ? Math.round((topicVideos.filter(video => 
@@ -10,15 +12,18 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
       ).length / topicVideos.length) * 100)
     : 0;
 
+
   // Check if all videos are completed
   const isFullyCompleted = topicVideos.length > 0 && topicVideos.every(video => 
     existingProgress[`${topic.name}_${video.url}`] === true
   );
 
+
   const saveProgress = (videoUrl) => {
     const currentProgress = existingProgress[`${topic.name}_${videoUrl}`] || false;
     onProgressUpdate(topic.name, videoUrl, !currentProgress);
   };
+
 
   // Mark all videos as complete/incomplete
   const markAllAsComplete = () => {
@@ -37,6 +42,7 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
     onProgressUpdate(topic.name, null, null, bulkUpdates);
   };
 
+
   // Disable body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden"; // Prevent body scroll when modal is open
@@ -45,11 +51,13 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
     };
   }, []);
 
+
   // Animation classes
   const backdropClasses = "fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm";
   const modalClasses = `relative w-full max-w-2xl rounded-xl shadow-2xl 
     ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}
     transform transition-all duration-300 ease-out`;
+
 
   return (
     <div className={`${backdropClasses} animate-fadeIn`}>
@@ -85,6 +93,7 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
             </div>
           </div>
 
+
           {/* Progress Bar */}
           <div className="px-6 py-4 bg-opacity-50 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
@@ -103,6 +112,7 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
             </div>
           </div>
 
+
           {/* Content */}
           <div className="px-6 py-4 max-h-[60vh] overflow-y-auto">
             {topicVideos.length > 0 ? (
@@ -111,29 +121,42 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
                   <li key={index} className={`p-4 rounded-lg transition-colors
                     ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-50'}`}>
                     {content.url && (
-                      <div className="flex justify-between items-center gap-4">
-                        <a
-                          href={content.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`flex-1 ${darkMode ? 'text-blue-400' : 'text-blue-600'} hover:underline`}
-                        >
-                          {content.title}
-                        </a>
-                        <button
-                          onClick={() => saveProgress(content.url)}
-                          className={`px-4 py-2 rounded-lg transition-all duration-200 transform hover:scale-105
-                            ${existingProgress[`${topic.name}_${content.url}`]
-                              ? 'bg-green-500 text-white hover:bg-green-600'
-                              : darkMode 
-                                ? 'bg-gray-700 text-white hover:bg-gray-600'
-                                : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
-                            }`}
-                        >
-                          {existingProgress[`${topic.name}_${content.url}`] ? 'Completed ✓' : 'Mark Complete'}
-                        </button>
+                      <div>
+                        <div className="flex justify-between items-start gap-4">
+                          <div className="flex-1">
+                            <a
+                              href={content.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-600'} hover:underline block`}
+                            >
+                              {content.title}
+                            </a>
+                            
+                            {/* ADD DESCRIPTION HERE */}
+                            {content.description && (
+                              <p className={`mt-2 text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                {content.description}
+                              </p>
+                            )}
+                          </div>
+                          
+                          <button
+                            onClick={() => saveProgress(content.url)}
+                            className={`px-4 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 whitespace-nowrap flex-shrink-0
+                              ${existingProgress[`${topic.name}_${content.url}`]
+                                ? 'bg-green-500 text-white hover:bg-green-600'
+                                : darkMode 
+                                  ? 'bg-gray-700 text-white hover:bg-gray-600'
+                                  : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+                              }`}
+                          >
+                            {existingProgress[`${topic.name}_${content.url}`] ? 'Completed ✓' : 'Mark Complete'}
+                          </button>
+                        </div>
                       </div>
                     )}
+
 
                     {content.articleLink && content.articleTitle && (
                       <div className="mt-2">
@@ -148,9 +171,9 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
                       </div>
                     )}
 
+
                     {content.notes && (
-                      <div className="mt-2 p-3 rounded-lg bg-opacity-10 
-                        ${darkMode ? 'bg-red-500' : 'bg-red-50'}">
+                      <div className={`mt-2 p-3 rounded-lg ${darkMode ? 'bg-red-500/10' : 'bg-red-50'}`}>
                         <p className={`text-sm ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
                           📌 {content.notes}
                         </p>
@@ -166,6 +189,7 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
             )}
           </div>
 
+
           {/* Footer */}
           <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
             <button
@@ -176,10 +200,11 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
               Close
             </button>
           </div>
-        </div>
+        </div> .
       </div>
     </div>
   );
 };
+
 
 export default Modal;
