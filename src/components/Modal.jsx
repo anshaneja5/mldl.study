@@ -133,7 +133,6 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
                               {content.title}
                             </a>
                             
-                            {/* ADD DESCRIPTION HERE */}
                             {content.description && (
                               <p className={`mt-2 text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                 {content.description}
