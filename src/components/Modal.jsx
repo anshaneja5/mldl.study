@@ -200,7 +200,7 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
               Close
             </button>
           </div>
-        </div> .
+        </div>
       </div>
     </div>
   );
