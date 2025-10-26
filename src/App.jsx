@@ -11,15 +11,21 @@ import Books from './components/Books';
 import Journey from './components/Journey';
 import QuestionBank from './components/QuestionBank';
 import ReactGA from "react-ga4";
+
+// Initialize Google Analytics with better error handling
 if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
   ReactGA.initialize(import.meta.env.VITE_GA_MEASUREMENT_ID);
+} else {
+  console.warn(
+    "Google Analytics measurement ID (VITE_GA_MEASUREMENT_ID) is not set. Analytics will not be initialized. " +
+    "If you recently migrated, ensure your environment variables are updated from VITE_APP_GA_TRACKING_ID to VITE_GA_MEASUREMENT_ID."
+  );
 }
-
 
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100">
+      <div className="w-full min-h-screen">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/deeplearning" element={<DeepLearning />} />

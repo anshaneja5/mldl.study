@@ -10,7 +10,6 @@ const QuestionBank = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState({ correct: 0, attempted: 0 });
-  const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [darkMode, setDarkMode] = useState(() => {
@@ -168,9 +167,8 @@ const QuestionBank = () => {
     setScore({ correct: 0, attempted: 0 });
   };
 
-  const filteredQuestions = questions.filter(q => 
-    filter === 'all' || q.difficulty === filter
-  );
+  // Use questions directly since we don't have filtering
+  const currentQuestions = questions;
 
   if (!selectedTopic) {
     return (
@@ -276,8 +274,8 @@ const QuestionBank = () => {
     );
   }
 
-  const question = filteredQuestions[currentQuestion];
-  const progress = ((currentQuestion + 1) / filteredQuestions.length) * 100;
+  const question = currentQuestions[currentQuestion];
+  const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
 
   return (
     <>
@@ -310,7 +308,7 @@ const QuestionBank = () => {
               <div className="flex items-center gap-4">
                 <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
                   Question <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{currentQuestion + 1}</span> of{' '}
-                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{filteredQuestions.length}</span>
+                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{currentQuestions.length}</span>
                 </div>
               </div>
               <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
@@ -455,7 +453,7 @@ const QuestionBank = () => {
               ) : (
                 <button
                   onClick={handleNext}
-                  disabled={currentQuestion === filteredQuestions.length - 1}
+                  disabled={currentQuestion === currentQuestions.length - 1}
                   className="px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold"
                 >
                   Next Question →
