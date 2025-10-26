@@ -25,20 +25,20 @@ if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
 const App = () => {
   return (
     <Router>
-      <div className="w-full min-h-screen">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/deeplearning" element={<DeepLearning />} />
-          <Route path="/machinelearning" element={<MachineLearningRoadmap />} />
-          <Route path="/prerequisites" element={<PrerequisiteRoadmap />} />
-          <Route path="/researchpapers" element={<ResearchPaper />} />
-          <Route path="/genai" element={<GenerativeAIRoadmap />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/journey" element={<Journey />} />
-          <Route path="/questionbank" element={<QuestionBank />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </div>
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/deeplearning" element={<DeepLearning />} />
+        <Route path="/machinelearning" element={<MachineLearningRoadmap />} />
+        <Route path="/prerequisites" element={<PrerequisiteRoadmap />} />
+        <Route path="/researchpapers" element={<ResearchPaper />} />
+        <Route path="/genai" element={<GenerativeAIRoadmap />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/journey" element={<Journey />} />
+        <Route path="/questionbank" element={<QuestionBank />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+
     </Router>
   );
 };

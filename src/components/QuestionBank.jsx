@@ -167,8 +167,6 @@ const QuestionBank = () => {
     setScore({ correct: 0, attempted: 0 });
   };
 
-  // Use questions directly since we don't have filtering
-  const currentQuestions = questions;
 
   if (!selectedTopic) {
     return (
@@ -274,8 +272,8 @@ const QuestionBank = () => {
     );
   }
 
-  const question = currentQuestions[currentQuestion];
-  const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
+  const question = questions[currentQuestion];
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
     <>
@@ -308,7 +306,7 @@ const QuestionBank = () => {
               <div className="flex items-center gap-4">
                 <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
                   Question <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{currentQuestion + 1}</span> of{' '}
-                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{currentQuestions.length}</span>
+                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{questions.length}</span>
                 </div>
               </div>
               <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
@@ -453,7 +451,7 @@ const QuestionBank = () => {
               ) : (
                 <button
                   onClick={handleNext}
-                  disabled={currentQuestion === currentQuestions.length - 1}
+                  disabled={currentQuestion === questions.length - 1}
                   className="px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold"
                 >
                   Next Question →
