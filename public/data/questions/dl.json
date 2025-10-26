@@ -1,0 +1,194 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is a neuron in a neural network?",
+      "options": [
+        "A biological cell",
+        "A computational unit that applies weights and activation function",
+        "A type of layer",
+        "A training algorithm"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A neuron is a computational unit that takes inputs, applies weights and bias, then passes through an activation function.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "What is the purpose of an activation function?",
+      "options": [
+        "Initialize weights",
+        "Introduce non-linearity",
+        "Calculate loss",
+        "Update weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Activation functions introduce non-linearity, allowing neural networks to learn complex patterns.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "question": "Which optimizer uses momentum?",
+      "options": [
+        "SGD with momentum",
+        "Adam",
+        "RMSprop",
+        "All of the above"
+      ],
+      "correctAnswer": 3,
+      "explanation": "SGD, Adam, and RMSprop all use some form of momentum to accelerate convergence.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "What is backpropagation?",
+      "options": [
+        "Forward pass through the network",
+        "Algorithm for calculating gradients and updating weights",
+        "Type of activation function",
+        "Loss function"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Backpropagation calculates gradients of the loss with respect to weights and propagates errors backward.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Which activation function is commonly used in hidden layers of deep networks?",
+      "options": ["Sigmoid", "ReLU", "Softmax", "Tanh"],
+      "correctAnswer": 1,
+      "explanation": "ReLU (Rectified Linear Unit) is widely used because it helps mitigate vanishing gradient problems.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "What is the main purpose of dropout in deep learning?",
+      "options": [
+        "Increase training speed",
+        "Prevent overfitting",
+        "Initialize weights",
+        "Improve gradient flow"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dropout randomly deactivates neurons during training to prevent overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 7,
+      "question": "Which loss function is commonly used for multi-class classification?",
+      "options": [
+        "Mean Squared Error",
+        "Binary Cross-Entropy",
+        "Categorical Cross-Entropy",
+        "Hinge Loss"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Categorical Cross-Entropy measures the difference between predicted and true probability distributions for multi-class classification.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "question": "What does CNN stand for?",
+      "options": [
+        "Cognitive Neural Network",
+        "Convolutional Neural Network",
+        "Central Neural Node",
+        "Conditional Network"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CNN stands for Convolutional Neural Network, primarily used for image-related tasks.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "What is the main advantage of using batch normalization?",
+      "options": [
+        "Faster convergence and stable training",
+        "Increase model depth",
+        "Reduce memory usage",
+        "Increase overfitting"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Batch normalization normalizes layer inputs, stabilizing and speeding up training.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "Which architecture is best suited for sequential data like text or time series?",
+      "options": [
+        "CNN",
+        "RNN",
+        "Autoencoder",
+        "GAN"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RNNs (Recurrent Neural Networks) are designed to handle sequential dependencies in data.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "In deep learning, what is a vanishing gradient problem?",
+      "options": [
+        "Gradients become zero, slowing or stopping learning",
+        "Gradients explode exponentially",
+        "Loss becomes undefined",
+        "Weights are not updated at all"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Vanishing gradients occur when gradients become too small during backpropagation, preventing weight updates in deep layers.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 12,
+      "question": "What does LSTM stand for?",
+      "options": [
+        "Long Short-Term Memory",
+        "Linear Short-Term Model",
+        "Limited Sequence Training Model",
+        "Local Sequential Training Mechanism"
+      ],
+      "correctAnswer": 0,
+      "explanation": "LSTM stands for Long Short-Term Memory, a type of RNN designed to capture long-term dependencies.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "What is the discriminator's role in a GAN?",
+      "options": [
+        "Generate fake data",
+        "Distinguish real data from fake data",
+        "Compute gradients",
+        "Reduce model size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The discriminator in a GAN learns to differentiate between real and fake samples produced by the generator.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "Which layer type in CNNs helps reduce spatial dimensions?",
+      "options": [
+        "Fully Connected Layer",
+        "Convolutional Layer",
+        "Pooling Layer",
+        "Recurrent Layer"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Pooling layers (e.g., max pooling) reduce the spatial dimensions, helping to extract key features efficiently.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 15,
+      "question": "What is transfer learning?",
+      "options": [
+        "Training multiple networks simultaneously",
+        "Using a pre-trained model on a new but related task",
+        "Sharing data between models",
+        "Training without backpropagation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Transfer learning leverages knowledge from a pre-trained model to solve a new, similar problem efficiently.",
+      "difficulty": "medium"
+    }
+  ]
+}

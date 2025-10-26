@@ -1,0 +1,199 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the main goal of a machine learning algorithm?",
+      "options": [
+        "To explicitly program every rule",
+        "To learn patterns from data to make predictions or decisions",
+        "To store large datasets efficiently",
+        "To perform data encryption"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Machine learning algorithms learn patterns from data to make predictions or decisions without explicit programming.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "Which algorithm is typically used for classification problems?",
+      "options": [
+        "Linear Regression",
+        "K-Nearest Neighbors",
+        "K-Means Clustering",
+        "Principal Component Analysis"
+      ],
+      "correctAnswer": 1,
+      "explanation": "K-Nearest Neighbors (KNN) is a supervised algorithm used for classification and regression problems.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "question": "What is the time complexity of training a Decision Tree?",
+      "options": [
+        "O(n)",
+        "O(n log n)",
+        "O(n²)",
+        "O(n log m)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Training a decision tree usually has an average time complexity of O(n log n), depending on the number of features and samples.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "Which optimization algorithm is most commonly used to train neural networks?",
+      "options": [
+        "Gradient Descent",
+        "Breadth First Search",
+        "Dynamic Programming",
+        "Monte Carlo Simulation"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Gradient Descent optimizes neural networks by minimizing the loss function through iterative parameter updates.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 5,
+      "question": "What is the primary purpose of the backpropagation algorithm?",
+      "options": [
+        "To initialize neural network weights",
+        "To compute gradients for weight updates",
+        "To normalize input data",
+        "To increase dataset size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Backpropagation computes the gradient of the loss function with respect to each weight, allowing optimization via gradient descent.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 6,
+      "question": "Which algorithm is best suited for clustering unlabeled data?",
+      "options": [
+        "Support Vector Machine",
+        "Random Forest",
+        "K-Means",
+        "Naive Bayes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "K-Means is an unsupervised learning algorithm that partitions data into K clusters based on feature similarity.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "In gradient descent, what happens if the learning rate is too high?",
+      "options": [
+        "The model will converge faster and accurately",
+        "The model may overshoot and fail to converge",
+        "The gradients will vanish completely",
+        "The loss will reach zero instantly"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A high learning rate causes the optimization to overshoot the minima, leading to instability or divergence.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "question": "Which algorithm is used for dimensionality reduction?",
+      "options": [
+        "K-Means Clustering",
+        "Principal Component Analysis",
+        "Random Forest",
+        "Logistic Regression"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Principal Component Analysis (PCA) reduces dimensionality by projecting data onto lower-dimensional components.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "What is the purpose of the activation function in a neural network?",
+      "options": [
+        "To add non-linearity to the model",
+        "To scale input values",
+        "To increase training speed",
+        "To prevent overfitting"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Activation functions introduce non-linearity, enabling neural networks to learn complex relationships.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "Which algorithm is used to minimize overfitting in decision trees?",
+      "options": [
+        "Bagging",
+        "Gradient Descent",
+        "Dropout",
+        "Batch Normalization"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Bagging (used in Random Forests) trains multiple trees on random subsets of data to reduce variance and overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "Which of the following is a feature selection technique based on model weights?",
+      "options": [
+        "L1 Regularization (Lasso)",
+        "L2 Regularization (Ridge)",
+        "Batch Normalization",
+        "Momentum"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L1 regularization (Lasso) shrinks less important feature weights to zero, effectively performing feature selection.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "question": "What does the Expectation-Maximization (EM) algorithm primarily do?",
+      "options": [
+        "Finds maximum likelihood estimates in models with latent variables",
+        "Reduces data dimensionality",
+        "Finds shortest paths in a graph",
+        "Optimizes hyperparameters using grid search"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The EM algorithm finds maximum likelihood estimates in models that involve hidden or latent variables, like Gaussian Mixture Models.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 13,
+      "question": "Which algorithm is commonly used for reinforcement learning?",
+      "options": [
+        "Q-Learning",
+        "K-Means",
+        "Naive Bayes",
+        "Decision Tree"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Q-Learning is a reinforcement learning algorithm that learns an action-value function to maximize cumulative rewards.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 14,
+      "question": "In Support Vector Machines, what is the role of the kernel function?",
+      "options": [
+        "To reduce overfitting",
+        "To handle missing values",
+        "To transform data into higher dimensions for separability",
+        "To increase model interpretability"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The kernel function maps data into higher-dimensional space, enabling SVMs to separate non-linear data.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 15,
+      "question": "What is the main idea behind the AdaBoost algorithm?",
+      "options": [
+        "Combining multiple weak learners to create a strong classifier",
+        "Using a single deep network for all predictions",
+        "Reducing the number of input features",
+        "Using reinforcement learning for feature importance"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AdaBoost combines multiple weak classifiers, giving higher weights to misclassified instances to improve performance.",
+      "difficulty": "medium"
+    }
+  ]
+}

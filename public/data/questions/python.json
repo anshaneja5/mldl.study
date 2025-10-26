@@ -1,0 +1,199 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the output of: print(type([]))?",
+      "options": [
+        "<class 'tuple'>",
+        "<class 'list'>",
+        "<class 'dict'>",
+        "<class 'set'>"
+      ],
+      "correctAnswer": 1,
+      "explanation": "[] represents an empty list in Python, so type([]) returns <class 'list'>",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "Which keyword is used to define a function in Python?",
+      "options": [
+        "function",
+        "def",
+        "fun",
+        "define"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'def' keyword is used to define a function in Python",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "question": "What is the difference between '==' and 'is' operators?",
+      "options": [
+        "They are the same",
+        "'==' compares values, 'is' compares object identity",
+        "'is' compares values, '==' compares object identity",
+        "Both compare object identity"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'==' checks if values are equal, while 'is' checks if two variables point to the same object in memory",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "Which data structure is mutable in Python?",
+      "options": [
+        "Tuple",
+        "String",
+        "List",
+        "Integer"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Lists are mutable in Python, meaning their elements can be changed after creation",
+      "difficulty": "easy"
+    },
+    {
+      "id": 5,
+      "question": "What does the 'pass' statement do in Python?",
+      "options": [
+        "Skips the current iteration",
+        "Exits the function",
+        "Does nothing (placeholder)",
+        "Raises an exception"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The 'pass' statement is a null operation - it does nothing and is used as a placeholder",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "What is a lambda function in Python?",
+      "options": [
+        "A function that takes multiple arguments",
+        "An anonymous function defined with lambda keyword",
+        "A function that returns multiple values",
+        "A recursive function"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lambda functions are small anonymous functions defined using the lambda keyword, typically used for short operations",
+      "difficulty": "medium"
+    },
+    {
+      "id": 7,
+      "question": "What is the output of: print(3 * '5')?",
+      "options": [
+        "15",
+        "555",
+        "Error",
+        "35"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Python, multiplying a string by a number repeats the string that many times. 3 * '5' gives '555'",
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "question": "Which method is used to add an element to the end of a list?",
+      "options": [
+        "add()",
+        "append()",
+        "insert()",
+        "extend()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The append() method adds a single element to the end of a list",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "What is the purpose of __init__ method in Python classes?",
+      "options": [
+        "To delete an object",
+        "To initialize object attributes",
+        "To define class variables",
+        "To create static methods"
+      ],
+      "correctAnswer": 1,
+      "explanation": "__init__ is a constructor method that initializes object attributes when an instance is created",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "What does the 'self' parameter represent in Python classes?",
+      "options": [
+        "The class itself",
+        "The instance of the class",
+        "A static variable",
+        "The parent class"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'self' refers to the instance of the class and is used to access instance variables and methods",
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "Which of the following is NOT a valid Python data type?",
+      "options": [
+        "list",
+        "dictionary",
+        "array",
+        "tuple"
+      ],
+      "correctAnswer": 2,
+      "explanation": "While Python has lists, dictionaries, and tuples as built-in types, 'array' is not a built-in type (though it exists in the array module)",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "question": "What is list comprehension in Python?",
+      "options": [
+        "A way to compress lists",
+        "A concise way to create lists from iterables",
+        "A method to sort lists",
+        "A way to delete list elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "List comprehension provides a concise way to create lists. For example: [x**2 for x in range(10)]",
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "question": "What is the output of: bool([])?",
+      "options": [
+        "True",
+        "False",
+        "Error",
+        "None"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An empty list evaluates to False in a boolean context. All empty containers (list, dict, set, tuple) are falsy",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "Which exception is raised when dividing by zero?",
+      "options": [
+        "ValueError",
+        "ZeroDivisionError",
+        "ArithmeticError",
+        "TypeError"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ZeroDivisionError is raised when attempting to divide or modulo by zero",
+      "difficulty": "easy"
+    },
+    {
+      "id": 15,
+      "question": "What does the zip() function do in Python?",
+      "options": [
+        "Compresses files",
+        "Combines multiple iterables into tuples",
+        "Sorts a list",
+        "Filters elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "zip() takes iterables and aggregates them into tuples. For example: zip([1,2], ['a','b']) gives [(1,'a'), (2,'b')]",
+      "difficulty": "medium"
+    }
+  ]
+}
