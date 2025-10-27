@@ -104,7 +104,8 @@ const QuestionBank = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`/data/questions/${topicId}.json`);
+      const basePath = process.env.REACT_APP_QUESTIONS_BASE_PATH || '/data/questions';
+      const response = await fetch(`${basePath}/${topicId}.json`);
       if (!response.ok) {
         throw new Error(`Failed to load questions for ${topicId}`);
       }
