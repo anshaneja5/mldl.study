@@ -25,7 +25,6 @@ if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
 const App = () => {
   return (
     <Router>
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/deeplearning" element={<DeepLearning />} />
