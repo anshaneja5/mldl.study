@@ -37,7 +37,6 @@ const App = () => {
         <Route path="/questionbank" element={<QuestionBank />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
-
     </Router>
   );
 };
