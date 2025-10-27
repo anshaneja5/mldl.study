@@ -326,7 +326,7 @@ const categorizedVideos = {
       url: "https://youtube.com/watch?v=ABrrSwMYWSg"
     },
     {
-      title:" Binary Classification | LogisticRegression | Sigmoid | Step function | Complete Project",
+      title:"Binary Classification | LogisticRegression | Sigmoid | Step function | Complete Project",
       url:"https://www.youtube.com/watch?v=ASP69fBpteg"
     },
     {
