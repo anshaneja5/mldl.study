@@ -134,7 +134,12 @@ const QuestionBank = () => {
   };
 
   const handleSubmit = () => {
-    if (selectedAnswer !== null) {
+    if (
+      selectedAnswer !== null &&
+      currentQuestion >= 0 &&
+      currentQuestion < questions.length &&
+      questions[currentQuestion]
+    ) {
       setShowResult(true);
       const isCorrect = selectedAnswer === questions[currentQuestion].correctAnswer;
       if (isCorrect) {
