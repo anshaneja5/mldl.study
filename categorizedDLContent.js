@@ -1,10 +1,14 @@
 const categorizedDLVideos = {
     "Introduction to Deep Learning": [
+        { title:"Deep Learning | What is Deep Learning? | Deep Learning Tutorial For Beginners", url:"https://www.youtube.com/watch?v=6M5VXKLf4D4"},
         { title: "What is Deep Learning? Deep Learning Vs Machine Learning", url: "https://youtube.com/watch?v=fHF22Wxuyw4" },
         { title: "100 Days of Deep Learning | Course Announcement", url: "https://youtube.com/watch?v=2dH_qjc9mFg" },
-        { title: "Types of Neural Networks | History of Deep Learning | Applications of Deep Learning", url: "https://youtube.com/watch?v=fne_UE7hDn0" }
+        { title: "Types of Neural Networks | History of Deep Learning | Applications of Deep Learning", url: "https://youtube.com/watch?v=fne_UE7hDn0" },
+        { title: "Deep Learning Full Course 2025 | Deep Learning Tutorial for Beginners ", url: "https://www.youtube.com/watch?v=G1P2IaBcXx8" },
     ],
     "Artificial Neural Networks (ANNs)": [
+        { title:"What is a neural network?", articleLink:"https://www.ibm.com/think/topics/neural-networks", articleTitle:"What is a neural network?"},
+        { title: "Understand Artificial Neural Networks from Basics with Examples | Components | Working", url: "https://www.youtube.com/watch?v=1TmUwRALJW0&list=PLxCzCOWd7aiHQ9Qyo70JCTkTxczPnVC6s&index=1" },
         { title: "What is a Perceptron? Perceptron Vs Neuron | Perceptron Geometric Intuition", url: "https://youtube.com/watch?v=X7iIKPoZ0Sw" },
         { title: "Perceptron Trick | How to train a Perceptron | Perceptron Part 2", url: "https://youtube.com/watch?v=Lu2bruOHN6g" },
         { title: "Multi Layer Perceptron | MLP Intuition", url: "https://youtube.com/watch?v=qw7wFGgNCSU" },
@@ -14,6 +18,7 @@ const categorizedDLVideos = {
         { title: "Forward Propagation | How a neural network predicts output?", url: "https://youtube.com/watch?v=7MuiScUkboE" },
         { title: "ARTICLE", url:"https://jalammar.github.io/visual-interactive-guide-basics-neural-networks/"},
         { title: "ARTICLE" , url:"https://jalammar.github.io/feedforward-neural-networks-visual-interactive/"},
+        { title: "Article on Artificial Neural Networks and its Applications", articleLink:"https://www.geeksforgeeks.org/artificial-intelligence/artificial-neural-networks-and-its-applications/", articleTitle:"Artificial Neural Networks and its Applications"},
         { title: "Customer Churn Prediction using ANN", url: "https://youtube.com/watch?v=9wmImImmgcI" },
         { title: "Handwritten Digit Classification using ANN", url: "https://youtube.com/watch?v=3xPT2Pk0Jds" },
         { title: "Graduate Admission Prediction using ANN", url: "https://youtube.com/watch?v=RCmiPBiA4qg" },
@@ -45,11 +50,14 @@ const categorizedDLVideos = {
         { title: "RMSProp Explained in Detail with Animations | Optimizers in Deep Learning Part 5", url: "https://youtube.com/watch?v=p0wSmKslWi0" },
         { title: "Adam Optimizer Explained in Detail with Animations | Optimizers in Deep Learning Part 5", url: "https://youtube.com/watch?v=N5AynalXD9g" },
         { title: "Keras Tuner | Hyperparameter Tuning a Neural Network", url: "https://youtube.com/watch?v=oYnyNLj8RMA" },
-        { title: "Article", url:"https://www.asimovinstitute.org/neural-network-zoo/", notes:"NOTE: This is a great article to understand the different types of neural networks and architechture." },
-        { title:"Neural Networks by 3Blue1Brown", url:"https://www.3blue1brown.com/topics/neural-networks", notes :"NOTE: You can watch this series to understand neural networks in depth."}
+        { title: "Article", url:"https://www.asimovinstitute.org/neural-network-zoo/", notes:"NOTE: This is a great article to understand the different types of neural networks and architecture." },
+        { title:"Neural Networks by 3Blue1Brown", url:"https://www.3blue1brown.com/topics/neural-networks", notes :"NOTE: You can watch this series to understand neural networks in depth."},
+        { title: "Customer churn prediction using ANN", url: "https://www.youtube.com/watch?v=MSBY28IJ47U"}
     ],
     "Convolutional Neural Networks (CNNs)": [
+        { title: "Simple explanation of convolutional neural network", url: "https://www.youtube.com/watch?v=zfiSAzpy9NM" },
         { title: "What is Convolutional Neural Network (CNN) | CNN Intution", url: "https://youtube.com/watch?v=hDVFXf74P-U" },
+        { title: "Article on Convolutional Neural Network (CNN) in Machine Learning", articleLink:"https://www.geeksforgeeks.org/deep-learning/convolutional-neural-network-cnn-in-machine-learning/", articleTitle:"Convolutional Neural Network (CNN) in Machine Learning" },
         { title: "3D Simulation", url:"https://www.youtube.com/watch?v=3JQ3hYko51Y"},
         { title: "CNN Vs Visual Cortex | The Famous Cat Experiment", url: "https://youtube.com/watch?v=aslTGS9ef98" },
         { title: "CNN Part 3 | Convolution Operation", url: "https://youtube.com/watch?v=cgJx3GvQ5y8" },
@@ -70,30 +78,39 @@ const categorizedDLVideos = {
         { title: "Transfer Learning in Keras | Fine Tuning Vs Feature Extraction", url: "https://youtube.com/watch?v=WWcgHjuKVqA" , articleLink:"https://towardsdatascience.com/how-transfer-learning-works-a90bc4d93b5e", articleTitle:"How Transfer Learning Works" },
         { title: "Keras Functional Model | How to build non-linear Neural Networks?", url: "https://youtube.com/watch?v=OvQQP1QVru8" },
         { title: "KAGGLE COMPETITON", url:"https://www.kaggle.com/competitions/digit-recognizer", notes:"This is a good competition to participate in to implement CNNs."},
-        { title: "PROJECT", url: "https://github.com/anshaneja5/doooodle", notes:"I built this project after studying CNNs. It's a doodle classifier. Check it out and try to implement it yourself."}
+        { title: "PROJECT", url: "https://github.com/anshaneja5/doooodle", notes:"I built this project after studying CNNs. It's a doodle classifier. Check it out and try to implement it yourself."},
+        { title: "Image Classification Using CNN | Deep Learning Projects", url: "https://www.youtube.com/watch?v=Rmtr9SY-4VQ"}
     ],
     "Recurrent Neural Networks (RNNs)": [
+        { title: "Introduction to Recurrent Neural Networks",articleLink:"https://www.geeksforgeeks.org/machine-learning/introduction-to-recurrent-neural-network/", articleTitle:"Introduction to Recurrent Neural Networks" },
+        { title: "Recurrent Neural Network Tutorial (RNN)", articleLink:"https://www.datacamp.com/tutorial/tutorial-for-recurrent-neural-network", articleTitle:"Recurrent Neural Network Tutorial (RNN)" },
         { title: "Why RNNs are needed | RNNs Vs ANNs | RNN Part 1", url: "https://youtube.com/watch?v=4KpRP-YUw6c" },
         { title: "Recurrent Neural Network | Forward Propagation | Architecture", url:"https://youtube.com/watch?v=BjWqCcbusMM"},
-        { title: "Recurrent Neural Network | Forward Propagation | Architecture", url: "https://youtube.com/watch?v=BjWqCcbusMM" },
         { title: "RNN Sentiment Analysis | RNN Code Example in Keras", url: "https://youtube.com/watch?v=JgnbwKnHMZQ" },
         { title: "Types of RNN | Many to Many | One to Many | Many to One RNNs", url: "https://youtube.com/watch?v=TkOBxzhIySg" },
+        { title: "Types of RNN | Recurrent Neural Network Types", url: "https://www.youtube.com/watch?v=EzsXi4WzelI" },
         { title: "How Backpropagation works in RNN", url: "https://youtube.com/watch?v=OvCz1acvt-k" , articleLink:"http://karpathy.github.io/2015/05/21/rnn-effectiveness/",articleTitle:"The Unreasonable Effectiveness of Recurrent Neural Networks",notes:"NOTE: This is a great article by Andrej Karpathy to understand the effectiveness of RNNs."},
         { articleLink:"https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-1/", articleTitle:"Recurrent Neural Networks Tutorial"},
         { title:"RNN Article ",url:"https://madewithml.com/courses/foundations/recurrent-neural-networks/"}
     ],
     "LSTMs and GRUs": [
+        { title: "What is LSTM (Long Short Term Memory)?", url: "https://www.youtube.com/watch?v=b61DPVFX03I&t=30s" },
         { title: "LSTM | Long Short Term Memory | Part 1 | The What?", url: "https://youtube.com/watch?v=z7IPBg6MyrU" },
         { title: "LSTM Architecture | Part 2 | The How?", url: "https://youtube.com/watch?v=Akv3poqqwI4" ,articleLink:"https://colah.github.io/posts/2015-08-Understanding-LSTMs/", articleTitle:"Understanding LSTM Networks",notes:"NOTE: This is a great article with visualizations to understand LSTMs" },
         { title: "Article", url:"https://archive.ph/WPlJW", notes:"NOTE: This is a great article to visualize RNNs, LSTM and GRUs architecture." },
+        { title: "RNN vs LSTM vs GRU vs Transformers" , articleLink:"https://www.geeksforgeeks.org/deep-learning/rnn-vs-lstm-vs-gru-vs-transformers/", articleTitle:"RNN vs LSTM vs GRU vs Transformers"},
         { title: "LSTM | Part 3 | Next Word Predictor Using LSTM", url: "https://youtube.com/watch?v=fiqo6uPCJVI" },
+        { title: "Gated Recurrent Unit Networks" , articleLink:"https://www.geeksforgeeks.org/machine-learning/gated-recurrent-unit-networks/", articleTitle:"Gated Recurrent Unit Networks"},
         { title: "Gated Recurrent Unit | Deep Learning | GRU", url: "https://youtube.com/watch?v=QQfZAoNGQmE" },
+        { title: "Simple Explanation of GRU (Gated Recurrent Units)", url: "https://www.youtube.com/watch?v=tOuXgORsXJ4" },
         { title: "Deep RNNs | Stacked RNNs | Stacked LSTMs | Stacked GRUs", url: "https://youtube.com/watch?v=mlDkTrlLaio" },
         { title: "Bidirectional RNN | BiLSTM | Bidirectional GRU", url: "https://youtube.com/watch?v=k2NSm3MNdYg" }
     ],
     "Encoder-Decoder Architecture": [
         { title: "Encoder Decoder | Sequence-to-Sequence Architecture", url: "https://youtube.com/watch?v=KiL74WsgxoA",articleLink:"https://medium.com/analytics-vidhya/encoder-decoder-seq2seq-models-clearly-explained-c34186fbf49b",articleTitle:"Encoder-Decoder (Seq2Seq) Models Clearly Explained",notes:"NOTE: This is a great article to understand the Encoder-Decoder architecture." },
         { title: "RESEARCH PAPER", url:"https://arxiv.org/pdf/1409.3215", notes:"NOTE: This is the original paper on Seq2Seq Networks. A must read." },
+        { title: "What is an encoder-decoder model?", articleLink:"https://www.ibm.com/think/topics/encoder-decoder-model", articleTitle:"What is an encoder-decoder model?" },
+        { title: "The Encoder–Decoder Architecture", articleLink:"https://d2l.ai/chapter_recurrent-modern/encoder-decoder.html" , articleTitle:"The Encoder–Decoder Architecture"},
         { title: "Attention Mechanism in 1 video | Seq2Seq Networks", url: "https://youtube.com/watch?v=rj5V6q6-XUM" ,articleLink:"https://towardsdatascience.com/intuitive-understanding-of-attention-mechanism-in-deep-learning-6c9482aecf4f",articleTitle:"Intuitive Understanding of Attention Mechanism in Deep Learning"},
         { title: "Bahdanau Attention Vs Luong Attention", url: "https://youtube.com/watch?v=0hZT4_fHfNQ" , articleLink:"https://medium.com/data-science-community-srm/understanding-encoders-decoders-with-attention-based-mechanism-c1eb7164c581",articleTitle:"Understanding Encoders & Decoders with Attention Based Mechanism"},
         { title: "PROJECT WORK", url:"https://towardsdatascience.com/text-summarization-from-scratch-using-encoder-decoder-network-with-attention-in-keras-5fa80d12710e", notes:"This is a good project to implement the Encoder-Decoder architecture."},
@@ -101,6 +118,7 @@ const categorizedDLVideos = {
     ],
     "Natural Language Processing": [
         { title: "Introduction to NLP | NLP Lecture 1 | End to End NLP Course", url: "https://youtube.com/watch?v=zlUpTlaxAKI" },
+        { title: "Natural Language Processing In 5 Minutes | What Is NLP And How Does It Work?", url: "https://www.youtube.com/watch?v=CMrHM8a3hqw" },
         { title: "End to End NLP Pipeline | NLP Pipeline | Lecture 2 NLP Course", url: "https://youtube.com/watch?v=29qyNyNkLHs" },
         { title: "Text Preprocessing | NLP Course Lecture 3", url: "https://youtube.com/watch?v=6C0sLtw5ctc" },
         { title: "Text Representation | NLP Lecture 4 | Bag of Words | Tf-Idf | N-grams, Bi-grams and Uni-grams", url: "https://youtube.com/watch?v=vo6gQz5lYRI" },
@@ -109,10 +127,12 @@ const categorizedDLVideos = {
         { title: "Text Classification | NLP Lecture 6 | End to End | Average Word2Vec", url: "https://youtube.com/watch?v=Qbd7U9F0QQ8" },
         { title: "POS Tagging | Part of Speech Tagging in NLP | Hidden Markov Models in NLP | Viterbi Algorithm in NLP", url: "https://youtube.com/watch?v=269IGagoJfs" },
         { title: "Duplicate Question Pairs | Quora Question Pairs | NLP Projects | End to End NLP Project | Heroku", url: "https://youtube.com/watch?v=1fvQU5yPjFs" , articleLink:"https://github.com/anshaneja5/quora-question-pairs", articleTitle:"Quora Question Pairs Github Repo"},
+        { title: "End to End NLP Project | Sentiment Analysis on Amazon Reviews", url: "https://www.youtube.com/watch?v=6A2w-KYG4Ko"},
         { title: "KAGGLE COMPETITION", url:"https://www.kaggle.com/competitions/nlp-getting-started/overview", notes:"This is a good competition to participate in to implement all the above topics."}
     ],
     "Transformers": [
         { title: "Introduction to Transformers | Transformers Part 1", url: "https://youtube.com/watch?v=BjRVS2wTtcA",articleLink:"https://arxiv.org/pdf/1706.03762",articleTitle:"Attention is All You Need (RESEARCH PAPER)",notes:"NOTE: This is the original paper on Transformers." },
+        { title: "Transformers in Machine Learning", articleLink:"https://www.geeksforgeeks.org/machine-learning/getting-started-with-transformers/", articleTitle:"Transformers in Machine Learning"},
         { title: "What is Self Attention | Transformers Part 2", url: "https://youtube.com/watch?v=XnGGmvpDLA0" },
         { title: "Self Attention in Transformers | Simple Explanation with Code!", url: "https://youtube.com/watch?v=-tCKPl_8Xb8" },
         { title: "Scaled Dot Product Attention | Why do we scale Self Attention?", url: "https://youtube.com/watch?v=r7mAt0iVqwo" },
@@ -123,7 +143,7 @@ const categorizedDLVideos = {
         { title: "Layer Normalization in Transformers | Layer Norm Vs Batch Norm", url: "https://youtube.com/watch?v=qti0QPdaelg" },
         { title: "Transformer Architecture | Part 1 Encoder Architecture", url: "https://youtube.com/watch?v=Vs87qcdm8l0" },
         { title: "Masked Self Attention | Masked Multi-head Attention in Transformer", url: "https://youtube.com/watch?v=m6onaKFzF94" },
-        { title: "Cross Attention in Transformers" , url: ",https://youtube.com/watch?v=smOnJtCevoU"}, 
+        { title: "Cross Attention in Transformers" , url: "https://youtube.com/watch?v=smOnJtCevoU"}, 
         { title: "Transformer Decoder Architecture" , url: "https://youtube.com/watch?v=DI2_hrAulYo"}, 
         { title: "Transformer Inference | How Inference is done in Transformer?", url: "https://youtube.com/watch?v=FtsMOzlwxws",articleLink:"https://jalammar.github.io/illustrated-transformer/",articleTitle:"The Illustrated Transformer",notes:"NOTE: This is a great article to understand the transformer architecture."},
     ]
