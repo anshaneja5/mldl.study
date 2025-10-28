@@ -50,7 +50,7 @@ const categorizedDLVideos = {
         { title: "RMSProp Explained in Detail with Animations | Optimizers in Deep Learning Part 5", url: "https://youtube.com/watch?v=p0wSmKslWi0" },
         { title: "Adam Optimizer Explained in Detail with Animations | Optimizers in Deep Learning Part 5", url: "https://youtube.com/watch?v=N5AynalXD9g" },
         { title: "Keras Tuner | Hyperparameter Tuning a Neural Network", url: "https://youtube.com/watch?v=oYnyNLj8RMA" },
-        { title: "Article", url:"https://www.asimovinstitute.org/neural-network-zoo/", notes:"NOTE: This is a great article to understand the different types of neural networks and architechture." },
+        { title: "Article", url:"https://www.asimovinstitute.org/neural-network-zoo/", notes:"NOTE: This is a great article to understand the different types of neural networks and architecture." },
         { title:"Neural Networks by 3Blue1Brown", url:"https://www.3blue1brown.com/topics/neural-networks", notes :"NOTE: You can watch this series to understand neural networks in depth."},
         { title: "Customer churn prediction using ANN", url: "https://www.youtube.com/watch?v=MSBY28IJ47U"}
     ],
