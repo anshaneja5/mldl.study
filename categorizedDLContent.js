@@ -143,7 +143,7 @@ const categorizedDLVideos = {
         { title: "Layer Normalization in Transformers | Layer Norm Vs Batch Norm", url: "https://youtube.com/watch?v=qti0QPdaelg" },
         { title: "Transformer Architecture | Part 1 Encoder Architecture", url: "https://youtube.com/watch?v=Vs87qcdm8l0" },
         { title: "Masked Self Attention | Masked Multi-head Attention in Transformer", url: "https://youtube.com/watch?v=m6onaKFzF94" },
-        { title: "Cross Attention in Transformers" , url: ",https://youtube.com/watch?v=smOnJtCevoU"}, 
+        { title: "Cross Attention in Transformers" , url: "https://youtube.com/watch?v=smOnJtCevoU"}, 
         { title: "Transformer Decoder Architecture" , url: "https://youtube.com/watch?v=DI2_hrAulYo"}, 
         { title: "Transformer Inference | How Inference is done in Transformer?", url: "https://youtube.com/watch?v=FtsMOzlwxws",articleLink:"https://jalammar.github.io/illustrated-transformer/",articleTitle:"The Illustrated Transformer",notes:"NOTE: This is a great article to understand the transformer architecture."},
     ]
