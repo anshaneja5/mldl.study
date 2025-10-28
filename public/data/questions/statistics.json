@@ -1,0 +1,164 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the mean of the dataset: 2, 4, 6, 8, 10?",
+      "options": ["5", "6", "7", "8"],
+      "correctAnswer": 1,
+      "explanation": "Mean = (2+4+6+8+10)/5 = 30/5 = 6",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "What does a p-value represent?",
+      "options": [
+        "Probability that null hypothesis is true",
+        "Probability of observing data if null hypothesis is true",
+        "Probability of Type I error",
+        "Confidence level"
+      ],
+      "correctAnswer": 1,
+      "explanation": "P-value is the probability of obtaining results at least as extreme as observed, assuming null hypothesis is true",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "question": "What is standard deviation?",
+      "options": [
+        "Average of data points",
+        "Measure of spread around the mean",
+        "Middle value in dataset",
+        "Most frequent value"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Standard deviation measures how spread out data points are from the mean",
+      "difficulty": "easy"
+    },
+    {
+      "id": 4,
+      "question": "What does the correlation coefficient (r) indicate?",
+      "options": [
+        "The slope of the regression line",
+        "Strength and direction of linear relationship",
+        "Difference between mean and median",
+        "Amount of random error"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Correlation coefficient indicates how strongly two variables are linearly related and in what direction",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "If variance is 25, what is the standard deviation?",
+      "options": ["5", "10", "2.5", "6"],
+      "correctAnswer": 0,
+      "explanation": "Standard deviation = √variance = √25 = 5",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "Which of the following is not a measure of central tendency?",
+      "options": ["Mean", "Median", "Mode", "Variance"],
+      "correctAnswer": 3,
+      "explanation": "Variance measures spread, not central tendency",
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "What type of distribution has mean < median < mode?",
+      "options": ["Symmetrical", "Positively skewed", "Negatively skewed", "Uniform"],
+      "correctAnswer": 2,
+      "explanation": "In a negatively skewed distribution, the mean is less than the median and mode",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "question": "In hypothesis testing, what is a Type I error?",
+      "options": [
+        "Rejecting a true null hypothesis",
+        "Failing to reject a false null hypothesis",
+        "Accepting an alternative hypothesis incorrectly",
+        "None of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Type I error occurs when we wrongly reject a true null hypothesis (false positive)",
+      "difficulty": "medium"
+    },
+    {
+      "id": 9,
+      "question": "What is the area under the entire normal distribution curve?",
+      "options": ["0.5", "1", "2", "Depends on mean"],
+      "correctAnswer": 1,
+      "explanation": "The total probability under the normal distribution curve is always 1",
+      "difficulty": "easy"
+    },
+    {
+      "id": 10,
+      "question": "Which measure is most affected by extreme values?",
+      "options": ["Mean", "Median", "Mode", "Range"],
+      "correctAnswer": 0,
+      "explanation": "The mean is sensitive to outliers since it uses all data points in calculation",
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "What does an R² value of 0.9 indicate in regression?",
+      "options": [
+        "90% of variation is explained by the model",
+        "Model has 90% accuracy",
+        "Model is incorrect",
+        "Regression line passes through all points"
+      ],
+      "correctAnswer": 0,
+      "explanation": "R² of 0.9 means 90% of the variability in dependent variable is explained by the independent variable(s)",
+      "difficulty": "hard"
+    },
+    {
+      "id": 12,
+      "question": "In a normal distribution, approximately what percentage of data lies within 1 standard deviation of the mean?",
+      "options": ["68%", "75%", "95%", "99.7%"],
+      "correctAnswer": 0,
+      "explanation": "According to the empirical rule, about 68% of data falls within ±1 SD of the mean",
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "What is the z-score formula?",
+      "options": [
+        "(x - mean) / standard deviation",
+        "(mean - x) / standard deviation",
+        "(x / mean) * 100",
+        "(x - median) / range"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Z = (x - μ) / σ measures how many standard deviations a value is from the mean",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "Which test is used to compare means of two independent groups?",
+      "options": [
+        "Chi-square test",
+        "Paired t-test",
+        "Independent t-test",
+        "ANOVA"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Independent t-test compares means between two separate groups",
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "question": "What does the central limit theorem state?",
+      "options": [
+        "Sample mean distribution tends to normal as sample size increases",
+        "Population mean equals sample mean",
+        "All data are normally distributed",
+        "Sample variance always decreases with size"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Central Limit Theorem states that, regardless of population distribution, the sampling distribution of the mean approaches normality as sample size increases",
+      "difficulty": "hard"
+    }
+  ]
+}

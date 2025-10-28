@@ -1,0 +1,199 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the main goal of supervised learning?",
+      "options": [
+        "Find hidden patterns in data",
+        "Learn from labeled data to make predictions",
+        "Group similar data points",
+        "Reduce dimensionality"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supervised learning uses labeled training data to learn a mapping from inputs to outputs.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "Which metric is best for imbalanced classification problems?",
+      "options": [
+        "Accuracy",
+        "F1-Score",
+        "Mean Squared Error",
+        "R-squared"
+      ],
+      "correctAnswer": 1,
+      "explanation": "F1-Score is the harmonic mean of precision and recall, making it ideal for imbalanced datasets.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "question": "What is overfitting?",
+      "options": [
+        "Model performs poorly on all data",
+        "Model performs well on training data but poorly on new data",
+        "Model performs poorly on training data",
+        "Model has too few parameters"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Overfitting occurs when a model learns the training data too well, including noise, and fails to generalize.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "Which algorithm is used for dimensionality reduction?",
+      "options": [
+        "Linear Regression",
+        "PCA",
+        "Logistic Regression",
+        "K-Means"
+      ],
+      "correctAnswer": 1,
+      "explanation": "PCA (Principal Component Analysis) is a popular technique for reducing the number of features.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Which of the following is a supervised learning algorithm?",
+      "options": [
+        "K-Means Clustering",
+        "Linear Regression",
+        "Apriori Algorithm",
+        "PCA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Linear Regression is a supervised learning algorithm that uses labeled data to predict continuous values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "What is the main difference between classification and regression?",
+      "options": [
+        "Regression predicts categories, classification predicts continuous values",
+        "Classification predicts categories, regression predicts continuous values",
+        "Both are the same",
+        "Regression uses deep learning"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Classification predicts discrete labels, while regression predicts continuous numeric outputs.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "Which algorithm is commonly used for clustering?",
+      "options": [
+        "Decision Trees",
+        "K-Means",
+        "Linear Regression",
+        "Naive Bayes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "K-Means is an unsupervised learning algorithm used to group data into clusters based on similarity.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "question": "What is the purpose of a confusion matrix?",
+      "options": [
+        "Measure model speed",
+        "Visualize feature importance",
+        "Evaluate classification performance",
+        "Reduce overfitting"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A confusion matrix shows the number of true and false predictions, helping evaluate classification performance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 9,
+      "question": "What is feature scaling?",
+      "options": [
+        "Reducing the number of features",
+        "Normalizing data to a common scale",
+        "Selecting the best features",
+        "Removing correlated features"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Feature scaling normalizes data so that all features contribute equally during training.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "Which of the following techniques helps prevent overfitting?",
+      "options": [
+        "Increasing model complexity",
+        "Adding more parameters",
+        "Using regularization",
+        "Decreasing training data"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Regularization techniques like L1 and L2 penalize large weights, helping prevent overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "What does the k in k-NN represent?",
+      "options": [
+        "Number of features",
+        "Number of nearest neighbors considered",
+        "Number of layers",
+        "Number of clusters"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In k-NN (k-Nearest Neighbors), k defines how many nearest data points are used to classify a new sample.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 12,
+      "question": "Which algorithm builds a tree structure to make decisions?",
+      "options": [
+        "K-Means",
+        "SVM",
+        "Decision Tree",
+        "PCA"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Decision Trees split data into branches based on feature values to make predictions.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "What is gradient descent used for?",
+      "options": [
+        "Finding clusters",
+        "Optimizing model parameters by minimizing loss",
+        "Initializing weights",
+        "Normalizing data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Gradient descent iteratively updates model parameters in the direction that minimizes the loss function.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "Which kernel is commonly used in Support Vector Machines?",
+      "options": [
+        "Sigmoid",
+        "Polynomial",
+        "RBF (Radial Basis Function)",
+        "Linear"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The RBF kernel is popular because it can map data into higher dimensions to make it linearly separable.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 15,
+      "question": "What is ensemble learning?",
+      "options": [
+        "Combining multiple models to improve performance",
+        "Training a single large model",
+        "Using only neural networks",
+        "Reducing dataset size"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ensemble learning combines predictions from multiple models to reduce variance and improve accuracy (e.g., Random Forest, Bagging).",
+      "difficulty": "hard"
+    }
+  ]
+}

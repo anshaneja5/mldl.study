@@ -9,6 +9,7 @@ import Error404 from './components/Error404';
 import HomePage from './components/HomePage';
 import Books from './components/Books';
 import Journey from './components/Journey';
+import QuestionBank from './components/QuestionBank';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
 ReactGA.initialize(trackingId);
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/genai" element={<GenerativeAIRoadmap />} />
           <Route path="/books" element={<Books />} />
           <Route path="/journey" element={<Journey />} />
+          <Route path="/questionbank" element={<QuestionBank />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>

@@ -1,0 +1,199 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which SQL command is used to retrieve data from a database?",
+      "options": [
+        "GET",
+        "SELECT",
+        "FETCH",
+        "RETRIEVE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SELECT is the SQL command used to retrieve data from one or more tables.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "What does INNER JOIN return?",
+      "options": [
+        "All records from both tables",
+        "Records with matching values in both tables",
+        "All records from the left table",
+        "All records from the right table"
+      ],
+      "correctAnswer": 1,
+      "explanation": "INNER JOIN returns only the records that have matching values in both tables.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "question": "Which clause is used to filter records in SQL?",
+      "options": [
+        "FILTER",
+        "HAVING",
+        "WHERE",
+        "SELECT"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The WHERE clause is used to filter records based on specified conditions.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 4,
+      "question": "What is the difference between DELETE and TRUNCATE?",
+      "options": [
+        "No difference",
+        "DELETE can have WHERE clause, TRUNCATE cannot",
+        "TRUNCATE can have WHERE clause, DELETE cannot",
+        "Both can have WHERE clause"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DELETE can selectively remove rows using WHERE, while TRUNCATE removes all rows and cannot use WHERE.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Which SQL statement is used to insert new data?",
+      "options": [
+        "ADD INTO",
+        "INSERT INTO",
+        "APPEND",
+        "UPDATE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "INSERT INTO is used to add new rows of data into a table.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "Which keyword is used to sort the result-set in SQL?",
+      "options": [
+        "SORT BY",
+        "GROUP BY",
+        "ORDER BY",
+        "ARRANGE BY"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ORDER BY is used to sort the result-set in ascending or descending order.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "What does the GROUP BY clause do?",
+      "options": [
+        "Filters rows",
+        "Groups rows with the same values into summary rows",
+        "Sorts data alphabetically",
+        "Joins tables together"
+      ],
+      "correctAnswer": 1,
+      "explanation": "GROUP BY groups rows that have the same values in specified columns, often used with aggregate functions.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "question": "What does the DISTINCT keyword do in SQL?",
+      "options": [
+        "Shows duplicate records",
+        "Removes duplicate records",
+        "Orders records alphabetically",
+        "Filters based on conditions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DISTINCT removes duplicate rows from the result-set.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "Which SQL constraint ensures all values in a column are unique?",
+      "options": [
+        "NOT NULL",
+        "UNIQUE",
+        "PRIMARY KEY",
+        "CHECK"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The UNIQUE constraint ensures that all values in a column are different.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "What is a primary key?",
+      "options": [
+        "A key that allows duplicates",
+        "A key that uniquely identifies each record in a table",
+        "A foreign key reference",
+        "An index on a table"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A primary key uniquely identifies each record and cannot contain NULL values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 11,
+      "question": "What does a foreign key represent?",
+      "options": [
+        "A unique identifier within the same table",
+        "A link between two tables",
+        "A temporary column",
+        "An automatically generated ID"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A foreign key creates a relationship between two tables by referencing the primary key of another table.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "question": "Which aggregate function returns the number of rows?",
+      "options": [
+        "COUNT()",
+        "SUM()",
+        "AVG()",
+        "TOTAL()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "COUNT() returns the number of rows that match a specified condition.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "What is a subquery in SQL?",
+      "options": [
+        "A query nested inside another query",
+        "A query executed before database creation",
+        "A system query",
+        "A temporary table"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A subquery is a query nested inside another SQL query to perform advanced filtering or aggregation.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 14,
+      "question": "What is the purpose of the HAVING clause?",
+      "options": [
+        "Filter individual rows",
+        "Filter groups created by GROUP BY",
+        "Sort the result-set",
+        "Join two tables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HAVING filters the results of GROUP BY operations, whereas WHERE filters individual rows.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "question": "What is normalization in databases?",
+      "options": [
+        "Merging tables into one large table",
+        "Organizing data to reduce redundancy",
+        "Adding redundant columns for faster queries",
+        "Deleting unnecessary data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Normalization organizes data into multiple related tables to reduce redundancy and improve integrity.",
+      "difficulty": "hard"
+    }
+  ]
+}

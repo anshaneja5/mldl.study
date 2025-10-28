@@ -115,6 +115,7 @@ const NavLinks = ({ darkMode, className, onLinkClick = () => {}, isMobile = fals
     { path: '/books', label: 'Books' },
     { path: '/researchpapers', label: 'Papers' },
     { path: '/journey', label: 'Journey' },
+    { path: '/questionbank', label: 'Questions' },
   ];
 
   const [showDropdown, setShowDropdown] = useState(false);
