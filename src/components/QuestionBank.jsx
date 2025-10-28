@@ -104,7 +104,7 @@ const QuestionBank = () => {
     setLoading(true);
     setError(null);
     try {
-      const basePath = import.meta.env.REACT_APP_QUESTIONS_BASE_PATH || '/data/questions';
+      const basePath = import.meta.env.VITE_APP_QUESTIONS_BASE_PATH || '/data/questions';
       const response = await fetch(`${basePath}/${topicId}.json`);
       if (!response.ok) {
         throw new Error(`Failed to load questions for ${topicId}`);
