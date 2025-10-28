@@ -86,7 +86,6 @@ const categorizedDLVideos = {
         { title: "Recurrent Neural Network Tutorial (RNN)", articleLink:"https://www.datacamp.com/tutorial/tutorial-for-recurrent-neural-network", articleTitle:"Recurrent Neural Network Tutorial (RNN)" },
         { title: "Why RNNs are needed | RNNs Vs ANNs | RNN Part 1", url: "https://youtube.com/watch?v=4KpRP-YUw6c" },
         { title: "Recurrent Neural Network | Forward Propagation | Architecture", url:"https://youtube.com/watch?v=BjWqCcbusMM"},
-        { title: "Recurrent Neural Network | Forward Propagation | Architecture", url: "https://youtube.com/watch?v=BjWqCcbusMM" },
         { title: "RNN Sentiment Analysis | RNN Code Example in Keras", url: "https://youtube.com/watch?v=JgnbwKnHMZQ" },
         { title: "Types of RNN | Many to Many | One to Many | Many to One RNNs", url: "https://youtube.com/watch?v=TkOBxzhIySg" },
         { title: "Types of RNN | Recurrent Neural Network Types", url: "https://www.youtube.com/watch?v=EzsXi4WzelI" },
