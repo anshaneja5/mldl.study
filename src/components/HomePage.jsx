@@ -114,16 +114,19 @@ const HomePage = () => {
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
-    // If no preference is saved (first visit), default to dark mode
-    const shouldUseDarkMode = savedDarkMode === null ? true : savedDarkMode === 'true';
+    let shouldUseDarkMode;
+    
+    // If no preference is saved (first visit), detect browser preference
+    if (savedDarkMode === null) {
+      // Check if browser prefers dark mode
+      shouldUseDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      localStorage.setItem('darkMode', shouldUseDarkMode.toString());
+    } else {
+      shouldUseDarkMode = savedDarkMode === 'true';
+    }
     
     setDarkMode(shouldUseDarkMode);
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
-    
-    // Save the default preference if it's a first visit
-    if (savedDarkMode === null) {
-      localStorage.setItem('darkMode', 'true');
-    }
   
     // Check if modal has been shown before
     const hasSeenModal = localStorage.getItem('contributionModalSeen');

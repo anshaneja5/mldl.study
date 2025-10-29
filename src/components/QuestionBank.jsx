@@ -14,7 +14,13 @@ const QuestionBank = () => {
   const [error, setError] = useState(null);
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : false;
+    // If no preference is saved, detect browser preference
+    if (saved === null) {
+      const browserPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      localStorage.setItem('darkMode', JSON.stringify(browserPreference));
+      return browserPreference;
+    }
+    return JSON.parse(saved);
   });
 
   const toggleDarkMode = () => {

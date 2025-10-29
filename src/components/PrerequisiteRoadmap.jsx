@@ -41,9 +41,19 @@ const PrerequisiteRoadmap = () => {
         setTopicProgress(parsedProgress);
       }
 
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
+      const savedDarkMode = localStorage.getItem('darkMode');
+      let shouldUseDarkMode;
+      
+      // If no preference is saved, detect browser preference
+      if (savedDarkMode === null) {
+        shouldUseDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        localStorage.setItem('darkMode', shouldUseDarkMode.toString());
+      } else {
+        shouldUseDarkMode = savedDarkMode === 'true';
+      }
+      
+      setDarkMode(shouldUseDarkMode);
+      document.documentElement.classList.toggle('dark', shouldUseDarkMode);
 
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 768);
