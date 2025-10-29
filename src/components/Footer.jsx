@@ -100,7 +100,12 @@ const Footer = ({ darkMode }) => {
 
         {/* Copyright */}
         <div className={`mt-12 pt-8 border-t ${darkMode ? 'border-gray-800' : 'border-gray-200'} text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-          &copy; {new Date().getFullYear()} MLDL.Study • Built with ❤️ by Ansh Aneja <br></br>All Rights Reserved
+          &copy; {new Date().getFullYear()} MLDL.Study • Built with ❤️ by Ansh Aneja <br />
+          <div className="mt-1">
+            <span>All Rights Reserved</span>
+            <span className="mx-2">•</span>
+            <a href="https://github.com/anshaneja5/mldl.study/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className={`hover:underline ${darkMode ? 'hover:text-white' : 'hover:text-black'}`}>License</a>
+          </div>
         </div>
       </div>
     </footer>
