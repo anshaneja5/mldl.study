@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import Navbar from './Navbar';
 import categorizedVideos from '../../categorizedMLContent';
 import Modal from './Modal';
+import Footer from './Footer';
 
 const topics = [
   { id: 1, name: 'Introduction to Machine Learning', color: '#7C3AED', icon: '📚', x: 50, y: 10 },
@@ -422,6 +423,8 @@ const MachineLearningRoadmap = () => {
           darkMode={darkMode}
         />
       )}
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };

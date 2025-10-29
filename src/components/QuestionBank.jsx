@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
+import Footer from './Footer';
 
 const QuestionBank = () => {
   const [selectedTopic, setSelectedTopic] = useState(null);
@@ -220,6 +221,8 @@ const QuestionBank = () => {
             </div>
           </div>
         </div>
+
+        <Footer darkMode={darkMode} />
       </>
     );
   }
@@ -463,6 +466,8 @@ const QuestionBank = () => {
           </div>
         </div>
       </div>
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Book, ExternalLink, ChevronDown, ChevronUp, Search } from 'lucide-react
 import researchPapers from "../../categorizedRPContent";
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import Footer from './Footer';
 
 const ResearchPaper = () => {
   const [expandedCategory, setExpandedCategory] = useState(null);
@@ -225,6 +226,8 @@ const ResearchPaper = () => {
           </div>
         </div>
       </div>
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };
