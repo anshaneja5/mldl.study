@@ -1,6 +1,22 @@
 const genai = {
   "Courses and Tutorials": [
     {
+      title:"What is Generative AI?",
+      url:"https://www.geeksforgeeks.org/artificial-intelligence/what-is-generative-ai/",
+    },
+    {
+      title: "Generative AI Tutorial",
+      url:"https://www.geeksforgeeks.org/artificial-intelligence/generative-ai-tutorial/",
+    },
+    {
+      title:"Generative AI using LangChain",
+      url:"https://www.youtube.com/playlist?list=PLKnIA16_RmvaTbihpo4MtzVm4XOQa0ER0",
+    },
+    {
+      title:"GenAI & LLMs: The Only Course You’ll Ever Need",
+      url:"https://www.youtube.com/playlist?list=PL2hXNYim5xvop-LH93T2P75Y-09GIyHG6",
+    },
+    {
       title: "Neural Networks: Zero to Hero",
       url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ"
     },
@@ -69,6 +85,14 @@ const genai = {
   ],
   "Transformer Fundamentals": [
     {
+      title:"Introduction to Transformers | Transformers Part 1",
+      url:"https://www.youtube.com/watch?v=BjRVS2wTtcA"
+    },
+    {
+      title:"Transformers Explained | Simple Explanation of Transformers",
+      url:"https://www.youtube.com/watch?v=ZhAz268Hdpw&t=12s",
+    },
+    {
       title: "Intro to Transformers (slides) - giffmana",
       url: "https://docs.google.com/presentation/d/1ZXFIhYczos679r70Yu8vV9uO6B1J0ztzeDxbnBxD1S0/edit#slide=id.ge2832e38b9_0_21"
     },
@@ -79,6 +103,14 @@ const genai = {
     {
       title: "Hugging Face Transformers Documentation",
       url: "https://huggingface.co/docs/transformers"
+    },
+    {
+      title:"How to Use the Hugging Face Transformer Library",
+      url:"https://www.freecodecamp.org/news/hugging-face-transformer-library-overview/",
+    },
+    {
+      title:"How to use Hugging Face 🤗 Transformers and pipelines",
+      url:"https://inside-machinelearning.com/en/use-hugging-face-transformers/",
     },
     {
       title: "The Illustrated GPT-2 (Visualizing Transformer Language Models)",
@@ -104,6 +136,10 @@ const genai = {
       notes: "Line-by-line implementation of the Transformer paper with detailed annotations."
     },
     {
+      title:"Transformer models and BERT model: Overview",
+      url:"https://www.youtube.com/watch?v=t45S_MwAcOw",
+    },
+    {
       title: "BERT Explained - Jay Alammar",
       url: "https://jalammar.github.io/illustrated-bert/",
       notes: "Visual explanation of BERT and bidirectional transformer models."
@@ -122,6 +158,14 @@ const genai = {
     {
       title: "Large Language Models in Five Formulas",
       url: "https://www.youtube.com/watch?v=KCXDr-UOb9A"
+    },
+    {
+      title:"Building LLMs from scratch",
+      url:"https://www.youtube.com/playlist?list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu",
+    },
+    {
+      title:"LangChain Crash Course For Beginners | LangChain Tutorial",
+      url:"https://www.youtube.com/watch?v=nAmC7SoVLd8",
     },
     {
       title: "Build a Large Language Model (From Scratch) - Sebastian Raschka",
@@ -163,6 +207,10 @@ const genai = {
       notes: "Parameter-efficient fine-tuning techniques for adapting large models with limited resources."
     },
     {
+      title:"Fine Tuning Large Language Model (LLM)",
+      url:"https://www.geeksforgeeks.org/deep-learning/fine-tuning-large-language-model-llm/",
+    },
+    {
       title: "Retrieval Augmented Generation (RAG) Implementation",
       url: "https://www.pinecone.io/learn/retrieval-augmented-generation/",
       notes: "Complete guide to implementing RAG systems for knowledge-grounded LLM applications."
@@ -171,7 +219,11 @@ const genai = {
       title: "LLaMA from Scratch - Understanding Modern LLMs",
       url: "https://github.com/meta-llama/llama",
       notes: "Meta's LLaMA implementation with architectural insights and training methodology."
-    }
+    },
+    {
+      title:"LLM Project | End to End Gen AI Project Using LangChain, Google Palm In Ed-Tech Industry",
+      url:"https://www.youtube.com/watch?v=AjQPRomyd-k",
+    },
   ],
   "Educational Channels": [
     {
