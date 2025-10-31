@@ -3,6 +3,7 @@ import ReactGA from 'react-ga4';
 import { Helmet } from 'react-helmet';
 import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target, Zap } from 'lucide-react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const journeyData = [
   {
@@ -234,6 +235,8 @@ const Journey = () => {
           </div>
         </main>
       </div>
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };

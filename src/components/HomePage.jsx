@@ -4,6 +4,7 @@ import ReactGA from 'react-ga4';
 import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Clock, Globe, Users } from 'lucide-react';
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import Footer from './Footer';
 
 // FAQ Data
 const FAQ_DATA = [
@@ -533,16 +534,8 @@ const HomePage = () => {
             </button>
           </div>
         </main>
-        
-        {/* Footer */}
-        <footer className={`py-6 ${darkMode ? 'bg-gray-800 border-t border-gray-700' : 'bg-white border-t border-gray-100'}`}>
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-              © {new Date().getFullYear()} mldl.study • Built with ❤️ by <a href="https://www.linkedin.com/in/anshaneja5" target="_blank" rel="noopener noreferrer" className={`hover:underline ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Ansh Aneja</a>
-            </p>
-          </div>
-        </footer>
       </div>
+      <Footer darkMode={darkMode} />
     </>
   );
 };

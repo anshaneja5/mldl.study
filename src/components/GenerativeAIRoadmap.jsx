@@ -5,6 +5,7 @@ import Modal from './Modal';
 import Navbar from './Navbar';
 import ReactGA from 'react-ga4';
 import genai from "../../categorizedGenAIContent";
+import Footer from './Footer';
 
 const topics = [
   { id: 1, name: 'Courses and Tutorials', x: 50, y: 10, color: '#2563eb', icon: '📚' },
@@ -495,6 +496,8 @@ const GenerativeAIRoadmap = () => {
           darkMode={darkMode}
         />
       )}
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };

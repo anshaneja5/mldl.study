@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import categorizedDLVideos from '../../categorizedDLContent'; 
 import Modal from './Modal';
 import ReactGA from 'react-ga4';
+import Footer from './Footer';
 
 const topics = [
   { id: 1, name: 'Introduction to Deep Learning', x: 50, y: 10, color: '#9333ea', icon: '🧠' },
@@ -429,6 +430,8 @@ const DeepLearningRoadmap = () => {
           darkMode={darkMode}
         />
       )}
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };
