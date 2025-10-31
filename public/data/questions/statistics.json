@@ -159,6 +159,71 @@
       "correctAnswer": 0,
       "explanation": "Central Limit Theorem states that, regardless of population distribution, the sampling distribution of the mean approaches normality as sample size increases",
       "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "What does the standard error represent?",
+      "options": [
+        "Standard deviation of the population",
+        "Standard deviation of the sample mean estimates",
+        "Mean of the sample",
+        "Variance of the dataset"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Standard error measures the variability of sample mean estimates from the true population mean.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "Which statistic is least affected by extreme outliers?",
+      "options": [
+        "Mean",
+        "Median",
+        "Range",
+        "Variance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The median, as a positional average, is robust and not influenced by extreme values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 18,
+      "question": "What is a simple random sample?",
+      "options": [
+        "Sampling every nth observation",
+        "Choosing a sample with equal and independent chance for all members",
+        "Selecting specific subgroups",
+        "Sampling based on judgment"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A simple random sample ensures every member has an equal, independent chance of being selected.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 19,
+      "question": "What is the probability of getting heads in a fair coin toss?",
+      "options": [
+        "0.25",
+        "0.5",
+        "1",
+        "2"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A fair coin has two outcomes, so the probability of heads is 0.5.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "Which test is appropriate for comparing medians of two related samples?",
+      "options": [
+        "Chi-square test",
+        "Wilcoxon signed-rank test",
+        "Z-test",
+        "Independent t-test"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Wilcoxon signed-rank test is a nonparametric test used for paired or related samples to compare medians.",
+      "difficulty": "medium"
     }
   ]
 }

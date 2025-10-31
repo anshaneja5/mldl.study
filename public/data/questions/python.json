@@ -194,6 +194,71 @@
       "correctAnswer": 1,
       "explanation": "zip() takes iterables and aggregates them into tuples. For example: zip([1,2], ['a','b']) gives [(1,'a'), (2,'b')]",
       "difficulty": "medium"
+    },
+    {
+      "id": 16,
+      "question": "What is the datatype of R1=[1,'waqq',45,'Pranjal']?",
+      "options": [
+        "List",
+        "Tuples",
+        "String",
+        "Dictionary"
+      ],
+      "correctAnswer": 0,
+      "explanation": "This is a list",
+      "difficulty": "easy"
+    },
+    {
+      "id": 17,
+      "question": "What is the output of the following Python code? \n for i in range(5,0,-1):\nprint(i)",
+      "options": [
+        "5 4 3 2 1",
+        "1 2 3 4 5",
+        "5 5 5 5 5",
+        "1 1 1 1 1"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The loop runs from 5 to 1 in decrements of 1, so it prints 5 4 3 2 1",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "What is the output of the following Python code?\ns1=('a','b','c','d')\ns2=('e','f','g')\ns3 = s1 + s2\nprint(s3)",
+      "options": [
+        "('e', 'f', 'g')",
+        "('a', 'b', 'c', 'd')",
+        "('a', 'b', 'c', 'd', 'e', 'f', 'g')",
+        "Error"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The + operator concatenates two tuples, so the output is ('a', 'b', 'c', 'd', 'e', 'f', 'g')",
+      "difficulty": "easy"
+    },
+    {
+      "id": 19,
+      "question": " Which method is used to remove whitespace from the beginning and end of a string in Python?",
+      "options": [
+        "strip()",
+        "remove()",
+        "clean()",
+        "trim()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The strip() method removes both leading and trailing whitespace in a string.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "What keyword is used to handle exceptions in Python?",
+      "options": [
+        "try",
+        "catch",
+        "except",
+        "throw"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Exceptions are handled using try and except blocks in Python.",
+      "difficulty": "medium"
     }
   ]
 }

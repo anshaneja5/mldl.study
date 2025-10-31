@@ -194,6 +194,71 @@
       "correctAnswer": 0,
       "explanation": "AdaBoost combines multiple weak classifiers, giving higher weights to misclassified instances to improve performance.",
       "difficulty": "medium"
+    },
+    {
+      "id": 16,
+      "question": "Which ensemble method randomly selects features and bootstraps samples to build multiple decision trees?",
+      "options": [
+        "Gradient Boosting",
+        "Random Forest",
+        "Bagging",
+        "AdaBoost"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Random Forests build several decision trees using random samples and randomly selected features, aggregating results for better generalization.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "What does the bias-variance tradeoff in machine learning refer to?",
+      "options": [
+        "Tradeoff between supervised and unsupervised methods",
+        "The balance between model complexity and generalization error",
+        "Choosing the right optimizer",
+        "The amount of training data required"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The bias-variance tradeoff addresses balancing model complexity against generalization to optimize predictive accuracy.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "Hyperparameters in machine learning models are:",
+      "options": [
+        "Learned parameters during training",
+        "Parameters controlling training or model structure",
+        "Parameters of the activation function",
+        "Output values from prediction"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hyperparameters determine training setup or model architecture and must be set before training begins.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "question": "Which metric is most appropriate for evaluating regression models?",
+      "options": [
+        "Accuracy",
+        "Mean Squared Error",
+        "Recall",
+        "AUC-ROC"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mean Squared Error quantifies the average squared error between predicted and actual values—ideal for regression.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "One-hot encoding is used to:",
+      "options": [
+        "Normalize features",
+        "Convert categorical variables into binary vectors",
+        "Reduce the dimensionality of features",
+        "Standardize labels"
+      ],
+      "correctAnswer": 1,
+      "explanation": "One-hot encoding transforms categorical data into binary matrix/vector representations for ML models.",
+      "difficulty": "easy"
     }
   ]
 }

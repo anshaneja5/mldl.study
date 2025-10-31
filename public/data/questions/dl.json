@@ -189,6 +189,71 @@
       "correctAnswer": 1,
       "explanation": "Transfer learning leverages knowledge from a pre-trained model to solve a new, similar problem efficiently.",
       "difficulty": "medium"
+    },
+    {
+      "id": 16,
+      "question": "Which of the following best describes 'weight initialization' in neural networks?",
+      "options": [
+        "Setting all weights to zero",
+        "Randomly assigning initial values to weights",
+        "Applying dropout to weights",
+        "Normalizing output vectors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Randomly initializing weights helps in breaking symmetry and allows effective learning during training.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "Which loss function is preferred for regression tasks in neural networks?",
+      "options": [
+        "Categorical Cross-Entropy",
+        "Hinge Loss",
+        "Mean Squared Error",
+        "Binary Cross-Entropy"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Mean Squared Error is commonly used for regression problems since it measures average squared difference between predictions and targets.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 18,
+      "question": "Which term refers to training a neural network where each layer's input is normalized?",
+      "options": [
+        "Dropout",
+        "Batch Normalization",
+        "Weight Decay",
+        "Gradient Clipping"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Batch Normalization normalizes the input of each layer to stabilize and speed up the training process.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "question": "Which of the following architectures is commonly used for image segmentation?",
+      "options": [
+        "Autoencoder",
+        "U-Net",
+        "GAN",
+        "LSTM"
+      ],
+      "correctAnswer": 1,
+      "explanation": "U-Net architecture is specially designed for image segmentation tasks in biomedical imaging and beyond.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 20,
+      "question": "Which regularization technique penalizes the sum of squared weights?",
+      "options": [
+        "L1 regularization",
+        "L2 regularization",
+        "Dropout",
+        "Batch Normalization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L2 regularization discourages large weights by penalizing their squared values in the loss function.",
+      "difficulty": "medium"
     }
   ]
 }

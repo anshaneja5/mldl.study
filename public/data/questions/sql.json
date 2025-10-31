@@ -194,6 +194,71 @@
       "correctAnswer": 1,
       "explanation": "Normalization organizes data into multiple related tables to reduce redundancy and improve integrity.",
       "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "Which SQL data type should be used to store large variable-length text?",
+      "options": [
+        "INT",
+        "CHAR",
+        "TEXT",
+        "DATE"
+      ],
+      "correctAnswer": 2,
+      "explanation": "TEXT is used for large amounts of variable-length text data in SQL databases.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "What is the main advantage of using indexes in SQL databases?",
+      "options": [
+        "They increase data redundancy",
+        "They speed up query performance",
+        "They enforce data integrity",
+        "They allow for joins between tables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Indexes are used to quickly locate data without having to search every row in a table, improving query performance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "Which normal form removes transitive dependencies in a database?",
+      "options": [
+        "First Normal Form (1NF)",
+        "Second Normal Form (2NF)",
+        "Third Normal Form (3NF)",
+        "Boyce-Codd Normal Form (BCNF)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Third Normal Form (3NF) removes transitive dependencies, resulting in better organized data.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 19,
+      "question": "Which constraint prevents null values in a specific column?",
+      "options": [
+        "DEFAULT",
+        "NOT NULL",
+        "PRIMARY KEY",
+        "UNIQUE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The NOT NULL constraint ensures that a column cannot contain null values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "Which clause allows combining the results of two SELECT queries?",
+      "options": [
+        "JOIN",
+        "UNION",
+        "INTERSECT",
+        "MERGE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "UNION merges the result sets of two SELECT queries, removing duplicates by default.",
+      "difficulty": "medium"
     }
   ]
 }

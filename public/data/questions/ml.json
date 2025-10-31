@@ -194,6 +194,72 @@
       "correctAnswer": 0,
       "explanation": "Ensemble learning combines predictions from multiple models to reduce variance and improve accuracy (e.g., Random Forest, Bagging).",
       "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "Which Python library is most commonly used for machine learning tasks?",
+      "options": [
+        "NumPy",
+        "Pandas",
+        "scikit-learn",
+        "Matplotlib"
+      ],
+      "correctAnswer": 2,
+      "explanation": "scikit-learn provides simple and efficient tools for data mining and data analysis, making it widely used for machine learning.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 17,
+      "question": "In a neural network, the vanishing gradient problem occurs mostly in:",
+      "options": [
+        "Decision Trees",
+        "Random Forests",
+        "Deep Neural Networks",
+        "Linear Regression"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The vanishing gradient problem is significant in deep neural networks, especially those using certain activation functions.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "Credit card fraud detection typically uses which ML approach?",
+      "options": [
+        "Clustering",
+        "Classification",
+        "Dimensionality Reduction",
+        "Regression"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Fraud detection is a classification problem, where transactions are classified as fraudulent or not.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 19,
+      "question": "What does .fit() do in scikit-learn models?",
+      "options": [
+        "Tests the model",
+        "Stores the result",
+        "Trains the model",
+        "Predicts new data"
+      ],
+      "correctAnswer": 2,
+      "explanation": ".fit() trains the model using the provided training data.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "Which concept describes balancing exploration and exploitation in reinforcement learning?",
+      "options": [
+        "Precision-recall tradeoff",
+        "Exploration-exploitation tradeoff",
+        "Bias-variance tradeoff",
+        "Gradient descent"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The exploration-exploitation tradeoff determines how an RL agent chooses between known rewards and exploring new actions.",
+      "difficulty": "medium"
     }
+
   ]
 }
