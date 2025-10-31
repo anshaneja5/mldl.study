@@ -1,12 +1,11 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Compass, BookCopy, Shield } from 'lucide-react';
+import { Github, Linkedin, Compass, BookCopy, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = ({ darkMode }) => {
   const socialLinks = [
     { icon: <Github className="w-5 h-5" />, href: 'https://github.com/anshaneja5/mldl.study', label: 'GitHub' },
     { icon: <Linkedin className="w-5 h-5" />, href: 'https://www.linkedin.com/in/anshaneja5/', label: 'LinkedIn' },
-    { icon: <Twitter className="w-5 h-5" />, href: 'https://twitter.com/anshaneja', label: 'Twitter' },
   ];
 
   const footerSections = [
@@ -85,12 +84,21 @@ const Footer = ({ darkMode }) => {
               <ul className="mt-4 space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a
-                      href={link.href}
-                      className={`text-sm transition-all duration-200 ease-in-out hover:translate-x-1 hover:font-semibold inline-block ${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
-                    >
-                      {link.text}
-                    </a>
+                    {link.href.startsWith('/') ? (
+                      <Link
+                        to={link.href}
+                        className={`text-sm transition-all duration-200 ease-in-out hover:translate-x-1 hover:font-semibold inline-block ${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+                      >
+                        {link.text}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className={`text-sm transition-all duration-200 ease-in-out hover:translate-x-1 hover:font-semibold inline-block ${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+                      >
+                        {link.text}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
