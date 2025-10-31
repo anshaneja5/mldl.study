@@ -102,15 +102,18 @@ const Books = () => {
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="relative flex-1">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <Search className="w-5 h-5 text-gray-400" />
+                <Search className={`w-5 h-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
               </div>
               <input
                 type="text"
                 placeholder="Search by title or author..."
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 
-                          bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                className={`w-full pl-10 pr-4 py-3 rounded-xl border 
+                          ${darkMode 
+                            ? 'border-gray-700 bg-gray-800 text-white placeholder-gray-400' 
+                            : 'border-gray-200 bg-white text-gray-900 placeholder-gray-500'
+                          }
                           shadow-sm focus:ring-2 focus:ring-blue-600 focus:border-transparent
-                          transition-all duration-200"
+                          transition-all duration-200`}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -120,10 +123,12 @@ const Books = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap
+                  className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all
                             ${selectedCategory === category
                               ? 'bg-blue-600 text-white'
-                              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                              : darkMode
+                                ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+                                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                             }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -142,16 +147,19 @@ const Books = () => {
               {filteredBooks.map((book, index) => (
                 <div
                   key={index}
-                  className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md 
-                             transition-all duration-200 border border-gray-200 dark:border-gray-700`}
+                  className={`rounded-xl shadow-sm hover:shadow-md transition-all duration-200
+                             ${darkMode 
+                               ? 'bg-gray-800 border border-gray-700' 
+                               : 'bg-white border border-gray-200'
+                             }`}
                 >
                   <div className="p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                        <h3 className={`font-semibold text-lg mb-2 line-clamp-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                           {book.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                           by {book.author}
                         </p>
                       </div>
@@ -163,7 +171,7 @@ const Books = () => {
                       href={book.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline"
+                      className={`inline-flex items-center gap-2 hover:underline ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}
                     >
                       <span>Read Book</span>
                       <ExternalLink className="w-4 h-4" />
@@ -186,16 +194,19 @@ const Books = () => {
               {filteredArticles.map((article, index) => (
                 <div
                   key={index}
-                  className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md 
-                             transition-all duration-200 border border-gray-200 dark:border-gray-700`}
+                  className={`rounded-xl shadow-sm hover:shadow-md transition-all duration-200
+                             ${darkMode 
+                               ? 'bg-gray-800 border border-gray-700' 
+                               : 'bg-white border border-gray-200'
+                             }`}
                 >
                   <div className="p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                        <h3 className={`font-semibold text-lg mb-2 line-clamp-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                           {article.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                           by {article.author}
                         </p>
                       </div>
@@ -207,7 +218,7 @@ const Books = () => {
                       href={article.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline"
+                      className={`inline-flex items-center gap-2 hover:underline ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}
                     >
                       <span>Read Article</span>
                       <ExternalLink className="w-4 h-4" />
@@ -222,8 +233,8 @@ const Books = () => {
           {filteredBooks.length === 0 && filteredArticles.length === 0 && (
             <div className="text-center py-12">
               <div className="text-5xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold mb-2">No resources found</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <h3 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>No resources found</h3>
+              <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
                 Try adjusting your search or filter to find what you're looking for.
               </p>
             </div>
