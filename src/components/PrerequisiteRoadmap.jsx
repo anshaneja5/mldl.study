@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import categorizedVideos from '../../categorizedPrerequisiteContent';
 import Modal from './Modal';
 import ReactGA from 'react-ga4';
+import Footer from './Footer';
 
 const topics = [
   { id: 1, name: 'Linear Algebra', x: 25, y: 30, color: '#10b981', icon: '📐' },
@@ -427,6 +428,8 @@ const PrerequisiteRoadmap = () => {
           darkMode={darkMode}
         />
       )}
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };

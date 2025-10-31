@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactGA from 'react-ga4';
 import { Book, ExternalLink, Search } from 'lucide-react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import { Helmet } from 'react-helmet';
 
 const books = [
@@ -229,6 +230,8 @@ const Books = () => {
           )}
         </div>
       </div>
+
+      <Footer darkMode={darkMode} />
     </>
   );
 };
