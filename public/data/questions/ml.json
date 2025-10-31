@@ -194,6 +194,201 @@
       "correctAnswer": 0,
       "explanation": "Ensemble learning combines predictions from multiple models to reduce variance and improve accuracy (e.g., Random Forest, Bagging).",
       "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "What is the vanishing gradient problem in deep neural networks?",
+      "options": [
+        "Gradients become too large during backpropagation",
+        "Gradients become too small, making early layers learn slowly",
+        "Gradients disappear completely after one epoch",
+        "Learning rate decreases automatically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In deep networks, gradients can become exponentially small as they propagate backward, causing early layers to learn very slowly or not at all.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 17,
+      "question": "Which activation function helps mitigate the vanishing gradient problem?",
+      "options": [
+        "Sigmoid",
+        "Tanh",
+        "ReLU",
+        "Softmax"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ReLU (Rectified Linear Unit) maintains a constant gradient for positive values, preventing gradient decay during backpropagation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "What is the purpose of dropout in neural networks?",
+      "options": [
+        "Increase training speed",
+        "Reduce overfitting by randomly deactivating neurons",
+        "Normalize gradients",
+        "Initialize weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dropout randomly sets a fraction of neurons to zero during training, forcing the network to learn robust features and preventing co-adaptation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "question": "What is the difference between batch gradient descent and stochastic gradient descent?",
+      "options": [
+        "Batch uses all data per update, SGD uses one sample per update",
+        "SGD is faster but less accurate than batch",
+        "Batch is only for classification, SGD is for regression",
+        "They are the same algorithm"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Batch gradient descent computes gradients using the entire dataset, while SGD updates parameters after each individual training example.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 20,
+      "question": "What is the bias-variance tradeoff?",
+      "options": [
+        "Balancing model simplicity vs complexity to minimize total error",
+        "Choosing between accuracy and speed",
+        "Trading training time for inference time",
+        "Balancing positive and negative classes"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The bias-variance tradeoff describes the balance between underfitting (high bias) and overfitting (high variance) to achieve optimal generalization.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 21,
+      "question": "What does the learning rate control in gradient descent?",
+      "options": [
+        "The size of weight updates during optimization",
+        "The number of epochs to train",
+        "The batch size",
+        "The number of hidden layers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Learning rate determines the step size when updating parameters - too large can overshoot minima, too small can slow convergence.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 22,
+      "question": "What is cross-validation used for?",
+      "options": [
+        "Training multiple models simultaneously",
+        "Assessing model performance and reducing overfitting to test set",
+        "Increasing dataset size",
+        "Feature engineering"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cross-validation splits data into multiple folds, training and testing on different subsets to get a robust estimate of model performance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 23,
+      "question": "What is the purpose of batch normalization?",
+      "options": [
+        "Reduce training time",
+        "Normalize layer inputs to stabilize and accelerate training",
+        "Increase model capacity",
+        "Prevent data leakage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Batch normalization normalizes inputs to each layer, reducing internal covariate shift and allowing higher learning rates.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 24,
+      "question": "What is transfer learning?",
+      "options": [
+        "Using a pre-trained model as a starting point for a new task",
+        "Transferring data between training and testing sets",
+        "Converting models between frameworks",
+        "Moving models from CPU to GPU"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Transfer learning leverages knowledge from a model trained on one task to improve performance on a related task, often with less data.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 25,
+      "question": "What is the Adam optimizer?",
+      "options": [
+        "A data augmentation technique",
+        "An adaptive learning rate optimization algorithm",
+        "A regularization method",
+        "A loss function"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adam combines momentum and RMSprop, using adaptive learning rates for each parameter based on first and second moments of gradients.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 26,
+      "question": "What is the purpose of the softmax function?",
+      "options": [
+        "Convert raw scores to probability distribution for multi-class classification",
+        "Normalize input features",
+        "Prevent overfitting",
+        "Speed up training"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Softmax transforms logits into probabilities that sum to 1, making it ideal for multi-class classification output layers.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 27,
+      "question": "What is the difference between L1 and L2 regularization?",
+      "options": [
+        "L1 adds absolute values of weights, L2 adds squared weights to loss",
+        "L1 is for classification, L2 is for regression",
+        "L1 is faster than L2",
+        "They are the same"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L1 (Lasso) can produce sparse models by driving some weights to zero, while L2 (Ridge) shrinks weights but rarely zeros them out.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 28,
+      "question": "What is a convolutional layer in CNNs primarily used for?",
+      "options": [
+        "Reducing dimensionality",
+        "Extracting spatial features using learned filters",
+        "Classification",
+        "Data augmentation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Convolutional layers apply learned filters to input data to detect features like edges, textures, and patterns in spatial hierarchies.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 29,
+      "question": "What is the purpose of an LSTM in recurrent neural networks?",
+      "options": [
+        "Speed up training",
+        "Handle long-term dependencies and mitigate vanishing gradients",
+        "Reduce model size",
+        "Normalize sequences"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LSTMs use gating mechanisms to maintain and control information flow, allowing them to learn long-term dependencies in sequential data.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 30,
+      "question": "What is the ROC-AUC score used for?",
+      "options": [
+        "Measuring regression performance",
+        "Evaluating binary classifier performance across all thresholds",
+        "Clustering quality",
+        "Feature importance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ROC-AUC measures the area under the Receiver Operating Characteristic curve, indicating how well a binary classifier distinguishes between classes.",
+      "difficulty": "medium"
     }
   ]
 }
