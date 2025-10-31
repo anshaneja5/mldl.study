@@ -110,7 +110,7 @@ const Books = () => {
                 className={`w-full pl-10 pr-4 py-3 rounded-xl border 
                           ${darkMode 
                             ? 'border-gray-700 bg-gray-800 text-white placeholder-gray-400' 
-                            : 'border-gray-200 bg-white text-gray-900 placeholder-gray-500'
+                            : 'border-gray-200 bg-white text-gray-900 placeholder-gray-400'
                           }
                           shadow-sm focus:ring-2 focus:ring-blue-600 focus:border-transparent
                           transition-all duration-200`}
