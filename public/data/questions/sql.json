@@ -194,6 +194,201 @@
       "correctAnswer": 1,
       "explanation": "Normalization organizes data into multiple related tables to reduce redundancy and improve integrity.",
       "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "What does LEFT JOIN return?",
+      "options": [
+        "Only matching records from both tables",
+        "All records from left table and matching records from right table",
+        "All records from right table only",
+        "No records if there's no match"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LEFT JOIN returns all records from the left table and the matched records from the right table. NULL values appear where there's no match.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "Which SQL command is used to modify existing data?",
+      "options": [
+        "MODIFY",
+        "UPDATE",
+        "CHANGE",
+        "ALTER"
+      ],
+      "correctAnswer": 1,
+      "explanation": "UPDATE is used to modify existing records in a table. ALTER is used to modify table structure, not data.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 18,
+      "question": "What does the LIMIT clause do?",
+      "options": [
+        "Limits the number of columns returned",
+        "Limits the number of rows returned",
+        "Limits the execution time",
+        "Limits the table size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LIMIT restricts the number of rows returned by a query. For example: SELECT * FROM users LIMIT 10 returns only 10 rows.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 19,
+      "question": "Which aggregate function calculates the average value?",
+      "options": [
+        "AVG()",
+        "MEAN()",
+        "AVERAGE()",
+        "CALC_AVG()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AVG() returns the average value of a numeric column. For example: SELECT AVG(salary) FROM employees.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "What is the purpose of an INDEX in a database?",
+      "options": [
+        "To delete records faster",
+        "To improve query performance by speeding up data retrieval",
+        "To backup data",
+        "To encrypt data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An INDEX creates a data structure that allows faster data retrieval, similar to an index in a book.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 21,
+      "question": "What does the UNION operator do?",
+      "options": [
+        "Joins tables horizontally",
+        "Combines result-sets of two SELECT statements (removes duplicates)",
+        "Creates a new table",
+        "Updates multiple tables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "UNION combines the results of two or more SELECT statements and removes duplicate rows. Use UNION ALL to keep duplicates.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 22,
+      "question": "Which constraint prevents NULL values in a column?",
+      "options": [
+        "NOT NULL",
+        "UNIQUE",
+        "CHECK",
+        "DEFAULT"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The NOT NULL constraint ensures that a column cannot have NULL values and must always contain data.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 23,
+      "question": "What is the difference between WHERE and HAVING?",
+      "options": [
+        "No difference",
+        "WHERE filters rows before grouping, HAVING filters after grouping",
+        "HAVING filters rows, WHERE filters columns",
+        "WHERE is faster than HAVING"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WHERE filters individual rows before GROUP BY is applied, while HAVING filters grouped results after aggregation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 24,
+      "question": "What does the LIKE operator do?",
+      "options": [
+        "Compares exact values",
+        "Searches for a pattern in a column",
+        "Joins two tables",
+        "Sorts results"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LIKE is used with wildcards (% and _) to search for patterns. For example: WHERE name LIKE 'A%' finds names starting with A.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 25,
+      "question": "Which wildcard represents zero or more characters in SQL?",
+      "options": [
+        "_",
+        "%",
+        "*",
+        "?"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The % wildcard represents zero or more characters, while _ represents exactly one character.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 26,
+      "question": "What does the AS keyword do in SQL?",
+      "options": [
+        "Assigns a data type",
+        "Creates an alias for a column or table",
+        "Adds a new column",
+        "Sorts data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AS creates an alias (temporary name) for a column or table. For example: SELECT name AS employee_name FROM staff.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 27,
+      "question": "What is a VIEW in SQL?",
+      "options": [
+        "A physical table",
+        "A virtual table based on a SQL query",
+        "A backup of a table",
+        "An index"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A VIEW is a virtual table created by a stored query. It doesn't store data itself but presents data from underlying tables.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 28,
+      "question": "Which SQL command is used to create a new table?",
+      "options": [
+        "NEW TABLE",
+        "CREATE TABLE",
+        "MAKE TABLE",
+        "ADD TABLE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CREATE TABLE is used to create a new table with specified columns and data types.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 29,
+      "question": "What does the IN operator do?",
+      "options": [
+        "Checks if a value exists within a set of values",
+        "Joins two tables",
+        "Inserts data",
+        "Creates an index"
+      ],
+      "correctAnswer": 0,
+      "explanation": "IN allows you to specify multiple values in a WHERE clause. For example: WHERE country IN ('USA', 'UK', 'Canada').",
+      "difficulty": "medium"
+    },
+    {
+      "id": 30,
+      "question": "What is the purpose of the COMMIT command?",
+      "options": [
+        "Deletes transactions",
+        "Saves all changes made in the current transaction",
+        "Rolls back changes",
+        "Creates a backup"
+      ],
+      "correctAnswer": 1,
+      "explanation": "COMMIT permanently saves all changes made during the current transaction to the database.",
+      "difficulty": "medium"
     }
   ]
 }

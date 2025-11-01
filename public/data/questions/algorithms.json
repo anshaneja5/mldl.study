@@ -194,6 +194,201 @@
       "correctAnswer": 0,
       "explanation": "AdaBoost combines multiple weak classifiers, giving higher weights to misclassified instances to improve performance.",
       "difficulty": "medium"
+    },
+    {
+      "id": 16,
+      "question": "What is the key difference between batch gradient descent and stochastic gradient descent (SGD)?",
+      "options": [
+        "Batch uses the entire dataset per update, SGD uses one sample",
+        "Batch is faster than SGD",
+        "SGD always converges to global minimum",
+        "Batch requires more memory than SGD for all datasets"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Batch gradient descent computes gradients using the entire dataset, while SGD updates weights after each sample, making it faster but noisier.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "In Random Forest, what does the 'max_features' hyperparameter control?",
+      "options": [
+        "Maximum depth of each tree",
+        "Number of features considered for each split",
+        "Total number of trees in the forest",
+        "Minimum samples required to split a node"
+      ],
+      "correctAnswer": 1,
+      "explanation": "max_features determines how many features are randomly selected as candidates for splitting at each node, introducing diversity among trees.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "What problem does the Adam optimizer solve compared to standard SGD?",
+      "options": [
+        "It eliminates the need for a learning rate",
+        "It adapts learning rates per parameter using momentum and RMSprop",
+        "It guarantees global minimum convergence",
+        "It works only with convolutional layers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adam combines momentum (exponential moving average of gradients) and RMSprop (adaptive learning rates) for faster and more stable convergence.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 19,
+      "question": "What is the vanishing gradient problem in deep neural networks?",
+      "options": [
+        "Gradients become too large during backpropagation",
+        "Gradients approach zero in early layers, preventing learning",
+        "The loss function becomes non-differentiable",
+        "The model outputs constant predictions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In deep networks with sigmoid/tanh activations, gradients shrink exponentially as they propagate backward, making early layers learn extremely slowly.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 20,
+      "question": "In k-fold cross-validation, what is the training set size when k=5?",
+      "options": [
+        "20% of the data",
+        "50% of the data",
+        "80% of the data",
+        "100% of the data"
+      ],
+      "correctAnswer": 2,
+      "explanation": "With 5-fold CV, data is split into 5 parts. Each iteration uses 4 folds (80%) for training and 1 fold (20%) for validation.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 21,
+      "question": "What is the main advantage of XGBoost over traditional gradient boosting?",
+      "options": [
+        "It uses only decision stumps",
+        "It implements regularization, parallel processing, and handles missing values",
+        "It requires no hyperparameter tuning",
+        "It works only on binary classification"
+      ],
+      "correctAnswer": 1,
+      "explanation": "XGBoost adds L1/L2 regularization, parallelizes tree construction, handles sparse data efficiently, and includes built-in cross-validation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 22,
+      "question": "What does the bias-variance tradeoff describe?",
+      "options": [
+        "The balance between training speed and accuracy",
+        "The balance between model simplicity (underfitting) and complexity (overfitting)",
+        "The tradeoff between precision and recall",
+        "The relationship between learning rate and convergence"
+      ],
+      "correctAnswer": 1,
+      "explanation": "High bias leads to underfitting (too simple), high variance leads to overfitting (too complex). The goal is to minimize total error.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 23,
+      "question": "In convolutional neural networks, what is the purpose of pooling layers?",
+      "options": [
+        "To increase spatial dimensions of feature maps",
+        "To reduce spatial dimensions and computational cost while retaining important features",
+        "To add non-linearity to the model",
+        "To normalize activations"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pooling (max/average) downsamples feature maps, reducing dimensionality and computation while preserving dominant features and providing translation invariance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 24,
+      "question": "What is the difference between L1 and L2 regularization?",
+      "options": [
+        "L1 adds sum of absolute weights, L2 adds sum of squared weights to loss",
+        "L1 is for classification, L2 is for regression",
+        "L1 increases model complexity, L2 decreases it",
+        "There is no difference, they are interchangeable"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L1 (Lasso) adds |w| penalty promoting sparsity, L2 (Ridge) adds w² penalty shrinking all weights. L1 can eliminate features, L2 cannot.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 25,
+      "question": "What is the role of the epsilon parameter in the DBSCAN clustering algorithm?",
+      "options": [
+        "It defines the maximum distance between two points to be neighbors",
+        "It sets the number of clusters",
+        "It controls the learning rate",
+        "It determines the minimum cluster size"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Epsilon (ε) defines the radius of the neighborhood around each point. Points within ε distance are considered neighbors for density calculation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 26,
+      "question": "In an LSTM network, what is the purpose of the forget gate?",
+      "options": [
+        "To add new information to the cell state",
+        "To decide what information to discard from the cell state",
+        "To compute the final output",
+        "To prevent gradient explosion"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The forget gate uses a sigmoid function to decide which information from the previous cell state should be kept or forgotten (0=forget, 1=keep).",
+      "difficulty": "hard"
+    },
+    {
+      "id": 27,
+      "question": "What is the primary difference between bagging and boosting ensemble methods?",
+      "options": [
+        "Bagging trains models in parallel, boosting trains sequentially with focus on errors",
+        "Bagging is supervised, boosting is unsupervised",
+        "Bagging reduces bias, boosting reduces variance",
+        "Bagging uses neural networks, boosting uses trees"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Bagging (Bootstrap Aggregating) trains models independently on random subsets. Boosting trains models sequentially, each correcting previous errors.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 28,
+      "question": "What does the silhouette score measure in clustering?",
+      "options": [
+        "The accuracy of classification",
+        "How similar an object is to its own cluster compared to other clusters",
+        "The number of optimal clusters",
+        "The distance between cluster centroids"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Silhouette score ranges from -1 to 1. Values near 1 indicate points are well-matched to their cluster and poorly matched to neighboring clusters.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 29,
+      "question": "In the context of neural networks, what is dropout?",
+      "options": [
+        "A regularization technique that randomly disables neurons during training",
+        "A method to remove outliers from the dataset",
+        "An optimization algorithm",
+        "A loss function for classification"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Dropout randomly sets a fraction of neuron outputs to zero during training, preventing co-adaptation and reducing overfitting. At test time, all neurons are used.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 30,
+      "question": "What is the curse of dimensionality in machine learning?",
+      "options": [
+        "Models become faster as features increase",
+        "Data becomes sparse and distances lose meaning in high-dimensional space",
+        "Computational cost decreases with more features",
+        "Models automatically select important features"
+      ],
+      "correctAnswer": 1,
+      "explanation": "As dimensions increase, data points become increasingly sparse, making it harder to find patterns. Distance metrics become less meaningful, requiring exponentially more data.",
+      "difficulty": "hard"
     }
   ]
 }
