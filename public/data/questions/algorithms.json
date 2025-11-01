@@ -389,6 +389,136 @@
       "correctAnswer": 1,
       "explanation": "As dimensions increase, data points become increasingly sparse, making it harder to find patterns. Distance metrics become less meaningful, requiring exponentially more data.",
       "difficulty": "hard"
+    },
+    {
+      "id": 31,
+      "question": "What are the advantages of using ensemble methods in machine learning?",
+      "options": [
+        "Reduce model bias and variance",
+        "Increase overfitting",
+        "Reduce training time",
+        "Simplify model design"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ensemble methods improve prediction performance by aggregating multiple models to reduce bias and variance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 32,
+      "question": "What is the role of feature scaling in machine learning?",
+      "options": [
+        "Increase dataset size",
+        "Standardize feature ranges to improve model training",
+        "Reduce number of features",
+        "Encode categorical variables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Feature scaling normalizes input features to a similar scale, which speeds up convergence and avoids bias.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 33,
+      "question": "Which algorithm is used as base learner in AdaBoost?",
+      "options": [
+        "Decision Stumps",
+        "Random Forest",
+        "SVM",
+        "KNN"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AdaBoost typically uses simple Decision Stumps as weak learners to build a strong classifier sequentially.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 34,
+      "question": "What hyperparameter controls the number of neighbors in K-Nearest Neighbors?",
+      "options": [
+        "k",
+        "distance metric",
+        "leaf size",
+        "split criterion"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'k' determines how many nearest data points influence the classification or regression decision.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 35,
+      "question": "Which loss function is commonly used for multi-class classification in neural networks?",
+      "options": [
+        "Mean Squared Error",
+        "Binary Cross-Entropy",
+        "Categorical Cross-Entropy",
+        "Hinge Loss"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Categorical Cross-Entropy calculates the difference between predicted probability and true class for multiple classes.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 36,
+      "question": "What is the difference between a hyperparameter and a parameter in machine learning?",
+      "options": [
+        "Hyperparameters are learned from data; parameters are manually set",
+        "Parameters are learned from data; hyperparameters are set before training",
+        "No difference",
+        "Parameters control validation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Parameters are model coefficients learned during training; hyperparameters configure the model before training.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 37,
+      "question": "Which among these is a clustering evaluation metric?",
+      "options": [
+        "Silhouette score",
+        "Accuracy",
+        "Precision",
+        "Recall"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Silhouette score measures how well samples are clustered by comparing intra-cluster cohesion and inter-cluster separation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 38,
+      "question": "What is the purpose of the learning rate in gradient descent?",
+      "options": [
+        "Define the size of updates to model weights",
+        "Prevent overfitting",
+        "Initialize weights",
+        "Stop training"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Learning rate controls how much weights are adjusted during optimization in each gradient step.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 39,
+      "question": "What does dropout do during neural network training?",
+      "options": [
+        "Disables random neurons to reduce overfitting",
+        "Increases learning rate",
+        "Updates weights faster",
+        "Normalizes input data"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Dropout randomly sets neuron outputs to zero during training, preventing complex co-adaptations and overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 40,
+      "question": "Which evaluation metric is best for imbalanced classification datasets?",
+      "options": [
+        "Accuracy",
+        "F1-Score",
+        "Mean Absolute Error",
+        "R-squared"
+      ],
+      "correctAnswer": 1,
+      "explanation": "F1-Score balances precision and recall, providing a better measure for imbalanced classes.",
+      "difficulty": "medium"
     }
   ]
 }

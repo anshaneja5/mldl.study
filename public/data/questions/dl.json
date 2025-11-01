@@ -389,6 +389,136 @@
       "correctAnswer": 1,
       "explanation": "Multi-head attention runs multiple attention mechanisms in parallel, each learning different aspects of relationships (e.g., syntax, semantics), then concatenates results.",
       "difficulty": "hard"
+    },
+    {
+      "id": 31,
+      "question": "Why are activation functions important in neural networks?",
+      "options": [
+        "They add linearity to the network",
+        "They introduce non-linearity allowing the network to learn complex patterns",
+        "They help in weight initialization",
+        "They prevent overfitting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Activation functions introduce non-linearity, enabling networks to approximate complex functions beyond linear mappings.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 32,
+      "question": "What is the main limitation of the sigmoid activation function?",
+      "options": [
+        "It outputs values only between -1 and 1",
+        "It is computationally expensive",
+        "It causes vanishing gradient problem for deep networks",
+        "It is not differentiable"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Sigmoid saturates at extreme values, causing very small gradients and slowing learning in deep networks.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 33,
+      "question": "How does the ReLU activation function work?",
+      "options": [
+        "Outputs 0 for negative inputs, outputs input as is for positive inputs",
+        "Outputs values between 0 and 1",
+        "Outputs values between -1 and 1",
+        "Outputs a constant value"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ReLU outputs zero for all negative inputs, and outputs the input directly if positive, helping with sparse activations and mitigating vanishing gradients.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 34,
+      "question": "What is the 'dying ReLU' problem?",
+      "options": [
+        "ReLU neurons output zero for all inputs due to negative summed input",
+        "ReLU neurons explode in value",
+        "ReLU is not differentiable",
+        "ReLU causes overfitting"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In dying ReLU, neurons output zero consistently if weights update causes inputs to remain negative, effectively disabling those neurons.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 35,
+      "question": "Which activation function is recommended for output layer in multi-class classification?",
+      "options": [
+        "ReLU",
+        "Sigmoid",
+        "Softmax",
+        "Tanh"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Softmax converts raw output scores into a probability distribution across classes, suited for multi-class tasks.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 36,
+      "question": "What property does the Tanh activation function have compared to Sigmoid?",
+      "options": [
+        "Outputs range between 0 and 1",
+        "Outputs range between -1 and 1 centered around zero",
+        "Is not differentiable",
+        "Has constant gradient"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tanh squashes inputs to be between -1 and 1, outputting zero-centered responses which can help optimization.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 37,
+      "question": "How does batch normalization help neural networks?",
+      "options": [
+        "By normalizing layer inputs across batches to reduce internal covariate shift and stabilize training",
+        "By applying dropout to layers",
+        "By reducing the number of parameters",
+        "By increasing the learning rate"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Batch normalization standardizes inputs to each layer, accelerating training and allowing higher learning rates.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 38,
+      "question": "Why are Leaky ReLU or Parametric ReLU variants used instead of regular ReLU?",
+      "options": [
+        "To allow small gradient for negative inputs preventing dying neurons",
+        "To improve speed",
+        "To make the function non-differentiable",
+        "To reduce overfitting"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Leaky ReLU variants provide a small, non-zero gradient when inputs are negative, avoiding neurons permanently shutting off.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "Which activation function is often used in the hidden layers of deep networks to avoid vanishing gradients?",
+      "options": [
+        "Sigmoid",
+        "Tanh",
+        "ReLU",
+        "Linear"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ReLU and its variants help maintain non-zero gradients and enable effective learning in deep architectures.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 40,
+      "question": "What is the main drawback of the Linear activation function in hidden layers?",
+      "options": [
+        "It introduces non-linearity",
+        "It causes vanishing gradients",
+        "It restricts the network to linear transformations only, regardless of depth",
+        "It is expensive to compute"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Using linear activations everywhere reduces a multi-layer network to effectively a single-layer linear model.",
+      "difficulty": "medium"
     }
   ]
 }
