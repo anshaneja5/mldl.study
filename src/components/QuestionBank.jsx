@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw } from 'lucide-react';
+import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
 import Footer from './Footer';
@@ -70,6 +70,17 @@ const QuestionBank = () => {
       borderLight: 'border-indigo-200',
       borderDark: 'border-indigo-500/30',
       iconColor: 'text-indigo-600'
+    },
+    { 
+      id: 'genai', 
+      name: 'Generative AI', 
+      icon: Sparkles, 
+      color: 'from-blue-500 to-cyan-500',
+      bgLight: 'bg-blue-50',
+      bgDark: 'bg-blue-900/20',
+      borderLight: 'border-blue-200',
+      borderDark: 'border-blue-500/30',
+      iconColor: 'text-blue-600'
     },
     { 
       id: 'statistics', 
