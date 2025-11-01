@@ -389,6 +389,136 @@
       "correctAnswer": 1,
       "explanation": "Positive (right) skew means the tail extends toward higher values, and typically mean > median > mode.",
       "difficulty": "medium"
+    },
+    {
+      "id": 31,
+      "question": "What is the coefficient of variation (CV)?",
+      "options": [
+        "The ratio of standard deviation to mean, expressed as a percentage",
+        "The difference between maximum and minimum values",
+        "The square root of variance",
+        "The slope of the regression line"
+      ],
+      "correctAnswer": 0,
+      "explanation": "CV is calculated as (standard deviation / mean) * 100 and measures relative variability.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 32,
+      "question": "What is the mode in a dataset?",
+      "options": [
+        "The average of data points",
+        "The most frequent value in the dataset",
+        "The middle value when data is ordered",
+        "The range of data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mode is the value that appears most frequently in the dataset.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 33,
+      "question": "Which statistical measure is least sensitive to outliers?",
+      "options": [
+        "Mean",
+        "Median",
+        "Range",
+        "Standard deviation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Median is a robust measure of central tendency and is less affected by extreme values.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 34,
+      "question": "What is sampling bias?",
+      "options": [
+        "Bias towards larger data samples",
+        "Systematic error from non-random sample selection",
+        "Variation due to random sampling",
+        "Error in data measurement"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sampling bias occurs when the selected sample is not representative of the population causing systematic errors.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 35,
+      "question": "Which test is used to check if the means of three or more groups are significantly different?",
+      "options": [
+        "T-test",
+        "Chi-square test",
+        "ANOVA",
+        "Correlation coefficient"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ANOVA tests hypotheses on whether the means of three or more independent groups differ significantly.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 36,
+      "question": "What is the purpose of a histogram?",
+      "options": [
+        "To show frequency distribution of continuous data",
+        "To show relationships between two variables",
+        "To compare categories",
+        "To display summary statistics"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Histograms visualize the distribution of numerical data grouped into bins (intervals).",
+      "difficulty": "easy"
+    },
+    {
+      "id": 37,
+      "question": "Which of the following is true about a box plot?",
+      "options": [
+        "Shows data distribution with median, quartiles, and outliers",
+        "Shows frequency counts of categorical variables",
+        "Visualizes correlation between variables",
+        "Depicts probability density function"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Box plots summarize data with median, quartiles, and identify outliers.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 38,
+      "question": "What is a Type II error in hypothesis testing?",
+      "options": [
+        "Rejecting a true null hypothesis",
+        "Failing to reject a false null hypothesis",
+        "Accepting a false alternative hypothesis",
+        "Using the wrong test statistic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Type II error occurs when we do not reject the null hypothesis even though it is false (false negative).",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "Which distribution is described as symmetric and bell-shaped?",
+      "options": [
+        "Normal distribution",
+        "Uniform distribution",
+        "Binomial distribution",
+        "Poisson distribution"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Normal distribution has a characteristic bell shape and is symmetric about the mean.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 40,
+      "question": "What does the term 'p-value < 0.05' typically indicate?",
+      "options": [
+        "Strong evidence against the null hypothesis",
+        "No evidence against the alternative hypothesis",
+        "Null hypothesis is true",
+        "Data is normally distributed"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A p-value less than 0.05 generally suggests evidence to reject the null hypothesis at 5% significance level.",
+      "difficulty": "medium"
     }
   ]
 }
