@@ -72,6 +72,17 @@ const QuestionBank = () => {
       iconColor: 'text-indigo-600'
     },
     { 
+      id: 'rl', 
+      name: 'Reinforcement Learning', 
+      icon: Award, 
+      color: 'from-red-500 to-orange-500',
+      bgLight: 'bg-red-50',
+      bgDark: 'bg-red-900/20',
+      borderLight: 'border-red-200',
+      borderDark: 'border-red-500/30',
+      iconColor: 'text-red-600'
+    },
+    { 
       id: 'genai', 
       name: 'Generative AI', 
       icon: Sparkles, 
