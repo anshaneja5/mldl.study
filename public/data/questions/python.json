@@ -517,7 +517,7 @@
         "Both ordered and unordered"
       ],
       "correctAnswer": 1,
-      "explanation": "Sets are unordered collections where element order is not preserved.",
+      "explanation": "Sets are officially unordered collections (element order is not guaranteed), but in Python 3.7+ they maintain insertion order as an implementation detail. However, this is not part of the specification and should not be relied upon.",
       "difficulty": "medium"
     }
   ]
