@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
+import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles, Award } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
 import Footer from './Footer';
@@ -70,6 +70,17 @@ const QuestionBank = () => {
       borderLight: 'border-indigo-200',
       borderDark: 'border-indigo-500/30',
       iconColor: 'text-indigo-600'
+    },
+    { 
+      id: 'rl', 
+      name: 'Reinforcement Learning', 
+      icon: Award, 
+      color: 'from-red-500 to-orange-500',
+      bgLight: 'bg-red-50',
+      bgDark: 'bg-red-900/20',
+      borderLight: 'border-red-200',
+      borderDark: 'border-red-500/30',
+      iconColor: 'text-red-600'
     },
     { 
       id: 'genai', 
