@@ -389,6 +389,136 @@
       "correctAnswer": 1,
       "explanation": "ROC-AUC measures the area under the Receiver Operating Characteristic curve, indicating how well a binary classifier distinguishes between classes.",
       "difficulty": "medium"
+    },
+    {
+      "id": 31,
+      "question": "What is the purpose of the activation function in a neural network?",
+      "options": [
+        "To introduce non-linearity",
+        "To normalize input data",
+        "To reduce overfitting",
+        "To initialize weights"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Activation functions introduce non-linearity, enabling neural networks to learn complex patterns.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 32,
+      "question": "Which method is commonly used to prevent overfitting in deep learning models?",
+      "options": [
+        "Dropout",
+        "Increasing learning rate",
+        "Reducing dataset size",
+        "Disabling early stopping"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Dropout randomly deactivates neurons during training to prevent co-adaptation and overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 33,
+      "question": "What is the vanishing gradient problem?",
+      "options": [
+        "Gradients become too small during backpropagation, slowing learning",
+        "Gradients become too large and cause overflow",
+        "Loss function is unstable",
+        "Training accuracy decreases"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Vanishing gradients cause earlier layers in deep networks to learn slowly or not at all.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 34,
+      "question": "What does the term 'epoch' mean in machine learning training?",
+      "options": [
+        "One complete pass over the entire training dataset",
+        "One update of model parameters",
+        "One evaluation on validation data",
+        "Number of neurons in a layer"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An epoch is one full iteration over the entire training dataset.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 35,
+      "question": "Which algorithm is best suited for high-dimensional sparse data?",
+      "options": [
+        "Naive Bayes",
+        "K-Means",
+        "Decision Trees",
+        "SVM with linear kernel"
+      ],
+      "correctAnswer": 3,
+      "explanation": "SVM with a linear kernel performs well on high-dimensional sparse datasets.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 36,
+      "question": "Which technique helps to tune the hyperparameters of a machine learning model?",
+      "options": [
+        "Grid Search",
+        "Batch Normalization",
+        "Dropout",
+        "Feature Scaling"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Grid search systematically explores hyperparameter combinations to find the best settings.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 37,
+      "question": "What is the key idea behind ensemble learning?",
+      "options": [
+        "Combining multiple models to improve predictions",
+        "Training a single very deep model",
+        "Using unsupervised learning",
+        "Data augmentation"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ensemble methods aggregate predictions from many models to reduce errors and variance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 38,
+      "question": "What is early stopping in model training?",
+      "options": [
+        "Stop training as soon as training loss is minimized",
+        "Stop training when validation performance degrades",
+        "Stop training at a fixed number of epochs",
+        "Stop training when model size exceeds threshold"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Early stopping halts training when validation loss or accuracy worsens to prevent overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "Which metric is considered best for evaluating imbalanced classification tasks?",
+      "options": [
+        "Accuracy",
+        "F1-Score",
+        "Mean Squared Error",
+        "R-Squared"
+      ],
+      "correctAnswer": 1,
+      "explanation": "F1-Score balances precision and recall, useful for imbalanced datasets.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 40,
+      "question": "What does regularization do in machine learning models?",
+      "options": [
+        "Adds penalty to loss to reduce overfitting",
+        "Increases model complexity",
+        "Increases training time",
+        "Removes outliers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Regularization adds a penalty term to the loss function to discourage complex models and help generalize better.",
+      "difficulty": "medium"
     }
   ]
 }

@@ -389,6 +389,136 @@
       "correctAnswer": 1,
       "explanation": "The % operator returns the remainder of division (modulo). 10 divided by 3 gives remainder 1, so 10 % 3 returns 1",
       "difficulty": "easy"
+    },
+    {
+      "id": 31,
+      "question": "Which Python data structure is immutable?",
+      "options": [
+        "List",
+        "Tuple",
+        "Set",
+        "Dictionary"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tuples are immutable, meaning their contents cannot be changed after creation.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 32,
+      "question": "How do you create an empty set in Python?",
+      "options": [
+        "{}",
+        "set()",
+        "[]",
+        "()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "set() creates an empty set. {} creates an empty dictionary.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 33,
+      "question": "Which data structure does not allow duplicate elements?",
+      "options": [
+        "List",
+        "Tuple",
+        "Set",
+        "Dictionary"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Sets automatically remove duplicate elements and only contain unique values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 34,
+      "question": "What type of indexing is supported by Python dictionaries?",
+      "options": [
+        "Integer-based",
+        "Key-based",
+        "Slice-based",
+        "None"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dictionaries are accessed via unique keys, not integer indices.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 35,
+      "question": "Which method adds an element to a Python set?",
+      "options": [
+        "append()",
+        "add()",
+        "insert()",
+        "extend()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The add() method adds a single element to a set.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 36,
+      "question": "What is the default order of elements in a Python list?",
+      "options": [
+        "Unordered",
+        "Alphabetical",
+        "Order of insertion",
+        "Sorted"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Lists maintain the order in which items were added (insertion order).",
+      "difficulty": "easy"
+    },
+    {
+      "id": 37,
+      "question": "Which data structure would you use to store key-value pairs in Python?",
+      "options": [
+        "List",
+        "Tuple",
+        "Set",
+        "Dictionary"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Dictionaries store data as key-value pairs, allowing fast lookup by keys.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 38,
+      "question": "Can you change elements in a Python tuple after creation?",
+      "options": [
+        "Yes",
+        "No",
+        "Only strings can be changed",
+        "Only numbers can be changed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tuples are immutable, so elements cannot be changed once the tuple is created.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "What does the pop() method do when used on a Python list?",
+      "options": [
+        "Removes and returns the last element",
+        "Removes all elements",
+        "Removes a specified element",
+        "Does nothing"
+      ],
+      "correctAnswer": 0,
+      "explanation": "pop() removes the last element by default and returns it.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 40,
+      "question": "Are sets ordered or unordered collections in Python?",
+      "options": [
+        "Ordered",
+        "Unordered",
+        "Depends on the version",
+        "Both ordered and unordered"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sets are officially unordered collections (element order is not guaranteed), but in Python 3.7+ they maintain insertion order as an implementation detail. However, this is not part of the specification and should not be relied upon.",
+      "difficulty": "medium"
     }
   ]
 }
