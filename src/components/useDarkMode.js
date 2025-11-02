@@ -2,9 +2,16 @@ import { useState, useEffect } from 'react';
 
 const useDarkMode = () => {
   const [darkMode, setDarkMode] = useState(() => {
-    // Initialize state from localStorage, or default to false
-    const savedMode = localStorage.getItem('darkMode');    // Default to dark mode on first visit, otherwise respect saved preference.
-    return savedMode === null ? true : savedMode === 'true';
+    // Check if window is defined to avoid SSR errors.
+    if (typeof window === 'undefined') {
+      // On the server, we can't access localStorage. Default to dark mode.
+      return true;
+    }
+
+    // On the client, initialize state from localStorage.
+    const savedMode = window.localStorage.getItem('darkMode');
+    // Default to dark mode on a first visit (when savedMode is null).
+    return savedMode === null ? true : savedMode === 'true'; // savedMode is a string
   });
 
   useEffect(() => {
