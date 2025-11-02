@@ -1,0 +1,524 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which SQL command is used to retrieve data from a database?",
+      "options": [
+        "GET",
+        "SELECT",
+        "FETCH",
+        "RETRIEVE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SELECT is the SQL command used to retrieve data from one or more tables.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "What does INNER JOIN return?",
+      "options": [
+        "All records from both tables",
+        "Records with matching values in both tables",
+        "All records from the left table",
+        "All records from the right table"
+      ],
+      "correctAnswer": 1,
+      "explanation": "INNER JOIN returns only the records that have matching values in both tables.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "question": "Which clause is used to filter records in SQL?",
+      "options": [
+        "FILTER",
+        "HAVING",
+        "WHERE",
+        "SELECT"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The WHERE clause is used to filter records based on specified conditions.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 4,
+      "question": "What is the difference between DELETE and TRUNCATE?",
+      "options": [
+        "No difference",
+        "DELETE can have WHERE clause, TRUNCATE cannot",
+        "TRUNCATE can have WHERE clause, DELETE cannot",
+        "Both can have WHERE clause"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DELETE can selectively remove rows using WHERE, while TRUNCATE removes all rows and cannot use WHERE.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Which SQL statement is used to insert new data?",
+      "options": [
+        "ADD INTO",
+        "INSERT INTO",
+        "APPEND",
+        "UPDATE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "INSERT INTO is used to add new rows of data into a table.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "Which keyword is used to sort the result-set in SQL?",
+      "options": [
+        "SORT BY",
+        "GROUP BY",
+        "ORDER BY",
+        "ARRANGE BY"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ORDER BY is used to sort the result-set in ascending or descending order.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "What does the GROUP BY clause do?",
+      "options": [
+        "Filters rows",
+        "Groups rows with the same values into summary rows",
+        "Sorts data alphabetically",
+        "Joins tables together"
+      ],
+      "correctAnswer": 1,
+      "explanation": "GROUP BY groups rows that have the same values in specified columns, often used with aggregate functions.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "question": "What does the DISTINCT keyword do in SQL?",
+      "options": [
+        "Shows duplicate records",
+        "Removes duplicate records",
+        "Orders records alphabetically",
+        "Filters based on conditions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DISTINCT removes duplicate rows from the result-set.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "Which SQL constraint ensures all values in a column are unique?",
+      "options": [
+        "NOT NULL",
+        "UNIQUE",
+        "PRIMARY KEY",
+        "CHECK"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The UNIQUE constraint ensures that all values in a column are different.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "What is a primary key?",
+      "options": [
+        "A key that allows duplicates",
+        "A key that uniquely identifies each record in a table",
+        "A foreign key reference",
+        "An index on a table"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A primary key uniquely identifies each record and cannot contain NULL values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 11,
+      "question": "What does a foreign key represent?",
+      "options": [
+        "A unique identifier within the same table",
+        "A link between two tables",
+        "A temporary column",
+        "An automatically generated ID"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A foreign key creates a relationship between two tables by referencing the primary key of another table.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "question": "Which aggregate function returns the number of rows?",
+      "options": [
+        "COUNT()",
+        "SUM()",
+        "AVG()",
+        "TOTAL()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "COUNT() returns the number of rows that match a specified condition.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "What is a subquery in SQL?",
+      "options": [
+        "A query nested inside another query",
+        "A query executed before database creation",
+        "A system query",
+        "A temporary table"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A subquery is a query nested inside another SQL query to perform advanced filtering or aggregation.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 14,
+      "question": "What is the purpose of the HAVING clause?",
+      "options": [
+        "Filter individual rows",
+        "Filter groups created by GROUP BY",
+        "Sort the result-set",
+        "Join two tables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HAVING filters the results of GROUP BY operations, whereas WHERE filters individual rows.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "question": "What is normalization in databases?",
+      "options": [
+        "Merging tables into one large table",
+        "Organizing data to reduce redundancy",
+        "Adding redundant columns for faster queries",
+        "Deleting unnecessary data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Normalization organizes data into multiple related tables to reduce redundancy and improve integrity.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "What does LEFT JOIN return?",
+      "options": [
+        "Only matching records from both tables",
+        "All records from left table and matching records from right table",
+        "All records from right table only",
+        "No records if there's no match"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LEFT JOIN returns all records from the left table and the matched records from the right table. NULL values appear where there's no match.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "Which SQL command is used to modify existing data?",
+      "options": [
+        "MODIFY",
+        "UPDATE",
+        "CHANGE",
+        "ALTER"
+      ],
+      "correctAnswer": 1,
+      "explanation": "UPDATE is used to modify existing records in a table. ALTER is used to modify table structure, not data.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 18,
+      "question": "What does the LIMIT clause do?",
+      "options": [
+        "Limits the number of columns returned",
+        "Limits the number of rows returned",
+        "Limits the execution time",
+        "Limits the table size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LIMIT restricts the number of rows returned by a query. For example: SELECT * FROM users LIMIT 10 returns only 10 rows.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 19,
+      "question": "Which aggregate function calculates the average value?",
+      "options": [
+        "AVG()",
+        "MEAN()",
+        "AVERAGE()",
+        "CALC_AVG()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "AVG() returns the average value of a numeric column. For example: SELECT AVG(salary) FROM employees.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "What is the purpose of an INDEX in a database?",
+      "options": [
+        "To delete records faster",
+        "To improve query performance by speeding up data retrieval",
+        "To backup data",
+        "To encrypt data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An INDEX creates a data structure that allows faster data retrieval, similar to an index in a book.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 21,
+      "question": "What does the UNION operator do?",
+      "options": [
+        "Joins tables horizontally",
+        "Combines result-sets of two SELECT statements (removes duplicates)",
+        "Creates a new table",
+        "Updates multiple tables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "UNION combines the results of two or more SELECT statements and removes duplicate rows. Use UNION ALL to keep duplicates.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 22,
+      "question": "Which constraint prevents NULL values in a column?",
+      "options": [
+        "NOT NULL",
+        "UNIQUE",
+        "CHECK",
+        "DEFAULT"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The NOT NULL constraint ensures that a column cannot have NULL values and must always contain data.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 23,
+      "question": "What is the difference between WHERE and HAVING?",
+      "options": [
+        "No difference",
+        "WHERE filters rows before grouping, HAVING filters after grouping",
+        "HAVING filters rows, WHERE filters columns",
+        "WHERE is faster than HAVING"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WHERE filters individual rows before GROUP BY is applied, while HAVING filters grouped results after aggregation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 24,
+      "question": "What does the LIKE operator do?",
+      "options": [
+        "Compares exact values",
+        "Searches for a pattern in a column",
+        "Joins two tables",
+        "Sorts results"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LIKE is used with wildcards (% and _) to search for patterns. For example: WHERE name LIKE 'A%' finds names starting with A.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 25,
+      "question": "Which wildcard represents zero or more characters in SQL?",
+      "options": [
+        "_",
+        "%",
+        "*",
+        "?"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The % wildcard represents zero or more characters, while _ represents exactly one character.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 26,
+      "question": "What does the AS keyword do in SQL?",
+      "options": [
+        "Assigns a data type",
+        "Creates an alias for a column or table",
+        "Adds a new column",
+        "Sorts data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AS creates an alias (temporary name) for a column or table. For example: SELECT name AS employee_name FROM staff.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 27,
+      "question": "What is a VIEW in SQL?",
+      "options": [
+        "A physical table",
+        "A virtual table based on a SQL query",
+        "A backup of a table",
+        "An index"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A VIEW is a virtual table created by a stored query. It doesn't store data itself but presents data from underlying tables.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 28,
+      "question": "Which SQL command is used to create a new table?",
+      "options": [
+        "NEW TABLE",
+        "CREATE TABLE",
+        "MAKE TABLE",
+        "ADD TABLE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CREATE TABLE is used to create a new table with specified columns and data types.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 29,
+      "question": "What does the IN operator do?",
+      "options": [
+        "Checks if a value exists within a set of values",
+        "Joins two tables",
+        "Inserts data",
+        "Creates an index"
+      ],
+      "correctAnswer": 0,
+      "explanation": "IN allows you to specify multiple values in a WHERE clause. For example: WHERE country IN ('USA', 'UK', 'Canada').",
+      "difficulty": "medium"
+    },
+    {
+      "id": 30,
+      "question": "What is the purpose of the COMMIT command?",
+      "options": [
+        "Deletes transactions",
+        "Saves all changes made in the current transaction",
+        "Rolls back changes",
+        "Creates a backup"
+      ],
+      "correctAnswer": 1,
+      "explanation": "COMMIT permanently saves all changes made during the current transaction to the database.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 31,
+      "question": "What is the function of the SQL BETWEEN operator?",
+      "options": [
+        "Filters values within a specified range",
+        "Checks for NULL values",
+        "Joins two tables",
+        "Sorts records"
+      ],
+      "correctAnswer": 0,
+      "explanation": "BETWEEN filters values that lie within a specified range, inclusive of the boundaries.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 32,
+      "question": "What does the SQL DISTINCT keyword do?",
+      "options": [
+        "Returns duplicate records",
+        "Removes duplicate records",
+        "Sorts records",
+        "Filters records based on conditions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DISTINCT removes duplicate rows from the result set, returning unique records only.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 33,
+      "question": "Which SQL command is used to alter a table structure?",
+      "options": [
+        "MODIFY",
+        "UPDATE",
+        "ALTER",
+        "CHANGE"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ALTER TABLE is used to add, delete, or modify columns in an existing table.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 34,
+      "question": "What is the purpose of the SQL HAVING clause?",
+      "options": [
+        "Filters individual rows",
+        "Filters groups after aggregation",
+        "Sorts records",
+        "Joins tables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HAVING filters the records produced by GROUP BY, allowing conditions on aggregated data.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 35,
+      "question": "What does the SQL JOIN clause do?",
+      "options": [
+        "Combines rows from two or more tables based on a related column",
+        "Deletes matching records",
+        "Creates a new table",
+        "Updates data between tables"
+      ],
+      "correctAnswer": 0,
+      "explanation": "JOIN combines data from two or more tables using related columns to provide a unified dataset.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 36,
+      "question": "Which SQL command is used to remove all rows from a table quickly?",
+      "options": [
+        "DELETE",
+        "TRUNCATE",
+        "DROP",
+        "REMOVE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TRUNCATE removes all rows without logging individual row deletions, making it faster but less flexible than DELETE.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 37,
+      "question": "What is the output of the SQL COUNT() function?",
+      "options": [
+        "Sum of values",
+        "Average value",
+        "Number of rows matching criteria",
+        "Maximum value"
+      ],
+      "correctAnswer": 2,
+      "explanation": "COUNT returns the number of rows that match specified conditions or in the entire table.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 38,
+      "question": "Which command is used to undo transactions in SQL?",
+      "options": [
+        "ROLLBACK",
+        "COMMIT",
+        "SAVEPOINT",
+        "ROLLFORWARD"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ROLLBACK reverts all changes made in the current transaction to maintain data integrity.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "What is the purpose of the SQL UNION operator?",
+      "options": [
+        "Combines result sets and removes duplicates",
+        "Joins tables based on keys",
+        "Filters duplicates from one table",
+        "Aggregates data"
+      ],
+      "correctAnswer": 0,
+      "explanation": "UNION merges multiple SELECT statements' results into one set, removing duplicate rows.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 40,
+      "question": "Which SQL data type is suitable for storing date and time?",
+      "options": [
+        "VARCHAR",
+        "TEXT",
+        "DATETIME",
+        "INT"
+      ],
+      "correctAnswer": 2,
+      "explanation": "DATETIME stores date and time information following a standard format in SQL databases.",
+      "difficulty": "easy"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { article, title } from "framer-motion/client";
+import { } from "framer-motion/client";
 
 const categorizedVideos = {
   "Introduction to Machine Learning": [
