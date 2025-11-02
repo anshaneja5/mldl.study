@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
+import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles, Award } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
 import Footer from './Footer';
