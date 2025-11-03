@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Clock, Globe, Users } from 'lucide-react';
 import Navbar from './Navbar';
+import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import Footer from './Footer';
 import useDarkMode from './useDarkMode';
@@ -105,6 +106,29 @@ const FAQItem = ({ question, answer, isOpen, onClick, darkMode }) => (
     </div>
   </div>
 );
+
+// Animation Variants for scroll-based animations
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+};
 
 // Home Page Component
 const HomePage = () => {
@@ -219,25 +243,45 @@ const HomePage = () => {
       />
       
       <div className={`min-h-screen flex flex-col transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-slate-50 text-gray-900'}`}>
-        <Navbar 
-          darkMode={darkMode} 
-          toggleDarkMode={toggleDarkMode} 
-          isTransitioning={isTransitioning}
-        />
+        <motion.div
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <Navbar 
+            darkMode={darkMode} 
+            toggleDarkMode={toggleDarkMode} 
+            isTransitioning={isTransitioning}
+          />
+        </motion.div>
     
         <main className="flex-grow flex flex-col items-center justify-center px-4 py-12">
           {/* Hero Section */}
-          <header className="text-center mb-16 max-w-3xl mx-auto">
-            <div className="inline-block mb-4 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-medium">
+          <motion.header 
+            className="text-center mb-16 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.div 
+              className="inline-block mb-4 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-medium"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
               AI Learning Roadmap
-            </div>
+            </motion.div>
             <h1 className={`text-4xl md:text-6xl font-bold mb-6 tracking-tight ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               Your Path to <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">AI Mastery</span>
             </h1>
             <p className={`text-lg mb-8 max-w-xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Transform from beginner to AI professional with structured learning paths designed for practical, hands-on mastery.
             </p>
-            <div className='flex flex-wrap justify-center items-center gap-x-6 gap-y-2'>
+            <motion.div className='flex flex-wrap justify-center items-center gap-x-6 gap-y-2'
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
               <span className="text-sm text-blue-600 dark:text-blue-400 font-medium inline-flex items-center">
                 <Zap className="w-4 h-4 mr-1.5" />
                 100% Free
@@ -250,11 +294,11 @@ const HomePage = () => {
                 <BookOpen className="w-4 h-4 mr-1.5" />
                 Real-World Skills
               </span>
-            </div>
-          </header>
+            </motion.div>
+          </motion.header>
 
           {/* Perplexity Comet Section */}
-          <div className={`w-full max-w-5xl mx-auto mb-16 p-8 rounded-3xl shadow-2xl ${darkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'} border border-gray-200 dark:border-gray-700 relative overflow-hidden`}>
+          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className={`w-full max-w-5xl mx-auto mb-16 p-8 rounded-3xl shadow-2xl ${darkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'} border border-gray-200 dark:border-gray-700 relative overflow-hidden`}>
             {/* Enhanced Decorative Elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-pulse" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 animate-pulse" />
@@ -387,40 +431,49 @@ const HomePage = () => {
 
               
             </div>
-          </div>
+          </motion.div>
 
           {/* Roadmap Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full mb-20">
-            {roadmaps.map((roadmap) => (
-              <Link 
+            {roadmaps.map((roadmap, index) => (
+              <motion.div
                 key={roadmap.id}
-                to={roadmap.path}
-                className={`group relative overflow-hidden rounded-xl p-6 transition-all duration-300 ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'} shadow-sm hover:shadow-md border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}
-                onMouseEnter={() => setActiveRoadmap(roadmap.id)}
-                onMouseLeave={() => setActiveRoadmap(null)}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                <div className="flex items-start">
-                  <div className={`p-3 rounded-lg bg-gradient-to-r ${roadmap.color} text-white mr-4`}>
-                    {roadmap.icon}
+                <Link 
+                  to={roadmap.path}
+                  className={`group relative overflow-hidden rounded-xl p-6 transition-all duration-300 ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'} shadow-sm hover:shadow-md border ${darkMode ? 'border-gray-700' : 'border-gray-200'} block`}
+                  onMouseEnter={() => setActiveRoadmap(roadmap.id)}
+                  onMouseLeave={() => setActiveRoadmap(null)}
+                >
+                  <div className="flex items-start">
+                    <div className={`p-3 rounded-lg bg-gradient-to-r ${roadmap.color} text-white mr-4`}>
+                      {roadmap.icon}
+                    </div>
+                    <div>
+                      <h3 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                        {roadmap.title}
+                      </h3>
+                      <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        {roadmap.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                      {roadmap.title}
-                    </h3>
-                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                      {roadmap.description}
-                    </p>
+                  <div className={`absolute bottom-0 right-0 p-2 rounded-tl-lg bg-gradient-to-r ${roadmap.color} text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                    <ArrowRight className="w-5 h-5" />
                   </div>
-                </div>
-                <div className={`absolute bottom-0 right-0 p-2 rounded-tl-lg bg-gradient-to-r ${roadmap.color} text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                  <ArrowRight className="w-5 h-5" />
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
           
           {/* Feature Section */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl p-8 w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl p-8 w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
             <h2 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>What's in These Roadmaps?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
@@ -457,10 +510,10 @@ const HomePage = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Video Section */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl overflow-hidden w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl overflow-hidden w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
             <div className="p-6">
               <h2 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Watch This Before You Start!</h2>
               <p className={`mb-4 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -498,10 +551,10 @@ const HomePage = () => {
                 </div>
               </div>
             </a>
-          </div>
+          </motion.div>
     
           {/* FAQ Section */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl p-8 w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+          <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm rounded-xl p-8 w-full max-w-4xl mx-auto mb-16 transition-all duration-300 border ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
             <h2 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Frequently Asked Questions</h2>
             <div className="space-y-1">
               {FAQ_DATA.map((faq, index) => (
@@ -515,7 +568,7 @@ const HomePage = () => {
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
           
           {/* Contribute CTA */}
           <div className="flex justify-center mb-8">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
+import { motion } from 'framer-motion';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
@@ -195,11 +196,18 @@ const QuestionBank = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {topics.map(topic => {
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={{
+                visible: { transition: { staggerChildren: 0.05 } }
+              }}
+              initial="hidden"
+              animate="visible"
+            >
+              {topics.map((topic, index) => {
                 const Icon = topic.icon;
                 return (
-                  <div
+                  <motion.div
                     key={topic.id}
                     onClick={() => setSelectedTopic(topic.id)}
                     className={`
@@ -207,6 +215,7 @@ const QuestionBank = () => {
                       rounded-2xl p-8 cursor-pointer hover:scale-105 transition-all duration-300 
                       shadow-lg hover:shadow-2xl group
                     `}
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                   >
                     <div className={`
                       w-16 h-16 mb-6 rounded-xl flex items-center justify-center
@@ -221,10 +230,10 @@ const QuestionBank = () => {
                     <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       Click to start practicing
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
 
