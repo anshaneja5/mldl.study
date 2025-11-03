@@ -5,6 +5,7 @@ import Modal from './Modal';
 import Navbar from './Navbar';
 import ReactGA from 'react-ga4';
 import genai from "../../categorizedGenAIContent";
+import useDarkMode from './useDarkMode';
 import Footer from './Footer';
 
 const topics = [
@@ -25,7 +26,7 @@ const GenerativeAIRoadmap = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
 
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, toggleDarkMode] = useDarkMode();
   const [hoveredTopic, setHoveredTopic] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [topicProgress, setTopicProgress] = useState({});
@@ -42,10 +43,6 @@ const GenerativeAIRoadmap = () => {
         const parsedProgress = JSON.parse(savedProgress);
         setTopicProgress(parsedProgress);
       }
-
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
 
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 768);
@@ -146,14 +143,6 @@ const GenerativeAIRoadmap = () => {
     } catch (error) {
       console.error('Error saving progress:', error);
     }
-  };
-  
-  // Toggle dark mode and persist in localStorage
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
   };
 
   const overallProgress = calculateOverallProgress();
@@ -355,7 +344,7 @@ const GenerativeAIRoadmap = () => {
         <link rel="canonical" href="https://mldl.study/genai" />
       </Helmet>
 
-      <Navbar darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} isTransitioning={false} />
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />
 
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
         <div className="container mx-auto px-4 py-8">

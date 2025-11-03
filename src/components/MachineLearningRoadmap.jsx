@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import Navbar from './Navbar';
 import categorizedVideos from '../../categorizedMLContent';
 import Modal from './Modal';
+import useDarkMode from './useDarkMode';
 import Footer from './Footer';
 
 const topics = [
@@ -25,7 +26,7 @@ const connections = [
 
 const MachineLearningRoadmap = () => {
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, toggleDarkMode] = useDarkMode();
   const [topicProgress, setTopicProgress] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredTopics, setFilteredTopics] = useState(topics);
@@ -42,10 +43,6 @@ const MachineLearningRoadmap = () => {
         const parsedProgress = JSON.parse(savedProgress);
         setTopicProgress(parsedProgress);
       }
-
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
 
       // Check if mobile
       const checkMobile = () => {
@@ -87,13 +84,6 @@ const MachineLearningRoadmap = () => {
     
     setFilteredTopics(filtered);
   }, [searchTerm, sortBy, topicProgress]);
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
-  };
 
   const calculateTopicProgress = (topicName) => {
     const topicVideos = categorizedVideos[topicName] || [];

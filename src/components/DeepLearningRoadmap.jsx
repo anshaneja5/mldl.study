@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import categorizedDLVideos from '../../categorizedDLContent'; 
 import Modal from './Modal';
 import ReactGA from 'react-ga4';
+import useDarkMode from './useDarkMode';
 import Footer from './Footer';
 
 const topics = [
@@ -27,7 +28,7 @@ const DeepLearningRoadmap = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
 
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, toggleDarkMode] = useDarkMode();
   const [hoveredTopic, setHoveredTopic] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [topicProgress, setTopicProgress] = useState({});
@@ -44,10 +45,6 @@ const DeepLearningRoadmap = () => {
         const parsedProgress = JSON.parse(savedProgress);
         setTopicProgress(parsedProgress);
       }
-
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
 
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 768);
@@ -148,14 +145,6 @@ const DeepLearningRoadmap = () => {
     } catch (error) {
       console.error('Error saving progress:', error);
     }
-  };
-  
-  // Toggle dark mode and persist in localStorage
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
   };
 
   const overallProgress = calculateOverallProgress();

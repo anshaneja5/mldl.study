@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import categorizedVideos from '../../categorizedPrerequisiteContent';
 import Modal from './Modal';
 import ReactGA from 'react-ga4';
+import useDarkMode from './useDarkMode';
 import Footer from './Footer';
 
 const topics = [
@@ -25,7 +26,7 @@ const PrerequisiteRoadmap = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
 
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, toggleDarkMode] = useDarkMode();
   const [hoveredTopic, setHoveredTopic] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [topicProgress, setTopicProgress] = useState({});
@@ -41,10 +42,6 @@ const PrerequisiteRoadmap = () => {
         const parsedProgress = JSON.parse(savedProgress);
         setTopicProgress(parsedProgress);
       }
-
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
 
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 768);
@@ -83,13 +80,6 @@ const PrerequisiteRoadmap = () => {
     
     setFilteredTopics(filtered);
   }, [searchTerm, sortBy, topicProgress]);
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
-  };
 
   const calculateTopicProgress = (topicName) => {
     const topicVideos = categorizedVideos[topicName] || [];

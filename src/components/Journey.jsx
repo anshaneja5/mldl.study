@@ -110,13 +110,12 @@ const RedditEmbed = ({ url }) => {
 
 const Journey = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
-  const [darkMode, baseToggleDarkMode] = useDarkMode();
+  const [darkMode, toggleDarkModeHook] = useDarkMode();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const toggleDarkMode = () => {
     setIsTransitioning(true);
-    // We wrap the original toggle to add our transition logic
-    baseToggleDarkMode();
+    toggleDarkModeHook();
     setTimeout(() => setIsTransitioning(false), 300);
   };
 
