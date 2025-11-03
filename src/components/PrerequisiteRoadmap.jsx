@@ -5,6 +5,7 @@ import categorizedVideos from '../../categorizedPrerequisiteContent';
 import Modal from './Modal';
 import ReactGA from 'react-ga4';
 import useDarkMode from './useDarkMode';
+import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
 
 const topics = [
@@ -419,6 +420,7 @@ const PrerequisiteRoadmap = () => {
         />
       )}
 
+      <BackToTopButton />
       <Footer darkMode={darkMode} />
     </>
   );

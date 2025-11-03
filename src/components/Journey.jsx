@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target, Zap } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 
 const journeyData = [
@@ -227,6 +228,8 @@ const Journey = () => {
           </div>
         </main>
       </div>
+
+      <BackToTopButton />
 
       <Footer darkMode={darkMode} />
     </>

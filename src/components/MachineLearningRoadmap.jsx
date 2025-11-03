@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import categorizedVideos from '../../categorizedMLContent';
 import Modal from './Modal';
 import useDarkMode from './useDarkMode';
+import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
 
 const topics = [
@@ -414,6 +415,7 @@ const MachineLearningRoadmap = () => {
         />
       )}
 
+      <BackToTopButton />
       <Footer darkMode={darkMode} />
     </>
   );

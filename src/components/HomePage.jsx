@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
 import Footer from './Footer';
 import useDarkMode from './useDarkMode';
+import BackToTopButton from './BackToTopButton';
 
 // FAQ Data
 const FAQ_DATA = [
@@ -521,6 +522,7 @@ const HomePage = () => {
           </div>
         </main>
       </div>
+      <BackToTopButton />
       <Footer darkMode={darkMode} />
     </>
   );

@@ -3,6 +3,7 @@ import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw
 import Navbar from './Navbar';
 import '../App.css';
 import useDarkMode from './useDarkMode';
+import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
 
 const QuestionBank = () => {
@@ -227,6 +228,7 @@ const QuestionBank = () => {
           </div>
         </div>
 
+        <BackToTopButton />
         <Footer darkMode={darkMode} />
       </>
     );
@@ -472,6 +474,7 @@ const QuestionBank = () => {
         </div>
       </div>
 
+      <BackToTopButton />
       <Footer darkMode={darkMode} />
     </>
   );

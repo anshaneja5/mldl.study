@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import ReactGA from 'react-ga4';
 import genai from "../../categorizedGenAIContent";
 import useDarkMode from './useDarkMode';
+import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
 
 const topics = [
@@ -486,6 +487,7 @@ const GenerativeAIRoadmap = () => {
         />
       )}
 
+      <BackToTopButton />
       <Footer darkMode={darkMode} />
     </>
   );
