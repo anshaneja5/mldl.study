@@ -237,11 +237,18 @@ const HomePage = () => {
             <p className={`text-lg mb-8 max-w-xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Transform from beginner to AI professional with structured learning paths designed for practical, hands-on mastery.
             </p>
-            <div className='flex justify-center items-center space-x-2'>
+            <div className='flex flex-wrap justify-center items-center gap-x-6 gap-y-2'>
               <span className="text-sm text-blue-600 dark:text-blue-400 font-medium inline-flex items-center">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-2"></span>100% Free
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mx-2"></span>Community-Driven
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mx-2"></span>Real-World Skills
+                <Zap className="w-4 h-4 mr-1.5" />
+                100% Free
+              </span>
+              <span className="text-sm text-blue-600 dark:text-blue-400 font-medium inline-flex items-center">
+                <Users className="w-4 h-4 mr-1.5" />
+                Community-Driven
+              </span>
+              <span className="text-sm text-blue-600 dark:text-blue-400 font-medium inline-flex items-center">
+                <BookOpen className="w-4 h-4 mr-1.5" />
+                Real-World Skills
               </span>
             </div>
           </header>
