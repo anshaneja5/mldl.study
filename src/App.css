@@ -1,8 +1,18 @@
-/* Remove the restrictive max-width and padding */
 #root {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* Custom Cursor Styles */
+html {
+  /* The hotspot (0 0) is the top-left corner of the SVG. */
+  cursor: url('/cursor.svg') 0 0, auto;
+}
+
+/* Use a different cursor for interactive elements */
+a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+  cursor: url('/cursor.svg') 0 0, pointer;
 }
 
 .logo {
