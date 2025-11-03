@@ -19,7 +19,7 @@ if (trackingId) {
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/deeplearning" element={<DeepLearning />} />
