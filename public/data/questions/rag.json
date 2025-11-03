@@ -1,0 +1,524 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does RAG stand for in AI?",
+      "options": [
+        "Random Algorithmic Generation",
+        "Retrieval-Augmented Generation",
+        "Regression Augmentation Gradient",
+        "Recursive Attention Graph"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RAG means Retrieval-Augmented Generation, a hybrid AI architecture.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "What is the key advantage of RAG over standard LLMs?",
+      "options": [
+        "It requires less training data",
+        "It can access up-to-date external information",
+        "It uses more GPU resources",
+        "It only works for images"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RAG augments outputs with retrieved info from external data sources.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "question": "Which component in RAG retrieves relevant documents for a query?",
+      "options": [
+        "Generator",
+        "Retriever",
+        "Embedder",
+        "Decoder"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The retriever fetches top matching documents from the external corpus.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 4,
+      "question": "What is stored in a vector database in RAG systems?",
+      "options": [
+        "Texts as raw strings",
+        "Embeddings (vector representations of texts)",
+        "Images",
+        "Model weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Embeddings allow for efficient similarity-based retrieval.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Which model handles response generation in RAG?",
+      "options": [
+        "Retriever",
+        "Generator (LLM)",
+        "Embedder",
+        "Classifier"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The generator (an LLM) synthesizes final output using context from retrieval.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "Why does RAG help reduce hallucinations in LLM outputs?",
+      "options": [
+        "It penalizes random outputs",
+        "It grounds responses with retrieved factual documents",
+        "It increases randomness",
+        "It limits vocabulary"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RAG provides factual context to the LLM, lowering chances of plausible but false answers.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 7,
+      "question": "What are typical sources for RAG retrieval?",
+      "options": [
+        "APIs, databases, document stores",
+        "Model parameters",
+        "Image datasets",
+        "Video streams"
+      ],
+      "correctAnswer": 0,
+      "explanation": "RAG can retrieve from structured and unstructured external data sources.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "question": "How are documents prepared for retrieval in RAG?",
+      "options": [
+        "Chunked and embedded as vectors",
+        "Compressed as zip files",
+        "Labeled for supervised learning",
+        "Encrypted"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Documents are broken into chunks, embedded, and stored for similarity search.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 9,
+      "question": "What role does prompt engineering play in RAG?",
+      "options": [
+        "It tunes the training dataset",
+        "It augments user queries with retrieved context for the LLM",
+        "It builds model weights",
+        "It visualizes embeddings"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prompt engineering combines retrieved facts and user questions into enriched prompts.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "Which step updates RAG knowledge sources?",
+      "options": [
+        "Model retraining",
+        "Embedding and re-indexing external data",
+        "Fine-tuning generator",
+        "Hyperparameter tuning"
+      ],
+      "correctAnswer": 1,
+      "explanation": "New documents must be embedded and refreshed in the vector database.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 11,
+      "question": "Which embedding models are commonly used for RAG?",
+      "options": [
+        "ImageNet",
+        "Sentence Transformers (BERT, SBERT, etc.)",
+        "GANs",
+        "ResNet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Text embedding models encode semantic meaning for retrieval.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 12,
+      "question": "How does RAG support domain-specific knowledge?",
+      "options": [
+        "By retraining the LLM",
+        "By indexing specialized corpora",
+        "By using random sampling",
+        "By limiting context size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Domain knowledge is ingested into the vector database for precise retrieval.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "question": "What is a reranker in advanced RAG?",
+      "options": [
+        "A layer that filters model outputs",
+        "A module that reprioritizes retrieved documents by relevance",
+        "A chunking tool",
+        "A generator model"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reranker boosts precision by re-sorting retrieved results.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 14,
+      "question": "Why is a knowledge base important in RAG?",
+      "options": [
+        "It returns random documents",
+        "It stores external data for retrieval and grounding",
+        "It only stores images",
+        "It replaces the LLM"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Knowledge base is the foundation for RAG’s ability to answer context-aware queries.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "question": "What is retrieval latency?",
+      "options": [
+        "Time taken for LLM inference",
+        "Time taken to fetch relevant documents for augmentation",
+        "Vector embedding time",
+        "Prompt tokenization time"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Retrieval latency is a performance concern in real-time RAG solutions.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "How does RAG enable personalization?",
+      "options": [
+        "By using user’s historical data for retrieval",
+        "By randomizing outputs",
+        "By disabling retrieval",
+        "By deleting context"
+      ],
+      "correctAnswer": 0,
+      "explanation": "RAG can fetch personalized chunks for user-centric responses.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "What is a typical application of RAG?",
+      "options": [
+        "Image style transfer",
+        "Enterprise chatbots with access to company data",
+        "Data compression",
+        "Speech recognition"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Chatbots and question-answering over private corpora are primary RAG use cases.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "Can RAG use multimodal inputs?",
+      "options": [
+        "Yes, with appropriate embedding models for each modality",
+        "No, only text is supported",
+        "Only for images",
+        "Only for numbers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "RAG can expand to multimodal info by embedding images/audio as vectors.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 19,
+      "question": "How does RAG contribute to cost efficiency?",
+      "options": [
+        "By eliminating external data",
+        "By enabling up-to-date knowledge without retraining LLMs",
+        "By compressing vector databases",
+        "By using smaller models"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Updating an external database is less costly than retraining a model.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 20,
+      "question": "What challenge does RAG address in generative AI?",
+      "options": [
+        "Overfitting",
+        "Limited knowledge and hallucinations",
+        "Low GPU utilization",
+        "Small training sets"
+      ],
+      "correctAnswer": 1,
+      "explanation": "By retrieving and grounding answers, RAG overcomes LLMs’ outdated/fuzzy knowledge.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 21,
+      "question": "What is a vector index?",
+      "options": [
+        "A lookup table for integers",
+        "A structure for fast similarity search over embeddings",
+        "An image feature extractor",
+        "A cluster assignment list"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Vector indices allow efficient similarity comparison for text/document retrieval.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 22,
+      "question": "What happens if external data in RAG goes stale?",
+      "options": [
+        "Model accuracy improves",
+        "RAG answers may become outdated",
+        "Only hallucinations occur",
+        "Retrieval latency drops"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Periodic or real-time updates are critical for relevant answers.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 23,
+      "question": "Which component transforms user queries into vector format?",
+      "options": [
+        "Chunker",
+        "Query Encoder",
+        "Retriever",
+        "LLM Generator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The query encoder embeds user input for comparison.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 24,
+      "question": "How does RAG support rapid adaptation to new domains?",
+      "options": [
+        "By retraining LLM weights",
+        "By adding/updating domain data in the retrieval corpus",
+        "By removing embeddings",
+        "By reducing context window"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Users can update databases for instant access to new information.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 25,
+      "question": "Which large language model could serve as RAG's generator?",
+      "options": [
+        "GPT-3",
+        "BERT",
+        "ResNet-50",
+        "YOLOv5"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Models like GPT-3, GPT-4, Llama, and similar serve as LLM generators.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 26,
+      "question": "Why does RAG improve factual grounding?",
+      "options": [
+        "It uses structured queries only",
+        "Retrieved documents provide context for more accurate answers",
+        "It eliminates model parameterization",
+        "It restricts output length"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Contextual facts reduce the risk of fiction in output.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 27,
+      "question": "How does RAG help with compliance and regulations?",
+      "options": [
+        "By ignoring external knowledge",
+        "By referencing up-to-date compliance documents",
+        "By performing audits",
+        "By encrypting data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RAG enables real-time integration of regulatory changes and documentation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 28,
+      "question": "What metric measures retrieval quality in RAG?",
+      "options": [
+        "BLEU score",
+        "Recall@k",
+        "ROC-AUC",
+        "Confusion matrix"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Recall@k measures if relevant documents are among the top-k retrieved.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 29,
+      "question": "What is chunking in RAG?",
+      "options": [
+        "Breaking large documents into smaller pieces for embedding and search",
+        "Compressing model weights",
+        "Tokenizing sentences",
+        "Filtering input queries"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Chunking splits documents for better retrieval granularity.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 30,
+      "question": "How does semantic search differ from keyword search in RAG?",
+      "options": [
+        "It ranks by keyword frequency",
+        "It matches query meaning via vector similarity",
+        "It sorts by oldest documents",
+        "It only works for images"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Semantic search matches meaning, using embeddings, not just word overlap.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 31,
+      "question": "When is prompt augmentation performed in the RAG flow?",
+      "options": [
+        "Before retrieval",
+        "After retrieving relevant documents, before generation",
+        "After LLM output",
+        "Never"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prompt augmentation combines user queries with contextual data pre-generation.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 32,
+      "question": "What is the primary goal of RAG?",
+      "options": [
+        "Increase model size",
+        "Produce more accurate, fact-grounded, and current answers",
+        "Reduce latency",
+        "Boost generative randomness"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RAG answers are meant to be current, accurate, and well grounded in data.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 33,
+      "question": "How does RAG handle confidential/private organizational knowledge?",
+      "options": [
+        "By storing it in public LLM training sets",
+        "By indexing private documents for retrieval in a controlled environment",
+        "By encrypting outputs",
+        "By randomizing access"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Confidential sources are indexed, with retrieval limited to authorized contexts.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 34,
+      "question": "What is a hybrid search in RAG retrieval?",
+      "options": [
+        "Combining keyword and semantic search for optimal relevance",
+        "Using only keyword search",
+        "Searching only title fields",
+        "Using deep learning for image search"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Hybrid retrieval mixes lexical and semantic scores for best results.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 35,
+      "question": "What problem does RAG solve for customer support chatbots?",
+      "options": [
+        "Hardcoded answers",
+        "Access to current product and policy info at query time",
+        "Faster UI rendering",
+        "Reduced database size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The bot can retrieve current support documentation, reducing outdated or generic responses.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 36,
+      "question": "What is the importance of re-embedding when external data is updated?",
+      "options": [
+        "None; embeddings are static",
+        "It ensures new data is searchable and can be retrieved",
+        "It increases hallucinations",
+        "It removes personalization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "New docs must be embedded again to be usable in the vector search.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 37,
+      "question": "Which of the following is an emerging use case for RAG?",
+      "options": [
+        "Image classification",
+        "Conversational search over enterprise-wide documentation",
+        "Data encryption",
+        "Neural image synthesis"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Conversational search using LLMs with vast document access is a rising RAG application.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 38,
+      "question": "Can RAG be used for few-shot or zero-shot learning?",
+      "options": [
+        "Yes, by retrieving relevant task/document examples for query grounding",
+        "Only for fully supervised tasks",
+        "No, not supported",
+        "Only for regression problems"
+      ],
+      "correctAnswer": 0,
+      "explanation": "RAG workflows augment context even when data is sparse.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 39,
+      "question": "What is query expansion in advanced RAG?",
+      "options": [
+        "Adding related terms to the query for broader retrieval",
+        "Chunking inputs",
+        "Directly generating the answer",
+        "Reducing latency"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Query expansion increases recall and relevance of retrieved results.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 40,
+      "question": "How does RAG output differ from pure generation?",
+      "options": [
+        "It always matches training data",
+        "It is grounded in retrieved external/contextual documents",
+        "It is purely random",
+        "It cannot be fact-checked"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RAG output is traceable to actual sources, not just model parameters.",
+      "difficulty": "easy"
+    }
+  ]
+}
