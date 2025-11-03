@@ -94,6 +94,17 @@ const QuestionBank = () => {
       iconColor: 'text-blue-600'
     },
     { 
+      id: 'rag', 
+      name: 'RAG', 
+      icon: Sparkles, 
+      color: 'from-teal-500 to-cyan-500',
+      bgLight: 'bg-teal-50',
+      bgDark: 'bg-teal-900/20',
+      borderLight: 'border-teal-200',
+      borderDark: 'border-teal-500/30',
+      iconColor: 'text-teal-600'
+    },
+    { 
       id: 'statistics', 
       name: 'Statistics', 
       icon: BarChart3, 
