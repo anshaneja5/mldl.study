@@ -13,6 +13,7 @@ import QuestionBank from './components/QuestionBank';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions';
 import ScrollToTop from './components/ScrollToTop';
+import Search from './components/Search';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
 if (trackingId) {
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/questionbank" element={<QuestionBank />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/search" element={<Search />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>
