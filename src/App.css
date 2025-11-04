@@ -4,12 +4,6 @@
   padding: 0;
 }
 
-/* Force custom cursor globally */
-* {
-  cursor: url('/cursor.svg') 4 0, auto !important;
-}
-
-
 .logo {
   height: 6em;
   padding: 1.5em;
