@@ -1,0 +1,524 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the output of: print(type([]))?",
+      "options": [
+        "<class 'tuple'>",
+        "<class 'list'>",
+        "<class 'dict'>",
+        "<class 'set'>"
+      ],
+      "correctAnswer": 1,
+      "explanation": "[] represents an empty list in Python, so type([]) returns <class 'list'>",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "Which keyword is used to define a function in Python?",
+      "options": [
+        "function",
+        "def",
+        "fun",
+        "define"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'def' keyword is used to define a function in Python",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "question": "What is the difference between '==' and 'is' operators?",
+      "options": [
+        "They are the same",
+        "'==' compares values, 'is' compares object identity",
+        "'is' compares values, '==' compares object identity",
+        "Both compare object identity"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'==' checks if values are equal, while 'is' checks if two variables point to the same object in memory",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "Which data structure is mutable in Python?",
+      "options": [
+        "Tuple",
+        "String",
+        "List",
+        "Integer"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Lists are mutable in Python, meaning their elements can be changed after creation",
+      "difficulty": "easy"
+    },
+    {
+      "id": 5,
+      "question": "What does the 'pass' statement do in Python?",
+      "options": [
+        "Skips the current iteration",
+        "Exits the function",
+        "Does nothing (placeholder)",
+        "Raises an exception"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The 'pass' statement is a null operation - it does nothing and is used as a placeholder",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "What is a lambda function in Python?",
+      "options": [
+        "A function that takes multiple arguments",
+        "An anonymous function defined with lambda keyword",
+        "A function that returns multiple values",
+        "A recursive function"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lambda functions are small anonymous functions defined using the lambda keyword, typically used for short operations",
+      "difficulty": "medium"
+    },
+    {
+      "id": 7,
+      "question": "What is the output of: print(3 * '5')?",
+      "options": [
+        "15",
+        "555",
+        "Error",
+        "35"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Python, multiplying a string by a number repeats the string that many times. 3 * '5' gives '555'",
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "question": "Which method is used to add an element to the end of a list?",
+      "options": [
+        "add()",
+        "append()",
+        "insert()",
+        "extend()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The append() method adds a single element to the end of a list",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "What is the purpose of __init__ method in Python classes?",
+      "options": [
+        "To delete an object",
+        "To initialize object attributes",
+        "To define class variables",
+        "To create static methods"
+      ],
+      "correctAnswer": 1,
+      "explanation": "__init__ is a constructor method that initializes object attributes when an instance is created",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "What does the 'self' parameter represent in Python classes?",
+      "options": [
+        "The class itself",
+        "The instance of the class",
+        "A static variable",
+        "The parent class"
+      ],
+      "correctAnswer": 1,
+      "explanation": "'self' refers to the instance of the class and is used to access instance variables and methods",
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "Which of the following is NOT a valid Python data type?",
+      "options": [
+        "list",
+        "dictionary",
+        "array",
+        "tuple"
+      ],
+      "correctAnswer": 2,
+      "explanation": "While Python has lists, dictionaries, and tuples as built-in types, 'array' is not a built-in type (though it exists in the array module)",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "question": "What is list comprehension in Python?",
+      "options": [
+        "A way to compress lists",
+        "A concise way to create lists from iterables",
+        "A method to sort lists",
+        "A way to delete list elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "List comprehension provides a concise way to create lists. For example: [x**2 for x in range(10)]",
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "question": "What is the output of: bool([])?",
+      "options": [
+        "True",
+        "False",
+        "Error",
+        "None"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An empty list evaluates to False in a boolean context. All empty containers (list, dict, set, tuple) are falsy",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "Which exception is raised when dividing by zero?",
+      "options": [
+        "ValueError",
+        "ZeroDivisionError",
+        "ArithmeticError",
+        "TypeError"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ZeroDivisionError is raised when attempting to divide or modulo by zero",
+      "difficulty": "easy"
+    },
+    {
+      "id": 15,
+      "question": "What does the zip() function do in Python?",
+      "options": [
+        "Compresses files",
+        "Combines multiple iterables into tuples",
+        "Sorts a list",
+        "Filters elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "zip() takes iterables and aggregates them into tuples. For example: zip([1,2], ['a','b']) gives [(1,'a'), (2,'b')]",
+      "difficulty": "medium"
+    },
+    {
+      "id": 16,
+      "question": "What is the output of: print(len('Hello'))?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "Error"
+      ],
+      "correctAnswer": 1,
+      "explanation": "len() returns the number of characters in a string. 'Hello' has 5 characters, so len('Hello') returns 5",
+      "difficulty": "easy"
+    },
+    {
+      "id": 17,
+      "question": "Which method removes and returns the last element from a list?",
+      "options": [
+        "remove()",
+        "pop()",
+        "delete()",
+        "discard()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The pop() method removes and returns the last element (or element at given index) from a list",
+      "difficulty": "easy"
+    },
+    {
+      "id": 18,
+      "question": "What does the range() function return in Python 3?",
+      "options": [
+        "A list",
+        "A range object (iterable)",
+        "A tuple",
+        "A generator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Python 3, range() returns a range object which is an immutable sequence type, not a list like in Python 2",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "question": "What is the output of: print(2 ** 3)?",
+      "options": [
+        "5",
+        "8",
+        "6",
+        "9"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The ** operator is the exponentiation operator in Python. 2 ** 3 means 2 to the power of 3, which equals 8",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "Which keyword is used to create an alias when importing a module?",
+      "options": [
+        "alias",
+        "as",
+        "with",
+        "import_as"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'as' keyword is used to create an alias. For example: import numpy as np",
+      "difficulty": "easy"
+    },
+    {
+      "id": 21,
+      "question": "What does the enumerate() function do?",
+      "options": [
+        "Counts elements in a list",
+        "Adds counter to an iterable and returns enumerate object",
+        "Sorts elements",
+        "Removes duplicates"
+      ],
+      "correctAnswer": 1,
+      "explanation": "enumerate() adds a counter to an iterable and returns it as an enumerate object. For example: enumerate(['a','b']) gives [(0,'a'), (1,'b')]",
+      "difficulty": "medium"
+    },
+    {
+      "id": 22,
+      "question": "What is the output of: print('Python'[0])?",
+      "options": [
+        "P",
+        "Python",
+        "y",
+        "Error"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Strings are indexed starting from 0. 'Python'[0] accesses the first character, which is 'P'",
+      "difficulty": "easy"
+    },
+    {
+      "id": 23,
+      "question": "Which method converts a string to lowercase?",
+      "options": [
+        "lowercase()",
+        "lower()",
+        "tolower()",
+        "case_lower()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The lower() method converts all characters in a string to lowercase. For example: 'HELLO'.lower() returns 'hello'",
+      "difficulty": "easy"
+    },
+    {
+      "id": 24,
+      "question": "What is a dictionary in Python?",
+      "options": [
+        "An ordered collection of items",
+        "A collection of key-value pairs",
+        "A sequence of characters",
+        "A type of list"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A dictionary is an unordered (ordered in Python 3.7+) collection of key-value pairs enclosed in curly braces {}",
+      "difficulty": "easy"
+    },
+    {
+      "id": 25,
+      "question": "What does the break statement do in a loop?",
+      "options": [
+        "Skips the current iteration",
+        "Exits the loop entirely",
+        "Pauses the loop",
+        "Restarts the loop"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The break statement terminates the loop entirely and transfers control to the statement immediately following the loop",
+      "difficulty": "easy"
+    },
+    {
+      "id": 26,
+      "question": "What does the continue statement do in a loop?",
+      "options": [
+        "Exits the loop",
+        "Skips the rest of current iteration and continues with next",
+        "Pauses execution",
+        "Restarts the loop from beginning"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The continue statement skips the remaining code in the current iteration and moves to the next iteration of the loop",
+      "difficulty": "easy"
+    },
+    {
+      "id": 27,
+      "question": "What is the output of: print(bool(''))?",
+      "options": [
+        "True",
+        "False",
+        "None",
+        "Error"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An empty string evaluates to False in a boolean context. Only non-empty strings evaluate to True",
+      "difficulty": "medium"
+    },
+    {
+      "id": 28,
+      "question": "Which operator is used for floor division in Python?",
+      "options": [
+        "/",
+        "//",
+        "%",
+        "\\"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The // operator performs floor division, returning the quotient without the remainder. For example: 7 // 2 returns 3",
+      "difficulty": "medium"
+    },
+    {
+      "id": 29,
+      "question": "What does the join() method do?",
+      "options": [
+        "Combines two lists",
+        "Joins strings from an iterable with a separator",
+        "Merges dictionaries",
+        "Concatenates tuples"
+      ],
+      "correctAnswer": 1,
+      "explanation": "join() concatenates strings from an iterable using a separator. For example: '-'.join(['a','b','c']) returns 'a-b-c'",
+      "difficulty": "medium"
+    },
+    {
+      "id": 30,
+      "question": "What is the output of: print(10 % 3)?",
+      "options": [
+        "3",
+        "1",
+        "3.33",
+        "0"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The % operator returns the remainder of division (modulo). 10 divided by 3 gives remainder 1, so 10 % 3 returns 1",
+      "difficulty": "easy"
+    },
+    {
+      "id": 31,
+      "question": "Which Python data structure is immutable?",
+      "options": [
+        "List",
+        "Tuple",
+        "Set",
+        "Dictionary"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tuples are immutable, meaning their contents cannot be changed after creation.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 32,
+      "question": "How do you create an empty set in Python?",
+      "options": [
+        "{}",
+        "set()",
+        "[]",
+        "()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "set() creates an empty set. {} creates an empty dictionary.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 33,
+      "question": "Which data structure does not allow duplicate elements?",
+      "options": [
+        "List",
+        "Tuple",
+        "Set",
+        "Dictionary"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Sets automatically remove duplicate elements and only contain unique values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 34,
+      "question": "What type of indexing is supported by Python dictionaries?",
+      "options": [
+        "Integer-based",
+        "Key-based",
+        "Slice-based",
+        "None"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dictionaries are accessed via unique keys, not integer indices.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 35,
+      "question": "Which method adds an element to a Python set?",
+      "options": [
+        "append()",
+        "add()",
+        "insert()",
+        "extend()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The add() method adds a single element to a set.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 36,
+      "question": "What is the default order of elements in a Python list?",
+      "options": [
+        "Unordered",
+        "Alphabetical",
+        "Order of insertion",
+        "Sorted"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Lists maintain the order in which items were added (insertion order).",
+      "difficulty": "easy"
+    },
+    {
+      "id": 37,
+      "question": "Which data structure would you use to store key-value pairs in Python?",
+      "options": [
+        "List",
+        "Tuple",
+        "Set",
+        "Dictionary"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Dictionaries store data as key-value pairs, allowing fast lookup by keys.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 38,
+      "question": "Can you change elements in a Python tuple after creation?",
+      "options": [
+        "Yes",
+        "No",
+        "Only strings can be changed",
+        "Only numbers can be changed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tuples are immutable, so elements cannot be changed once the tuple is created.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "What does the pop() method do when used on a Python list?",
+      "options": [
+        "Removes and returns the last element",
+        "Removes all elements",
+        "Removes a specified element",
+        "Does nothing"
+      ],
+      "correctAnswer": 0,
+      "explanation": "pop() removes the last element by default and returns it.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 40,
+      "question": "Are sets ordered or unordered collections in Python?",
+      "options": [
+        "Ordered",
+        "Unordered",
+        "Depends on the version",
+        "Both ordered and unordered"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sets are officially unordered collections (element order is not guaranteed), but in Python 3.7+ they maintain insertion order as an implementation detail. However, this is not part of the specification and should not be relied upon.",
+      "difficulty": "medium"
+    }
+  ]
+}
