@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Search as SearchIcon, X, ExternalLink, BookOpen, Brain, Zap, Sparkles, Book } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
@@ -66,7 +66,7 @@ const Search = () => {
   };
 
   // Search function
-  const performSearch = (query) => {
+  const performSearch = useCallback((query) => {
     if (!query || query.trim().length < 2) {
       setSearchResults([]);
       return;
@@ -89,11 +89,18 @@ const Search = () => {
           const notesMatches = video.notes?.toLowerCase().includes(searchTerm);
           
           if (titleMatches || articleTitleMatches || notesMatches || categoryMatches) {
+            // Determine match type with priority: title > articleTitle > category > notes
+            let matchType = 'content';
+            if (titleMatches) matchType = 'title';
+            else if (articleTitleMatches) matchType = 'articleTitle';
+            else if (categoryMatches) matchType = 'category';
+            else if (notesMatches) matchType = 'notes';
+            
             results.push({
               ...video,
               category,
               roadmapType,
-              matchType: titleMatches ? 'title' : categoryMatches ? 'category' : 'content'
+              matchType
             });
           }
         });
@@ -108,7 +115,7 @@ const Search = () => {
 
     setSearchResults(results);
     setIsSearching(false);
-  };
+  }, []);
 
   // Debounced search
   useEffect(() => {
