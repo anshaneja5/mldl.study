@@ -10,6 +10,7 @@ import HomePage from './components/HomePage';
 import Books from './components/Books';
 import Journey from './components/Journey';
 import QuestionBank from './components/QuestionBank';
+import Search from './components/Search';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
 import ReactGA from 'react-ga4';
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/books" element={<Books />} />
           <Route path="/journey" element={<Journey />} />
           <Route path="/questionbank" element={<QuestionBank />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="*" element={<Error404 />} />
