@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles, Award, Bookmark } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
+import { motion } from 'framer-motion';
+import useDarkMode from './useDarkMode';
+import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
 
 const QuestionBank = () => {
+  const [darkMode, toggleDarkMode] = useDarkMode();
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -13,23 +17,6 @@ const QuestionBank = () => {
   const [score, setScore] = useState({ correct: 0, attempted: 0 });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : false;
-  });
-  const [bookmarks, setBookmarks] = useState(() => {
-    const savedBookmarks = localStorage.getItem('bookmarkedQuestions');
-    return savedBookmarks ? JSON.parse(savedBookmarks) : {};
-  });
-
-
-  const toggleDarkMode = () => {
-    setDarkMode(prev => {
-      const newMode = !prev;
-      localStorage.setItem('darkMode', JSON.stringify(newMode));
-      return newMode;
-    });
-  };
 
   useEffect(() => {
     localStorage.setItem('bookmarkedQuestions', JSON.stringify(bookmarks));
@@ -79,17 +66,6 @@ const QuestionBank = () => {
       borderLight: 'border-indigo-200',
       borderDark: 'border-indigo-500/30',
       iconColor: 'text-indigo-600'
-    },
-    { 
-      id: 'rl', 
-      name: 'Reinforcement Learning', 
-      icon: Award, 
-      color: 'from-red-500 to-orange-500',
-      bgLight: 'bg-red-50',
-      bgDark: 'bg-red-900/20',
-      borderLight: 'border-red-200',
-      borderDark: 'border-red-500/30',
-      iconColor: 'text-red-600'
     },
     { 
       id: 'genai', 
@@ -289,11 +265,18 @@ const QuestionBank = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {topics.map(topic => {
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={{
+                visible: { transition: { staggerChildren: 0.05 } }
+              }}
+              initial="hidden"
+              animate="visible"
+            >
+              {topics.map((topic, index) => {
                 const Icon = topic.icon;
                 return (
-                  <div
+                  <motion.div
                     key={topic.id}
                     onClick={() => setSelectedTopic(topic.id)}
                     className={`
@@ -305,6 +288,7 @@ const QuestionBank = () => {
                       }
                       shadow-lg hover:shadow-2xl group
                     `}
+                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                   >
                     <div className={`
                       w-16 h-16 mb-6 rounded-xl flex items-center justify-center
@@ -324,13 +308,14 @@ const QuestionBank = () => {
                     <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       Click to start practicing
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
 
+        <BackToTopButton />
         <Footer darkMode={darkMode} />
       </>
     );
@@ -592,6 +577,7 @@ const QuestionBank = () => {
         </div>
       </div>
 
+      <BackToTopButton />
       <Footer darkMode={darkMode} />
     </>
   );

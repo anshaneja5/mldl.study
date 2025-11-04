@@ -3,6 +3,7 @@ import { Book, ExternalLink, ChevronDown, ChevronUp, Search } from 'lucide-react
 import researchPapers from "../../categorizedRPContent";
 import Navbar from './Navbar';
 import { Helmet } from 'react-helmet';
+import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
 
 const ResearchPaper = () => {
@@ -227,6 +228,7 @@ const ResearchPaper = () => {
         </div>
       </div>
 
+      <BackToTopButton />
       <Footer darkMode={darkMode} />
     </>
   );

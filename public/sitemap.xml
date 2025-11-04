@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://mldl.study/</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/prerequisites</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/machinelearning</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/deeplearning</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/genai</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/questionbank</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/books</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/privacy</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://mldl.study/terms</loc>
+    <lastmod>2025-11-04T12:23:46+00:00</lastmod>
+    <priority>0.50</priority>
+  </url>
+</urlset>
