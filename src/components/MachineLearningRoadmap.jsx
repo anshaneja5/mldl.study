@@ -43,9 +43,18 @@ const MachineLearningRoadmap = () => {
         setTopicProgress(parsedProgress);
       }
 
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-      document.documentElement.classList.toggle('dark', savedDarkMode);
+      const savedDarkMode = localStorage.getItem('darkMode');
+      let shouldUseDarkMode;
+      
+      if (savedDarkMode !== null) {
+        shouldUseDarkMode = savedDarkMode === 'true';
+      } else {
+        // Detect browser's theme preference
+        shouldUseDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      
+      setDarkMode(shouldUseDarkMode);
+      document.documentElement.classList.toggle('dark', shouldUseDarkMode);
 
       // Check if mobile
       const checkMobile = () => {

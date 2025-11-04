@@ -5,6 +5,31 @@
     <link rel="icon" type="image/svg+xml" href="/ml-roadmap2.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ML/DL RoadMap</title>
+    <script>
+      (function() {
+        try {
+          const saved = localStorage.getItem('darkMode');
+          const hasSaved = saved !== null;
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const isDark = hasSaved ? saved === 'true' : prefersDark;
+          if (isDark) document.documentElement.classList.add('dark');
+          else document.documentElement.classList.remove('dark');
+
+          // If no saved preference, follow system changes dynamically
+          if (!hasSaved && window.matchMedia) {
+            const mql = window.matchMedia('(prefers-color-scheme: dark)');
+            const apply = (e) => {
+              if (localStorage.getItem('darkMode') === null) {
+                if (e.matches) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+              }
+            };
+            if (mql.addEventListener) mql.addEventListener('change', apply);
+            else if (mql.addListener) mql.addListener(apply);
+          }
+        } catch (e) { /* noop */ }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
