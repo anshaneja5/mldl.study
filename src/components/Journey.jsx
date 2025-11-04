@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // Keep useEffect for RedditEmbed
 import ReactGA from 'react-ga4';
 import { Helmet } from 'react-helmet';
 import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target, Zap } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import BackToTopButton from './BackToTopButton';
+import useDarkMode from './useDarkMode';
 
 const journeyData = [
   {
@@ -109,21 +111,12 @@ const RedditEmbed = ({ url }) => {
 
 const Journey = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, toggleDarkModeHook] = useDarkMode();
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-    document.documentElement.classList.toggle('dark', savedDarkMode);
-  }, []);
 
   const toggleDarkMode = () => {
     setIsTransitioning(true);
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark', newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    toggleDarkModeHook();
     setTimeout(() => setIsTransitioning(false), 300);
   };
 
@@ -235,6 +228,8 @@ const Journey = () => {
           </div>
         </main>
       </div>
+
+      <BackToTopButton />
 
       <Footer darkMode={darkMode} />
     </>
