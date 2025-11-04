@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
+import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles, Award, Bookmark } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
 import { motion } from 'framer-motion';
@@ -17,6 +17,10 @@ const QuestionBank = () => {
   const [score, setScore] = useState({ correct: 0, attempted: 0 });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem('bookmarkedQuestions', JSON.stringify(bookmarks));
+  }, [bookmarks]);
 
   const topics = [
     { 
@@ -106,6 +110,17 @@ const QuestionBank = () => {
       borderLight: 'border-yellow-200',
       borderDark: 'border-yellow-500/30',
       iconColor: 'text-yellow-600'
+    },
+    {
+      id: 'bookmarks',
+      name: 'Bookmarked Questions',
+      icon: Bookmark,
+      color: 'from-pink-500 to-rose-500',
+      bgLight: 'bg-pink-50',
+      bgDark: 'bg-pink-900/20',
+      borderLight: 'border-pink-200',
+      borderDark: 'border-pink-500/30',
+      iconColor: 'text-pink-600'
     }
   ];
 
@@ -119,16 +134,40 @@ const QuestionBank = () => {
     setLoading(true);
     setError(null);
     try {
-      const basePath = import.meta.env.VITE_APP_QUESTIONS_BASE_PATH || '/data/questions';
-      const response = await fetch(`${basePath}/${topicId}.json`);
-      if (!response.ok) {
-        throw new Error(`Failed to load questions for ${topicId}`);
+      if (topicId === 'bookmarks') {
+        const allBookmarkedQuestions = [];
+        const bookmarkedTopics = Object.keys(bookmarks);
+
+        if (bookmarkedTopics.length === 0 || bookmarkedTopics.every(topic => bookmarks[topic].length === 0)) {
+          throw new Error('You have no bookmarked questions yet.');
+        }
+
+        for (const topic of bookmarkedTopics) {
+          if (bookmarks[topic].length > 0) {
+            const basePath = import.meta.env.VITE_APP_QUESTIONS_BASE_PATH || '/data/questions';
+            const response = await fetch(`${basePath}/${topic}.json`);
+            if (response.ok) {
+              const data = await response.json();
+              const topicQuestions = data.questions
+                .filter(q => bookmarks[topic].includes(q.id))
+                .map(q => ({ ...q, topicId: topic })); // Add topicId for context
+              allBookmarkedQuestions.push(...topicQuestions);
+            }
+          }
+        }
+        setQuestions(allBookmarkedQuestions);
+      } else {
+        const basePath = import.meta.env.VITE_APP_QUESTIONS_BASE_PATH || '/data/questions';
+        const response = await fetch(`${basePath}/${topicId}.json`);
+        if (!response.ok) {
+          throw new Error(`Failed to load questions for ${topicId}`);
+        }
+        const data = await response.json();
+        if (!data.questions || data.questions.length === 0) {
+          throw new Error('No questions available for this topic');
+        }
+        setQuestions(data.questions);
       }
-      const data = await response.json();
-      if (!data.questions || data.questions.length === 0) {
-        throw new Error('No questions available for this topic');
-      }
-      setQuestions(data.questions);
       setCurrentQuestion(0);
       setSelectedAnswer(null);
       setShowResult(false);
@@ -188,6 +227,25 @@ const QuestionBank = () => {
     setScore({ correct: 0, attempted: 0 });
   };
 
+  const toggleBookmark = (topicId, questionId) => {
+    setBookmarks(prev => {
+      const newBookmarks = { ...prev };
+      const topicBookmarks = newBookmarks[topicId] || [];
+      
+      if (topicBookmarks.includes(questionId)) {
+        // Remove bookmark
+        newBookmarks[topicId] = topicBookmarks.filter(id => id !== questionId);
+        if (newBookmarks[topicId].length === 0) {
+          delete newBookmarks[topicId];
+        }
+      } else {
+        // Add bookmark
+        newBookmarks[topicId] = [...topicBookmarks, questionId];
+      }
+      
+      return newBookmarks;
+    });
+  };
 
   if (!selectedTopic) {
     return (
@@ -223,7 +281,11 @@ const QuestionBank = () => {
                     onClick={() => setSelectedTopic(topic.id)}
                     className={`
                       ${darkMode ? `${topic.bgDark} border ${topic.borderDark}` : `${topic.bgLight} border ${topic.borderLight}`}
-                      rounded-2xl p-8 cursor-pointer hover:scale-105 transition-all duration-300 
+                      rounded-2xl p-8 cursor-pointer hover:scale-105 transition-all duration-300
+                      ${topic.id === 'bookmarks' 
+                        ? `relative overflow-hidden ${darkMode ? 'shadow-pink-500/20' : 'shadow-pink-200'}` 
+                        : ''
+                      }
                       shadow-lg hover:shadow-2xl group
                     `}
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
@@ -234,6 +296,11 @@ const QuestionBank = () => {
                       group-hover:scale-110 transition-transform duration-300
                     `}>
                       <Icon size={32} className="text-white" />
+                      {topic.id === 'bookmarks' && (
+                        <div className={`absolute inset-0 rounded-xl ${
+                          darkMode ? 'bg-pink-400/30' : 'bg-pink-300/30'
+                        } animate-pulse`}></div>
+                      )}
                     </div>
                     <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                       {topic.name}
@@ -305,13 +372,14 @@ const QuestionBank = () => {
   }
 
   const question = questions[currentQuestion];
+  const isBookmarked = bookmarks[question.topicId || selectedTopic]?.includes(question.id);
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
     <>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <button
             onClick={() => setSelectedTopic(null)}
             className={`
@@ -341,9 +409,24 @@ const QuestionBank = () => {
                   <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{questions.length}</span>
                 </div>
               </div>
-              <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                Score: <span className="font-bold text-emerald-500">{score.correct}</span>/
-                <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted}</span>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => toggleBookmark(question.topicId || selectedTopic, question.id)}
+                  className={`p-2 rounded-full transition-colors ${
+                    isBookmarked
+                      ? 'text-yellow-400 bg-yellow-500/20'
+                      : darkMode
+                      ? 'text-gray-400 hover:bg-gray-700'
+                      : 'text-gray-500 hover:bg-gray-100'
+                  }`}
+                  aria-label={isBookmarked ? 'Remove bookmark' : 'Add bookmark'}
+                >
+                  <Bookmark size={20} fill={isBookmarked ? 'currentColor' : 'none'} />
+                </button>
+                <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
+                  Score: <span className="font-bold text-emerald-500">{score.correct}</span>/
+                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted}</span>
+                </div>
               </div>
             </div>
 
