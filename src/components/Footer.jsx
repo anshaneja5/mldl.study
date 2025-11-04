@@ -59,7 +59,10 @@ const Footer = ({ darkMode }) => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={social.label}                  className={`transition-all duration-300 ease-in-out hover:scale-125 ${darkMode ? 'text-gray-400 hover:text-blue-400' : 'text-gray-500 hover:text-blue-600'}`}
+                  aria-label={social.label}
+                  className={`transition-all duration-300 ease-in-out hover:scale-125 ${
+                    darkMode ? 'text-gray-400 hover:text-blue-400' : 'text-gray-500 hover:text-blue-600'
+                  }`}
                 >
                   {social.icon}
                 </a>
@@ -67,37 +70,45 @@ const Footer = ({ darkMode }) => {
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Footer Sections */}
           {footerSections.map((section, index) => (
-            <div
-              key={index}
-              className={
-                section.title === 'Legal' ? 'md:justify-self-end' : ''
-              }
-            >
+            <div key={index} className={section.title === 'Legal' ? 'md:justify-self-end' : ''}>
               <div className="flex items-center gap-2">
                 <span className={darkMode ? 'text-gray-400' : 'text-gray-500'}>{section.icon}</span>
-                <h3 className={`text-sm font-semibold tracking-wider uppercase ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+                <h3
+                  className={`text-sm font-semibold tracking-wider uppercase ${
+                    darkMode ? 'text-gray-300' : 'text-gray-800'
+                  }`}
+                >
                   {section.title}
                 </h3>
               </div>
               <ul className="mt-4 space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    {link.href.startsWith('/') ? (
-                      <Link
-                        to={link.href}
-                        className={`text-sm transition-all duration-200 ease-in-out hover:translate-x-1 hover:font-semibold inline-block ${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
-                      >
-                        {link.text}
-                      </Link>
-                    ) : (
+                    {/* Use <a> for sitemap, mailto, and external links */}
+                    {link.href.startsWith('http') ||
+                    link.href.startsWith('mailto') ||
+                    link.href.endsWith('.xml') ? (
                       <a
                         href={link.href}
-                        className={`text-sm transition-all duration-200 ease-in-out hover:translate-x-1 hover:font-semibold inline-block ${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+                        target={link.href.endsWith('.xml') || link.href.startsWith('http') ? '_blank' : undefined}
+                        rel="noopener noreferrer"
+                        className={`text-sm transition-all duration-200 ease-in-out hover:translate-x-1 hover:font-semibold inline-block ${
+                          darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+                        }`}
                       >
                         {link.text}
                       </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className={`text-sm transition-all duration-200 ease-in-out hover:translate-x-1 hover:font-semibold inline-block ${
+                          darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                      >
+                        {link.text}
+                      </Link>
                     )}
                   </li>
                 ))}
@@ -107,12 +118,23 @@ const Footer = ({ darkMode }) => {
         </div>
 
         {/* Copyright */}
-        <div className={`mt-12 pt-8 border-t ${darkMode ? 'border-gray-800' : 'border-gray-200'} text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+        <div
+          className={`mt-12 pt-8 border-t ${
+            darkMode ? 'border-gray-800' : 'border-gray-200'
+          } text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}
+        >
           &copy; {new Date().getFullYear()} MLDL.Study • Built with ❤️ by Ansh Aneja <br />
           <div className="mt-1">
             <span>All Rights Reserved</span>
             <span className="mx-2">•</span>
-            <a href="https://github.com/anshaneja5/mldl.study/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className={`hover:underline ${darkMode ? 'hover:text-white' : 'hover:text-black'}`}>License</a>
+            <a
+              href="https://github.com/anshaneja5/mldl.study/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`hover:underline ${darkMode ? 'hover:text-white' : 'hover:text-black'}`}
+            >
+              License
+            </a>
           </div>
         </div>
       </div>
