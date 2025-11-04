@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles } from 'lucide-react';
+import { Code2, Database, Brain, Cpu, BarChart3, GitBranch, ArrowLeft, RotateCcw, Sparkles, Clock, FilePlus, CheckCircle, XCircle, Target } from 'lucide-react';
 import Navbar from './Navbar';
 import '../App.css';
 import { motion } from 'framer-motion';
@@ -16,7 +16,15 @@ const QuestionBank = () => {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState({ correct: 0, attempted: 0 });
   const [loading, setLoading] = useState(false);
+  const [showTestSummary, setShowTestSummary] = useState(false);
   const [error, setError] = useState(null);
+  const [isCreatingTest, setIsCreatingTest] = useState(false);
+  const [selectedTestTopics, setSelectedTestTopics] = useState([]);
+  const [numQuestions, setNumQuestions] = useState(10);
+  const [timeLimit, setTimeLimit] = useState(15);
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(null);
+  const [timerId, setTimerId] = useState(null);
 
   const topics = [
     { 
@@ -39,7 +47,7 @@ const QuestionBank = () => {
       bgDark: 'bg-purple-900/20',
       borderLight: 'border-purple-200',
       borderDark: 'border-purple-500/30',
-      iconColor: 'text-purple-600'
+      iconColor: 'text-purple-600 dark:text-purple-400'
     },
     { 
       id: 'ml', 
@@ -50,7 +58,7 @@ const QuestionBank = () => {
       bgDark: 'bg-green-900/20',
       borderLight: 'border-green-200',
       borderDark: 'border-green-500/30',
-      iconColor: 'text-green-600'
+      iconColor: 'text-green-600 dark:text-green-400'
     },
     { 
       id: 'dl', 
@@ -61,7 +69,7 @@ const QuestionBank = () => {
       bgDark: 'bg-indigo-900/20',
       borderLight: 'border-indigo-200',
       borderDark: 'border-indigo-500/30',
-      iconColor: 'text-indigo-600'
+      iconColor: 'text-indigo-600 dark:text-indigo-400'
     },
     { 
       id: 'genai', 
@@ -83,7 +91,7 @@ const QuestionBank = () => {
       bgDark: 'bg-teal-900/20',
       borderLight: 'border-teal-200',
       borderDark: 'border-teal-500/30',
-      iconColor: 'text-teal-600'
+      iconColor: 'text-teal-600 dark:text-teal-400'
     },
     { 
       id: 'statistics', 
@@ -94,7 +102,7 @@ const QuestionBank = () => {
       bgDark: 'bg-orange-900/20',
       borderLight: 'border-orange-200',
       borderDark: 'border-orange-500/30',
-      iconColor: 'text-orange-600'
+      iconColor: 'text-orange-600 dark:text-orange-400'
     },
     { 
       id: 'algorithms', 
@@ -105,7 +113,7 @@ const QuestionBank = () => {
       bgDark: 'bg-yellow-900/20',
       borderLight: 'border-yellow-200',
       borderDark: 'border-yellow-500/30',
-      iconColor: 'text-yellow-600'
+      iconColor: 'text-yellow-600 dark:text-yellow-400'
     }
   ];
 
@@ -114,6 +122,21 @@ const QuestionBank = () => {
       loadQuestions(selectedTopic);
     }
   }, [selectedTopic]);
+
+  useEffect(() => {
+    if (isTestMode && timeLeft !== null && timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+      setTimerId(timer);
+      return () => clearInterval(timer);
+    } else if (isTestMode && timeLeft === 0) {
+      // Time is up, show summary
+      setShowTestSummary(true);
+      // Ensure the last question is submitted if an answer was selected
+      if (selectedAnswer !== null && !showResult) handleSubmit(true);
+    }
+  }, [isTestMode, timeLeft]);
 
   const loadQuestions = async (topicId) => {
     setLoading(true);
@@ -142,18 +165,59 @@ const QuestionBank = () => {
     }
   };
 
+  const loadTestQuestions = async () => {
+    setShowTestSummary(false);
+    if (selectedTestTopics.length === 0) {
+      setError("Please select at least one topic.");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const basePath = import.meta.env.VITE_APP_QUESTIONS_BASE_PATH || '/data/questions';
+      let allQuestions = [];
+      for (const topicId of selectedTestTopics) {
+        const response = await fetch(`${basePath}/${topicId}.json`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.questions) {
+            allQuestions = [...allQuestions, ...data.questions];
+          }
+        }
+      }
+
+      if (allQuestions.length === 0) {
+        throw new Error('No questions available for the selected topics.');
+      }
+
+      const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+      setQuestions(shuffled.slice(0, numQuestions));
+      setCurrentQuestion(0);
+      setSelectedAnswer(null);
+      setShowResult(false);
+      setScore({ correct: 0, attempted: 0 });
+      setIsCreatingTest(false);
+      setIsTestMode(true);
+      setTimeLeft(timeLimit * 60);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleAnswerSelect = (answerIndex) => {
     if (!showResult) {
       setSelectedAnswer(answerIndex);
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (isTimeUp = false) => {
     if (
       selectedAnswer !== null &&
       currentQuestion >= 0 &&
       currentQuestion < questions.length &&
-      questions[currentQuestion]
+      questions[currentQuestion] && !showResult
     ) {
       setShowResult(true);
       const isCorrect = selectedAnswer === questions[currentQuestion].correctAnswer;
@@ -161,6 +225,9 @@ const QuestionBank = () => {
         setScore(prev => ({ correct: prev.correct + 1, attempted: prev.attempted + 1 }));
       } else {
         setScore(prev => ({ ...prev, attempted: prev.attempted + 1 }));
+      }
+      if (isTestMode && currentQuestion === questions.length - 1 && !isTimeUp) {
+        setShowTestSummary(true);
       }
     }
   };
@@ -170,6 +237,9 @@ const QuestionBank = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
       setShowResult(false);
+    } else if (isTestMode && currentQuestion === questions.length - 1) {
+      // Last question, show summary
+      setShowTestSummary(true);
     }
   };
 
@@ -186,10 +256,18 @@ const QuestionBank = () => {
     setSelectedAnswer(null);
     setShowResult(false);
     setScore({ correct: 0, attempted: 0 });
+    if (isTestMode) {
+      setTimeLeft(timeLimit * 60);
+      setShowTestSummary(false);
+      loadTestQuestions();
+    }
   };
 
+  const handleTopicToggle = (topicId) => {
+    setSelectedTestTopics(prev => prev.includes(topicId) ? prev.filter(id => id !== topicId) : [...prev, topicId]);
+  };
 
-  if (!selectedTopic) {
+  if (!selectedTopic && !isCreatingTest) {
     return (
       <>
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -205,6 +283,18 @@ const QuestionBank = () => {
               <p className={`mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                 Select a topic to start practicing
               </p>
+            </div>
+
+            <div className="text-center mb-12">
+              <button
+                onClick={() => setIsCreatingTest(true)}
+                className={`
+                  px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl
+                  ${darkMode ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-emerald-500 text-white hover:bg-emerald-600'}
+                `}
+              >
+                <FilePlus className="inline-block mr-2" /> Create a Custom Test
+              </button>
             </div>
             
             <motion.div 
@@ -254,6 +344,82 @@ const QuestionBank = () => {
     );
   }
 
+  if (isCreatingTest) {
+    return (
+      <>
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
+          <div className="max-w-4xl mx-auto">
+            <button
+              onClick={() => setIsCreatingTest(false)}
+              className={`mb-6 px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2 ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700' : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'}`}
+            >
+              <ArrowLeft size={20} /> Back to Topics
+            </button>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-xl p-8`}>
+              <h2 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Create Your Custom Test</h2>
+              
+              <div className="mb-8">
+                <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>1. Select Topics</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {topics.map(topic => (
+                    <button
+                      key={topic.id}
+                      onClick={() => handleTopicToggle(topic.id)}
+                      className={`p-4 rounded-lg border-2 text-center transition-all ${
+                        selectedTestTopics.includes(topic.id)
+                          ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
+                          : 'border-gray-300 dark:border-gray-600 hover:border-emerald-400 dark:hover:border-emerald-500'
+                      }`}
+                    >
+                      <topic.icon className={`mx-auto mb-2 ${selectedTestTopics.includes(topic.id) ? 'text-emerald-600 dark:text-emerald-400' : topic.iconColor}`} size={24} />
+                      <span className={`${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>{topic.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-8 grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>2. Number of Questions</h3>
+                  <input
+                    type="number"
+                    value={numQuestions}
+                    onChange={(e) => setNumQuestions(Math.max(1, parseInt(e.target.value, 10)))}
+                    className={`w-full p-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-300'}`}
+                    min="1"
+                    max="50"
+                  />
+                </div>
+                <div>
+                  <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>3. Time Limit (minutes)</h3>
+                  <input
+                    type="number"
+                    value={timeLimit}
+                    onChange={(e) => setTimeLimit(Math.max(1, parseInt(e.target.value, 10)))}
+                    className={`w-full p-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-300'}`}
+                    min="1"
+                  />
+                </div>
+              </div>
+
+              {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
+              <button
+                onClick={loadTestQuestions}
+                disabled={selectedTestTopics.length === 0 || loading}
+                className="w-full px-8 py-4 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold text-lg"
+              >
+                {loading ? 'Generating Test...' : 'Start Test'}
+              </button>
+            </div>
+          </div>
+        </div>
+        <Footer darkMode={darkMode} />
+      </>
+    );
+  }
+
   if (loading) {
     return (
       <>
@@ -281,7 +447,7 @@ const QuestionBank = () => {
             <h2 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Oops!</h2>
             <p className={`mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{error}</p>
             <button
-              onClick={() => setSelectedTopic(null)}
+              onClick={() => { setSelectedTopic(null); setIsCreatingTest(false); setError(null); }}
               className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium flex items-center gap-2 mx-auto"
             >
               <ArrowLeft size={20} />
@@ -289,6 +455,75 @@ const QuestionBank = () => {
             </button>
           </div>
         </div>
+      </>
+    );
+  }
+
+  if (showTestSummary) {
+    const accuracy = score.attempted > 0 ? (score.correct / score.attempted) * 100 : 0;
+    return (
+      <>
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
+          <div className="max-w-2xl mx-auto">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-xl p-8 text-center`}>
+              <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Test Completed!</h2>
+              <p className={`text-lg mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Here's your performance summary.</p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-xl`}>
+                  <div className="flex items-center justify-center gap-3">
+                    <CheckCircle className="text-green-500" size={28} />
+                    <h3 className={`text-lg font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>Correct</h3>
+                  </div>
+                  <p className={`text-4xl font-bold mt-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.correct}</p>
+                </div>
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-xl`}>
+                  <div className="flex items-center justify-center gap-3">
+                    <XCircle className="text-red-500" size={28} />
+                    <h3 className={`text-lg font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>Incorrect</h3>
+                  </div>
+                  <p className={`text-4xl font-bold mt-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted - score.correct}</p>
+                </div>
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-xl`}>
+                  <div className="flex items-center justify-center gap-3">
+                    <Target className="text-blue-500" size={28} />
+                    <h3 className={`text-lg font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>Accuracy</h3>
+                  </div>
+                  <p className={`text-4xl font-bold mt-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{accuracy.toFixed(1)}%</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <button
+                  onClick={() => {
+                    setIsCreatingTest(false);
+                    setSelectedTopic(null);
+                    setIsTestMode(false);
+                    setShowTestSummary(false);
+                    clearInterval(timerId);
+                  }}
+                  className={`
+                    px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2
+                    ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}
+                  `}
+                >
+                  <ArrowLeft size={20} /> Back to Topics
+                </button>
+                <button
+                  onClick={handleReset}
+                  className={`
+                    px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center gap-2
+                    ${darkMode ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-emerald-500 text-white hover:bg-emerald-600'}
+                  `}
+                >
+                  <RotateCcw size={20} /> Retake Test
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Footer darkMode={darkMode} />
       </>
     );
   }
@@ -307,13 +542,15 @@ const QuestionBank = () => {
   const question = questions[currentQuestion];
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
+  const formatTime = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+
   return (
     <>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
         <div className="max-w-4xl mx-auto">
           <button
-            onClick={() => setSelectedTopic(null)}
+            onClick={() => { setSelectedTopic(null); setIsTestMode(false); clearInterval(timerId); setShowTestSummary(false); }}
             className={`
               mb-6 px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2
               ${darkMode 
@@ -341,10 +578,17 @@ const QuestionBank = () => {
                   <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{questions.length}</span>
                 </div>
               </div>
-              <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                Score: <span className="font-bold text-emerald-500">{score.correct}</span>/
-                <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted}</span>
-              </div>
+              {isTestMode && timeLeft !== null ? (
+                <div className={`flex items-center gap-2 font-semibold ${timeLeft < 60 ? 'text-red-500' : (darkMode ? 'text-gray-300' : 'text-gray-600')}`}>
+                  <Clock size={20} />
+                  <span>{formatTime(timeLeft)}</span>
+                </div>
+              ) : (
+                <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
+                  Score: <span className="font-bold text-emerald-500">{score.correct}</span>/
+                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted}</span>
+                </div>
+              )}
             </div>
 
             {/* Progress Bar */}
@@ -460,7 +704,7 @@ const QuestionBank = () => {
 
               <button
                 onClick={handleReset}
-                className={`
+                className={`hidden sm:flex
                   px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2
                   ${darkMode
                     ? 'bg-gray-700 text-white hover:bg-gray-600'
@@ -475,7 +719,7 @@ const QuestionBank = () => {
               {!showResult ? (
                 <button
                   onClick={handleSubmit}
-                  disabled={selectedAnswer === null}
+                  disabled={selectedAnswer === null || (isTestMode && timeLeft !== null && timeLeft === 0)}
                   className="px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold"
                 >
                   Submit Answer
@@ -483,10 +727,10 @@ const QuestionBank = () => {
               ) : (
                 <button
                   onClick={handleNext}
-                  disabled={currentQuestion === questions.length - 1}
+                  disabled={(isTestMode && timeLeft !== null && timeLeft === 0)}
                   className="px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold"
                 >
-                  Next Question →
+                  {currentQuestion === questions.length - 1 ? 'Finish Test' : 'Next Question →'}
                 </button>
               )}
             </div>
