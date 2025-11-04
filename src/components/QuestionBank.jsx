@@ -219,23 +219,52 @@ const QuestionBank = () => {
     setError(null);
     try {
       const basePath = import.meta.env.VITE_APP_QUESTIONS_BASE_PATH || '/data/questions';
-      let allQuestions = [];
-      for (const topicId of selectedTestTopics) {
+      let finalQuestions = [];
+      const questionsPerTopic = Math.floor(numQuestions / selectedTestTopics.length);
+      let remainder = numQuestions % selectedTestTopics.length;
+
+      const fetchTopicQuestions = async (topicId) => {
         const response = await fetch(`${basePath}/${topicId}.json`);
         if (response.ok) {
           const data = await response.json();
-          if (data.questions) {
-            allQuestions = [...allQuestions, ...data.questions];
-          }
+          return (data.questions || []).map(q => ({ ...q, topicId }));
         }
+        return [];
+      };
+
+      for (const topicId of selectedTestTopics) {
+        let topicQuestions = [];
+        let numToFetch = questionsPerTopic + (remainder > 0 ? 1 : 0);
+        if (remainder > 0) remainder--;
+
+        if (topicId === 'bookmarks') {
+          const allBookmarkedQuestions = [];
+          const bookmarkedTopicIds = Object.keys(bookmarks);
+          for (const bookmarkedTopicId of bookmarkedTopicIds) {
+            if (bookmarks[bookmarkedTopicId].length > 0) {
+              const allTopicQs = await fetchTopicQuestions(bookmarkedTopicId);
+              const bookmarkedQs = allTopicQs.filter(q => bookmarks[bookmarkedTopicId].includes(q.id));
+              allBookmarkedQuestions.push(...bookmarkedQs);
+            }
+          }
+          // Deduplicate and shuffle bookmarks before slicing
+          const uniqueBookmarks = [...new Map(allBookmarkedQuestions.map(q => [q.id, q])).values()];
+          topicQuestions = uniqueBookmarks.sort(() => 0.5 - Math.random()).slice(0, numToFetch);
+        } else {
+          const allTopicQs = await fetchTopicQuestions(topicId);
+          topicQuestions = allTopicQs.sort(() => 0.5 - Math.random()).slice(0, numToFetch);
+        }
+        finalQuestions.push(...topicQuestions);
       }
 
-      if (allQuestions.length === 0) {
+      if (finalQuestions.length === 0) {
         throw new Error('No questions available for the selected topics.');
       }
 
-      const shuffled = allQuestions.sort(() => 0.5 - Math.random());
-      setQuestions(shuffled.slice(0, numQuestions));
+      // Final shuffle of all collected questions
+      const shuffled = finalQuestions.sort(() => 0.5 - Math.random());
+      
+      setQuestions(shuffled);
       setCurrentQuestion(0);
       setSelectedAnswer(null);
       setShowResult(false);
@@ -331,7 +360,7 @@ const QuestionBank = () => {
     setSelectedTestTopics(prev => prev.includes(topicId) ? prev.filter(id => id !== topicId) : [...prev, topicId]);
   };
 
-  if (!selectedTopic && !isCreatingTest) {
+  if (!selectedTopic && !isCreatingTest && !isTestMode) {
     return (
       <>
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -601,7 +630,7 @@ const QuestionBank = () => {
     );
   }
 
-  if (!loading && questions.length === 0) {
+  if (!loading && questions.length === 0 && !isCreatingTest) {
     return (
       <>
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -613,8 +642,8 @@ const QuestionBank = () => {
   }
 
   const question = questions[currentQuestion];
-  const isBookmarked = bookmarks[question.topicId || selectedTopic]?.includes(question.id);
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const isBookmarked = question && bookmarks[question.topicId || selectedTopic]?.includes(question.id);
+  const progress = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
 
   const formatTime = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 
@@ -625,18 +654,10 @@ const QuestionBank = () => {
         <div className="max-w-7xl mx-auto">
           <button
             onClick={() => { setSelectedTopic(null); setIsTestMode(false); clearInterval(timerId); setShowTestSummary(false); }}
-            className={`
-              mb-6 px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2
-              ${darkMode 
-                ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700' 
-                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'
-              }
-            `}
+            className={`mb-6 px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2 ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700' : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'}`}
           >
-            <ArrowLeft size={20} />
-            Back to Topics
+            <ArrowLeft size={20} /> Back to Topics
           </button>
-
           <div className={`
             ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}
             rounded-2xl shadow-xl p-8 border transition-colors duration-300
@@ -666,10 +687,17 @@ const QuestionBank = () => {
                 >
                   <Bookmark size={20} fill={isBookmarked ? 'currentColor' : 'none'} />
                 </button>
-                <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                  Score: <span className="font-bold text-emerald-500">{score.correct}</span>/
-                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted}</span>
-                </div>
+                {isTestMode && timeLeft !== null ? (
+                  <div className={`flex items-center gap-2 font-semibold ${timeLeft < 60 ? 'text-red-500' : (darkMode ? 'text-gray-300' : 'text-gray-600')}`}>
+                    <Clock size={20} />
+                    <span>{formatTime(timeLeft)}</span>
+                  </div>
+                ) : (
+                  <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
+                    Score: <span className="font-bold text-emerald-500">{score.correct}</span>/
+                    <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted}</span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -825,5 +853,6 @@ const QuestionBank = () => {
     </>
   );
 };
+
 
 export default QuestionBank;
