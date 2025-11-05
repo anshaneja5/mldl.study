@@ -107,6 +107,7 @@ const NavLinks = ({ darkMode, className, onLinkClick = () => {}, isMobile = fals
     { path: '/machinelearning', label: 'ML' },
     { path: '/deeplearning', label: 'DL' },
     { path: '/genai', label: 'GenAI' },
+    { path: '/dashboard', label: 'Dashboard' },
     // Additional items can be moved to a dropdown menu
   ];
 

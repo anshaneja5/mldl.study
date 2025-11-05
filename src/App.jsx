@@ -13,6 +13,7 @@ import QuestionBank from './components/QuestionBank';
 import Search from './components/Search';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
+import LearnerDashboard from './components/LearnerDashboard';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
 if (trackingId) {
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/journey" element={<Journey />} />
           <Route path="/questionbank" element={<QuestionBank />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/dashboard" element={<LearnerDashboard />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="*" element={<Error404 />} />
