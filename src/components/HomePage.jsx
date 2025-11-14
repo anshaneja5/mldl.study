@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
-import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Clock, Globe, Users } from 'lucide-react';
+import { Sun, Moon, ChevronDown, ChevronUp, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap, Book, Code, Brain, Clock, Globe, Users, Eye } from 'lucide-react';
 import Navbar from './Navbar';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
@@ -217,6 +217,16 @@ const HomePage = () => {
       color: 'from-amber-500 to-orange-500',
       hoverColor: 'hover:from-amber-600 hover:to-orange-600',
       darkHoverColor: 'dark:hover:from-amber-400 dark:hover:to-orange-400'
+    },
+    {
+      id: 'visualizations',
+      title: 'Visualizations',
+      description: 'Interactive visualizations of ML/DL algorithms and concepts',
+      icon: <Eye className="w-6 h-6" />,
+      path: '/visualizations',
+      color: 'from-rose-500 to-red-500',
+      hoverColor: 'hover:from-rose-600 hover:to-red-600',
+      darkHoverColor: 'dark:hover:from-rose-400 dark:hover:to-red-400'
     }
   ];
 

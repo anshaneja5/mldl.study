@@ -15,6 +15,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
 import LearnerDashboard from './components/LearnerDashboard';
 import Bookmarks from './components/Bookmarks';
+import Visualizations from './components/Visualizations';
 import { BookmarksProvider } from './contexts/BookmarksContext';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/search" element={<Search />} />
             <Route path="/dashboard" element={<LearnerDashboard />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/visualizations" element={<Visualizations />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfUse />} />
             <Route path="*" element={<Error404 />} />
