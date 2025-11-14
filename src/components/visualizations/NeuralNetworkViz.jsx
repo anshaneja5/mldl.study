@@ -3,7 +3,12 @@ import { Play, RotateCcw } from 'lucide-react';
 
 const NeuralNetworkViz = ({ darkMode }) => {
   const canvasRef = useRef(null);
-  const [layers, setLayers] = useState([3, 4, 4, 2]); // Input, hidden1, hidden2, output
+  const [inputNodes, setInputNodes] = useState(3);
+  const [hidden1Nodes, setHidden1Nodes] = useState(4);
+  const [hidden2Nodes, setHidden2Nodes] = useState(4);
+  const [outputNodes, setOutputNodes] = useState(2);
+  const [numHiddenLayers, setNumHiddenLayers] = useState(2);
+  const [selectedActivation, setSelectedActivation] = useState('sigmoid');
   const [activations, setActivations] = useState([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [activeLayer, setActiveLayer] = useState(-1);
@@ -13,6 +18,11 @@ const NeuralNetworkViz = ({ darkMode }) => {
     relu: (x) => Math.max(0, x),
     tanh: (x) => Math.tanh(x)
   };
+
+  // Compute layers array from state
+  const layers = numHiddenLayers === 1 
+    ? [inputNodes, hidden1Nodes, outputNodes]
+    : [inputNodes, hidden1Nodes, hidden2Nodes, outputNodes];
 
   const initializeNetwork = () => {
     const initialActivations = layers.map(layerSize => 
@@ -36,7 +46,7 @@ const NeuralNetworkViz = ({ darkMode }) => {
       // Compute activations for current layer
       newActivations[i] = Array(layers[i]).fill(0).map(() => {
         const sum = newActivations[i - 1].reduce((acc, val) => acc + val * (Math.random() * 2 - 1), 0);
-        return activationFunctions.sigmoid(sum);
+        return activationFunctions[selectedActivation](sum);
       });
       
       setActivations([...newActivations]);
@@ -192,6 +202,122 @@ const NeuralNetworkViz = ({ darkMode }) => {
 
         {/* Controls */}
         <div className="space-y-4">
+          <div>
+            <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              Number of Hidden Layers: {numHiddenLayers}
+            </label>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setNumHiddenLayers(1)}
+                disabled={isAnimating}
+                className={`flex-1 px-3 py-2 rounded-lg transition-all ${
+                  numHiddenLayers === 1
+                    ? 'bg-blue-500 text-white'
+                    : darkMode
+                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                } disabled:opacity-50`}
+              >
+                1 Layer
+              </button>
+              <button
+                onClick={() => setNumHiddenLayers(2)}
+                disabled={isAnimating}
+                className={`flex-1 px-3 py-2 rounded-lg transition-all ${
+                  numHiddenLayers === 2
+                    ? 'bg-blue-500 text-white'
+                    : darkMode
+                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                } disabled:opacity-50`}
+              >
+                2 Layers
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              Input Nodes: {inputNodes}
+            </label>
+            <input
+              type="range"
+              min="2"
+              max="6"
+              value={inputNodes}
+              onChange={(e) => setInputNodes(parseInt(e.target.value))}
+              disabled={isAnimating}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 disabled:opacity-50"
+            />
+          </div>
+
+          <div>
+            <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              Hidden Layer 1 Nodes: {hidden1Nodes}
+            </label>
+            <input
+              type="range"
+              min="2"
+              max="8"
+              value={hidden1Nodes}
+              onChange={(e) => setHidden1Nodes(parseInt(e.target.value))}
+              disabled={isAnimating}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 disabled:opacity-50"
+            />
+          </div>
+
+          {numHiddenLayers === 2 && (
+            <div>
+              <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                Hidden Layer 2 Nodes: {hidden2Nodes}
+              </label>
+              <input
+                type="range"
+                min="2"
+                max="8"
+                value={hidden2Nodes}
+                onChange={(e) => setHidden2Nodes(parseInt(e.target.value))}
+                disabled={isAnimating}
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 disabled:opacity-50"
+              />
+            </div>
+          )}
+
+          <div>
+            <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              Output Nodes: {outputNodes}
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="4"
+              value={outputNodes}
+              onChange={(e) => setOutputNodes(parseInt(e.target.value))}
+              disabled={isAnimating}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 disabled:opacity-50"
+            />
+          </div>
+
+          <div>
+            <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              Activation Function
+            </label>
+            <select
+              value={selectedActivation}
+              onChange={(e) => setSelectedActivation(e.target.value)}
+              disabled={isAnimating}
+              className={`w-full px-3 py-2 rounded-lg border ${
+                darkMode 
+                  ? 'bg-gray-700 border-gray-600 text-white' 
+                  : 'bg-white border-gray-300 text-gray-900'
+              } focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50`}
+            >
+              <option value="sigmoid">Sigmoid</option>
+              <option value="relu">ReLU</option>
+              <option value="tanh">Tanh</option>
+            </select>
+          </div>
+
           <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
             <h3 className={`text-sm font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               Network Architecture
@@ -220,7 +346,7 @@ const NeuralNetworkViz = ({ darkMode }) => {
                 Total Neurons: <strong>{layers.reduce((a, b) => a + b, 0)}</strong>
               </p>
               <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-                Activation: <strong>Sigmoid</strong>
+                Activation: <strong>{selectedActivation.charAt(0).toUpperCase() + selectedActivation.slice(1)}</strong>
               </p>
             </div>
           </div>

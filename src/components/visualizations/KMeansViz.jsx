@@ -4,6 +4,7 @@ import { Play, Pause, RotateCcw, Plus, Minus } from 'lucide-react';
 const KMeansViz = ({ darkMode }) => {
   const canvasRef = useRef(null);
   const [k, setK] = useState(3);
+  const [numPoints, setNumPoints] = useState(50);
   const [dataPoints, setDataPoints] = useState([]);
   const [centroids, setCentroids] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -11,7 +12,7 @@ const KMeansViz = ({ darkMode }) => {
 
   const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
 
-  const generateRandomPoints = (count = 50) => {
+  const generateRandomPoints = (count = numPoints) => {
     const points = [];
     for (let i = 0; i < count; i++) {
       points.push({
@@ -23,6 +24,27 @@ const KMeansViz = ({ darkMode }) => {
     setDataPoints(points);
     initializeCentroids(points, k);
     setIteration(0);
+  };
+
+  const handleCanvasClick = (e) => {
+    if (isRunning) return;
+    
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const newPoint = {
+      x,
+      y,
+      cluster: -1
+    };
+    
+    const newPoints = [...dataPoints, newPoint];
+    setDataPoints(newPoints);
+    if (centroids.length > 0) {
+      assignClustersForPoints(newPoints);
+    }
   };
 
   const initializeCentroids = (points, clusterCount) => {
@@ -40,7 +62,11 @@ const KMeansViz = ({ darkMode }) => {
   };
 
   const assignClusters = () => {
-    const newPoints = dataPoints.map(point => {
+    return assignClustersForPoints(dataPoints);
+  };
+
+  const assignClustersForPoints = (points) => {
+    const newPoints = points.map(point => {
       let minDist = Infinity;
       let cluster = 0;
       
@@ -87,18 +113,6 @@ const KMeansViz = ({ darkMode }) => {
     generateRandomPoints(50);
     setIsRunning(false);
     setIteration(0);
-  };
-
-  const handleCanvasClick = (e) => {
-    if (isRunning) return;
-    
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const newPoint = { x, y, cluster: -1 };
-    setDataPoints([...dataPoints, newPoint]);
   };
 
   useEffect(() => {
@@ -266,6 +280,25 @@ const KMeansViz = ({ darkMode }) => {
                 <Plus className="w-4 h-4" />
               </button>
             </div>
+          </div>
+
+          <div>
+            <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              Number of Points: {numPoints}
+            </label>
+            <input
+              type="range"
+              min="20"
+              max="150"
+              step="10"
+              value={numPoints}
+              onChange={(e) => setNumPoints(parseInt(e.target.value))}
+              disabled={isRunning}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 disabled:opacity-50"
+            />
+            <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              Regenerate data to apply
+            </p>
           </div>
 
           <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
