@@ -417,6 +417,7 @@ const PrerequisiteRoadmap = () => {
           existingProgress={topicProgress}
           onProgressUpdate={updateTopicProgress}
           darkMode={darkMode}
+          roadmapType="Prerequisites"
         />
       )}
 

@@ -113,6 +113,7 @@ const NavLinks = ({ darkMode, className, onLinkClick = () => {}, isMobile = fals
 
   // Secondary nav items for dropdown
   const secondaryItems = [
+    { path: '/bookmarks', label: 'Bookmarks' },
     { path: '/search', label: 'Search' },
     { path: '/books', label: 'Books' },
     { path: '/researchpapers', label: 'Papers' },
