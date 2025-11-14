@@ -8,6 +8,10 @@ import { Helmet } from 'react-helmet';
 import Footer from './Footer';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
+import categorizedMLContent from '../../categorizedMLContent';
+import categorizedDLContent from '../../categorizedDLContent';
+import categorizedGenAIContent from '../../categorizedGenAIContent';
+import categorizedPrerequisiteContent from '../../categorizedPrerequisiteContent';
 
 // Animation variants
 const cardVariants = {
@@ -41,35 +45,39 @@ const LearnerDashboard = () => {
     setTimeout(() => setIsTransitioning(false), 300);
   };
 
-  // Roadmaps configuration with localStorage keys
+  // Roadmaps configuration with localStorage keys and content
   const roadmaps = [
     {
       id: 'prerequisiteRoadmapProgress',
       title: 'Prerequisites',
       path: '/prerequisites',
       color: 'from-emerald-500 to-teal-500',
-      icon: <BookOpen className="w-5 h-5" />
+      icon: <BookOpen className="w-5 h-5" />,
+      content: categorizedPrerequisiteContent
     },
     {
       id: 'mlRoadmapProgress',
       title: 'Machine Learning',
       path: '/machinelearning',
       color: 'from-blue-500 to-indigo-500',
-      icon: <Target className="w-5 h-5" />
+      icon: <Target className="w-5 h-5" />,
+      content: categorizedMLContent
     },
     {
       id: 'dlRoadmapProgress',
       title: 'Deep Learning',
       path: '/deeplearning',
       color: 'from-purple-500 to-pink-500',
-      icon: <TrendingUp className="w-5 h-5" />
+      icon: <TrendingUp className="w-5 h-5" />,
+      content: categorizedDLContent
     },
     {
       id: 'genaiRoadmapProgress',
       title: 'Generative AI',
       path: '/genai',
       color: 'from-amber-500 to-orange-500',
-      icon: <Award className="w-5 h-5" />
+      icon: <Award className="w-5 h-5" />,
+      content: categorizedGenAIContent
     }
   ];
 
@@ -81,16 +89,25 @@ const LearnerDashboard = () => {
       let completedVideos = 0;
 
       roadmaps.forEach(roadmap => {
+        // Calculate total resources from content
+        const roadmapContent = roadmap.content;
+        if (roadmapContent) {
+          Object.keys(roadmapContent).forEach(topicName => {
+            const videos = roadmapContent[topicName];
+            totalVideos += videos.length;
+          });
+        }
+
+        // Load progress from localStorage
         const roadmapProgress = localStorage.getItem(roadmap.id);
         if (roadmapProgress) {
           try {
             const parsed = JSON.parse(roadmapProgress);
             savedProgress[roadmap.id] = parsed;
             
-            // Calculate stats - the progress object has keys like "TopicName_videoUrl"
+            // Calculate completed count - the progress object has keys like "TopicName_videoUrl"
             // and values are boolean (true for completed)
             Object.keys(parsed).forEach(key => {
-              totalVideos++;
               if (parsed[key] === true) {
                 completedVideos++;
               }
@@ -115,10 +132,20 @@ const LearnerDashboard = () => {
 
   // Calculate progress for each roadmap
   const getRoadmapProgress = (roadmapId) => {
+    const roadmap = roadmaps.find(r => r.id === roadmapId);
     const roadmapData = progress[roadmapId] || {};
-    const videos = Object.keys(roadmapData);
-    const completed = videos.filter(v => roadmapData[v] === true).length;
-    const total = videos.length;
+    
+    // Calculate total resources from content
+    let total = 0;
+    if (roadmap && roadmap.content) {
+      Object.keys(roadmap.content).forEach(topicName => {
+        const videos = roadmap.content[topicName];
+        total += videos.length;
+      });
+    }
+    
+    // Count completed videos
+    const completed = Object.keys(roadmapData).filter(v => roadmapData[v] === true).length;
     const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
     return { completed, inProgress: 0, total, percent };
