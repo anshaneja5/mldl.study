@@ -418,6 +418,7 @@ const DeepLearningRoadmap = () => {
           existingProgress={topicProgress}
           onProgressUpdate={updateTopicProgress}
           darkMode={darkMode}
+          roadmapType="Deep Learning"
         />
       )}
 

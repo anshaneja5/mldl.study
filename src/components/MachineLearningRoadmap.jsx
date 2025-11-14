@@ -412,6 +412,7 @@ const MachineLearningRoadmap = () => {
           existingProgress={topicProgress}
           onProgressUpdate={updateTopicProgress}
           darkMode={darkMode}
+          roadmapType="Machine Learning"
         />
       )}
 

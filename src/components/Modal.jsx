@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, Bookmark } from 'lucide-react';
+import { useBookmarks } from '../contexts/BookmarksContext';
 
-const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressUpdate, darkMode }) => {
+const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressUpdate, darkMode, roadmapType = 'Unknown' }) => {
   const topicVideos = videoSource[topic.name] || [];
+  const { isBookmarked, toggleBookmark } = useBookmarks();
 
   const completionPercentage = topicVideos.length > 0
     ? Math.round((topicVideos.filter(video => 
@@ -111,27 +113,54 @@ const Modal = ({ topic, onClose, videoSource, existingProgress = {}, onProgressU
                   <li key={index} className={`p-4 rounded-lg transition-colors
                     ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-50'}`}>
                     {content.url && (
-                      <div className="flex justify-between items-center gap-4">
-                        <a
-                          href={content.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`flex-1 ${darkMode ? 'text-blue-400' : 'text-blue-600'} hover:underline`}
-                        >
-                          {content.title}
-                        </a>
-                        <button
-                          onClick={() => saveProgress(content.url)}
-                          className={`px-4 py-2 rounded-lg transition-all duration-200 transform hover:scale-105
-                            ${existingProgress[`${topic.name}_${content.url}`]
-                              ? 'bg-green-500 text-white hover:bg-green-600'
-                              : darkMode 
-                                ? 'bg-gray-700 text-white hover:bg-gray-600'
-                                : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
-                            }`}
-                        >
-                          {existingProgress[`${topic.name}_${content.url}`] ? 'Completed ✓' : 'Mark Complete'}
-                        </button>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center gap-4">
+                          <a
+                            href={content.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex-1 ${darkMode ? 'text-blue-400' : 'text-blue-600'} hover:underline`}
+                          >
+                            {content.title}
+                          </a>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => toggleBookmark({
+                                title: content.title,
+                                url: content.url,
+                                articleLink: content.articleLink,
+                                articleTitle: content.articleTitle,
+                                notes: content.notes,
+                                category: topic.name,
+                                roadmapType: roadmapType
+                              })}
+                              className={`p-2 rounded-lg transition-all duration-200 transform hover:scale-105 ${
+                                isBookmarked(topic.name, content.url)
+                                  ? darkMode
+                                    ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+                                    : 'bg-yellow-400 text-white hover:bg-yellow-500'
+                                  : darkMode
+                                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                              }`}
+                              title={isBookmarked(topic.name, content.url) ? 'Remove bookmark' : 'Add bookmark'}
+                            >
+                              <Bookmark className={`w-4 h-4 ${isBookmarked(topic.name, content.url) ? 'fill-current' : ''}`} />
+                            </button>
+                            <button
+                              onClick={() => saveProgress(content.url)}
+                              className={`px-4 py-2 rounded-lg transition-all duration-200 transform hover:scale-105
+                                ${existingProgress[`${topic.name}_${content.url}`]
+                                  ? 'bg-green-500 text-white hover:bg-green-600'
+                                  : darkMode 
+                                    ? 'bg-gray-700 text-white hover:bg-gray-600'
+                                    : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+                                }`}
+                            >
+                              {existingProgress[`${topic.name}_${content.url}`] ? 'Completed ✓' : 'Mark Complete'}
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     )}
 

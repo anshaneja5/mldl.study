@@ -484,6 +484,7 @@ const GenerativeAIRoadmap = () => {
           existingProgress={topicProgress}
           onProgressUpdate={updateTopicProgress}
           darkMode={darkMode}
+          roadmapType="Generative AI"
         />
       )}
 

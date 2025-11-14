@@ -14,6 +14,8 @@ import Search from './components/Search';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
 import LearnerDashboard from './components/LearnerDashboard';
+import Bookmarks from './components/Bookmarks';
+import { BookmarksProvider } from './contexts/BookmarksContext';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
 if (trackingId) {
@@ -22,26 +24,29 @@ if (trackingId) {
 
 const App = () => {
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-100">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/deeplearning" element={<DeepLearning />} />
-          <Route path="/machinelearning" element={<MachineLearningRoadmap />} />
-          <Route path="/prerequisites" element={<PrerequisiteRoadmap />} />
-          <Route path="/researchpapers" element={<ResearchPaper />} />
-          <Route path="/genai" element={<GenerativeAIRoadmap />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/journey" element={<Journey />} />
-          <Route path="/questionbank" element={<QuestionBank />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/dashboard" element={<LearnerDashboard />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsOfUse />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </div>
-    </Router>
+    <BookmarksProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-100">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/deeplearning" element={<DeepLearning />} />
+            <Route path="/machinelearning" element={<MachineLearningRoadmap />} />
+            <Route path="/prerequisites" element={<PrerequisiteRoadmap />} />
+            <Route path="/researchpapers" element={<ResearchPaper />} />
+            <Route path="/genai" element={<GenerativeAIRoadmap />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/journey" element={<Journey />} />
+            <Route path="/questionbank" element={<QuestionBank />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/dashboard" element={<LearnerDashboard />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfUse />} />
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </div>
+      </Router>
+    </BookmarksProvider>
   );
 };
 
