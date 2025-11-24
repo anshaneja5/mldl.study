@@ -283,14 +283,28 @@ const PrerequisiteRoadmap = () => {
   return (
     <>
       <Helmet>
-        <title>Prerequisites Roadmap | Your Roadmap to AI Mastery</title>
+        <title>ML Prerequisites Roadmap | Math & Python for Machine Learning</title>
         <meta
           name="description"
-          content="Kickstart your Machine Learning journey with our comprehensive Prerequisites Roadmap. Master essential math topics and Python skills to prepare for the ML Roadmap."
+          content="Master ML prerequisites with our comprehensive roadmap. Learn essential math (linear algebra, calculus, statistics) and Python programming for machine learning. Free tutorials and resources."
         />
-        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="ml prerequisites, machine learning prerequisites, learn python for ml, math for machine learning, linear algebra tutorial, statistics for ml, calculus for ml, python programming roadmap" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://mldl.study/prerequisites" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://mldl.study/prerequisites" />
+        <meta property="og:title" content="ML Prerequisites Roadmap | Math & Python for Machine Learning" />
+        <meta property="og:description" content="Master ML prerequisites with our comprehensive roadmap. Learn essential math and Python programming for machine learning." />
+        <meta property="og:image" content="https://mldl.study/ml-roadmap2.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ML Prerequisites Roadmap | Math & Python for Machine Learning" />
+        <meta name="twitter:description" content="Master ML prerequisites. Learn essential math and Python programming for machine learning." />
+        <meta name="twitter:image" content="https://mldl.study/ml-roadmap2.png" />
       </Helmet>
 
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />

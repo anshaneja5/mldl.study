@@ -177,6 +177,70 @@ const HomePage = () => {
     }))
   };
 
+  // Organization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MLDL.Study",
+    "url": "https://mldl.study",
+    "logo": "https://mldl.study/ml-roadmap2.png",
+    "description": "Free interactive learning platform for Machine Learning and Deep Learning education",
+    "founder": {
+      "@type": "Person",
+      "name": "Ansh Aneja",
+      "email": "anshanejaa@gmail.com"
+    },
+    "sameAs": [
+      "https://github.com/anshaneja5/mldl.study",
+      "https://www.linkedin.com/in/anshaneja5"
+    ]
+  };
+
+  // WebSite Schema with Search Action
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MLDL.Study",
+    "url": "https://mldl.study",
+    "description": "Complete AI and Machine Learning roadmap with free resources for ML, Deep Learning, and Generative AI",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://mldl.study/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  // Course Schema for Educational Content
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "AI and Machine Learning Roadmap",
+    "description": "Comprehensive learning path for Machine Learning, Deep Learning, and Generative AI with free resources and interactive roadmaps",
+    "provider": {
+      "@type": "Organization",
+      "name": "MLDL.Study",
+      "url": "https://mldl.study"
+    },
+    "educationalLevel": "Beginner to Advanced",
+    "coursePrerequisites": "Basic programming knowledge",
+    "hasCourseInstance": [
+      {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "courseWorkload": "PT40H"
+      }
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   const roadmaps = [
     {
       id: 'prerequisites',
@@ -223,16 +287,44 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>Your Roadmap to AI Mastery | Machine Learning Roadmap</title>
+        <title>AI Roadmap & ML Roadmap | Free Machine Learning & Deep Learning Guide</title>
         <meta 
           name="description" 
-          content="Transform from beginner to machine learning professional with our comprehensive roadmap featuring free ML, DL, and GenAI resources. Join our community-driven journey today." 
+          content="Master AI with the ultimate ML roadmap and AI learning path. Free interactive machine learning roadmap, deep learning tutorials, and generative AI courses. Join 10,000+ learners mastering AI and ML." 
         />
-        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="ai roadmap, ml roadmap, machine learning roadmap, deep learning roadmap, ai learning path, artificial intelligence roadmap, learn ai, learn machine learning, generative ai roadmap, ml tutorial, ai course free" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://mldl.study" />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mldl.study" />
+        <meta property="og:title" content="AI Roadmap & ML Roadmap | Free Machine Learning & Deep Learning Guide" />
+        <meta property="og:description" content="Master AI with the ultimate ML roadmap and AI learning path. Free interactive machine learning roadmap, deep learning tutorials, and generative AI courses." />
+        <meta property="og:image" content="https://mldl.study/ml-roadmap2.png" />
+        <meta property="og:site_name" content="MLDL.Study" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://mldl.study" />
+        <meta name="twitter:title" content="AI Roadmap & ML Roadmap | Free Machine Learning & Deep Learning Guide" />
+        <meta name="twitter:description" content="Master AI with the ultimate ML roadmap. Free interactive machine learning roadmap, deep learning tutorials, and generative AI courses." />
+        <meta name="twitter:image" content="https://mldl.study/ml-roadmap2.png" />
+        
+        {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(courseSchema)}
         </script>
       </Helmet>
 
