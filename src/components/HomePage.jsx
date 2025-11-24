@@ -290,7 +290,7 @@ const HomePage = () => {
         <title>AI Roadmap & ML Roadmap | Free Machine Learning & Deep Learning Guide</title>
         <meta 
           name="description" 
-          content="Master AI with the ultimate ML roadmap and AI learning path. Free interactive machine learning roadmap, deep learning tutorials, and generative AI courses. Join 10,000+ learners mastering AI and ML." 
+          content="Master AI with the ultimate ML roadmap and AI learning path. Free interactive machine learning roadmap, deep learning tutorials, and generative AI courses. Join thousands of learners mastering AI and ML." 
         />
         <meta name="keywords" content="ai roadmap, ml roadmap, machine learning roadmap, deep learning roadmap, ai learning path, artificial intelligence roadmap, learn ai, learn machine learning, generative ai roadmap, ml tutorial, ai course free" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
