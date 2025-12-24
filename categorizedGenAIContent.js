@@ -76,11 +76,58 @@ const genai = {
       title: "LangChain for LLM Application Development",
       url: "https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/",
       notes: "Short course by DeepLearning.AI on building LLM applications with LangChain framework."
+    }
+  ],
+  "Prompt Engineering": [
+    {
+      title: "Prompt Engineering Guide",
+      url: "https://www.promptingguide.ai/",
+      notes: "Comprehensive guide covering all prompt engineering techniques from basics to advanced."
     },
     {
-      title: "Prompt Engineering for Developers - OpenAI",
-      url: "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
-      notes: "Learn best practices and advanced techniques for prompt engineering from OpenAI experts."
+      title: "OpenAI Prompt Engineering Best Practices",
+      url: "https://platform.openai.com/docs/guides/prompt-engineering",
+      notes: "Official OpenAI guidelines for writing effective prompts."
+    },
+    {
+      title: "Anthropic Prompt Engineering Guide",
+      url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+      notes: "Claude-specific prompt engineering techniques and best practices."
+    },
+    {
+      title: "Chain-of-Thought Prompting",
+      url: "https://arxiv.org/abs/2201.11903",
+      notes: "Groundbreaking paper on improving reasoning by prompting models to think step-by-step."
+    },
+    {
+      title: "ReAct: Reasoning and Acting in Language Models",
+      url: "https://arxiv.org/abs/2210.03629",
+      notes: "Framework combining reasoning traces and task-specific actions in language models."
+    },
+    {
+      title: "Tree of Thoughts: Deliberate Problem Solving",
+      url: "https://arxiv.org/abs/2305.10601",
+      notes: "Advanced prompting technique for complex problem-solving with LLMs."
+    },
+    {
+      title: "Few-Shot and Zero-Shot Learning with GPT",
+      url: "https://www.youtube.com/watch?v=SWwQ3k-DY_c",
+      notes: "Understanding in-context learning and how to leverage examples effectively."
+    },
+    {
+      title: "Prompt Engineering Tutorial - Krish Naik",
+      url: "https://www.youtube.com/watch?v=_ZvnD73m40o",
+      notes: "Hands-on tutorial covering various prompt engineering techniques."
+    },
+    {
+      title: "Advanced Prompt Engineering Techniques",
+      url: "https://github.com/dair-ai/Prompt-Engineering-Guide",
+      notes: "GitHub repository with comprehensive prompt engineering resources and examples."
+    },
+    {
+      title: "LangChain Prompt Templates",
+      url: "https://python.langchain.com/docs/modules/model_io/prompts/",
+      notes: "Building reusable and maintainable prompts with LangChain framework."
     }
   ],
   "Transformer Fundamentals": [
@@ -150,175 +197,589 @@ const genai = {
       notes: "Deep dive into attention mechanisms and their variants in neural networks."
     }
   ],
+  "RAG (Retrieval-Augmented Generation)": [
+    {
+      title: "What is RAG? - IBM",
+      url: "https://www.ibm.com/topics/retrieval-augmented-generation",
+      notes: "Comprehensive introduction to Retrieval-Augmented Generation and its applications."
+    },
+    {
+      title: "RAG from Scratch - LangChain",
+      url: "https://github.com/langchain-ai/rag-from-scratch",
+      notes: "Step-by-step guide to building RAG systems from the ground up."
+    },
+    {
+      title: "Building RAG Applications",
+      url: "https://python.langchain.com/docs/tutorials/rag/",
+      notes: "Official LangChain tutorial for implementing production-ready RAG systems."
+    },
+    {
+      title: "Advanced RAG Techniques - Pinecone",
+      url: "https://www.pinecone.io/learn/retrieval-augmented-generation/",
+      notes: "Exploring advanced techniques for improving RAG performance and accuracy."
+    },
+    {
+      title: "RAG Tutorial - DeepLearning.AI",
+      url: "https://www.deeplearning.ai/short-courses/building-applications-vector-databases/",
+      notes: "Hands-on course on building RAG applications with vector databases."
+    },
+    {
+      title: "Chunking Strategies for RAG",
+      url: "https://www.pinecone.io/learn/chunking-strategies/",
+      notes: "Best practices for document chunking to optimize retrieval quality."
+    },
+    {
+      title: "RAG vs Fine-tuning",
+      url: "https://towardsdatascience.com/rag-vs-finetuning-which-is-the-best-tool-to-boost-your-llm-application-94654b1eaba7",
+      notes: "Understanding when to use RAG versus fine-tuning for LLM applications."
+    },
+    {
+      title: "Building Production RAG Systems",
+      url: "https://www.youtube.com/watch?v=sVcwVQRHIc8",
+      notes: "Complete guide to deploying RAG applications in production environments."
+    },
+    {
+      title: "LlamaIndex for RAG",
+      url: "https://docs.llamaindex.ai/en/stable/",
+      notes: "Framework for building RAG applications with advanced indexing and querying."
+    },
+    {
+      title: "RAG Evaluation and Optimization",
+      url: "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/",
+      notes: "Learn to evaluate and optimize RAG systems for better performance."
+    }
+  ],
+  "Vector Databases & Embeddings": [
+    {
+      title: "Understanding Embeddings",
+      url: "https://platform.openai.com/docs/guides/embeddings",
+      notes: "OpenAI's guide to embeddings and their use in semantic search."
+    },
+    {
+      title: "Sentence Transformers Documentation",
+      url: "https://www.sbert.net/",
+      notes: "State-of-the-art embeddings for semantic textual similarity."
+    },
+    {
+      title: "Vector Databases Explained",
+      url: "https://www.pinecone.io/learn/vector-database/",
+      notes: "Complete introduction to vector databases and their role in AI applications."
+    },
+    {
+      title: "Pinecone Tutorial",
+      url: "https://docs.pinecone.io/docs/overview",
+      notes: "Getting started with Pinecone for vector search and RAG applications."
+    },
+    {
+      title: "ChromaDB - Open Source Vector Database",
+      url: "https://www.trychroma.com/",
+      notes: "Easy-to-use open-source embedding database for AI applications."
+    },
+    {
+      title: "FAISS by Meta",
+      url: "https://github.com/facebookresearch/faiss",
+      notes: "Efficient similarity search and clustering of dense vectors."
+    },
+    {
+      title: "Weaviate Vector Database",
+      url: "https://weaviate.io/developers/weaviate",
+      notes: "Open-source vector database with built-in ML model integrations."
+    },
+    {
+      title: "Semantic Search with Embeddings",
+      url: "https://www.youtube.com/watch?v=2OW2yLc9-VY",
+      notes: "Building semantic search systems using embeddings and vector databases."
+    },
+    {
+      title: "Comparing Vector Databases",
+      url: "https://towardsdatascience.com/vector-databases-in-2023-a-complete-guide-5e0d7c73f71a",
+      notes: "Comprehensive comparison of popular vector database solutions."
+    },
+    {
+      title: "Building a Vector Search Engine",
+      url: "https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/",
+      notes: "Hands-on course on implementing vector search with embeddings."
+    }
+  ],
+  "Fine-tuning & PEFT": [
+    {
+      title: "Fine-tuning LLMs - Hugging Face",
+      url: "https://huggingface.co/docs/transformers/training",
+      notes: "Official guide to fine-tuning large language models."
+    },
+    {
+      title: "LoRA: Low-Rank Adaptation",
+      url: "https://arxiv.org/abs/2106.09685",
+      notes: "Parameter-efficient fine-tuning method that adapts LLMs with minimal resources."
+    },
+    {
+      title: "QLoRA: Efficient Finetuning of Quantized LLMs",
+      url: "https://arxiv.org/abs/2305.14314",
+      notes: "Fine-tune large models on consumer GPUs with quantization."
+    },
+    {
+      title: "PEFT Library - Hugging Face",
+      url: "https://huggingface.co/docs/peft/index",
+      notes: "Parameter-Efficient Fine-Tuning library for adapting large models efficiently."
+    },
+    {
+      title: "Fine-tune Llama 2 with LoRA",
+      url: "https://www.youtube.com/watch?v=eC6Hd1hFvos",
+      notes: "Step-by-step tutorial on fine-tuning Llama 2 using LoRA."
+    },
+    {
+      title: "Instruction Tuning",
+      url: "https://arxiv.org/abs/2109.01652",
+      notes: "Training language models to follow instructions better."
+    },
+    {
+      title: "RLHF - Reinforcement Learning from Human Feedback",
+      url: "https://huggingface.co/blog/rlhf",
+      notes: "How models like ChatGPT are aligned with human preferences."
+    },
+    {
+      title: "DPO: Direct Preference Optimization",
+      url: "https://arxiv.org/abs/2305.18290",
+      notes: "Alternative to RLHF for aligning language models with human preferences."
+    },
+    {
+      title: "Fine-tuning Best Practices",
+      url: "https://www.deeplearning.ai/short-courses/finetuning-large-language-models/",
+      notes: "DeepLearning.AI course on when and how to fine-tune LLMs effectively."
+    },
+    {
+      title: "Adapters for Efficient Fine-tuning",
+      url: "https://adapterhub.ml/",
+      notes: "Using adapter modules for parameter-efficient transfer learning."
+    }
+  ],
+  "AI Agents & Agentic Workflows": [
+    {
+      title: "Building Effective AI Agents - Anthropic",
+      url: "https://www.anthropic.com/research/building-effective-agents",
+      notes: "Anthropic's comprehensive guide to building reliable AI agents."
+    },
+    {
+      title: "ReAct: Reasoning and Acting",
+      url: "https://arxiv.org/abs/2210.03629",
+      notes: "Framework for building agents that reason and take actions."
+    },
+    {
+      title: "LangGraph for Agent Workflows",
+      url: "https://langchain-ai.github.io/langgraph/",
+      notes: "Build stateful, multi-actor applications with LLMs."
+    },
+    {
+      title: "AI Agents Course - DeepLearning.AI",
+      url: "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/",
+      notes: "Learn to build sophisticated AI agents with LangGraph."
+    },
+    {
+      title: "AutoGPT and Autonomous Agents",
+      url: "https://github.com/Significant-Gravitas/AutoGPT",
+      notes: "Exploring autonomous AI agents that can complete complex tasks."
+    },
+    {
+      title: "Tool Use with LLMs",
+      url: "https://docs.anthropic.com/en/docs/build-with-claude/tool-use",
+      notes: "Teaching LLMs to use external tools and APIs effectively."
+    },
+    {
+      title: "Multi-Agent Systems",
+      url: "https://www.microsoft.com/en-us/research/project/autogen/",
+      notes: "Microsoft's framework for building multi-agent conversation systems."
+    },
+    {
+      title: "CrewAI - Multi-Agent Framework",
+      url: "https://www.crewai.com/",
+      notes: "Framework for orchestrating role-playing, autonomous AI agents."
+    },
+    {
+      title: "Building Agentic RAG Systems",
+      url: "https://www.youtube.com/watch?v=sal78ACtGTc",
+      notes: "Combining agents with RAG for more intelligent applications."
+    },
+    {
+      title: "Agent Memory and State Management",
+      url: "https://python.langchain.com/docs/modules/memory/",
+      notes: "Managing conversation history and state in AI agents."
+    }
+  ],
+  "Multi-modal Models": [
+    {
+      title: "GPT-4V (Vision) - OpenAI",
+      url: "https://platform.openai.com/docs/guides/vision",
+      notes: "Using GPT-4 with vision capabilities for image understanding."
+    },
+    {
+      title: "CLIP by OpenAI",
+      url: "https://openai.com/research/clip",
+      notes: "Connecting text and images through contrastive learning."
+    },
+    {
+      title: "LLaVA: Large Language and Vision Assistant",
+      url: "https://llava-vl.github.io/",
+      notes: "Open-source vision-language model for multimodal understanding."
+    },
+    {
+      title: "Gemini Multimodal AI",
+      url: "https://deepmind.google/technologies/gemini/",
+      notes: "Google's multimodal AI model processing text, images, audio, and video."
+    },
+    {
+      title: "Flamingo: Visual Language Model",
+      url: "https://www.deepmind.com/blog/tackling-multiple-tasks-with-a-single-visual-language-model",
+      notes: "Few-shot learning with visual language models."
+    },
+    {
+      title: "Whisper - OpenAI",
+      url: "https://openai.com/research/whisper",
+      notes: "Robust speech recognition model for audio transcription."
+    },
+    {
+      title: "DALL-E 3 - Image Generation",
+      url: "https://openai.com/dall-e-3",
+      notes: "Text-to-image generation with improved prompt following."
+    },
+    {
+      title: "Stable Diffusion",
+      url: "https://stability.ai/stable-diffusion",
+      notes: "Open-source text-to-image diffusion model."
+    },
+    {
+      title: "Midjourney Documentation",
+      url: "https://docs.midjourney.com/",
+      notes: "Creating high-quality images from text descriptions."
+    },
+    {
+      title: "Video Generation with AI",
+      url: "https://openai.com/sora",
+      notes: "OpenAI's text-to-video generation model Sora."
+    }
+  ],
+  "LLM Evaluation & Benchmarks": [
+    {
+      title: "Evaluating Large Language Models",
+      url: "https://www.anthropic.com/research/evaluating-ai-systems",
+      notes: "Comprehensive guide to evaluating LLM outputs and safety."
+    },
+    {
+      title: "MMLU Benchmark",
+      url: "https://arxiv.org/abs/2009.03300",
+      notes: "Massive Multitask Language Understanding benchmark for LLMs."
+    },
+    {
+      title: "HumanEval for Code",
+      url: "https://github.com/openai/human-eval",
+      notes: "Benchmark for evaluating code generation capabilities."
+    },
+    {
+      title: "TruthfulQA",
+      url: "https://github.com/sylinrl/TruthfulQA",
+      notes: "Measuring model truthfulness and hallucination rates."
+    },
+    {
+      title: "LLM Leaderboards - Hugging Face",
+      url: "https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard",
+      notes: "Open LLM leaderboard comparing model performance across benchmarks."
+    },
+    {
+      title: "BLEU, ROUGE, and METEOR Metrics",
+      url: "https://towardsdatascience.com/evaluating-text-output-in-nlp-bleu-at-your-own-risk-e8609665a213",
+      notes: "Understanding traditional NLP evaluation metrics."
+    },
+    {
+      title: "RAGAs - RAG Evaluation",
+      url: "https://github.com/explodinggradients/ragas",
+      notes: "Framework for evaluating Retrieval-Augmented Generation systems."
+    },
+    {
+      title: "LangSmith for LLM Evaluation",
+      url: "https://www.langchain.com/langsmith",
+      notes: "Platform for testing, monitoring, and evaluating LLM applications."
+    },
+    {
+      title: "Red Teaming Language Models",
+      url: "https://arxiv.org/abs/2209.07858",
+      notes: "Testing LLM safety and robustness through adversarial evaluation."
+    },
+    {
+      title: "A/B Testing for LLM Applications",
+      url: "https://hamel.dev/blog/posts/prompt/",
+      notes: "Best practices for evaluating and comparing prompt variations."
+    }
+  ],
+  "Deployment & Production": [
+    {
+      title: "Deploying LLMs in Production",
+      url: "https://huyenchip.com/2023/04/11/llm-engineering.html",
+      notes: "Chip Huyen's comprehensive guide to LLM engineering best practices."
+    },
+    {
+      title: "vLLM - Fast Inference",
+      url: "https://docs.vllm.ai/en/latest/",
+      notes: "High-throughput and memory-efficient LLM inference engine."
+    },
+    {
+      title: "TensorRT-LLM",
+      url: "https://github.com/NVIDIA/TensorRT-LLM",
+      notes: "NVIDIA's toolkit for optimized LLM inference on GPUs."
+    },
+    {
+      title: "Model Quantization Guide",
+      url: "https://huggingface.co/docs/transformers/main_classes/quantization",
+      notes: "Reducing model size and memory footprint with quantization."
+    },
+    {
+      title: "Ollama - Local LLM Deployment",
+      url: "https://ollama.ai/",
+      notes: "Run large language models locally on your machine."
+    },
+    {
+      title: "LM Studio",
+      url: "https://lmstudio.ai/",
+      notes: "Desktop app for running local LLMs with user-friendly interface."
+    },
+    {
+      title: "OpenAI API Best Practices",
+      url: "https://platform.openai.com/docs/guides/production-best-practices",
+      notes: "Production deployment guidelines for OpenAI API applications."
+    },
+    {
+      title: "LLM Caching Strategies",
+      url: "https://www.confident-ai.com/blog/llm-caching-ultimate-guide",
+      notes: "Optimizing costs and latency with intelligent caching."
+    },
+    {
+      title: "Monitoring LLM Applications",
+      url: "https://www.langfuse.com/",
+      notes: "Open-source observability and analytics for LLM applications."
+    },
+    {
+      title: "Cost Optimization for LLMs",
+      url: "https://www.anyscale.com/blog/how-to-optimize-llm-costs-best-practices-and-strategies",
+      notes: "Strategies to reduce inference costs while maintaining quality."
+    }
+  ],
   "Implementation Guides": [
     {
-      title: "Introduction to LLMs - Roadmap.sh",
-      url: "https://roadmap.sh/guides/introduction-to-llms#base-llms"
-    },
-    {
-      title: "Large Language Models in Five Formulas",
-      url: "https://www.youtube.com/watch?v=KCXDr-UOb9A"
-    },
-    {
-      title:"Building LLMs from scratch",
-      url:"https://www.youtube.com/playlist?list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu",
-    },
-    {
-      title:"LangChain Crash Course For Beginners | LangChain Tutorial",
-      url:"https://www.youtube.com/watch?v=nAmC7SoVLd8",
-    },
-    {
       title: "Build a Large Language Model (From Scratch) - Sebastian Raschka",
-      url: "https://livebook.manning.com/book/build-a-large-language-model-from-scratch/title/"
+      url: "https://livebook.manning.com/book/build-a-large-language-model-from-scratch/title/",
+      notes: "Comprehensive book on implementing LLMs from the ground up."
     },
     {
-      title: "Create a Large Language Model from Scratch with Python - Tutorial by elliotarledge",
-      url: "https://www.youtube.com/watch?v=UU1WVnMk4E8&t=4303s"
+      title:"Building LLMs from Scratch",
+      url:"https://www.youtube.com/playlist?list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu",
+      notes: "Video series on implementing language models step-by-step."
     },
     {
-      title: "Attention Is All You Need - Implementation",
-      url: "https://github.com/LvanderGoten/AttentionIsAllYouNeed?tab=readme-ov-file"
-    },
-    {
-      title: "Implement and Train ViT From Scratch for Image Recognition - PyTorch",
-      url: "https://www.youtube.com/watch?v=Vonyoz6Yt9c"
-    },
-    {
-      title: "LLM Training Guide",
-      url: "https://rentry.org/llm-training"
-    },
-    {
-      title: "Application Development using Large Language Models - Andrew Ng",
-      url: "https://nips.cc/virtual/2023/tutorial/73948"
+      title: "Create a Large Language Model from Scratch with Python",
+      url: "https://www.youtube.com/watch?v=UU1WVnMk4E8&t=4303s",
+      notes: "Complete tutorial building an LLM from scratch using Python."
     },
     {
       title: "nanoGPT - Andrej Karpathy",
       url: "https://github.com/karpathy/nanoGPT",
-      notes: "Minimalist implementation of GPT for educational purposes - perfect for understanding LLM internals."
+      notes: "Minimalist GPT implementation for educational purposes."
     },
     {
-      title: "Building LLM Applications with LangChain",
-      url: "https://github.com/gkamradt/langchain-tutorials",
-      notes: "Comprehensive tutorials for building production-ready LLM applications."
-    },
-    {
-      title: "Fine-tuning LLMs with PEFT and LoRA",
-      url: "https://huggingface.co/docs/peft/index",
-      notes: "Parameter-efficient fine-tuning techniques for adapting large models with limited resources."
-    },
-    {
-      title:"Fine Tuning Large Language Model (LLM)",
-      url:"https://www.geeksforgeeks.org/deep-learning/fine-tuning-large-language-model-llm/",
-    },
-    {
-      title: "Retrieval Augmented Generation (RAG) Implementation",
-      url: "https://www.pinecone.io/learn/retrieval-augmented-generation/",
-      notes: "Complete guide to implementing RAG systems for knowledge-grounded LLM applications."
+      title: "Attention Is All You Need - Implementation",
+      url: "https://github.com/LvanderGoten/AttentionIsAllYouNeed?tab=readme-ov-file",
+      notes: "Code implementation of the original Transformer paper."
     },
     {
       title: "LLaMA from Scratch - Understanding Modern LLMs",
       url: "https://github.com/meta-llama/llama",
-      notes: "Meta's LLaMA implementation with architectural insights and training methodology."
+      notes: "Meta's LLaMA implementation with architectural insights."
     },
     {
-      title:"LLM Project | End to End Gen AI Project Using LangChain, Google Palm In Ed-Tech Industry",
-      url:"https://www.youtube.com/watch?v=AjQPRomyd-k",
+      title:"LangChain Crash Course For Beginners",
+      url:"https://www.youtube.com/watch?v=nAmC7SoVLd8",
+      notes: "Quick start guide to building applications with LangChain."
     },
+    {
+      title:"Agentic AI using LangGraph",
+      url:"https://youtube.com/playlist?list=PLKnIA16_RmvYsvB8qkUQuJmJNuiCUJFPL&si=B_rIm5oTWvhEjqSn",
+      notes: "Build stateful multi-agent applications."
+    },
+    {
+      title:"Model Context Protocol (MCP)",
+      url:"https://youtube.com/playlist?list=PLKnIA16_Rmva_oZ9F4ayUu9qcWgF7Fyc0&si=Yjik7y9y6JP6YItt",
+      notes: "Learn to implement MCP for LLM context management."
+    },
+    {
+      title:"LLM Project | End to End Gen AI Project",
+      url:"https://www.youtube.com/watch?v=AjQPRomyd-k",
+      notes: "Complete GenAI project using LangChain and Google Palm."
+    },
+    {
+      title: "Build a RAG Chatbot - Complete Project",
+      url: "https://www.youtube.com/watch?v=tcqEUSNCn8I",
+      notes: "End-to-end document Q&A chatbot with RAG."
+    },
+    {
+      title: "Customer Support AI Agent",
+      url: "https://python.langchain.com/docs/tutorials/agents/",
+      notes: "Build intelligent customer support agent with tools."
+    },
+    {
+      title: "Semantic Search Engine Project",
+      url: "https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/",
+      notes: "Create semantic search with embeddings and vector databases."
+    },
+    {
+      title: "Multi-modal Image Analysis App",
+      url: "https://platform.openai.com/docs/guides/vision",
+      notes: "Build applications with GPT-4V for image understanding."
+    },
+    {
+      title: "Implement and Train ViT From Scratch",
+      url: "https://www.youtube.com/watch?v=Vonyoz6Yt9c",
+      notes: "Vision Transformer implementation for image recognition."
+    }
   ],
-  "Educational Channels": [
+  "Latest Trends & Advanced Topics (2024-2025)": [
+    {
+      title: "Mixture of Experts (MoE) Models",
+      url: "https://huggingface.co/blog/moe",
+      notes: "Understanding MoE architecture used in Mixtral and GPT-4."
+    },
+    {
+      title: "Mixtral 8x7B - Open Source MoE",
+      url: "https://mistral.ai/news/mixtral-of-experts/",
+      notes: "Mistral's powerful open-source mixture of experts model."
+    },
+    {
+      title: "Small Language Models (SLMs)",
+      url: "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/",
+      notes: "Microsoft Phi-2 and the rise of efficient small language models."
+    },
+    {
+      title: "Constitutional AI",
+      url: "https://www.anthropic.com/index/constitutional-ai-harmlessness-from-ai-feedback",
+      notes: "Anthropic's approach to AI alignment and safety."
+    },
+    {
+      title: "Context Window Extensions",
+      url: "https://www.youtube.com/watch?v=kQB5E9RWIiU",
+      notes: "Techniques for extending context windows beyond 100K tokens."
+    },
+    {
+      title: "Sparse Attention Mechanisms",
+      url: "https://arxiv.org/abs/1904.10509",
+      notes: "Efficient attention patterns for long-sequence modeling."
+    },
+    {
+      title: "Streaming LLM Responses",
+      url: "https://platform.openai.com/docs/api-reference/streaming",
+      notes: "Implementing real-time streaming for better UX."
+    },
+    {
+      title: "LLM Compression Techniques",
+      url: "https://www.youtube.com/watch?v=3a61bUTfWqQ",
+      notes: "Latest methods for compressing models without losing performance."
+    },
+    {
+      title: "Prompt Caching for Cost Reduction",
+      url: "https://www.anthropic.com/index/prompt-caching",
+      notes: "Anthropic's prompt caching feature for reducing API costs."
+    },
+    {
+      title: "Model Merging and Fusion",
+      url: "https://huggingface.co/blog/mlabonne/merge-models",
+      notes: "Combining multiple models to create improved versions."
+    },
+    {
+      title: "Code LLMs - StarCoder 2 & CodeLlama",
+      url: "https://huggingface.co/blog/starcoder2",
+      notes: "State-of-the-art open-source code generation models."
+    },
+    {
+      title: "Recursive Self-Improvement",
+      url: "https://arxiv.org/abs/2401.11817",
+      notes: "Models that can improve themselves through feedback loops."
+    }
+  ],
+  "Resources & Latest Trends": [
+    {
+      title: "Mixture of Experts (MoE) Models",
+      url: "https://huggingface.co/blog/moe",
+      notes: "Understanding MoE architecture used in Mixtral and GPT-4."
+    },
+    {
+      title: "Mixtral 8x7B - Open Source MoE",
+      url: "https://mistral.ai/news/mixtral-of-experts/",
+      notes: "Mistral's powerful open-source mixture of experts model."
+    },
+    {
+      title: "Small Language Models (SLMs)",
+      url: "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/",
+      notes: "Microsoft Phi-2 and the rise of efficient small language models."
+    },
+    {
+      title: "Constitutional AI",
+      url: "https://www.anthropic.com/index/constitutional-ai-harmlessness-from-ai-feedback",
+      notes: "Anthropic's approach to AI alignment and safety."
+    },
+    {
+      title: "Prompt Caching for Cost Reduction",
+      url: "https://www.anthropic.com/index/prompt-caching",
+      notes: "Anthropic's prompt caching feature for reducing API costs."
+    },
+    {
+      title: "Model Merging and Fusion",
+      url: "https://huggingface.co/blog/mlabonne/merge-models",
+      notes: "Combining multiple models to create improved versions."
+    },
+    {
+      title: "Code LLMs - StarCoder 2 & CodeLlama",
+      url: "https://huggingface.co/blog/starcoder2",
+      notes: "State-of-the-art open-source code generation models."
+    },
     {
       title: "Umar Jamil",
-      url: "https://www.youtube.com/@umarjamilai"
+      url: "https://www.youtube.com/@umarjamilai",
+      notes: "Deep dives into AI architecture and implementations."
     },
     {
       title: "Andrej Karpathy",
       url: "https://www.youtube.com/@AndrejKarpathy",
-      notes: "Former Tesla AI director and OpenAI founding member sharing deep learning insights."
+      notes: "Former Tesla AI director and OpenAI founding member."
     },
     {
       title: "Two Minute Papers",
       url: "https://www.youtube.com/@TwoMinutePapers",
-      notes: "Latest AI research papers explained in an accessible and engaging format."
+      notes: "Latest AI research papers explained accessibly."
     },
-    {
-      title: "StatQuest with Josh Starmer",
-      url: "https://www.youtube.com/@statquest",
-      notes: "Clear explanations of machine learning and statistics concepts with great visualizations."
-    },
-    {
-      title: "Yannic Kilcher",
-      url: "https://www.youtube.com/@YannicKilcher",
-      notes: "In-depth paper reviews and discussions on cutting-edge AI research."
-    },
-    {
-      title: "AI Coffee Break with Letitia",
-      url: "https://www.youtube.com/@AICoffeeBreak",
-      notes: "Accessible explanations of AI concepts and latest developments in machine learning."
-    },
-    {
-      title: "3Blue1Brown",
-      url: "https://www.youtube.com/@3blue1brown",
-      notes: "Mathematical foundations of neural networks with stunning visualizations."
-    },
-    {
-      title: "Sentdex",
-      url: "https://www.youtube.com/@sentdex",
-      notes: "Python programming tutorials for machine learning and AI applications."
-    }
-  ],
-  "Visualization and Research": [
     {
       title: "LLM Visualization",
-      url: "https://bbycroft.net/llm"
-    },
-    {
-      title: "Building effective agents - Anthropic",
-      url: "https://www.anthropic.com/research/building-effective-agents"
+      url: "https://bbycroft.net/llm",
+      notes: "Interactive 3D visualization of how LLMs work internally."
     },
     {
       title: "Awesome Generative AI Guide",
       url: "https://github.com/aishwaryanr/awesome-generative-ai-guide",
-      notes: "NOTE: This is a GitHub repository containing a curated list of resources and papers related to Generative AI. A must visit for everyone."
+      notes: "Curated list of GenAI resources and papers."
     },
     {
       title: "Papers With Code - Language Models",
       url: "https://paperswithcode.com/methods/category/language-models",
-      notes: "Latest research papers with code implementations for language models and benchmarks."
+      notes: "Latest research papers with code implementations."
     },
     {
       title: "Transformer Explainer",
       url: "https://poloclub.github.io/transformer-explainer/",
-      notes: "Interactive visualization showing how transformers process text step-by-step."
-    },
-    {
-      title: "TensorFlow Playground",
-      url: "https://playground.tensorflow.org/",
-      notes: "Interactive neural network visualization for understanding how networks learn."
-    },
-    {
-      title: "Distill.pub - Research Distillery",
-      url: "https://distill.pub/",
-      notes: "High-quality interactive articles explaining machine learning research with clear visualizations."
-    },
-    {
-      title: "The Gradient - AI Research Community",
-      url: "https://thegradient.pub/",
-      notes: "Digital magazine featuring perspectives on AI research, policy, and applications."
+      notes: "Interactive visualization of transformer processing."
     },
     {
       title: "OpenAI Research Publications",
       url: "https://openai.com/research",
-      notes: "Latest research from OpenAI including GPT models, DALL-E, and safety research."
-    },
-    {
-      title: "Google AI Research",
-      url: "https://ai.google/research/",
-      notes: "Cutting-edge research papers and projects from Google's AI teams."
+      notes: "Latest research from OpenAI."
     },
     {
       title: "Anthropic Research",
       url: "https://www.anthropic.com/research",
-      notes: "Research on AI safety, interpretability, and building reliable AI systems."
+      notes: "Research on AI safety and interpretability."
     }
   ]
 };
