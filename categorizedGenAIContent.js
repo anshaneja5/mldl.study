@@ -291,12 +291,12 @@ const genai = {
       notes: "Building semantic search systems using embeddings and vector databases."
     },
     {
-      title: "Comparing Vector Databases",
+      title: "Comparing Vector Databases - 2023 Guide",
       url: "https://towardsdatascience.com/vector-databases-in-2023-a-complete-guide-5e0d7c73f71a",
       notes: "Comprehensive comparison of popular vector database solutions."
     },
     {
-      title: "Comparing Vector Databases",
+      title: "Comparing Vector Databases - Milvus, Pinecone, Weaviate",
       url: "https://towardsdatascience.com/milvus-pinecone-vespa-weaviate-vald-gsi-what-unites-these-buzz-words-and-what-makes-each-9c65a3bd0696",
       notes: "In-depth comparison of popular vector database solutions."
     }
