@@ -17,7 +17,7 @@ const topics = [
   { id: 5, name: 'Vector Databases & Embeddings', x: 50, y: 34, color: '#6366f1', icon: '🗄️' },
   { id: 6, name: 'Fine-tuning & PEFT', x: 80, y: 34, color: '#6366f1', icon: '⚙️' },
   { id: 7, name: 'AI Agents & Agentic Workflows', x: 25, y: 48, color: '#8b5cf6', icon: '🤖' },
-  { id: 8, name: 'Multi-modal Models', x: 55, y: 48, color: '#8b5cf6', icon: '🎨' },
+  { id: 8, name: 'Multimodal Models', x: 55, y: 48, color: '#8b5cf6', icon: '🎨' },
   { id: 9, name: 'LLM Evaluation & Benchmarks', x: 80, y: 48, color: '#8b5cf6', icon: '📊' },
   { id: 10, name: 'Deployment & Production', x: 30, y: 62, color: '#a78bfa', icon: '🚀' },
   { id: 11, name: 'Implementation Guides', x: 70, y: 62, color: '#a78bfa', icon: '💻' },
