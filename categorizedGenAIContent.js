@@ -362,7 +362,7 @@ const genai = {
     {
       title: "ReAct: Reasoning and Acting",
       url: "https://arxiv.org/abs/2210.03629",
-      notes: "Framework for building agents that reason and take actions."
+      notes: "Seminal framework for agents that interleave reasoning and actions; also listed in the Prompt Engineering section for its prompting strategy implications."
     },
     {
       title: "LangGraph for Agent Workflows",
