@@ -10,17 +10,18 @@ import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
 
 const topics = [
-  { id: 1, name: 'Courses and Tutorials', x: 50, y: 8, color: '#3b82f6', icon: '📚' },
-  { id: 2, name: 'Transformer Fundamentals', x: 30, y: 22, color: '#3b82f6', icon: '🧠' },
-  { id: 3, name: 'Prompt Engineering', x: 70, y: 22, color: '#3b82f6', icon: '✨' },
-  { id: 4, name: 'RAG (Retrieval-Augmented Generation)', x: 20, y: 38, color: '#6366f1', icon: '🔎' },
-  { id: 5, name: 'Vector Databases & Embeddings', x: 50, y: 38, color: '#6366f1', icon: '🗄️' },
-  { id: 6, name: 'Fine-tuning & PEFT', x: 80, y: 38, color: '#6366f1', icon: '⚙️' },
-  { id: 7, name: 'AI Agents & Agentic Workflows', x: 30, y: 55, color: '#8b5cf6', icon: '🤖' },
-  { id: 8, name: 'Multi-modal Models', x: 70, y: 55, color: '#8b5cf6', icon: '🎨' },
-  { id: 9, name: 'Deployment & Production', x: 35, y: 72, color: '#a78bfa', icon: '🚀' },
-  { id: 10, name: 'Implementation Guides', x: 65, y: 72, color: '#a78bfa', icon: '💻' },
-  { id: 11, name: 'Resources & Latest Trends', x: 50, y: 88, color: '#c4b5fd', icon: '🔥' },
+  { id: 1, name: 'Courses and Tutorials', x: 50, y: 7, color: '#3b82f6', icon: '📚' },
+  { id: 2, name: 'Transformer Fundamentals', x: 30, y: 20, color: '#3b82f6', icon: '🧠' },
+  { id: 3, name: 'Prompt Engineering', x: 70, y: 20, color: '#3b82f6', icon: '✨' },
+  { id: 4, name: 'RAG (Retrieval-Augmented Generation)', x: 20, y: 34, color: '#6366f1', icon: '🔎' },
+  { id: 5, name: 'Vector Databases & Embeddings', x: 50, y: 34, color: '#6366f1', icon: '🗄️' },
+  { id: 6, name: 'Fine-tuning & PEFT', x: 80, y: 34, color: '#6366f1', icon: '⚙️' },
+  { id: 7, name: 'AI Agents & Agentic Workflows', x: 25, y: 48, color: '#8b5cf6', icon: '🤖' },
+  { id: 8, name: 'Multi-modal Models', x: 55, y: 48, color: '#8b5cf6', icon: '🎨' },
+  { id: 9, name: 'LLM Evaluation & Benchmarks', x: 80, y: 48, color: '#8b5cf6', icon: '📊' },
+  { id: 10, name: 'Deployment & Production', x: 30, y: 62, color: '#a78bfa', icon: '🚀' },
+  { id: 11, name: 'Implementation Guides', x: 70, y: 62, color: '#a78bfa', icon: '💻' },
+  { id: 12, name: 'Resources & Latest Trends', x: 50, y: 76, color: '#c4b5fd', icon: '🔥' },
 ];
 
 const connections = [
@@ -28,9 +29,10 @@ const connections = [
   { from: 2, to: 4 }, { from: 2, to: 5 },
   { from: 3, to: 5 }, { from: 3, to: 6 },
   { from: 4, to: 7 }, { from: 5, to: 7 }, { from: 5, to: 8 },
-  { from: 6, to: 8 },
-  { from: 7, to: 9 }, { from: 8, to: 10 },
-  { from: 9, to: 11 }, { from: 10, to: 11 },
+  { from: 6, to: 8 }, { from: 6, to: 9 },
+  { from: 7, to: 10 }, { from: 8, to: 9 }, { from: 8, to: 11 },
+  { from: 9, to: 10 }, { from: 9, to: 11 },
+  { from: 10, to: 12 }, { from: 11, to: 12 },
 ];
 
 const GenerativeAIRoadmap = () => {

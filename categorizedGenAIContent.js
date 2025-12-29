@@ -219,9 +219,9 @@ const genai = {
       notes: "Exploring advanced techniques for improving RAG performance and accuracy."
     },
     {
-      title: "RAG Tutorial - DeepLearning.AI",
+      title: "Building RAG Applications with Vector Databases",
       url: "https://www.deeplearning.ai/short-courses/building-applications-vector-databases/",
-      notes: "Hands-on course on building RAG applications with vector databases."
+      notes: "Hands-on DeepLearning.AI course on building RAG applications with vector databases."
     },
     {
       title: "Chunking Strategies for RAG",
@@ -296,9 +296,9 @@ const genai = {
       notes: "Comprehensive comparison of popular vector database solutions."
     },
     {
-      title: "Building a Vector Search Engine",
-      url: "https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/",
-      notes: "Hands-on course on implementing vector search with embeddings."
+      title: "Comparing Vector Databases",
+      url: "https://towardsdatascience.com/milvus-pinecone-vespa-weaviate-vald-gsi-what-unites-these-buzz-words-and-what-makes-each-9c65a3bd0696",
+      notes: "In-depth comparison of popular vector database solutions."
     }
   ],
   "Fine-tuning & PEFT": [
@@ -313,7 +313,7 @@ const genai = {
       notes: "Parameter-efficient fine-tuning method that adapts LLMs with minimal resources."
     },
     {
-      title: "QLoRA: Efficient Finetuning of Quantized LLMs",
+      title: "QLoRA: Efficient Fine-Tuning of Quantized LLMs",
       url: "https://arxiv.org/abs/2305.14314",
       notes: "Fine-tune large models on consumer GPUs with quantization."
     },
@@ -623,14 +623,14 @@ const genai = {
       notes: "Build intelligent customer support agent with tools."
     },
     {
-      title: "Semantic Search Engine Project",
-      url: "https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/",
-      notes: "Create semantic search with embeddings and vector databases."
+      title: "Code Interpreter with LLMs",
+      url: "https://python.langchain.com/docs/integrations/tools/",
+      notes: "Build applications that execute Python code with LLMs."
     },
     {
-      title: "Multi-modal Image Analysis App",
-      url: "https://platform.openai.com/docs/guides/vision",
-      notes: "Build applications with GPT-4V for image understanding."
+      title: "PDF Document Analyzer",
+      url: "https://python.langchain.com/docs/tutorials/pdf_qa/",
+      notes: "Build applications to analyze and extract information from PDFs."
     },
     {
       title: "Implement and Train ViT From Scratch",
@@ -638,7 +638,7 @@ const genai = {
       notes: "Vision Transformer implementation for image recognition."
     }
   ],
-  "Latest Trends & Advanced Topics (2024-2025)": [
+  "Resources & Latest Trends": [
     {
       title: "Mixture of Experts (MoE) Models",
       url: "https://huggingface.co/blog/moe",
@@ -698,43 +698,6 @@ const genai = {
       title: "Recursive Self-Improvement",
       url: "https://arxiv.org/abs/2401.11817",
       notes: "Models that can improve themselves through feedback loops."
-    }
-  ],
-  "Resources & Latest Trends": [
-    {
-      title: "Mixture of Experts (MoE) Models",
-      url: "https://huggingface.co/blog/moe",
-      notes: "Understanding MoE architecture used in Mixtral and GPT-4."
-    },
-    {
-      title: "Mixtral 8x7B - Open Source MoE",
-      url: "https://mistral.ai/news/mixtral-of-experts/",
-      notes: "Mistral's powerful open-source mixture of experts model."
-    },
-    {
-      title: "Small Language Models (SLMs)",
-      url: "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/",
-      notes: "Microsoft Phi-2 and the rise of efficient small language models."
-    },
-    {
-      title: "Constitutional AI",
-      url: "https://www.anthropic.com/index/constitutional-ai-harmlessness-from-ai-feedback",
-      notes: "Anthropic's approach to AI alignment and safety."
-    },
-    {
-      title: "Prompt Caching for Cost Reduction",
-      url: "https://www.anthropic.com/index/prompt-caching",
-      notes: "Anthropic's prompt caching feature for reducing API costs."
-    },
-    {
-      title: "Model Merging and Fusion",
-      url: "https://huggingface.co/blog/mlabonne/merge-models",
-      notes: "Combining multiple models to create improved versions."
-    },
-    {
-      title: "Code LLMs - StarCoder 2 & CodeLlama",
-      url: "https://huggingface.co/blog/starcoder2",
-      notes: "State-of-the-art open-source code generation models."
     },
     {
       title: "Umar Jamil",
