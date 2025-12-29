@@ -405,7 +405,7 @@ const genai = {
       notes: "Managing conversation history and state in AI agents."
     }
   ],
-  "Multi-modal Models": [
+  "Multimodal Models": [
     {
       title: "GPT-4V (Vision) - OpenAI",
       url: "https://platform.openai.com/docs/guides/vision",
