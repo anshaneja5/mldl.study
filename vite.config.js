@@ -6,4 +6,11 @@ export default defineConfig({
     'process.env': process.env,
   },
   plugins: [react()],
+  server: {
+    // Ensure static files like sitemap.xml are served correctly
+    middlewareMode: false,
+    fs: {
+      strict: false,
+    },
+  },
 });
