@@ -1,0 +1,9 @@
+# robots.txt for mldl.study - AI and ML Learning Roadmaps
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mldl.study/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

@@ -347,14 +347,28 @@ const GenerativeAIRoadmap = () => {
   return (
     <>
       <Helmet>
-        <title>Generative AI Roadmap | Your Roadmap to GenAI Mastery</title>
+        <title>Generative AI Roadmap | Learn GPT, LLM & AI Models Tutorial</title>
         <meta
           name="description"
-          content="Navigate our comprehensive Generative AI Roadmap featuring expert resources, tutorials, and progress tracking to master generative AI techniques."
+          content="Master Generative AI with our comprehensive GenAI roadmap. Learn GPT, LLMs, diffusion models, and transformers. Free tutorials, resources, and progress tracking for generative AI mastery."
         />
-        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="generative ai roadmap, genai roadmap, gpt tutorial, llm tutorial, large language models, generative ai course, learn generative ai, chatgpt guide, stable diffusion, ai models, transformer tutorial" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://mldl.study/genai" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://mldl.study/genai" />
+        <meta property="og:title" content="Generative AI Roadmap | Learn GPT, LLM & AI Models Tutorial" />
+        <meta property="og:description" content="Master Generative AI with our comprehensive GenAI roadmap. Learn GPT, LLMs, diffusion models, and transformers." />
+        <meta property="og:image" content="https://mldl.study/ml-roadmap2.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Generative AI Roadmap | Learn GPT, LLM & AI Models Tutorial" />
+        <meta name="twitter:description" content="Master Generative AI with our comprehensive GenAI roadmap. Learn GPT, LLMs, diffusion models, and transformers." />
+        <meta name="twitter:image" content="https://mldl.study/ml-roadmap2.png" />
       </Helmet>
 
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />

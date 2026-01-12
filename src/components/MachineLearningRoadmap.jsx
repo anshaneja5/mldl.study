@@ -292,14 +292,28 @@ const MachineLearningRoadmap = () => {
     <>
       {/* SEO Meta Tags */}
       <Helmet>
-        <title>Machine Learning Roadmap | Your Roadmap to ML Mastery</title>
+        <title>Machine Learning Roadmap | Complete ML Learning Path & Tutorial Guide</title>
         <meta
           name="description"
-          content="Master machine learning with our comprehensive interactive roadmap featuring videos, exercises, and progress tracking. Start your journey to becoming an ML expert today."
+          content="Interactive machine learning roadmap with free ML tutorials, videos, and exercises. Master regression, classification, clustering, and ensemble learning. Track your ML learning progress."
         />
-        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="machine learning roadmap, ml roadmap, learn machine learning, ml tutorial, machine learning course, ml learning path, regression tutorial, classification algorithms, clustering algorithms" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://mldl.study/machinelearning" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://mldl.study/machinelearning" />
+        <meta property="og:title" content="Machine Learning Roadmap | Complete ML Learning Path & Tutorial Guide" />
+        <meta property="og:description" content="Interactive machine learning roadmap with free ML tutorials, videos, and exercises. Master regression, classification, clustering, and ensemble learning." />
+        <meta property="og:image" content="https://mldl.study/ml-roadmap2.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Machine Learning Roadmap | Complete ML Learning Path & Tutorial Guide" />
+        <meta name="twitter:description" content="Interactive machine learning roadmap with free ML tutorials, videos, and exercises." />
+        <meta name="twitter:image" content="https://mldl.study/ml-roadmap2.png" />
       </Helmet>
 
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />

@@ -298,14 +298,28 @@ const DeepLearningRoadmap = () => {
   return (
     <>
       <Helmet>
-        <title>Deep Learning Roadmap | Your Roadmap to AI Mastery</title>
+        <title>Deep Learning Roadmap | Neural Networks & AI Tutorial Guide</title>
         <meta
           name="description"
-          content="Navigate our comprehensive Deep Learning Roadmap featuring expert resources, tutorials, and progress tracking to master deep learning techniques."
+          content="Complete deep learning roadmap with neural networks, CNNs, RNNs, and transformers tutorials. Free DL resources, interactive learning path, and progress tracking for mastering deep learning."
         />
-        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="deep learning roadmap, neural networks tutorial, deep learning course, cnn tutorial, rnn tutorial, transformer models, learn deep learning, dl roadmap, ai roadmap, deep learning guide" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://mldl.study/deeplearning" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://mldl.study/deeplearning" />
+        <meta property="og:title" content="Deep Learning Roadmap | Neural Networks & AI Tutorial Guide" />
+        <meta property="og:description" content="Complete deep learning roadmap with neural networks, CNNs, RNNs, and transformers tutorials. Free DL resources and interactive learning path." />
+        <meta property="og:image" content="https://mldl.study/ml-roadmap2.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Deep Learning Roadmap | Neural Networks & AI Tutorial Guide" />
+        <meta name="twitter:description" content="Complete deep learning roadmap with neural networks, CNNs, RNNs, and transformers tutorials." />
+        <meta name="twitter:image" content="https://mldl.study/ml-roadmap2.png" />
       </Helmet>
 
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />
