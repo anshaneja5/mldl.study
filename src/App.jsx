@@ -16,6 +16,7 @@ import TermsOfUse from './components/TermsOfUse';
 import LearnerDashboard from './components/LearnerDashboard';
 import Bookmarks from './components/Bookmarks';
 import { BookmarksProvider } from './contexts/BookmarksContext';
+import LastVisitedTracker from './components/LastVisitedTracker';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
 if (trackingId) {
@@ -26,6 +27,7 @@ const App = () => {
   return (
     <BookmarksProvider>
       <Router>
+        <LastVisitedTracker />
         <div className="min-h-screen bg-gray-100">
           <Routes>
             <Route path="/" element={<HomePage />} />

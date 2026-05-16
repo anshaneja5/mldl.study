@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 import Footer from './Footer';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
+import ContinueLearning from './ContinueLearning';
 
 // FAQ Data
 const FAQ_DATA = [
@@ -297,7 +298,7 @@ const HomePage = () => {
             </motion.div>
           </motion.header>
 
-          
+          <ContinueLearning darkMode={darkMode} />
 
           {/* Roadmap Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full mb-20">
