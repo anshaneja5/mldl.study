@@ -26,7 +26,7 @@ const App = () => {
   return (
     <BookmarksProvider>
       <Router>
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/deeplearning" element={<DeepLearning />} />
