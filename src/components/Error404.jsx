@@ -1,25 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import AuroraBackground from './AuroraBackground';
+import useDarkMode from './useDarkMode';
 
 const Error404 = () => {
+  const [darkMode, toggleDarkMode] = useDarkMode();
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
-      <h1 className="text-6xl md:text-8xl font-bold mb-4 text-purple-600">
-        404
-      </h1>
-      <h2 className="text-2xl md:text-3xl font-semibold mb-2 text-center">
-        Oops! Page Not Found
-      </h2>
-      <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 text-center mb-6">
-        The page you're looking for doesn't exist or has been moved.
-      </p>
-      <Link
-        to="/"
-        className="bg-purple-600 dark:bg-purple-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-purple-700 dark:hover:bg-purple-400 transition-all duration-300"
-      >
-        Go Back to Home
-      </Link>
-    </div>
+    <>
+      <AuroraBackground />
+
+      <div className="flex min-h-screen flex-col">
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
+        <main className="flex flex-grow flex-col items-center justify-center px-4 pb-20 pt-10 text-center sm:pt-14">
+          <h1 className="text-aurora text-[7rem] font-extrabold leading-none tracking-tight sm:text-[10rem]">
+            404
+          </h1>
+          <h2 className="mt-2 text-2xl font-semibold text-ink sm:text-3xl">
+            Oops! Page Not Found
+          </h2>
+          <p className="mt-3 max-w-md text-soft">
+            The page you're looking for doesn't exist or has been moved.
+          </p>
+          <Link to="/" className="btn-aurora mt-8 rounded-2xl px-6 py-3">
+            Go Back to Home
+          </Link>
+        </main>
+
+        <Footer darkMode={darkMode} />
+      </div>
+    </>
   );
 };
 

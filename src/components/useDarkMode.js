@@ -23,6 +23,8 @@ const useDarkMode = () => {
   useEffect(() => {
     // Update class on <html> when darkMode changes
     document.documentElement.classList.toggle('dark', darkMode);
+    // Keep the canvas color in sync (the pre-paint inline style overrides CSS)
+    document.documentElement.style.backgroundColor = darkMode ? '#060713' : '#f6f7fb';
 
     // Save to localStorage when user explicitly toggles
     // (not on initial load from browser preference)

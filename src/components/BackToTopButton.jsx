@@ -31,11 +31,11 @@ const BackToTopButton = () => {
 
   return (
     <button
-      className={`fixed bottom-8 right-8 z-50 p-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-900 transition-all duration-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
+      className={`fixed bottom-7 right-7 z-50 grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-aurora-violet to-aurora-cyan text-[#04060f] shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow-lg ${isVisible ? 'pointer-events-auto opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-90'}`}
       onClick={scrollToTop}
       aria-label="Go to top"
     >
-      <ArrowUp className="w-6 h-6" />
+      <ArrowUp className="h-5 w-5" strokeWidth={2.5} />
     </button>
   );
 };

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
+import AuroraBackground from './AuroraBackground';
 
 const QuestionBank = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
@@ -36,104 +37,59 @@ const QuestionBank = () => {
   }, [bookmarks]);
 
   const topics = [
-    { 
-      id: 'python', 
-      name: 'Python Basics', 
-      icon: Code2, 
-      color: 'from-blue-500 to-cyan-500',
-      bgLight: 'bg-blue-50',
-      bgDark: 'bg-blue-900/20',
-      borderLight: 'border-blue-200',
-      borderDark: 'border-blue-500/30',
-      iconColor: 'text-blue-600'
+    {
+      id: 'python',
+      name: 'Python Basics',
+      icon: Code2,
+      color: 'from-emerald-400 to-teal-400',
     },
-    { 
-      id: 'sql', 
-      name: 'SQL', 
-      icon: Database, 
-      color: 'from-purple-500 to-pink-500',
-      bgLight: 'bg-purple-50',
-      bgDark: 'bg-purple-900/20',
-      borderLight: 'border-purple-200',
-      borderDark: 'border-purple-500/30',
-      iconColor: 'text-purple-600 dark:text-purple-400'
+    {
+      id: 'sql',
+      name: 'SQL',
+      icon: Database,
+      color: 'from-aurora-cyan to-aurora-blue',
     },
-    { 
-      id: 'ml', 
-      name: 'Machine Learning', 
-      icon: Brain, 
-      color: 'from-green-500 to-teal-500',
-      bgLight: 'bg-green-50',
-      bgDark: 'bg-green-900/20',
-      borderLight: 'border-green-200',
-      borderDark: 'border-green-500/30',
-      iconColor: 'text-green-600 dark:text-green-400'
+    {
+      id: 'ml',
+      name: 'Machine Learning',
+      icon: Brain,
+      color: 'from-aurora-blue to-aurora-indigo',
     },
-    { 
-      id: 'dl', 
-      name: 'Deep Learning', 
-      icon: Cpu, 
-      color: 'from-indigo-500 to-blue-500',
-      bgLight: 'bg-indigo-50',
-      bgDark: 'bg-indigo-900/20',
-      borderLight: 'border-indigo-200',
-      borderDark: 'border-indigo-500/30',
-      iconColor: 'text-indigo-600 dark:text-indigo-400'
+    {
+      id: 'dl',
+      name: 'Deep Learning',
+      icon: Cpu,
+      color: 'from-aurora-violet to-aurora-fuchsia',
     },
-    { 
-      id: 'genai', 
-      name: 'Generative AI', 
-      icon: Sparkles, 
-      color: 'from-blue-500 to-cyan-500',
-      bgLight: 'bg-blue-50',
-      bgDark: 'bg-blue-900/20',
-      borderLight: 'border-blue-200',
-      borderDark: 'border-blue-500/30',
-      iconColor: 'text-blue-600'
+    {
+      id: 'genai',
+      name: 'Generative AI',
+      icon: Sparkles,
+      color: 'from-aurora-amber to-orange-400',
     },
-    { 
-      id: 'rag', 
-      name: 'RAG', 
-      icon: Sparkles, 
-      color: 'from-teal-500 to-cyan-500',
-      bgLight: 'bg-teal-50',
-      bgDark: 'bg-teal-900/20',
-      borderLight: 'border-teal-200',
-      borderDark: 'border-teal-500/30',
-      iconColor: 'text-teal-600 dark:text-teal-400'
+    {
+      id: 'rag',
+      name: 'RAG',
+      icon: Sparkles,
+      color: 'from-teal-400 to-aurora-cyan',
     },
-    { 
-      id: 'statistics', 
-      name: 'Statistics', 
-      icon: BarChart3, 
-      color: 'from-orange-500 to-red-500',
-      bgLight: 'bg-orange-50',
-      bgDark: 'bg-orange-900/20',
-      borderLight: 'border-orange-200',
-      borderDark: 'border-orange-500/30',
-      iconColor: 'text-orange-600 dark:text-orange-400'
+    {
+      id: 'statistics',
+      name: 'Statistics',
+      icon: BarChart3,
+      color: 'from-aurora-cyan to-emerald-400',
     },
-    { 
-      id: 'algorithms', 
-      name: 'Algorithms', 
-      icon: GitBranch, 
-      color: 'from-yellow-500 to-orange-500',
-      bgLight: 'bg-yellow-50',
-      bgDark: 'bg-yellow-900/20',
-      borderLight: 'border-yellow-200',
-      borderDark: 'border-yellow-500/30',
-      iconColor: 'text-yellow-600 dark:text-yellow-400'
+    {
+      id: 'algorithms',
+      name: 'Algorithms',
+      icon: GitBranch,
+      color: 'from-aurora-indigo to-aurora-violet',
     },
     {
       id: 'bookmarks',
       name: 'Bookmarked Questions',
       icon: Bookmark,
-      color: 'from-pink-500 to-rose-500',
-      bgLight: 'bg-pink-50',
-      bgDark: 'bg-pink-900/20',
-      borderLight: 'border-pink-200',
-      borderDark: 'border-pink-500/30',
-      iconColor: 'text-pink-600 dark:text-pink-400'
+      color: 'from-aurora-fuchsia to-pink-400',
     }
   ];
 
@@ -263,7 +219,7 @@ const QuestionBank = () => {
 
       // Final shuffle of all collected questions
       const shuffled = finalQuestions.sort(() => 0.5 - Math.random());
-      
+
       setQuestions(shuffled);
       setCurrentQuestion(0);
       setSelectedAnswer(null);
@@ -340,7 +296,7 @@ const QuestionBank = () => {
     setBookmarks(prev => {
       const newBookmarks = { ...prev };
       const topicBookmarks = newBookmarks[topicId] || [];
-      
+
       if (topicBookmarks.includes(questionId)) {
         // Remove bookmark
         newBookmarks[topicId] = topicBookmarks.filter(id => id !== questionId);
@@ -351,7 +307,7 @@ const QuestionBank = () => {
         // Add bookmark
         newBookmarks[topicId] = [...topicBookmarks, questionId];
       }
-      
+
       return newBookmarks;
     });
   };
@@ -363,35 +319,41 @@ const QuestionBank = () => {
   if (!selectedTopic && !isCreatingTest && !isTestMode) {
     return (
       <>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className={`text-5xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                Question Bank 📚
+        <AuroraBackground />
+        <div className="flex min-h-screen flex-col">
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="mx-auto mb-12 max-w-2xl text-center"
+            >
+              <span className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-soft">
+                Practice & Quiz
+              </span>
+              <h1 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+                Question <span className="text-aurora">Bank</span>
               </h1>
-              <p className={`text-xl ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Test your knowledge across various topics
+              <p className="mx-auto mt-4 max-w-xl text-soft">
+                Test your knowledge across various topics.
               </p>
-              <p className={`mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className="mt-1 text-sm text-faint">
                 Select a topic to start practicing
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center mb-12">
+            <div className="mb-12 text-center">
               <button
                 onClick={() => setIsCreatingTest(true)}
-                className={`
-                  px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl
-                  ${darkMode ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-emerald-500 text-white hover:bg-emerald-600'}
-                `}
+                className="btn-aurora rounded-2xl px-6 py-3 text-[15px]"
               >
-                <FilePlus className="inline-block mr-2" /> Create a Custom Test
+                <FilePlus className="h-[18px] w-[18px]" /> Create a Custom Test
               </button>
             </div>
-            
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+
+            <motion.div
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
               variants={{
                 visible: { transition: { staggerChildren: 0.05 } }
               }}
@@ -404,44 +366,26 @@ const QuestionBank = () => {
                   <motion.div
                     key={topic.id}
                     onClick={() => setSelectedTopic(topic.id)}
-                    className={`
-                      ${darkMode ? `${topic.bgDark} border ${topic.borderDark}` : `${topic.bgLight} border ${topic.borderLight}`}
-                      rounded-2xl p-8 cursor-pointer hover:scale-105 transition-all duration-300
-                      ${topic.id === 'bookmarks' 
-                        ? `relative overflow-hidden ${darkMode ? 'shadow-pink-500/20' : 'shadow-pink-200'}` 
-                        : ''
-                      }
-                      shadow-lg hover:shadow-2xl group
-                    `}
+                    className="group relative cursor-pointer overflow-hidden rounded-3xl glass glass-sheen p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                   >
-                    <div className={`
-                      w-16 h-16 mb-6 rounded-xl flex items-center justify-center
-                      bg-gradient-to-br ${topic.color}
-                      group-hover:scale-110 transition-transform duration-300
-                    `}>
-                      <Icon size={32} className="text-white" />
-                      {topic.id === 'bookmarks' && (
-                        <div className={`absolute inset-0 rounded-xl ${
-                          darkMode ? 'bg-pink-400/30' : 'bg-pink-300/30'
-                        } animate-pulse`}></div>
-                      )}
+                    <div className={`mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br ${topic.color} text-[#06070f] shadow-lg transition-transform duration-300 group-hover:scale-105`}>
+                      <Icon size={28} />
                     </div>
-                    <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    <h3 className="font-display text-xl font-bold text-ink">
                       {topic.name}
                     </h3>
-                    <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p className="mt-1.5 text-sm text-soft">
                       Click to start practicing
                     </p>
                   </motion.div>
                 );
               })}
             </motion.div>
-          </div>
+          </main>
+          <Footer darkMode={darkMode} />
         </div>
-
         <BackToTopButton />
-        <Footer darkMode={darkMode} />
       </>
     );
   }
@@ -449,75 +393,81 @@ const QuestionBank = () => {
   if (isCreatingTest) {
     return (
       <>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
-          <div className="max-w-4xl mx-auto">
-            <button
-              onClick={() => setIsCreatingTest(false)}
-              className={`mb-6 px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2 ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700' : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'}`}
-            >
-              <ArrowLeft size={20} /> Back to Topics
-            </button>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-xl p-8`}>
-              <h2 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Create Your Custom Test</h2>
-              
-              <div className="mb-8">
-                <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>1. Select Topics</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {topics.map(topic => (
-                    <button
-                      key={topic.id}
-                      onClick={() => handleTopicToggle(topic.id)}
-                      className={`p-4 rounded-lg border-2 text-center transition-all ${
-                        selectedTestTopics.includes(topic.id)
-                          ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
-                          : 'border-gray-300 dark:border-gray-600 hover:border-emerald-400 dark:hover:border-emerald-500'
-                      }`}
-                    >
-                      <topic.icon className={`mx-auto mb-2 ${selectedTestTopics.includes(topic.id) ? 'text-emerald-600 dark:text-emerald-400' : topic.iconColor}`} size={24} />
-                      <span className={`${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>{topic.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mb-8 grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>2. Number of Questions</h3>
-                  <input
-                    type="number"
-                    value={numQuestions}
-                    onChange={(e) => setNumQuestions(Math.max(1, parseInt(e.target.value, 10)))}
-                    className={`w-full p-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-300'}`}
-                    min="1"
-                    max="50"
-                  />
-                </div>
-                <div>
-                  <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>3. Time Limit (minutes)</h3>
-                  <input
-                    type="number"
-                    value={timeLimit}
-                    onChange={(e) => setTimeLimit(Math.max(1, parseInt(e.target.value, 10)))}
-                    className={`w-full p-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-300'}`}
-                    min="1"
-                  />
-                </div>
-              </div>
-
-              {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-
+        <AuroraBackground />
+        <div className="flex min-h-screen flex-col">
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
+            <div className="mx-auto max-w-4xl">
               <button
-                onClick={loadTestQuestions}
-                disabled={selectedTestTopics.length === 0 || loading}
-                className="w-full px-8 py-4 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold text-lg"
+                onClick={() => setIsCreatingTest(false)}
+                className="mb-6 inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 text-sm font-medium text-ink transition-all duration-300 hover:shadow-glow"
               >
-                {loading ? 'Generating Test...' : 'Start Test'}
+                <ArrowLeft size={18} /> Back to Topics
               </button>
+              <div className="rounded-3xl glass glass-sheen p-8">
+                <h2 className="font-display text-3xl font-bold text-ink">Create Your Custom Test</h2>
+
+                <div className="mt-8 mb-8">
+                  <h3 className="mb-4 font-display text-lg font-semibold text-ink">1. Select Topics</h3>
+                  <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+                    {topics.map(topic => {
+                      const isSelected = selectedTestTopics.includes(topic.id);
+                      return (
+                        <button
+                          key={topic.id}
+                          onClick={() => handleTopicToggle(topic.id)}
+                          className={`rounded-2xl border p-4 text-center transition-all duration-200 ${
+                            isSelected
+                              ? 'border-emerald-400/60 bg-emerald-500/10 shadow-glow'
+                              : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.04]'
+                          }`}
+                        >
+                          <topic.icon className={`mx-auto mb-2 ${isSelected ? 'text-emerald-400' : 'text-soft'}`} size={24} />
+                          <span className={`text-sm ${isSelected ? 'text-ink' : 'text-soft'}`}>{topic.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="mb-8 grid gap-6 md:grid-cols-2">
+                  <div>
+                    <h3 className="mb-4 font-display text-lg font-semibold text-ink">2. Number of Questions</h3>
+                    <input
+                      type="number"
+                      value={numQuestions}
+                      onChange={(e) => setNumQuestions(Math.max(1, parseInt(e.target.value, 10)))}
+                      className="w-full rounded-2xl glass px-4 py-2.5 text-ink outline-none transition-shadow placeholder:text-faint focus:shadow-glow"
+                      min="1"
+                      max="50"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="mb-4 font-display text-lg font-semibold text-ink">3. Time Limit (minutes)</h3>
+                    <input
+                      type="number"
+                      value={timeLimit}
+                      onChange={(e) => setTimeLimit(Math.max(1, parseInt(e.target.value, 10)))}
+                      className="w-full rounded-2xl glass px-4 py-2.5 text-ink outline-none transition-shadow placeholder:text-faint focus:shadow-glow"
+                      min="1"
+                    />
+                  </div>
+                </div>
+
+                {error && <p className="mb-4 text-center text-rose-400">{error}</p>}
+
+                <button
+                  onClick={loadTestQuestions}
+                  disabled={selectedTestTopics.length === 0 || loading}
+                  className="btn-aurora w-full rounded-2xl px-6 py-3.5 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {loading ? 'Generating Test...' : 'Start Test'}
+                </button>
+              </div>
             </div>
-          </div>
+          </main>
+          <Footer darkMode={darkMode} />
         </div>
-        <Footer darkMode={darkMode} />
       </>
     );
   }
@@ -525,12 +475,16 @@ const QuestionBank = () => {
   if (loading) {
     return (
       <>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} flex items-center justify-center`}>
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-emerald-500 mx-auto mb-4"></div>
-            <p className={`text-xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>Loading questions...</p>
-          </div>
+        <AuroraBackground />
+        <div className="flex min-h-screen flex-col">
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <main className="mx-auto flex w-full max-w-7xl flex-grow items-center justify-center px-4 pb-20 pt-10 sm:pt-14">
+            <div className="text-center">
+              <div className="mx-auto mb-4 h-16 w-16 animate-spin rounded-full border-t-4 border-aurora-cyan"></div>
+              <p className="text-xl text-ink">Loading questions...</p>
+            </div>
+          </main>
+          <Footer darkMode={darkMode} />
         </div>
       </>
     );
@@ -539,23 +493,24 @@ const QuestionBank = () => {
   if (error) {
     return (
       <>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} flex items-center justify-center px-4`}>
-          <div className={`
-            ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}
-            rounded-2xl p-8 max-w-md text-center border shadow-lg
-          `}>
-            <div className="text-6xl mb-4">😞</div>
-            <h2 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Oops!</h2>
-            <p className={`mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{error}</p>
-            <button
-              onClick={() => { setSelectedTopic(null); setIsCreatingTest(false); setError(null); }}
-              className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium flex items-center gap-2 mx-auto"
-            >
-              <ArrowLeft size={20} />
-              Back to Topics
-            </button>
-          </div>
+        <AuroraBackground />
+        <div className="flex min-h-screen flex-col">
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <main className="mx-auto flex w-full max-w-7xl flex-grow items-center justify-center px-4 pb-20 pt-10 sm:pt-14">
+            <div className="max-w-md rounded-3xl glass glass-sheen p-8 text-center">
+              <div className="mb-4 text-6xl">😞</div>
+              <h2 className="mb-4 font-display text-2xl font-bold text-ink">Oops!</h2>
+              <p className="mb-6 text-soft">{error}</p>
+              <button
+                onClick={() => { setSelectedTopic(null); setIsCreatingTest(false); setError(null); }}
+                className="mx-auto inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 font-medium text-ink transition-all duration-300 hover:shadow-glow"
+              >
+                <ArrowLeft size={18} />
+                Back to Topics
+              </button>
+            </div>
+          </main>
+          <Footer darkMode={darkMode} />
         </div>
       </>
     );
@@ -565,67 +520,64 @@ const QuestionBank = () => {
     const accuracy = score.attempted > 0 ? (score.correct / score.attempted) * 100 : 0;
     return (
       <>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
-          <div className="max-w-2xl mx-auto">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-xl p-8 text-center`}>
-              <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Test Completed!</h2>
-              <p className={`text-lg mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Here's your performance summary.</p>
+        <AuroraBackground />
+        <div className="flex min-h-screen flex-col">
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
+            <div className="mx-auto max-w-2xl">
+              <div className="rounded-3xl glass glass-sheen p-8 text-center">
+                <h2 className="font-display text-4xl font-bold text-ink">Test Completed!</h2>
+                <p className="mt-3 mb-8 text-lg text-soft">Here's your performance summary.</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-xl`}>
-                  <div className="flex items-center justify-center gap-3">
-                    <CheckCircle className="text-green-500" size={28} />
-                    <h3 className={`text-lg font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>Correct</h3>
+                <div className="mb-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+                    <div className="flex items-center justify-center gap-3">
+                      <CheckCircle className="text-emerald-400" size={28} />
+                      <h3 className="text-lg font-semibold text-soft">Correct</h3>
+                    </div>
+                    <p className="mt-2 font-mono text-4xl font-bold text-ink">{score.correct}</p>
                   </div>
-                  <p className={`text-4xl font-bold mt-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.correct}</p>
-                </div>
-                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-xl`}>
-                  <div className="flex items-center justify-center gap-3">
-                    <XCircle className="text-red-500" size={28} />
-                    <h3 className={`text-lg font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>Incorrect</h3>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+                    <div className="flex items-center justify-center gap-3">
+                      <XCircle className="text-rose-400" size={28} />
+                      <h3 className="text-lg font-semibold text-soft">Incorrect</h3>
+                    </div>
+                    <p className="mt-2 font-mono text-4xl font-bold text-ink">{score.attempted - score.correct}</p>
                   </div>
-                  <p className={`text-4xl font-bold mt-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted - score.correct}</p>
-                </div>
-                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-xl`}>
-                  <div className="flex items-center justify-center gap-3">
-                    <Target className="text-blue-500" size={28} />
-                    <h3 className={`text-lg font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>Accuracy</h3>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+                    <div className="flex items-center justify-center gap-3">
+                      <Target className="text-aurora-cyan" size={28} />
+                      <h3 className="text-lg font-semibold text-soft">Accuracy</h3>
+                    </div>
+                    <p className="mt-2 font-mono text-4xl font-bold text-ink">{accuracy.toFixed(1)}%</p>
                   </div>
-                  <p className={`text-4xl font-bold mt-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{accuracy.toFixed(1)}%</p>
                 </div>
-              </div>
 
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <button
-                  onClick={() => {
-                    setIsCreatingTest(false);
-                    setSelectedTopic(null);
-                    setIsTestMode(false);
-                    setShowTestSummary(false);
-                    clearInterval(timerId);
-                  }}
-                  className={`
-                    px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2
-                    ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}
-                  `}
-                >
-                  <ArrowLeft size={20} /> Back to Topics
-                </button>
-                <button
-                  onClick={handleReset}
-                  className={`
-                    px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center gap-2
-                    ${darkMode ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-emerald-500 text-white hover:bg-emerald-600'}
-                  `}
-                >
-                  <RotateCcw size={20} /> Retake Test
-                </button>
+                <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                  <button
+                    onClick={() => {
+                      setIsCreatingTest(false);
+                      setSelectedTopic(null);
+                      setIsTestMode(false);
+                      setShowTestSummary(false);
+                      clearInterval(timerId);
+                    }}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl glass px-6 py-3 text-[15px] font-medium text-ink transition-all duration-300 hover:shadow-glow"
+                  >
+                    <ArrowLeft size={18} /> Back to Topics
+                  </button>
+                  <button
+                    onClick={handleReset}
+                    className="btn-aurora rounded-2xl px-6 py-3 text-[15px]"
+                  >
+                    <RotateCcw size={18} /> Retake Test
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </main>
+          <Footer darkMode={darkMode} />
         </div>
-        <Footer darkMode={darkMode} />
       </>
     );
   }
@@ -633,9 +585,13 @@ const QuestionBank = () => {
   if (!loading && questions.length === 0 && !isCreatingTest) {
     return (
       <>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} flex items-center justify-center`}>
-          <p className={`text-xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>No questions available</p>
+        <AuroraBackground />
+        <div className="flex min-h-screen flex-col">
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <main className="mx-auto flex w-full max-w-7xl flex-grow items-center justify-center px-4 pb-20 pt-10 sm:pt-14">
+            <p className="text-xl text-ink">No questions available</p>
+          </main>
+          <Footer darkMode={darkMode} />
         </div>
       </>
     );
@@ -649,53 +605,46 @@ const QuestionBank = () => {
 
   return (
     <>
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 transition-colors duration-300`}>
-        <div className="max-w-7xl mx-auto">
+      <AuroraBackground />
+      <div className="flex min-h-screen flex-col">
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
           <button
             onClick={() => { setSelectedTopic(null); setIsTestMode(false); clearInterval(timerId); setShowTestSummary(false); }}
-            className={`mb-6 px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2 ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700' : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 shadow-sm'}`}
+            className="mb-6 inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 text-sm font-medium text-ink transition-all duration-300 hover:shadow-glow"
           >
-            <ArrowLeft size={20} /> Back to Topics
+            <ArrowLeft size={18} /> Back to Topics
           </button>
-          <div className={`
-            ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}
-            rounded-2xl shadow-xl p-8 border transition-colors duration-300
-          `}>
+          <div className="rounded-3xl glass glass-sheen p-6 sm:p-8">
             {/* Header */}
-            <div className={`
-              flex justify-between items-center mb-6 pb-4 
-              ${darkMode ? 'border-gray-700' : 'border-gray-200'} border-b
-            `}>
+            <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-4">
-                <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                  Question <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{currentQuestion + 1}</span> of{' '}
-                  <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{questions.length}</span>
+                <div className="text-soft">
+                  Question <span className="font-bold text-ink">{currentQuestion + 1}</span> of{' '}
+                  <span className="font-bold text-ink">{questions.length}</span>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => toggleBookmark(question.topicId || selectedTopic, question.id)}
-                  className={`p-2 rounded-full transition-colors ${
+                  className={`grid h-9 w-9 place-items-center rounded-xl transition-all duration-200 ${
                     isBookmarked
-                      ? 'text-yellow-400 bg-yellow-500/20'
-                      : darkMode
-                      ? 'text-gray-400 hover:bg-gray-700'
-                      : 'text-gray-500 hover:bg-gray-100'
+                      ? 'bg-aurora-amber text-[#1a1206]'
+                      : 'glass text-soft hover:text-ink'
                   }`}
                   aria-label={isBookmarked ? 'Remove bookmark' : 'Add bookmark'}
                 >
-                  <Bookmark size={20} fill={isBookmarked ? 'currentColor' : 'none'} />
+                  <Bookmark size={18} fill={isBookmarked ? 'currentColor' : 'none'} />
                 </button>
                 {isTestMode && timeLeft !== null ? (
-                  <div className={`flex items-center gap-2 font-semibold ${timeLeft < 60 ? 'text-red-500' : (darkMode ? 'text-gray-300' : 'text-gray-600')}`}>
-                    <Clock size={20} />
+                  <div className={`flex items-center gap-2 font-mono font-semibold ${timeLeft < 60 ? 'text-rose-400' : 'text-soft'}`}>
+                    <Clock size={18} />
                     <span>{formatTime(timeLeft)}</span>
                   </div>
                 ) : (
-                  <div className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                    Score: <span className="font-bold text-emerald-500">{score.correct}</span>/
-                    <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{score.attempted}</span>
+                  <div className="text-soft">
+                    Score: <span className="font-bold text-emerald-400">{score.correct}</span>/
+                    <span className="font-bold text-ink">{score.attempted}</span>
                   </div>
                 )}
               </div>
@@ -703,9 +652,9 @@ const QuestionBank = () => {
 
             {/* Progress Bar */}
             <div className="mb-6">
-              <div className={`w-full ${darkMode ? 'bg-gray-700' : 'bg-gray-200'} rounded-full h-2`}>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-300"
+                  className="h-2 rounded-full bg-gradient-to-r from-aurora-violet to-aurora-cyan transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>
@@ -714,18 +663,12 @@ const QuestionBank = () => {
             {/* Difficulty Badge */}
             <div className="mb-6">
               <span
-                className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${
+                className={`inline-block rounded-full border px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide ${
                   question.difficulty === 'easy'
-                    ? darkMode 
-                      ? 'bg-green-900/30 text-green-400 border border-green-500/50'
-                      : 'bg-green-100 text-green-700 border border-green-300'
+                    ? 'border-emerald-400/40 bg-emerald-500/10 text-emerald-400'
                     : question.difficulty === 'medium'
-                    ? darkMode
-                      ? 'bg-yellow-900/30 text-yellow-400 border border-yellow-500/50'
-                      : 'bg-yellow-100 text-yellow-700 border border-yellow-300'
-                    : darkMode
-                      ? 'bg-red-900/30 text-red-400 border border-red-500/50'
-                      : 'bg-red-100 text-red-700 border border-red-300'
+                    ? 'border-aurora-amber/40 bg-amber-500/10 text-aurora-amber'
+                    : 'border-rose-400/40 bg-rose-500/10 text-rose-400'
                 }`}
               >
                 {question.difficulty.toUpperCase()}
@@ -733,40 +676,30 @@ const QuestionBank = () => {
             </div>
 
             {/* Question */}
-            <h2 className={`text-3xl font-bold mb-8 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className="mb-8 font-display text-2xl font-bold text-ink sm:text-3xl">
               {question.question}
             </h2>
 
             {/* Options */}
-            <div className="space-y-4 mb-8">
+            <div className="mb-8 space-y-3">
               {question.options.map((option, index) => (
                 <div
                   key={index}
                   onClick={() => handleAnswerSelect(index)}
-                  className={`p-5 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+                  className={`cursor-pointer rounded-2xl border p-5 transition-all duration-200 ${
                     showResult
                       ? index === question.correctAnswer
-                        ? darkMode
-                          ? 'border-green-500 bg-green-900/20 text-white'
-                          : 'border-green-500 bg-green-50 text-gray-900'
+                        ? 'border-emerald-400/60 bg-emerald-500/10 text-ink'
                         : index === selectedAnswer
-                        ? darkMode
-                          ? 'border-red-500 bg-red-900/20 text-white'
-                          : 'border-red-500 bg-red-50 text-gray-900'
-                        : darkMode
-                          ? 'border-gray-700 bg-gray-700/30 text-gray-300'
-                          : 'border-gray-200 bg-gray-50 text-gray-700'
+                        ? 'border-rose-400/60 bg-rose-500/10 text-ink'
+                        : 'border-white/10 bg-white/[0.02] text-soft'
                       : selectedAnswer === index
-                      ? darkMode
-                        ? 'border-emerald-500 bg-emerald-900/20 text-white'
-                        : 'border-emerald-500 bg-emerald-50 text-gray-900'
-                      : darkMode
-                        ? 'border-gray-700 bg-gray-700/30 text-gray-300 hover:border-emerald-400 hover:bg-gray-700/50'
-                        : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-emerald-400 hover:bg-gray-100'
+                      ? 'border-aurora-violet/60 bg-aurora-violet/10 text-ink shadow-glow'
+                      : 'border-white/10 bg-white/[0.02] text-soft hover:bg-white/[0.04] hover:text-ink'
                   }`}
                 >
                   <div className="flex items-center">
-                    <span className="font-bold mr-4 text-lg">
+                    <span className="mr-4 font-mono text-lg font-bold">
                       {String.fromCharCode(65 + index)}.
                     </span>
                     <span className="text-lg">{option}</span>
@@ -778,49 +711,32 @@ const QuestionBank = () => {
             {/* Explanation */}
             {showResult && (
               <div
-                className={`p-6 rounded-xl mb-8 border-2 ${
+                className={`mb-8 rounded-2xl border p-6 ${
                   selectedAnswer === question.correctAnswer
-                    ? darkMode
-                      ? 'bg-green-900/20 border-green-500/50 text-green-100'
-                      : 'bg-green-50 border-green-300 text-green-900'
-                    : darkMode
-                      ? 'bg-red-900/20 border-red-500/50 text-red-100'
-                      : 'bg-red-50 border-red-300 text-red-900'
+                    ? 'border-emerald-400/40 bg-emerald-500/10 text-ink'
+                    : 'border-rose-400/40 bg-rose-500/10 text-ink'
                 }`}
               >
-                <p className="font-bold text-xl mb-3">
+                <p className={`mb-3 text-xl font-bold ${selectedAnswer === question.correctAnswer ? 'text-emerald-400' : 'text-rose-400'}`}>
                   {selectedAnswer === question.correctAnswer ? '✓ Correct!' : '✗ Incorrect'}
                 </p>
-                <p className="text-lg">{question.explanation}</p>
+                <p className="text-lg text-soft">{question.explanation}</p>
               </div>
             )}
 
             {/* Action Buttons */}
-            <div className="flex justify-between items-center flex-wrap gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <button
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0}
-                className={`
-                  px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2
-                  ${darkMode
-                    ? 'bg-gray-700 text-white hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-600'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400'
-                  }
-                  disabled:cursor-not-allowed
-                `}
+                className="inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 font-medium text-ink transition-all duration-300 hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-40"
               >
                 ← Previous
               </button>
 
               <button
                 onClick={handleReset}
-                className={`hidden sm:flex
-                  px-6 py-3 rounded-lg transition-all font-medium flex items-center gap-2
-                  ${darkMode
-                    ? 'bg-gray-700 text-white hover:bg-gray-600'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }
-                `}
+                className="hidden items-center gap-2 rounded-2xl glass px-5 py-2.5 font-medium text-ink transition-all duration-300 hover:shadow-glow sm:inline-flex"
               >
                 <RotateCcw size={18} />
                 Reset
@@ -830,7 +746,7 @@ const QuestionBank = () => {
                 <button
                   onClick={handleSubmit}
                   disabled={selectedAnswer === null || (isTestMode && timeLeft !== null && timeLeft === 0)}
-                  className="px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold"
+                  className="btn-aurora rounded-2xl px-6 py-3 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Submit Answer
                 </button>
@@ -838,18 +754,18 @@ const QuestionBank = () => {
                 <button
                   onClick={handleNext}
                   disabled={(isTestMode && timeLeft !== null && timeLeft === 0)}
-                  className="px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold"
+                  className="btn-aurora rounded-2xl px-6 py-3 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {currentQuestion === questions.length - 1 ? 'Finish Test' : 'Next Question →'}
                 </button>
               )}
             </div>
           </div>
-        </div>
+        </main>
+        <Footer darkMode={darkMode} />
       </div>
 
       <BackToTopButton />
-      <Footer darkMode={darkMode} />
     </>
   );
 };

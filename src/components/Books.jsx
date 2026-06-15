@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import ReactGA from 'react-ga4';
-import { Book, ExternalLink, Search } from 'lucide-react';
+import { Book, ExternalLink, Search, FileText } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import AuroraBackground from './AuroraBackground';
 import { Helmet } from 'react-helmet';
 import useDarkMode from './useDarkMode';
 
@@ -29,6 +31,34 @@ const articles = [
   { title: 'Understanding AI', author: 'Lee Robinson', link: 'https://leerob.com/n/ai', category: 'AI' }
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }),
+};
+
+const ResourceCard = ({ item, index, ctaLabel }) => (
+  <motion.a
+    custom={index}
+    variants={fadeUp}
+    href={item.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="glass glass-sheen group flex flex-col rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+  >
+    <div className="flex items-start justify-between gap-3">
+      <h3 className="line-clamp-2 text-lg font-semibold text-ink">{item.title}</h3>
+      <span className="shrink-0 rounded-full glass px-3 py-1 text-xs font-medium text-soft">
+        {item.category}
+      </span>
+    </div>
+    <p className="mb-5 mt-2 text-sm text-soft">by {item.author}</p>
+    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-aurora">
+      {ctaLabel}
+      <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+    </span>
+  </motion.a>
+);
+
 const Books = () => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
 
@@ -38,29 +68,17 @@ const Books = () => {
 
   const categories = ['all', ...new Set([...books, ...articles].map(item => item.category))];
 
-  const filteredBooks = books.filter(book => 
+  const filteredBooks = books.filter(book =>
     (selectedCategory === 'all' || book.category === selectedCategory) &&
     (book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
      book.author.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const filteredArticles = articles.filter(article => 
+  const filteredArticles = articles.filter(article =>
     (selectedCategory === 'all' || article.category === selectedCategory) &&
     (article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
      article.author.toLowerCase().includes(searchTerm.toLowerCase()))
   );
-
-  const getCategoryColor = (category) => {
-    const colors = {
-      'Machine Learning': 'bg-blue-500',
-      'Deep Learning': 'bg-purple-500',
-      'Statistics': 'bg-green-500',
-      'Mathematics': 'bg-red-500',
-      'Programming': 'bg-yellow-500',
-      'AI': 'bg-indigo-500'
-    };
-    return colors[category] || 'bg-gray-500';
-  };
 
   return (
     <>
@@ -75,49 +93,50 @@ const Books = () => {
         <link rel="canonical" href="https://mldl.study/books" />
       </Helmet>
 
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />
+      <AuroraBackground />
 
-      <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
-        <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
-            Books and Articles
-          </h1>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-8 text-lg">
-            A curated collection of essential resources for Machine Learning and Deep Learning
-          </p>
+      <div className="flex min-h-screen flex-col">
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />
+
+        <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
+          {/* Page header */}
+          <motion.header
+            initial="hidden"
+            animate="visible"
+            className="mx-auto mb-12 max-w-2xl text-center"
+          >
+            <motion.h1 variants={fadeUp} custom={0} className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+              Books &amp; <span className="text-aurora">Articles</span>
+            </motion.h1>
+            <motion.p variants={fadeUp} custom={1} className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-soft">
+              A curated collection of essential resources for Machine Learning and Deep Learning
+            </motion.p>
+          </motion.header>
 
           {/* Search and Filter Controls */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-center">
             <div className="relative flex-1">
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <Search className={`w-5 h-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
+              <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
+                <Search className="h-5 w-5 text-faint" />
               </div>
               <input
                 type="text"
                 placeholder="Search by title or author..."
-                className={`w-full pl-10 pr-4 py-3 rounded-xl border 
-                          ${darkMode 
-                            ? 'border-gray-700 bg-gray-800 text-white placeholder-gray-400' 
-                            : 'border-gray-200 bg-white text-gray-900 placeholder-gray-400'
-                          }
-                          shadow-sm focus:ring-2 focus:ring-blue-600 focus:border-transparent
-                          transition-all duration-200`}
+                className="w-full rounded-2xl glass py-2.5 pl-11 pr-4 text-ink outline-none transition-all duration-300 placeholder:text-faint focus:shadow-glow"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all
-                            ${selectedCategory === category
-                              ? 'bg-blue-600 text-white'
-                              : darkMode
-                                ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-                                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                            }`}
+                  className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-gradient-to-r from-aurora-violet to-aurora-cyan text-[#06070f] shadow-glow'
+                      : 'glass text-soft hover:text-ink hover:shadow-glow'
+                  }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </button>
@@ -126,111 +145,57 @@ const Books = () => {
           </div>
 
           {/* Books Section */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Book className="w-6 h-6" />
+          <section className="mb-16">
+            <h2 className="mb-6 flex items-center gap-2 font-display text-2xl font-bold text-ink">
+              <Book className="h-6 w-6 text-aurora-violet" />
               Books
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            >
               {filteredBooks.map((book, index) => (
-                <div
-                  key={index}
-                  className={`rounded-xl shadow-sm hover:shadow-md transition-all duration-200
-                             ${darkMode 
-                               ? 'bg-gray-800 border border-gray-700' 
-                               : 'bg-white border border-gray-200'
-                             }`}
-                >
-                  <div className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <h3 className={`font-semibold text-lg mb-2 line-clamp-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                          {book.title}
-                        </h3>
-                        <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                          by {book.author}
-                        </p>
-                      </div>
-                      <span className={`${getCategoryColor(book.category)} text-white text-xs px-2 py-1 rounded-full`}>
-                        {book.category}
-                      </span>
-                    </div>
-                    <a
-                      href={book.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 hover:underline ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}
-                    >
-                      <span>Read Book</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </div>
-                </div>
+                <ResourceCard key={index} item={book} index={index} ctaLabel="Read Book" />
               ))}
-            </div>
+            </motion.div>
           </section>
 
           {/* Articles Section */}
           <section>
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-              </svg>
+            <h2 className="mb-6 flex items-center gap-2 font-display text-2xl font-bold text-ink">
+              <FileText className="h-6 w-6 text-aurora-cyan" />
               Articles
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            >
               {filteredArticles.map((article, index) => (
-                <div
-                  key={index}
-                  className={`rounded-xl shadow-sm hover:shadow-md transition-all duration-200
-                             ${darkMode 
-                               ? 'bg-gray-800 border border-gray-700' 
-                               : 'bg-white border border-gray-200'
-                             }`}
-                >
-                  <div className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <h3 className={`font-semibold text-lg mb-2 line-clamp-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                          {article.title}
-                        </h3>
-                        <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                          by {article.author}
-                        </p>
-                      </div>
-                      <span className={`${getCategoryColor(article.category)} text-white text-xs px-2 py-1 rounded-full`}>
-                        {article.category}
-                      </span>
-                    </div>
-                    <a
-                      href={article.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 hover:underline ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}
-                    >
-                      <span>Read Article</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </div>
-                </div>
+                <ResourceCard key={index} item={article} index={index} ctaLabel="Read Article" />
               ))}
-            </div>
+            </motion.div>
           </section>
 
           {/* Empty State */}
           {filteredBooks.length === 0 && filteredArticles.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-5xl mb-4">🔍</div>
-              <h3 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>No resources found</h3>
-              <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
+            <div className="py-16 text-center">
+              <div className="mb-4 text-5xl">🔍</div>
+              <h3 className="mb-2 font-display text-xl font-semibold text-ink">No resources found</h3>
+              <p className="text-soft">
                 Try adjusting your search or filter to find what you're looking for.
               </p>
             </div>
           )}
-        </div>
-      </div>
+        </main>
 
-      <Footer darkMode={darkMode} />
+        <Footer darkMode={darkMode} />
+      </div>
     </>
   );
 };
