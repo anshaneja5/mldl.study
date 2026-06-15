@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'; // Keep useEffect for RedditEmbed
 import ReactGA from 'react-ga4';
 import { Helmet } from 'react-helmet';
-import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import AuroraBackground from './AuroraBackground';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 
@@ -77,6 +79,11 @@ const journeyData = [
   }
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }),
+};
+
 // Reddit Embed Component
 const RedditEmbed = ({ url }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -95,9 +102,9 @@ const RedditEmbed = ({ url }) => {
   }, []);
 
   return (
-    <div className="relative w-full">
-      <blockquote 
-        className="reddit-embed" 
+    <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-2">
+      <blockquote
+        className="reddit-embed"
         data-embed-height="400"
         data-embed-showedits="false"
         data-embed-showmedia="false"
@@ -137,103 +144,121 @@ const Journey = () => {
     <>
       <Helmet>
         <title>Our Journey | mldl.study</title>
-        <meta 
-          name="description" 
-          content="Follow our journey from launch to 10K users. See how mldl.study grew from a simple idea to a thriving community resource." 
+        <meta
+          name="description"
+          content="Follow our journey from launch to 10K users. See how mldl.study grew from a simple idea to a thriving community resource."
         />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://mldl.study/journey" />
       </Helmet>
 
-      <div className={`min-h-screen flex flex-col transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-slate-50 text-gray-900'}`}>
-        <Navbar 
-          darkMode={darkMode} 
-          toggleDarkMode={toggleDarkMode} 
+      <AuroraBackground />
+
+      <div className="flex min-h-screen flex-col">
+        <Navbar
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
           isTransitioning={isTransitioning}
         />
-    
-        <main className="flex-grow flex flex-col items-center px-4 py-12">
-          {/* Hero Section */}
-          <header className="text-center mb-16 max-w-3xl mx-auto">
-            <div className="inline-block mb-4 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-medium">
+
+        <main className="mx-auto w-full max-w-4xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
+          {/* Header */}
+          <motion.header
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto mb-14 max-w-2xl text-center"
+          >
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-aurora">
               Our Story
-            </div>
-            <h1 className={`text-4xl md:text-6xl font-bold mb-6 tracking-tight ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              The Journey of <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">mldl.study</span>
+            </span>
+            <h1 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl md:text-6xl">
+              The Journey of <span className="text-aurora">mldl.study</span>
             </h1>
-            <p className={`text-lg mb-8 max-w-xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-soft">
               From a simple idea to a thriving community resource. Follow our growth story and milestones.
             </p>
-          </header>
+          </motion.header>
 
-          {/* Timeline Section */}
-          <div className="w-full max-w-6xl mx-auto px-4">
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1.5 bg-gradient-to-b from-blue-500 to-indigo-500 rounded-full hidden md:block" />
-              
-              {/* Timeline Items */}
-              <div className="space-y-16 md:space-y-24">
-                {journeyData.map((item, index) => (
-                  <div key={index} className="relative">
-                    {/* Milestone Card */}
-                    <div className={`relative w-full md:w-5/12 ${index % 2 === 0 ? 'md:ml-auto md:mr-8' : 'md:mr-auto md:ml-8'}`}>
-                      <div className={`p-8 rounded-2xl shadow-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'} transform transition-all duration-300 hover:scale-[1.02]`}>
-                        <div className="flex items-center mb-6">
-                          <div className={`p-4 rounded-xl bg-gradient-to-r ${item.color} text-white mr-6`}>
-                            {item.icon}
-                          </div>
-                          <div>
-                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{item.date}</span>
-                            <h3 className="text-2xl font-bold mt-1">{item.title}</h3>
-                          </div>
-                        </div>
-                        <p className={`text-lg mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                          {item.description}
-                        </p>
-                        <div className="space-y-6">
-                          {item.redditLinks.map((link, linkIndex) => (
-                            <RedditEmbed key={linkIndex} url={link} />
-                          ))}
-                        </div>
-                      </div>
+          {/* Timeline */}
+          <div className="relative mx-auto max-w-3xl">
+            {/* vertical connector rail */}
+            <div className="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-aurora-violet/60 via-aurora-cyan/40 to-aurora-fuchsia/50 sm:left-7" aria-hidden="true" />
+
+            <div className="space-y-10">
+              {journeyData.map((item, index) => (
+                <motion.div
+                  key={index}
+                  custom={index}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="relative pl-16 sm:pl-20"
+                >
+                  {/* timeline node */}
+                  <span
+                    className={`absolute left-0 top-1 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br ${item.color} text-[#06070f] shadow-glow sm:h-[3.75rem] sm:w-[3.75rem]`}
+                  >
+                    {item.icon}
+                  </span>
+
+                  {/* milestone card */}
+                  <div className="glass glass-sheen rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow sm:p-8">
+                    <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+                      <span className="font-mono text-xs uppercase tracking-widest text-faint">{item.date}</span>
+                      <span className={`rounded-full bg-gradient-to-r ${item.color} px-3 py-0.5 font-mono text-[11px] font-semibold text-[#06070f]`}>
+                        {item.milestone}
+                      </span>
                     </div>
-                    
-                    {/* Milestone Dot */}
-                    <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center text-white font-bold text-lg shadow-xl hidden md:flex`}>
-                      <span className="text-center text-sm leading-tight">{item.milestone}</span>
+                    <h3 className="font-display text-2xl font-bold text-ink">{item.title}</h3>
+                    <p className="mt-2 text-lg leading-relaxed text-soft">
+                      {item.description}
+                    </p>
+                    <div className="mt-6 space-y-6">
+                      {item.redditLinks.map((link, linkIndex) => (
+                        <RedditEmbed key={linkIndex} url={link} />
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
+                </motion.div>
+              ))}
             </div>
           </div>
 
           {/* CTA Section */}
-          <div className="mt-16 text-center">
-            <h2 className="text-2xl font-bold mb-4">Join Our Journey</h2>
-            <p className={`mb-8 max-w-xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Be part of our growing community and help shape the future of ML/DL education.
-            </p>
-            <a
-              href="https://github.com/anshaneja5/mldl.study"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-            >
-              <span>Contribute on GitHub</span>
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </a>
-          </div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className="mx-auto mt-16 max-w-2xl"
+          >
+            <div className="glass glass-sheen rounded-3xl p-8 text-center sm:p-10">
+              <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Join Our Journey</h2>
+              <p className="mx-auto mt-3 max-w-xl text-soft">
+                Be part of our growing community and help shape the future of ML/DL education.
+              </p>
+              <a
+                href="https://github.com/anshaneja5/mldl.study"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-aurora mt-7 rounded-2xl px-6 py-3 text-[15px]"
+              >
+                <span>Contribute on GitHub</span>
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
+          </motion.div>
         </main>
+
+        <Footer darkMode={darkMode} />
       </div>
 
       <BackToTopButton />
-
-      <Footer darkMode={darkMode} />
     </>
   );
 };
 
-export default Journey; 
+export default Journey;
