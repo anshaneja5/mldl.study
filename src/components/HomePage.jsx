@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import {
   ChevronDown, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap,
-  Book, Code, Brain, Users, Play, Compass,
+  Book, Code, Brain, Users, Play, Compass, Linkedin, Twitter,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
@@ -32,6 +32,11 @@ const FEATURES = [
   { icon: <BookOpen className="h-5 w-5" />, title: 'Video Lectures', desc: 'Curated video content from top educators and practitioners in the field.', color: 'from-aurora-violet to-aurora-indigo' },
   { icon: <Code className="h-5 w-5" />, title: 'Hands-on Projects', desc: 'Practical exercises and real-world projects to apply your knowledge.', color: 'from-aurora-cyan to-aurora-blue' },
   { icon: <Brain className="h-5 w-5" />, title: 'Research Papers', desc: 'Access to foundational and cutting-edge research in AI and ML.', color: 'from-aurora-fuchsia to-aurora-violet' },
+];
+
+const SOCIAL_LINKS = [
+  { label: 'Follow on X', handle: '@vedolos', href: 'https://x.com/vedolos/', icon: <Twitter className="h-5 w-5" />, className: 'bg-[#0f1419] text-white hover:bg-black' },
+  { label: 'Connect on LinkedIn', handle: 'Ansh Aneja', href: 'https://www.linkedin.com/in/anshaneja5/', icon: <Linkedin className="h-5 w-5" />, className: 'bg-[#0a66c2] text-white hover:bg-[#084d94]' },
 ];
 
 const fadeUp = {
@@ -219,7 +224,36 @@ const HomePage = () => {
               </a>
             </motion.div>
 
-            <motion.div variants={fadeUp} custom={4} className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-soft">
+            <motion.div
+              variants={fadeUp}
+              custom={4}
+              className="border-aurora glass-strong glass-sheen mx-auto mt-8 max-w-2xl rounded-3xl p-4 shadow-glass sm:p-5"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-aurora">Follow the builder</p>
+              <h2 className="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">Follow Ansh for AI, Claude Code, Cursor, and build updates</h2>
+              <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-soft">
+                I share learning resources, roadmap updates, and practical notes on the latest AI tools, agentic coding, Claude Code, Cursor, ML, DL, and GenAI.
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {SOCIAL_LINKS.map((social) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-center gap-3 rounded-2xl px-5 py-4 text-left font-semibold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow ${social.className}`}
+                  >
+                    {social.icon}
+                    <span className="flex flex-col leading-tight">
+                      <span>{social.label}</span>
+                      <span className="text-xs font-medium opacity-75">{social.handle}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeUp} custom={5} className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-soft">
               <span className="inline-flex items-center gap-1.5"><Zap className="h-4 w-4 text-aurora-cyan" /> 100% Free</span>
               <span className="inline-flex items-center gap-1.5"><Users className="h-4 w-4 text-aurora-violet" /> Community-Driven</span>
               <span className="inline-flex items-center gap-1.5"><BookOpen className="h-4 w-4 text-aurora-blue" /> Real-World Skills</span>
