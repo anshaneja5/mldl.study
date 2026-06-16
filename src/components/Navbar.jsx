@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github } from 'lucide-react';
+import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter } from 'lucide-react';
 
 const PRIMARY = [
   { path: '/prerequisites', label: 'Prerequisites' },
@@ -21,6 +21,8 @@ const SECONDARY = [
 
 const BMC_URL = 'https://buymeacoffee.com/anshaneja';
 const REPO_URL = 'https://github.com/anshaneja5/mldl.study';
+const X_URL = 'https://x.com/vedolos/';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/anshaneja5/';
 
 const Logo = () => (
   <Link to="/" className="group flex items-center gap-2.5">
@@ -172,6 +174,33 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
           })}
         </nav>
 
+        <div className="mt-5 rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-aurora">Follow Ansh</p>
+          <p className="mt-1 text-sm text-soft">Get AI resources, Claude Code, Cursor, agentic coding, and build notes.</p>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <a
+              href={X_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 rounded-2xl bg-[#0f1419] px-4 py-3 text-sm font-semibold text-white shadow-lg"
+            >
+              <Twitter size={18} />
+              Follow on X
+            </a>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 rounded-2xl bg-[#0a66c2] px-4 py-3 text-sm font-semibold text-white shadow-lg"
+            >
+              <Linkedin size={18} />
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
         <div className="mt-5 flex items-center justify-between gap-3 border-t border-white/10 pt-5">
           <button
             onClick={toggleDarkMode}
@@ -218,6 +247,29 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           <div className="hidden items-center gap-7 md:flex">
             <DesktopLinks />
             <div className="flex items-center gap-2 border-l border-white/10 pl-5">
+              <div className="hidden items-center gap-2 rounded-2xl glass px-2 py-1 lg:flex">
+                <span className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-faint xl:inline">Follow</span>
+                <a
+                  href={X_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Ansh on X"
+                  className="flex h-9 items-center gap-1.5 rounded-xl bg-[#0f1419] px-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow"
+                >
+                  <Twitter className="h-[16px] w-[16px]" />
+                  <span>X</span>
+                </a>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Connect with Ansh on LinkedIn"
+                  className="flex h-9 items-center gap-1.5 rounded-xl bg-[#0a66c2] px-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow"
+                >
+                  <Linkedin className="h-[16px] w-[16px]" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
               <a
                 href={REPO_URL}
                 target="_blank"

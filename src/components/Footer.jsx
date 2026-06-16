@@ -1,10 +1,11 @@
 import React from 'react';
-import { Github, Linkedin, Compass, BookCopy, Shield, Waypoints } from 'lucide-react';
+import { Github, Linkedin, Compass, BookCopy, Shield, Waypoints, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const SOCIALS = [
-  { icon: <Github className="h-[18px] w-[18px]" />, href: 'https://github.com/anshaneja5/mldl.study', label: 'GitHub' },
-  { icon: <Linkedin className="h-[18px] w-[18px]" />, href: 'https://www.linkedin.com/in/anshaneja5/', label: 'LinkedIn' },
+  { icon: <Twitter className="h-[18px] w-[18px]" />, href: 'https://x.com/vedolos/', label: 'Follow on X', handle: '@vedolos', className: 'bg-[#0f1419] text-white' },
+  { icon: <Linkedin className="h-[18px] w-[18px]" />, href: 'https://www.linkedin.com/in/anshaneja5/', label: 'Connect on LinkedIn', handle: 'Ansh Aneja', className: 'bg-[#0a66c2] text-white' },
+  { icon: <Github className="h-[18px] w-[18px]" />, href: 'https://github.com/anshaneja5/mldl.study', label: 'GitHub', handle: 'Source code', className: 'glass text-ink' },
 ];
 
 const SECTIONS = [
@@ -67,9 +68,12 @@ const Footer = () => (
             </span>
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-soft">
-            Simplifying Machine Learning &amp; Deep Learning education for everyone — curated, free, and open source.
+            Simplifying Machine Learning &amp; Deep Learning education, plus notes on Claude Code, Cursor, agentic coding, and the latest AI tools.
           </p>
-          <div className="mt-5 flex gap-2.5">
+          <div className="mt-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-aurora">Follow Ansh</p>
+          </div>
+          <div className="mt-3 grid max-w-md gap-2.5 sm:grid-cols-2">
             {SOCIALS.map((s, i) => (
               <a
                 key={i}
@@ -77,9 +81,13 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="grid h-10 w-10 place-items-center rounded-xl glass text-soft transition-all duration-300 hover:text-ink hover:shadow-glow"
+                className={`flex items-center gap-2.5 rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow ${s.className}`}
               >
                 {s.icon}
+                <span className="flex flex-col leading-tight">
+                  <span>{s.label}</span>
+                  <span className="text-xs font-medium opacity-70">{s.handle}</span>
+                </span>
               </a>
             ))}
           </div>
