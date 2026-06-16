@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import {
   ChevronDown, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap,
-  Book, Code, Brain, Users, Play, Compass, Linkedin, Twitter,
+  Book, Code, Brain, Users, Play, Compass, Linkedin, Twitter, Mail, CheckCircle2,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
@@ -37,6 +37,15 @@ const FEATURES = [
 const SOCIAL_LINKS = [
   { label: 'Follow on X', handle: '@vedolos', href: 'https://x.com/vedolos/', icon: <Twitter className="h-5 w-5" />, className: 'bg-[#0f1419] text-white hover:bg-black' },
   { label: 'Connect on LinkedIn', handle: 'Ansh Aneja', href: 'https://www.linkedin.com/in/anshaneja5/', icon: <Linkedin className="h-5 w-5" />, className: 'bg-[#0a66c2] text-white hover:bg-[#084d94]' },
+];
+
+const SUBSTACK_URL = 'https://anshaneja.substack.com/';
+
+const NEWSLETTER_POINTS = [
+  'New Claude Code, Cursor, and Codex features',
+  'Breakthrough AI research and product changes',
+  'Useful GenAI tools before they get noisy',
+  'One clear weekly email to keep you updated',
 ];
 
 const fadeUp = {
@@ -259,6 +268,56 @@ const HomePage = () => {
               <span className="inline-flex items-center gap-1.5"><BookOpen className="h-4 w-4 text-aurora-blue" /> Real-World Skills</span>
             </motion.div>
           </motion.header>
+
+          {/* Newsletter CTA */}
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            className="border-aurora glass-strong glass-sheen relative mb-16 w-full max-w-5xl overflow-hidden rounded-[2rem] p-6 shadow-glass sm:p-8 lg:p-10"
+          >
+            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-aurora-cyan/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-aurora-violet/25 blur-3xl" />
+            <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-aurora">
+                  <Mail className="h-4 w-4" />
+                  Free newsletter
+                </div>
+                <h2 className="font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl md:text-5xl">
+                  Stay ahead of every important AI shift
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-soft sm:text-lg">
+                  I track what is new in AI every week — Claude Code, Cursor, Codex, GenAI tools, model launches, research breakthroughs, and practical changes builders should know. You get the useful signal first, in one clear weekly email.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a
+                    href={SUBSTACK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-aurora rounded-2xl px-7 py-4 text-base shadow-glow"
+                  >
+                    Subscribe free
+                    <ArrowRight className="h-5 w-5" />
+                  </a>
+                  <span className="text-sm font-medium text-soft">No spam. Unsubscribe anytime. Emails handled by Substack.</span>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
+                <p className="mb-4 font-display text-lg font-bold text-ink">What you will get</p>
+                <ul className="space-y-3">
+                  {NEWSLETTER_POINTS.map((point) => (
+                    <li key={point} className="flex items-start gap-3 text-sm leading-relaxed text-soft">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-aurora-cyan" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </motion.section>
 
           {/* Roadmap cards */}
           <motion.div
