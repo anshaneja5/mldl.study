@@ -39,9 +39,10 @@ const MachineLearningRoadmap = () => (
     accent={accent}
     roadmapType="Machine Learning"
     seo={{
-      title: 'Machine Learning Roadmap | Your Roadmap to ML Mastery',
+      title: 'Machine Learning Roadmap for Beginners | mldl.study',
       description:
-        'Master machine learning with our comprehensive interactive roadmap featuring videos, exercises, and progress tracking. Start your journey to becoming an ML expert today.',
+        'Follow a free machine learning roadmap from Python and math to regression, classification, clustering, evaluation, feature engineering, and ensemble learning.',
+      keywords: 'machine learning roadmap, ML roadmap, learn machine learning, machine learning for beginners, AI roadmap',
       canonical: 'https://mldl.study/machinelearning',
     }}
     next={{

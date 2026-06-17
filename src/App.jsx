@@ -15,6 +15,15 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
 import LearnerDashboard from './components/LearnerDashboard';
 import Bookmarks from './components/Bookmarks';
+import AIRoadmapGuide from './components/AIRoadmapGuide';
+import MachineLearningGuide from './components/MachineLearningGuide';
+import {
+  AIAgentsGuide,
+  DeepLearningGuide,
+  GenerativeAIGuide,
+  LearnAIFromScratchGuide,
+  RAGGuide,
+} from './components/LongTailGuides';
 import { BookmarksProvider } from './contexts/BookmarksContext';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
@@ -29,6 +38,13 @@ const App = () => {
         <div className="min-h-screen">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/ai-roadmap" element={<AIRoadmapGuide />} />
+            <Route path="/ml-roadmap" element={<MachineLearningGuide />} />
+            <Route path="/deep-learning-roadmap" element={<DeepLearningGuide />} />
+            <Route path="/generative-ai-roadmap" element={<GenerativeAIGuide />} />
+            <Route path="/ai-agents-roadmap" element={<AIAgentsGuide />} />
+            <Route path="/rag-roadmap" element={<RAGGuide />} />
+            <Route path="/learn-ai-from-scratch" element={<LearnAIFromScratchGuide />} />
             <Route path="/deeplearning" element={<DeepLearning />} />
             <Route path="/machinelearning" element={<MachineLearningRoadmap />} />
             <Route path="/prerequisites" element={<PrerequisiteRoadmap />} />

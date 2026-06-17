@@ -13,26 +13,26 @@ const SECTIONS = [
     title: 'Navigation',
     icon: <Compass className="h-4 w-4" />,
     links: [
-      { text: 'ML Roadmap', href: '/machinelearning' },
-      { text: 'DL Roadmap', href: '/deeplearning' },
-      { text: 'Books & Articles', href: '/books' },
+      { text: 'AI Roadmap', href: '/ai-roadmap' },
+      { text: 'ML Roadmap', href: '/ml-roadmap' },
+      { text: 'Deep Learning Roadmap', href: '/deep-learning-roadmap' },
+    ],
+  },
+  {
+    title: 'Guides',
+    icon: <BookCopy className="h-4 w-4" />,
+    links: [
+      { text: 'GenAI Roadmap', href: '/generative-ai-roadmap' },
+      { text: 'AI Agents Roadmap', href: '/ai-agents-roadmap' },
+      { text: 'RAG Roadmap', href: '/rag-roadmap' },
     ],
   },
   {
     title: 'Resources',
-    icon: <BookCopy className="h-4 w-4" />,
-    links: [
-      { text: 'About', href: '/' },
-      { text: 'Contact Us', href: 'mailto:anshanejaa@gmail.com' },
-      { text: 'Contribute', href: 'https://github.com/anshaneja5/mldl.study#contributing' },
-    ],
-  },
-  {
-    title: 'Legal',
     icon: <Shield className="h-4 w-4" />,
     links: [
-      { text: 'Privacy Policy', href: '/privacy' },
-      { text: 'Terms of Use', href: '/terms' },
+      { text: 'Learn AI from Scratch', href: '/learn-ai-from-scratch' },
+      { text: 'Books & Articles', href: '/books' },
       { text: 'Sitemap', href: '/sitemap.xml' },
     ],
   },

@@ -47,9 +47,10 @@ const GenerativeAIRoadmap = () => (
     accent={accent}
     roadmapType="Generative AI"
     seo={{
-      title: 'Generative AI Roadmap | Your Roadmap to GenAI Mastery',
+      title: 'Generative AI Roadmap for Builders | mldl.study',
       description:
-        'Master generative AI with our interactive roadmap covering transformers, prompt engineering, RAG, vector databases, fine-tuning, agents, multimodal models, evaluation and deployment.',
+        'Follow a free generative AI roadmap covering Transformers, prompt engineering, RAG, vector databases, fine-tuning, AI agents, evaluation, and deployment.',
+      keywords: 'generative AI roadmap, GenAI roadmap, AI agents roadmap, RAG roadmap, LLM roadmap, AI roadmap',
       canonical: 'https://mldl.study/genai',
     }}
     next={{
