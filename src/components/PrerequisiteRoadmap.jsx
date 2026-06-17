@@ -36,9 +36,10 @@ const PrerequisiteRoadmap = () => (
     accent={accent}
     roadmapType="Prerequisites"
     seo={{
-      title: 'Prerequisites Roadmap | Your Roadmap to AI Mastery',
+      title: 'AI and ML Prerequisites Roadmap | mldl.study',
       description:
-        'Master the math and programming prerequisites for machine learning — linear algebra, calculus, statistics, matrices and Python — with curated free resources and progress tracking.',
+        'Learn the prerequisites for AI and machine learning with a free roadmap for Python, linear algebra, calculus, statistics, matrices, and core math foundations.',
+      keywords: 'AI prerequisites, machine learning prerequisites, ML math roadmap, Python for machine learning, AI roadmap',
       canonical: 'https://mldl.study/prerequisites',
     }}
     next={{

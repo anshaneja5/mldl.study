@@ -38,9 +38,10 @@ const DeepLearningRoadmap = () => (
     accent={accent}
     roadmapType="Deep Learning"
     seo={{
-      title: 'Deep Learning Roadmap | Your Roadmap to AI Mastery',
+      title: 'Deep Learning Roadmap for Beginners | mldl.study',
       description:
-        'Master deep learning with our interactive roadmap covering neural networks, CNNs, RNNs, LSTMs, encoder-decoder architectures and Transformers — with curated resources and progress tracking.',
+        'Follow a free deep learning roadmap covering neural networks, CNNs, RNNs, LSTMs, encoder-decoder models, Transformers, NLP, and curated resources.',
+      keywords: 'deep learning roadmap, neural network roadmap, learn deep learning, AI roadmap, machine learning roadmap',
       canonical: 'https://mldl.study/deeplearning',
     }}
     next={{

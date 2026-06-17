@@ -14,11 +14,12 @@ import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 
 const FAQ_DATA = [
-  { question: 'What is mldl.study?', answer: 'mldl.study is a curated roadmap to help learners master Machine Learning and Deep Learning with structured resources, including videos, articles, research papers, competitions and projects.' },
-  { question: 'Who is this roadmap for?', answer: 'This roadmap is designed for beginners and intermediate learners who want to dive deep into ML and DL concepts systematically.' },
+  { question: 'What is mldl.study?', answer: 'mldl.study is a free AI roadmap, machine learning roadmap, deep learning roadmap, and generative AI roadmap built to help learners move from fundamentals to practical projects with curated resources.' },
+  { question: 'Who is this AI roadmap for?', answer: 'This roadmap is designed for beginners, students, developers, and intermediate learners who want a structured path to learn AI, ML, deep learning, and GenAI systematically.' },
   { question: 'Is the content free to access?', answer: 'Yes, all the resources provided in the roadmap are free or point to freely accessible materials available online.' },
   { question: 'Can I contribute to the roadmap?', answer: 'Absolutely! Contributions are welcome. Visit our GitHub repository to contribute new resources or suggest improvements.' },
-  { question: 'How do I start the roadmap?', answer: 'Click on any of the roadmap cards above to begin your learning journey.' },
+  { question: 'How do I start the machine learning roadmap?', answer: 'Start with prerequisites if you are new to math or Python, then continue to the Machine Learning roadmap, Deep Learning roadmap, and Generative AI roadmap as your skills grow.' },
+  { question: 'Does this roadmap include modern AI topics?', answer: 'Yes. The roadmap includes classic ML and deep learning foundations plus modern GenAI topics such as transformers, RAG, vector databases, fine-tuning, AI agents, evaluation, and deployment.' },
 ];
 
 const ROADMAPS = [
@@ -27,6 +28,8 @@ const ROADMAPS = [
   { id: 'deeplearning', step: '03', title: 'Deep Learning', description: 'Explore neural networks and advanced deep learning techniques.', icon: <Zap className="h-6 w-6" />, path: '/deeplearning', color: 'from-violet-400 to-fuchsia-400', glow: 'rgba(192,132,252,0.18)' },
   { id: 'genai', step: '04', title: 'Generative AI', description: 'Discover the latest in generative AI, transformers and agents.', icon: <Sparkles className="h-6 w-6" />, path: '/genai', color: 'from-amber-400 to-orange-400', glow: 'rgba(251,191,36,0.18)' },
 ];
+
+const SITE_URL = 'https://mldl.study';
 
 const FEATURES = [
   { icon: <BookOpen className="h-5 w-5" />, title: 'Video Lectures', desc: 'Curated video content from top educators and practitioners in the field.', color: 'from-aurora-violet to-aurora-indigo' },
@@ -176,21 +179,75 @@ const HomePage = () => {
 
   const toggleFAQ = (i) => setOpenFAQs((p) => ({ ...p, [i]: !p[i] }));
 
-  const faqSchema = {
+  const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_DATA.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        name: 'mldl.study',
+        url: SITE_URL,
+        description: 'A free AI, machine learning, deep learning, and generative AI roadmap for beginners and builders.',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Person',
+        '@id': `${SITE_URL}/#ansh`,
+        name: 'Ansh Aneja',
+        url: SITE_URL,
+        sameAs: [
+          'https://x.com/vedolos/',
+          'https://www.linkedin.com/in/anshaneja5/',
+          'https://anshaneja.substack.com/',
+          'https://github.com/anshaneja5',
+        ],
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'mldl.study',
+        url: SITE_URL,
+        founder: { '@id': `${SITE_URL}/#ansh` },
+        sameAs: [
+          'https://github.com/anshaneja5/mldl.study',
+          'https://x.com/vedolos/',
+          'https://www.linkedin.com/in/anshaneja5/',
+        ],
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${SITE_URL}/#ai-roadmap-list`,
+        name: 'AI and Machine Learning Roadmap',
+        itemListElement: ROADMAPS.map((roadmap, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: `${roadmap.title} Roadmap`,
+          url: `${SITE_URL}${roadmap.path}`,
+          description: roadmap.description,
+        })),
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${SITE_URL}/#faq`,
+        mainEntity: FAQ_DATA.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      },
+    ],
   };
 
   return (
     <>
       <Helmet>
-        <title>Your Roadmap to AI Mastery | Machine Learning Roadmap</title>
-        <meta name="description" content="Transform from beginner to machine learning professional with our comprehensive roadmap featuring free ML, DL, and GenAI resources. Join our community-driven journey today." />
+        <title>AI Roadmap & Machine Learning Roadmap for Beginners | mldl.study</title>
+        <meta name="description" content="Follow a free AI roadmap, machine learning roadmap, deep learning roadmap, and GenAI roadmap with curated resources, projects, papers, and progress tracking." />
+        <meta name="keywords" content="AI roadmap, machine learning roadmap, ML roadmap, deep learning roadmap, generative AI roadmap, learn AI, learn machine learning" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://mldl.study" />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <link rel="canonical" href={SITE_URL} />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
       <AuroraBackground />
@@ -215,13 +272,13 @@ const HomePage = () => {
             </motion.div>
 
             <motion.h1 variants={fadeUp} custom={1} className="font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl md:text-7xl">
-              Your path to
+              AI roadmap for
               <br />
-              <span className="text-aurora-anim">AI mastery</span>
+              <span className="text-aurora-anim">ML and GenAI</span>
             </motion.h1>
 
             <motion.p variants={fadeUp} custom={2} className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-soft">
-              Go from complete beginner to AI professional with structured, hands-on learning paths — curated, free, and community-driven.
+              Learn AI from scratch with a free machine learning roadmap, deep learning roadmap, and generative AI roadmap - curated, structured, hands-on, and community-driven.
             </motion.p>
 
             <motion.div variants={fadeUp} custom={3} className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -332,6 +389,44 @@ const HomePage = () => {
               <RoadmapCard key={r.id} roadmap={r} index={i} />
             ))}
           </motion.div>
+
+          {/* SEO overview */}
+          <SectionShell className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+              A free AI roadmap for machine learning, deep learning, and GenAI
+            </h2>
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-soft sm:text-base">
+              <p>
+                mldl.study is built for learners who search for a clear AI roadmap, ML roadmap, or machine learning roadmap and want one structured path instead of scattered bookmarks. The roadmap starts with Python, mathematics, and core machine learning, then moves into neural networks, Transformers, generative AI, RAG, agents, evaluation, and deployment.
+              </p>
+              <p>
+                Each learning path is organized as a practical sequence with curated videos, articles, research papers, projects, and progress tracking. You can start with the prerequisites, move through classical machine learning, continue into deep learning, and then explore modern GenAI topics used by builders today.
+              </p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/ai-roadmap" className="rounded-2xl glass px-4 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+                AI Roadmap Guide
+              </Link>
+              <Link to="/ml-roadmap" className="rounded-2xl glass px-4 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+                Machine Learning Roadmap
+              </Link>
+              <Link to="/deeplearning" className="rounded-2xl glass px-4 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+                Deep Learning Roadmap
+              </Link>
+              <Link to="/genai" className="rounded-2xl glass px-4 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+                Generative AI Roadmap
+              </Link>
+              <Link to="/ai-agents-roadmap" className="rounded-2xl glass px-4 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+                AI Agents Roadmap
+              </Link>
+              <Link to="/rag-roadmap" className="rounded-2xl glass px-4 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+                RAG Roadmap
+              </Link>
+              <Link to="/learn-ai-from-scratch" className="rounded-2xl glass px-4 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+                Learn AI from Scratch
+              </Link>
+            </div>
+          </SectionShell>
 
           {/* What's inside */}
           <SectionShell className="mb-12">

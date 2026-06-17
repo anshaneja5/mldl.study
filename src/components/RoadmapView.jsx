@@ -10,6 +10,8 @@ import Modal from './Modal';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 
+const SITE_URL = 'https://mldl.study';
+
 /* Circular progress ring with a gradient stroke */
 const ProgressRing = ({ progress, size = 48, stroke = 4, from, to, id, children }) => {
   const r = (size - stroke) / 2;
@@ -152,6 +154,45 @@ const RoadmapView = ({
 
   const isDimmed = (topic) => hoveredTopic && hoveredTopic.id !== topic.id && !neighbors[hoveredTopic.id]?.has(topic.id);
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${seo.canonical}#breadcrumbs`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: title, item: seo.canonical },
+        ],
+      },
+      {
+        '@type': 'LearningResource',
+        '@id': `${seo.canonical}#learning-resource`,
+        name: title,
+        description: seo.description,
+        url: seo.canonical,
+        educationalLevel: 'Beginner to Intermediate',
+        learningResourceType: 'Roadmap',
+        teaches: topics.map((topic) => topic.name),
+        provider: {
+          '@type': 'Organization',
+          name: 'mldl.study',
+          url: SITE_URL,
+        },
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${seo.canonical}#topics`,
+        name: `${title} topics`,
+        itemListElement: topics.map((topic, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: topic.name,
+        })),
+      },
+    ],
+  };
+
   /* ---------- desktop graph ---------- */
   const Graph = () => (
     <div className="relative mx-auto h-[560px] w-full max-w-6xl overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.015] p-4 sm:h-[640px] lg:h-[700px]">
@@ -270,9 +311,11 @@ const RoadmapView = ({
       <Helmet>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
+        {seo.keywords && <meta name="keywords" content={seo.keywords} />}
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href={seo.canonical} />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
       <AuroraBackground />
