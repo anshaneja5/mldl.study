@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Users, Rocket, Star, Trophy, Heart, Target } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 
@@ -18,7 +18,7 @@ const journeyData = [
       "https://www.reddit.com/r/developersIndia/comments/1fe87pk/the_ultimate_roadmap_for_learning_machine/"
     ],
     icon: <Rocket className="w-6 h-6" />,
-    color: "from-blue-500 to-indigo-500",
+    color: "bg-electric text-white",
     milestone: "Launch"
   },
   {
@@ -29,7 +29,7 @@ const journeyData = [
       "https://www.reddit.com/r/developersIndia/comments/1gnw686/built_a_roadmap_site_and_got_450_users_in_25_days/"
     ],
     icon: <Users className="w-6 h-6" />,
-    color: "from-green-500 to-emerald-500",
+    color: "bg-acid text-[#0a0a0a]",
     milestone: "450 Users"
   },
   {
@@ -40,7 +40,7 @@ const journeyData = [
       "https://www.reddit.com/r/developersIndia/comments/1gtyl8w/2000_users_in_last_30_days_i_am_soo_soo_happy/"
     ],
     icon: <Star className="w-6 h-6" />,
-    color: "from-yellow-500 to-amber-500",
+    color: "bg-cyber-yellow text-[#0a0a0a]",
     milestone: "2K Users"
   },
   {
@@ -51,7 +51,7 @@ const journeyData = [
       "https://www.reddit.com/r/opensource/comments/1gutx79/4000_users_in_2_months_project_now_open_sourced/"
     ],
     icon: <Heart className="w-6 h-6" />,
-    color: "from-pink-500 to-rose-500",
+    color: "bg-hot-pink text-white",
     milestone: "4K Users"
   },
   {
@@ -62,7 +62,7 @@ const journeyData = [
       "https://www.reddit.com/r/selfhosted/comments/1hkqtyc/greatful_to_you_guys_5000_users_in_last_3_months/"
     ],
     icon: <Trophy className="w-6 h-6" />,
-    color: "from-purple-500 to-violet-500",
+    color: "bg-electric text-white",
     milestone: "5K Users"
   },
   {
@@ -74,14 +74,14 @@ const journeyData = [
       "https://www.reddit.com/r/developersIndia/comments/1jwosyj/story_of_how_i_finally_built_a_startup_in_my/"
     ],
     icon: <Target className="w-6 h-6" />,
-    color: "from-orange-500 to-red-500",
+    color: "bg-acid text-[#0a0a0a]",
     milestone: "10K Users"
   }
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }),
+  hidden: { opacity: 0, y: 18 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.3, ease: 'easeOut' } }),
 };
 
 // Reddit Embed Component
@@ -102,7 +102,7 @@ const RedditEmbed = ({ url }) => {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-2">
+    <div className="relative w-full overflow-hidden border-2 border-ink bg-surface-soft p-2">
       <blockquote
         className="reddit-embed"
         data-embed-height="400"
@@ -153,7 +153,7 @@ const Journey = () => {
         <link rel="canonical" href="https://mldl.study/journey" />
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
 
       <div className="flex min-h-screen flex-col">
         <Navbar
@@ -167,14 +167,14 @@ const Journey = () => {
           <motion.header
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             className="mx-auto mb-14 max-w-2xl text-center"
           >
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-aurora">
+            <span className="brut-chip mb-4 bg-pastel-pink">
               Our Story
             </span>
-            <h1 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl md:text-6xl">
-              The Journey of <span className="text-aurora">mldl.study</span>
+            <h1 className="font-display text-4xl uppercase tracking-tight text-ink sm:text-5xl md:text-6xl">
+              The Journey of <span className="inline-block rotate-[-1deg] bg-electric px-2 text-white shadow-brut-sm">mldl.study</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-soft">
               From a simple idea to a thriving community resource. Follow our growth story and milestones.
@@ -184,7 +184,7 @@ const Journey = () => {
           {/* Timeline */}
           <div className="relative mx-auto max-w-3xl">
             {/* vertical connector rail */}
-            <div className="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-aurora-violet/60 via-aurora-cyan/40 to-aurora-fuchsia/50 sm:left-7" aria-hidden="true" />
+            <div className="absolute left-5 top-2 bottom-2 w-[3px] bg-ink sm:left-7" aria-hidden="true" />
 
             <div className="space-y-10">
               {journeyData.map((item, index) => (
@@ -199,20 +199,20 @@ const Journey = () => {
                 >
                   {/* timeline node */}
                   <span
-                    className={`absolute left-0 top-1 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br ${item.color} text-[#06070f] shadow-glow sm:h-[3.75rem] sm:w-[3.75rem]`}
+                    className={`absolute left-0 top-1 grid h-11 w-11 place-items-center border-[3px] border-[#0a0a0a] shadow-brut-sm ${item.color} sm:h-[3.75rem] sm:w-[3.75rem]`}
                   >
                     {item.icon}
                   </span>
 
                   {/* milestone card */}
-                  <div className="glass glass-sheen rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow sm:p-8">
+                  <div className={`brut-card brut-hover p-6 sm:p-8 ${index % 2 === 0 ? 'rotate-[-0.4deg]' : 'rotate-[0.4deg]'}`}>
                     <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-                      <span className="font-mono text-xs uppercase tracking-widest text-faint">{item.date}</span>
-                      <span className={`rounded-full bg-gradient-to-r ${item.color} px-3 py-0.5 font-mono text-[11px] font-semibold text-[#06070f]`}>
+                      <span className="font-mono text-xs font-bold uppercase tracking-widest text-faint">{item.date}</span>
+                      <span className={`rotate-[-1deg] border-2 border-[#0a0a0a] px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-wider shadow-brut-sm ${item.color}`}>
                         {item.milestone}
                       </span>
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-ink">{item.title}</h3>
+                    <h3 className="font-display text-2xl uppercase text-ink">{item.title}</h3>
                     <p className="mt-2 text-lg leading-relaxed text-soft">
                       {item.description}
                     </p>
@@ -235,8 +235,8 @@ const Journey = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto mt-16 max-w-2xl"
           >
-            <div className="glass glass-sheen rounded-3xl p-8 text-center sm:p-10">
-              <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Join Our Journey</h2>
+            <div className="brut-card rotate-[0.4deg] bg-pastel-yellow p-8 text-center sm:p-10">
+              <h2 className="font-display text-2xl uppercase text-ink sm:text-3xl">Join Our Journey</h2>
               <p className="mx-auto mt-3 max-w-xl text-soft">
                 Be part of our growing community and help shape the future of ML/DL education.
               </p>
@@ -244,7 +244,7 @@ const Journey = () => {
                 href="https://github.com/anshaneja5/mldl.study"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-aurora mt-7 rounded-2xl px-6 py-3 text-[15px]"
+                className="brut-btn mt-7 px-6 py-3 text-[15px]"
               >
                 <span>Contribute on GitHub</span>
                 <ArrowRight className="h-5 w-5" />

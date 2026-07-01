@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const SOCIALS = [
   { icon: <Twitter className="h-[18px] w-[18px]" />, href: 'https://x.com/vedolos/', label: 'Follow on X', handle: '@vedolos', className: 'bg-[#0f1419] text-white' },
   { icon: <Linkedin className="h-[18px] w-[18px]" />, href: 'https://www.linkedin.com/in/anshaneja5/', label: 'Connect on LinkedIn', handle: 'Ansh Aneja', className: 'bg-[#0a66c2] text-white' },
-  { icon: <Github className="h-[18px] w-[18px]" />, href: 'https://github.com/anshaneja5/mldl.study', label: 'GitHub', handle: 'Source code', className: 'glass text-ink' },
+  { icon: <Github className="h-[18px] w-[18px]" />, href: 'https://github.com/anshaneja5/mldl.study', label: 'GitHub', handle: 'Source code', className: 'bg-surface text-ink' },
 ];
 
 const SECTIONS = [
@@ -53,25 +53,24 @@ const FooterLink = ({ link }) => {
 };
 
 const Footer = () => (
-  <footer className="relative mt-auto border-t border-white/10">
-    <div className="absolute inset-0 bg-white/[0.015]" />
+  <footer className="relative mt-auto border-t-[3px] border-ink bg-surface-soft">
     <div className="relative mx-auto max-w-7xl px-5 py-14 lg:px-8">
       <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
         {/* Brand */}
         <div className="col-span-2">
           <Link to="/" className="group inline-flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-aurora-violet via-aurora-indigo to-aurora-cyan text-[#04060f] shadow-glow">
-              <Waypoints className="h-5 w-5" strokeWidth={2.4} />
+            <span className="grid h-9 w-9 place-items-center border-[3px] border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm">
+              <Waypoints className="h-5 w-5" strokeWidth={2.6} />
             </span>
-            <span className="font-display text-xl font-bold text-ink">
-              mldl<span className="text-aurora">.study</span>
+            <span className="font-display text-xl text-ink">
+              MLDL<span className="bg-hot-pink px-1 text-[#0a0a0a]">.STUDY</span>
             </span>
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-soft">
             Simplifying Machine Learning &amp; Deep Learning education, plus notes on Claude Code, Cursor, agentic coding, and the latest AI tools.
           </p>
           <div className="mt-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-aurora">Follow Ansh</p>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-hot-pink">Follow Ansh</p>
           </div>
           <div className="mt-3 grid max-w-md gap-2.5 sm:grid-cols-2">
             {SOCIALS.map((s, i) => (
@@ -81,12 +80,12 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className={`flex items-center gap-2.5 rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow ${s.className}`}
+                className={`flex items-center gap-2.5 border-[3px] border-[#0a0a0a] px-4 py-3 text-sm font-bold shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5 ${s.className}`}
               >
                 {s.icon}
                 <span className="flex flex-col leading-tight">
                   <span>{s.label}</span>
-                  <span className="text-xs font-medium opacity-70">{s.handle}</span>
+                  <span className="text-xs font-medium">{s.handle}</span>
                 </span>
               </a>
             ))}
@@ -96,9 +95,9 @@ const Footer = () => (
         {/* Sections */}
         {SECTIONS.map((section, i) => (
           <div key={i}>
-            <div className="flex items-center gap-2 text-faint">
+            <div className="flex items-center gap-2 text-ink">
               {section.icon}
-              <h3 className="text-xs font-semibold uppercase tracking-widest">{section.title}</h3>
+              <h3 className="font-mono text-xs font-bold uppercase tracking-widest">{section.title}</h3>
             </div>
             <ul className="mt-4 space-y-2.5">
               {section.links.map((link, j) => (
@@ -111,9 +110,9 @@ const Footer = () => (
         ))}
       </div>
 
-      <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-7 text-center text-sm text-faint sm:flex-row sm:text-left">
+      <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t-2 border-ink pt-7 text-center font-mono text-sm text-faint sm:flex-row sm:text-left">
         <span>
-          © {new Date().getFullYear()} mldl.study · Built with <span className="text-rose-400">♥</span> by Ansh Aneja
+          © {new Date().getFullYear()} mldl.study · Built with <span className="text-hot-pink">♥</span> by Ansh Aneja
         </span>
         <span className="flex items-center gap-2">
           <span>All Rights Reserved</span>

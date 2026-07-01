@@ -1,49 +1,25 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactGA from 'react-ga4';
-import { Search as SearchIcon, ArrowRight } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { Search as SearchIcon, ArrowRight, Zap, Flame, Share2, Check } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import Modal from './Modal';
 import BackToTopButton from './BackToTopButton';
+import ShareDialog from './ShareCard';
 import useDarkMode from './useDarkMode';
+import { useGamification, XP_PER_RESOURCE } from '../contexts/GamificationContext';
 
 const SITE_URL = 'https://mldl.study';
 
-/* Circular progress ring with a gradient stroke */
-const ProgressRing = ({ progress, size = 48, stroke = 4, from, to, id, children }) => {
-  const r = (size - stroke) / 2;
-  const circ = 2 * Math.PI * r;
-  const offset = circ - (progress / 100) * circ;
-  return (
-    <span className="relative grid shrink-0 place-items-center" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="-rotate-90">
-        <defs>
-          <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={from} />
-            <stop offset="100%" stopColor={to} />
-          </linearGradient>
-        </defs>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth={stroke} />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={r}
-          fill="none"
-          stroke={`url(#${id})`}
-          strokeWidth={stroke}
-          strokeLinecap="round"
-          strokeDasharray={circ}
-          strokeDashoffset={offset}
-          style={{ transition: 'stroke-dashoffset 0.7s cubic-bezier(0.22,1,0.36,1)' }}
-        />
-      </svg>
-      <span className="absolute grid place-items-center text-lg">{children}</span>
-    </span>
-  );
-};
+const DEFAULT_ACCENT = { fill: 'var(--pastel-blue)', loud: '#3300ff' };
+
+/* AA contrast on the loud badge fills: only electric blue is dark
+   enough for white text; the rest need black. */
+const loudInk = (loud) => (loud === '#3300ff' ? '#ffffff' : '#0a0a0a');
 
 const RoadmapView = ({
   topics,
@@ -59,6 +35,7 @@ const RoadmapView = ({
 }) => {
   ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
 
+  const a = { ...DEFAULT_ACCENT, ...(accent || {}) };
   const [darkMode, toggleDarkMode] = useDarkMode();
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [topicProgress, setTopicProgress] = useState({});
@@ -66,6 +43,10 @@ const RoadmapView = ({
   const [sortBy, setSortBy] = useState('id');
   const [hoveredTopic, setHoveredTopic] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [xpToast, setXpToast] = useState(null); // { amount, key }
+  const location = useLocation();
+  const { xp, streak, level, levelUp, dismissLevelUp, notifyProgress } = useGamification();
 
   useEffect(() => {
     try {
@@ -80,6 +61,14 @@ const RoadmapView = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, [storageKey]);
 
+  // Deep link from the command palette: /path?topic=<name> opens that topic
+  useEffect(() => {
+    const wanted = new URLSearchParams(location.search).get('topic');
+    if (!wanted) return;
+    const match = topics.find((t) => t.name === wanted);
+    if (match) setSelectedTopic(match);
+  }, [location.search, topics]);
+
   const topicProgressPct = (name) => {
     const items = content[name] || [];
     if (items.length === 0) return 0;
@@ -93,29 +82,59 @@ const RoadmapView = ({
     return Math.round(total / topics.length);
   }, [topics, topicProgress]);
 
+  const { doneCount, totalCount } = useMemo(() => {
+    let done = 0;
+    let total = 0;
+    for (const [name, items] of Object.entries(content)) {
+      total += items.length;
+      done += items.filter((v) => topicProgress[`${name}_${v.url}`] === true).length;
+    }
+    return { doneCount: done, totalCount: total };
+  }, [content, topicProgress]);
+
   const filteredTopics = useMemo(() => {
     let list = topics;
     if (searchTerm) {
       list = topics.filter((t) => t.name.toLowerCase().includes(searchTerm.toLowerCase()));
     }
-    return [...list].sort((a, b) => {
-      if (sortBy === 'name') return a.name.localeCompare(b.name);
-      if (sortBy === 'progress') return topicProgressPct(b.name) - topicProgressPct(a.name);
-      return a.id - b.id;
+    return [...list].sort((a2, b) => {
+      if (sortBy === 'name') return a2.name.localeCompare(b.name);
+      if (sortBy === 'progress') return topicProgressPct(b.name) - topicProgressPct(a2.name);
+      return a2.id - b.id;
     });
   }, [topics, searchTerm, sortBy, topicProgress]);
 
   const updateTopicProgress = (topicName, videoUrl, completed, bulkUpdates = null) => {
     try {
-      const next = bulkUpdates
+      const next2 = bulkUpdates
         ? { ...topicProgress, ...bulkUpdates }
         : { ...topicProgress, [`${topicName}_${videoUrl}`]: completed };
-      setTopicProgress(next);
-      localStorage.setItem(storageKey, JSON.stringify(next));
+      setTopicProgress(next2);
+      localStorage.setItem(storageKey, JSON.stringify(next2));
+
+      // XP toast + streak stamp when something got completed
+      let gained = 0;
+      if (bulkUpdates) {
+        gained = Object.entries(bulkUpdates).filter(
+          ([k, v]) => v === true && topicProgress[k] !== true
+        ).length;
+      } else if (completed === true) {
+        gained = 1;
+      }
+      if (gained > 0) {
+        setXpToast({ amount: gained * XP_PER_RESOURCE, key: Date.now() });
+      }
+      notifyProgress(gained > 0);
     } catch (e) {
       console.error('Error saving progress:', e);
     }
   };
+
+  useEffect(() => {
+    if (!xpToast) return;
+    const t = setTimeout(() => setXpToast(null), 1600);
+    return () => clearTimeout(t);
+  }, [xpToast]);
 
   const neighbors = useMemo(() => {
     const map = {};
@@ -142,14 +161,14 @@ const RoadmapView = ({
     return map;
   }, [topics]);
 
-  const lineStyle = (from, to) => {
+  const edgeStyle = (from, to) => {
     if (hoveredTopic) {
       const touches = from === hoveredTopic.id || to === hoveredTopic.id;
       return touches
-        ? { stroke: accent.lineActive, baseOpacity: 0.18, flowOpacity: 0.95 }
-        : { stroke: accent.lineActive, baseOpacity: 0.05, flowOpacity: 0.08 };
+        ? { stroke: a.loud, opacity: 1, width: 4 }
+        : { stroke: 'var(--ink)', opacity: 0.12, width: 3 };
     }
-    return { stroke: accent.lineActive, baseOpacity: 0.16, flowOpacity: 0.55 };
+    return { stroke: 'var(--ink)', opacity: 0.55, width: 3 };
   };
 
   const isDimmed = (topic) => hoveredTopic && hoveredTopic.id !== topic.id && !neighbors[hoveredTopic.id]?.has(topic.id);
@@ -193,30 +212,31 @@ const RoadmapView = ({
     ],
   };
 
-  /* ---------- desktop graph ---------- */
+  const shareCard = {
+    headline: title.replace(/ (Roadmap)$/i, '\n$1'),
+    pct: overallProgress,
+    done: doneCount,
+    total: totalCount,
+    streak,
+    levelName: level.name,
+  };
+
+  /* ---------- desktop graph: subway map drawn with a marker ---------- */
   const Graph = () => (
-    <div className="relative mx-auto h-[560px] w-full max-w-6xl overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.015] p-4 sm:h-[640px] lg:h-[700px]">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-70"
-        style={{ background: `radial-gradient(60% 55% at 50% 42%, ${accent.glow}, transparent 70%)` }}
-      />
-      <svg className="absolute inset-0 h-full w-full" style={{ overflow: 'visible' }}>
+    <div className="brut-card relative mx-auto h-[560px] w-full max-w-6xl overflow-hidden p-4 sm:h-[640px] lg:h-[700px]">
+      <svg className="absolute inset-0 h-full w-full" style={{ overflow: 'visible' }} aria-hidden="true">
         {connections.map((conn, i) => {
           const from = pos[conn.from];
           const to = pos[conn.to];
           if (!from || !to || !visibleIds.has(conn.from) || !visibleIds.has(conn.to)) return null;
-          const s = lineStyle(conn.from, conn.to);
+          const s = edgeStyle(conn.from, conn.to);
+          const midY = (from.y + to.y) / 2;
+          const seg = { stroke: s.stroke, strokeWidth: s.width, style: { opacity: s.opacity, transition: 'opacity 0.15s' } };
           return (
             <g key={i}>
-              <line
-                x1={`${from.x}%`} y1={`${from.y}%`} x2={`${to.x}%`} y2={`${to.y}%`}
-                stroke={s.stroke} strokeWidth="1.5" style={{ opacity: s.baseOpacity, transition: 'opacity 0.3s' }}
-              />
-              <line
-                x1={`${from.x}%`} y1={`${from.y}%`} x2={`${to.x}%`} y2={`${to.y}%`}
-                stroke={s.stroke} strokeWidth="2.5" strokeLinecap="round" strokeDasharray="2 9"
-                className="animate-flow" style={{ opacity: s.flowOpacity, transition: 'opacity 0.3s' }}
-              />
+              <line x1={`${from.x}%`} y1={`${from.y}%`} x2={`${from.x}%`} y2={`${midY}%`} {...seg} />
+              <line x1={`${from.x}%`} y1={`${midY}%`} x2={`${to.x}%`} y2={`${midY}%`} {...seg} />
+              <line x1={`${to.x}%`} y1={`${midY}%`} x2={`${to.x}%`} y2={`${to.y}%`} {...seg} />
             </g>
           );
         })}
@@ -226,41 +246,42 @@ const RoadmapView = ({
         const progress = topicProgressPct(topic.name);
         const dimmed = isDimmed(topic);
         const count = content[topic.name]?.length || 0;
+        const tilt = topic.id % 2 === 0 ? 'rotate-[1.1deg]' : 'rotate-[-1.2deg]';
         return (
           <motion.div
             key={topic.id}
             className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
             style={{ left: `${pos[topic.id].x}%`, top: `${pos[topic.id].y}%` }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: dimmed ? 0.4 : 1, scale: 1 }}
-            transition={{ delay: i * 0.04, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 1.15 }}
+            animate={{ opacity: dimmed ? 0.35 : 1, scale: 1 }}
+            transition={{ delay: i * 0.03, duration: 0.2, ease: [0.34, 1.56, 0.64, 1] }}
           >
             <button
               onClick={() => setSelectedTopic(topic)}
               onMouseEnter={() => setHoveredTopic(topic)}
               onMouseLeave={() => setHoveredTopic(null)}
-              className="group relative w-[220px] rounded-2xl glass glass-sheen p-3 text-left transition-all duration-300 hover:-translate-y-1"
-              style={{ boxShadow: hoveredTopic?.id === topic.id ? `0 0 36px -8px ${accent.glow}` : 'none' }}
+              className={`group relative w-[215px] border-[3px] border-ink p-3 text-left shadow-brut-sm transition-all duration-150 hover:rotate-0 hover:shadow-brut ${tilt} hover:-translate-y-1`}
+              style={{ background: progress === 100 ? 'var(--pastel-mint)' : a.fill }}
             >
               <span
-                className="absolute -left-2 -top-2 grid h-6 w-6 place-items-center rounded-full font-mono text-[11px] font-semibold text-[#06070f]"
-                style={{ background: `linear-gradient(135deg, ${accent.ringFrom}, ${accent.ringTo})` }}
+                className="absolute -left-2.5 -top-2.5 grid h-7 w-7 place-items-center border-2 border-[#0a0a0a] font-mono text-[12px] font-bold"
+                style={{ background: a.loud, color: loudInk(a.loud) }}
               >
                 {topic.id}
               </span>
-              <div className="flex items-center gap-2.5">
-                <ProgressRing
-                  progress={progress}
-                  size={44}
-                  from={accent.ringFrom}
-                  to={accent.ringTo}
-                  id={`ring-${storageKey}-${topic.id}`}
-                >
-                  {topic.icon}
-                </ProgressRing>
-                <div className="min-w-0">
-                  <p className="line-clamp-3 text-[13px] font-semibold leading-snug text-ink">{topic.name}</p>
-                  <p className="mt-1 font-mono text-[10px] tracking-wide text-faint">
+              {progress === 100 && (
+                <span className="absolute -right-2 -top-2 grid h-7 w-7 rotate-12 place-items-center border-2 border-[#0a0a0a] bg-acid text-[#0a0a0a]">
+                  <Check size={15} strokeWidth={4} />
+                </span>
+              )}
+              <div className="flex items-start gap-2.5">
+                <span className="text-2xl leading-none">{topic.icon}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="line-clamp-3 text-[13px] font-bold leading-snug text-ink">{topic.name}</p>
+                  <div className="mt-2 h-2.5 border-2 border-ink bg-surface">
+                    <div className="h-full bg-acid" style={{ width: `${progress}%` }} />
+                  </div>
+                  <p className="mt-1 font-mono text-[10px] font-semibold tracking-wide text-soft">
                     {progress}% · {count} res
                   </p>
                 </div>
@@ -274,31 +295,39 @@ const RoadmapView = ({
 
   /* ---------- mobile cards ---------- */
   const Cards = () => (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
       {filteredTopics.map((topic, i) => {
         const progress = topicProgressPct(topic.name);
         const count = content[topic.name]?.length || 0;
+        const tilt = i % 2 === 0 ? 'rotate-[-0.6deg]' : 'rotate-[0.6deg]';
         return (
           <motion.button
             key={topic.id}
             onClick={() => setSelectedTopic(topic)}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05, duration: 0.4 }}
-            className="group relative overflow-hidden rounded-3xl glass glass-sheen p-5 text-left transition-all duration-300 active:scale-[0.99]"
+            transition={{ delay: i * 0.04, duration: 0.25 }}
+            className={`group relative border-[3px] border-ink p-5 text-left shadow-brut-sm active:translate-x-0.5 active:translate-y-0.5 active:shadow-none ${tilt}`}
+            style={{ background: progress === 100 ? 'var(--pastel-mint)' : a.fill }}
           >
             <div className="flex items-center gap-4">
-              <ProgressRing progress={progress} size={56} stroke={5} from={accent.ringFrom} to={accent.ringTo} id={`mring-${storageKey}-${topic.id}`}>
+              <span className="grid h-12 w-12 shrink-0 place-items-center border-[3px] border-ink bg-surface text-2xl">
                 {topic.icon}
-              </ProgressRing>
+              </span>
               <div className="min-w-0 flex-1">
                 <div className="mb-1 flex items-center gap-2">
-                  <span className="font-mono text-[11px] text-faint">{String(topic.id).padStart(2, '0')}</span>
+                  <span className="font-mono text-[11px] font-bold text-soft">{String(topic.id).padStart(2, '0')}</span>
+                  {progress === 100 && (
+                    <span className="border-2 border-ink bg-acid px-1 font-mono text-[10px] font-bold text-[#0a0a0a]">DONE</span>
+                  )}
                 </div>
-                <h3 className="text-base font-semibold leading-tight text-ink">{topic.name}</h3>
-                <p className="mt-1 text-xs text-soft">{count} resources · {progress}% complete</p>
+                <h2 className="text-base font-bold leading-tight text-ink">{topic.name}</h2>
+                <div className="mt-2 h-2.5 border-2 border-ink bg-surface">
+                  <div className="h-full bg-acid" style={{ width: `${progress}%` }} />
+                </div>
+                <p className="mt-1 font-mono text-xs font-semibold text-soft">{count} resources · {progress}%</p>
               </div>
-              <ArrowRight className="h-5 w-5 shrink-0 text-faint transition-transform group-active:translate-x-1" />
+              <ArrowRight className="h-5 w-5 shrink-0 text-ink transition-transform group-active:translate-x-1" />
             </div>
           </motion.button>
         );
@@ -318,7 +347,7 @@ const RoadmapView = ({
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
 
       <div className="flex min-h-screen flex-col">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -326,30 +355,42 @@ const RoadmapView = ({
         <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mb-10 max-w-2xl text-center"
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="mx-auto mb-10 max-w-3xl text-center"
           >
-            <span
-              className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-widest"
-              style={{ color: accent.text }}
-            >
+            <span className="brut-chip mb-5" style={{ background: a.fill }}>
               Learning Path
             </span>
-            <h1 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">{title}</h1>
-            <p className="mx-auto mt-4 max-w-xl text-soft">{subtitle}</p>
+            <h1 className="font-display text-4xl uppercase tracking-tight text-ink sm:text-5xl">{title}</h1>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-soft">{subtitle}</p>
           </motion.div>
 
           {/* Progress + controls */}
-          <div className="mx-auto mb-8 flex max-w-6xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="glass glass-sheen flex flex-1 items-center gap-4 rounded-2xl p-4">
-              <ProgressRing progress={overallProgress} size={52} stroke={5} from={accent.ringFrom} to={accent.ringTo} id={`overall-${storageKey}`}>
-                <span className="font-mono text-[10px] font-semibold text-ink">{overallProgress}%</span>
-              </ProgressRing>
-              <div>
-                <p className="text-sm font-semibold text-ink">Your progress</p>
-                <p className="text-xs text-soft">{overallProgress}% of this roadmap completed</p>
+          <div className="mx-auto mb-10 flex max-w-6xl flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-between">
+            <div className="brut-card flex flex-1 flex-wrap items-center gap-x-6 gap-y-3 p-4">
+              <div className="min-w-[180px] flex-1">
+                <div className="flex items-baseline justify-between">
+                  <p className="font-mono text-xs font-bold uppercase tracking-wider text-soft">Your progress</p>
+                  <span className="font-display text-xl text-ink">{overallProgress}%</span>
+                </div>
+                <div className="brut-progress mt-2">
+                  <div style={{ width: `${overallProgress}%` }} data-full={overallProgress === 100} />
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="brut-chip bg-pastel-yellow">
+                  <Zap size={12} strokeWidth={3} /> {xp} XP
+                </span>
+                {streak > 0 && (
+                  <span className="brut-chip bg-pastel-pink">
+                    <Flame size={12} strokeWidth={3} /> {streak}-day streak
+                  </span>
+                )}
+                <button onClick={() => setShareOpen(true)} className="brut-btn brut-btn-pink px-3 py-1.5 text-xs">
+                  <Share2 size={13} strokeWidth={3} /> Share
+                </button>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -360,13 +401,14 @@ const RoadmapView = ({
                   placeholder="Search topics…"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full rounded-2xl glass py-2.5 pl-10 pr-4 text-sm text-ink outline-none transition-shadow placeholder:text-faint focus:shadow-glow sm:w-64"
+                  className="w-full border-[3px] border-ink bg-surface py-2.5 pl-10 pr-4 text-sm text-ink shadow-brut-sm outline-none placeholder:text-faint sm:w-64"
                 />
               </div>
               <select
+                aria-label="Sort topics"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="rounded-2xl glass px-3 py-2.5 text-sm text-ink outline-none focus:shadow-glow"
+                className="border-[3px] border-ink bg-surface px-3 py-2.5 text-sm font-bold text-ink shadow-brut-sm outline-none"
               >
                 <option value="id">Order</option>
                 <option value="name">Name</option>
@@ -380,7 +422,7 @@ const RoadmapView = ({
             {filteredTopics.length === 0 ? (
               <div className="py-20 text-center">
                 <div className="mb-4 text-5xl">🔍</div>
-                <h3 className="font-display text-xl font-bold text-ink">No topics found</h3>
+                <h3 className="font-display text-xl uppercase text-ink">No topics found</h3>
                 <p className="mt-2 text-soft">Try adjusting your search to find what you&apos;re looking for.</p>
               </div>
             ) : isMobile ? (
@@ -393,23 +435,20 @@ const RoadmapView = ({
           {/* Next steps */}
           {next && (
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6 }}
-              className="border-aurora relative mx-auto max-w-6xl overflow-hidden rounded-3xl glass glass-sheen p-8 sm:p-10"
+              transition={{ duration: 0.3 }}
+              className="brut-card-lg relative mx-auto max-w-6xl p-8 sm:p-10"
+              style={{ background: a.fill }}
             >
-              <div
-                className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full blur-3xl"
-                style={{ background: accent.glow }}
-              />
               <div className="relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
                 <div>
-                  <h2 className="font-display text-2xl font-bold text-ink">{next.title}</h2>
+                  <h2 className="font-display text-2xl uppercase text-ink">{next.title}</h2>
                   <p className="mt-2 text-soft">{next.desc}</p>
                 </div>
-                <a href={next.href} className="btn-aurora shrink-0 rounded-2xl px-6 py-3 text-[15px]">
-                  {next.label} <ArrowRight className="h-4 w-4" />
+                <a href={next.href} className="brut-btn shrink-0 px-6 py-3 text-[15px]">
+                  {next.label} <ArrowRight className="h-4 w-4" strokeWidth={3} />
                 </a>
               </div>
             </motion.div>
@@ -429,11 +468,61 @@ const RoadmapView = ({
             existingProgress={topicProgress}
             onProgressUpdate={updateTopicProgress}
             darkMode={darkMode}
-            accent={accent}
+            accent={a}
             roadmapType={roadmapType}
           />
         )}
       </AnimatePresence>
+
+      {/* +XP stamp */}
+      <AnimatePresence>
+        {xpToast && (
+          <motion.div
+            key={xpToast.key}
+            initial={{ opacity: 0, scale: 1.6, rotate: -6 }}
+            animate={{ opacity: 1, scale: 1, rotate: -3 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.18, ease: [0.34, 1.56, 0.64, 1] }}
+            className="pointer-events-none fixed bottom-24 left-1/2 z-[110] -translate-x-1/2 border-[3px] border-[#0a0a0a] bg-acid px-4 py-2 font-display text-xl text-[#0a0a0a] shadow-brut"
+          >
+            +{xpToast.amount} XP
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Level-up toast */}
+      <AnimatePresence>
+        {levelUp && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-6 left-1/2 z-[110] w-[min(92vw,420px)] -translate-x-1/2"
+          >
+            <div className="brut-card-lg bg-pastel-yellow p-4">
+              <p className="font-mono text-xs font-bold uppercase tracking-wider text-soft">Level up!</p>
+              <p className="mt-1 font-display text-xl uppercase text-ink">You&apos;re now a {levelUp.name}</p>
+              <div className="mt-3 flex gap-2">
+                <button
+                  onClick={() => {
+                    dismissLevelUp();
+                    setShareOpen(true);
+                  }}
+                  className="brut-btn px-3 py-1.5 text-xs"
+                >
+                  <Share2 size={13} strokeWidth={3} /> Share it
+                </button>
+                <button onClick={dismissLevelUp} className="brut-btn brut-btn-surface px-3 py-1.5 text-xs">
+                  Keep going
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <ShareDialog open={shareOpen} onClose={() => setShareOpen(false)} card={shareCard} />
 
       <BackToTopButton />
     </>

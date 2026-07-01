@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import { Bookmark, Trash2, ExternalLink, BookOpen, Brain, Zap, Sparkles, Book, Pin } from 'lucide-react';
@@ -6,28 +6,28 @@ import Navbar from './Navbar';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import { useBookmarks } from '../contexts/BookmarksContext';
 
 // Animation variants
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.05,
-      duration: 0.3,
+      delay: i * 0.04,
+      duration: 0.25,
       ease: "easeOut",
     },
   }),
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }),
+  hidden: { opacity: 0, y: 18 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.3, ease: 'easeOut' } }),
 };
 
 const Bookmarks = () => {
@@ -48,28 +48,28 @@ const Bookmarks = () => {
     const roadmapData = {
       'Machine Learning': {
         icon: <Brain className="w-4 h-4" />,
-        color: 'from-blue-500 to-indigo-500',
+        color: 'bg-electric text-white border-[#0a0a0a]',
         path: '/machinelearning'
       },
       'Deep Learning': {
         icon: <Zap className="w-4 h-4" />,
-        color: 'from-purple-500 to-pink-500',
+        color: 'bg-hot-pink text-white border-[#0a0a0a]',
         path: '/deeplearning'
       },
       'Generative AI': {
         icon: <Sparkles className="w-4 h-4" />,
-        color: 'from-amber-500 to-orange-500',
+        color: 'bg-cyber-yellow text-[#0a0a0a] border-[#0a0a0a]',
         path: '/genai'
       },
       'Prerequisites': {
         icon: <Book className="w-4 h-4" />,
-        color: 'from-emerald-500 to-teal-500',
+        color: 'bg-pastel-mint text-ink border-ink',
         path: '/prerequisites'
       }
     };
     return roadmapData[roadmapType] || {
       icon: <BookOpen className="w-4 h-4" />,
-      color: 'from-gray-500 to-gray-600',
+      color: 'bg-surface text-ink border-ink',
       path: '/'
     };
   };
@@ -92,7 +92,7 @@ const Bookmarks = () => {
         />
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
 
       <div className="flex min-h-screen flex-col">
         <Navbar
@@ -110,11 +110,11 @@ const Bookmarks = () => {
           >
             <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-aurora-violet to-aurora-cyan text-[#06070f] shadow-glow">
+                <span className="grid h-12 w-12 shrink-0 place-items-center border-[3px] border-[#0a0a0a] bg-electric text-white shadow-brut-sm">
                   <Bookmark className="h-6 w-6" />
                 </span>
-                <motion.h1 variants={fadeUp} custom={0} className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-                  Your <span className="text-aurora">Bookmarks</span>
+                <motion.h1 variants={fadeUp} custom={0} className="font-display text-4xl uppercase tracking-tight text-ink sm:text-5xl">
+                  Your <span className="text-hot-pink">Bookmarks</span>
                 </motion.h1>
               </div>
               {bookmarks.length > 0 && (
@@ -124,7 +124,7 @@ const Bookmarks = () => {
                       clearAllBookmarks();
                     }
                   }}
-                  className="inline-flex items-center gap-2 rounded-2xl glass px-4 py-2.5 text-sm font-medium text-soft transition-all duration-200 hover:text-rose-400 hover:shadow-glow"
+                  className="brut-btn brut-btn-surface px-4 py-2.5 text-xs"
                 >
                   <Trash2 className="h-4 w-4" />
                   Clear All
@@ -139,19 +139,19 @@ const Bookmarks = () => {
           {/* Filter Buttons */}
           {bookmarks.length > 0 && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
+              transition={{ delay: 0.1, duration: 0.25 }}
               className="mb-8 flex flex-wrap gap-2"
             >
               {roadmapTypes.map((type) => (
                 <button
                   key={type}
                   onClick={() => setFilterRoadmap(type)}
-                  className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
+                  className={`border-2 border-ink px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all duration-150 ${
                     filterRoadmap === type
-                      ? 'bg-gradient-to-r from-aurora-violet to-aurora-cyan text-[#06070f] shadow-glow'
-                      : 'glass text-soft hover:text-ink'
+                      ? 'bg-ink text-canvas shadow-brut-sm'
+                      : 'bg-surface text-soft hover:-translate-y-0.5 hover:text-ink'
                   }`}
                 >
                   {type === 'all' ? 'All' : type}
@@ -162,7 +162,7 @@ const Bookmarks = () => {
 
           {/* Bookmarks List */}
           {filteredBookmarks.length > 0 ? (
-            <div className="space-y-4">
+            <div className="space-y-5">
               {filteredBookmarks.map((bookmark, index) => {
                 const roadmapInfo = getRoadmapInfo(bookmark.roadmapType);
                 return (
@@ -172,22 +172,22 @@ const Bookmarks = () => {
                     variants={cardVariants}
                     initial="hidden"
                     animate="visible"
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04] hover:shadow-glow"
+                    className={`brut-card brut-hover p-6 ${index % 2 === 0 ? 'rotate-[-0.3deg]' : 'rotate-[0.3deg]'} hover:rotate-0`}
                   >
                     {/* Roadmap Badge */}
                     <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <div className={`inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r ${roadmapInfo.color} px-3 py-1 text-xs font-medium text-[#06070f]`}>
+                        <div className={`inline-flex items-center gap-1.5 border-2 px-3 py-1 font-mono text-xs font-bold uppercase shadow-brut-sm ${roadmapInfo.color}`}>
                           {roadmapInfo.icon}
                           <span>{bookmark.roadmapType}</span>
                         </div>
-                        <span className="rounded-full glass px-3 py-1 text-xs text-soft">
+                        <span className="brut-chip">
                           {bookmark.category}
                         </span>
                       </div>
                       <button
                         onClick={() => removeBookmark(bookmark.bookmarkId)}
-                        className="grid h-9 w-9 place-items-center rounded-xl glass text-soft transition-all duration-200 hover:text-rose-400 hover:shadow-glow"
+                        className="grid h-9 w-9 place-items-center border-2 border-ink bg-surface text-soft transition-colors duration-150 hover:bg-hot-pink hover:text-white"
                         title="Remove bookmark"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -195,7 +195,7 @@ const Bookmarks = () => {
                     </div>
 
                     {/* Resource Title */}
-                    <h3 className="mb-3 font-display text-lg font-semibold text-ink">
+                    <h3 className="mb-3 font-display text-lg uppercase text-ink">
                       {bookmark.title}
                     </h3>
 
@@ -206,7 +206,7 @@ const Bookmarks = () => {
                           href={bookmark.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-xl glass px-3 py-2 text-sm font-medium text-aurora transition-all duration-200 hover:shadow-glow"
+                          className="inline-flex items-center gap-1.5 border-2 border-ink bg-pastel-blue px-3 py-2 text-xs font-bold uppercase text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5"
                         >
                           <ExternalLink className="h-4 w-4" />
                           Watch Video
@@ -217,7 +217,7 @@ const Bookmarks = () => {
                           href={bookmark.articleLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-xl glass px-3 py-2 text-sm font-medium text-emerald-400 transition-all duration-200 hover:shadow-glow"
+                          className="inline-flex items-center gap-1.5 border-2 border-ink bg-pastel-mint px-3 py-2 text-xs font-bold uppercase text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5"
                         >
                           <BookOpen className="h-4 w-4" />
                           Read Article
@@ -227,9 +227,9 @@ const Bookmarks = () => {
 
                     {/* Notes */}
                     {bookmark.notes && (
-                      <div className="mt-3 flex items-start gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-3">
-                        <Pin className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
-                        <p className="text-sm text-rose-300">{bookmark.notes}</p>
+                      <div className="mt-3 flex items-start gap-2 border-2 border-ink bg-pastel-yellow p-3">
+                        <Pin className="mt-0.5 h-4 w-4 shrink-0 text-ink" />
+                        <p className="text-sm text-ink">{bookmark.notes}</p>
                       </div>
                     )}
                   </motion.div>
@@ -238,15 +238,15 @@ const Bookmarks = () => {
             </div>
           ) : (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="glass glass-sheen mx-auto max-w-xl rounded-3xl px-6 py-16 text-center"
+              transition={{ delay: 0.1, duration: 0.25 }}
+              className="brut-card mx-auto max-w-xl px-6 py-16 text-center"
             >
-              <span className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-2xl glass text-soft">
+              <span className="mx-auto mb-5 grid h-16 w-16 place-items-center border-[3px] border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm">
                 <Bookmark className="h-8 w-8" />
               </span>
-              <h3 className="mb-2 font-display text-xl font-semibold text-ink">
+              <h3 className="mb-2 font-display text-xl uppercase text-ink">
                 {filterRoadmap === 'all' ? 'No Bookmarks Yet' : `No ${filterRoadmap} Bookmarks`}
               </h3>
               <p className="mb-6 text-soft">
@@ -258,7 +258,7 @@ const Bookmarks = () => {
               {filterRoadmap === 'all' && (
                 <Link
                   to="/"
-                  className="btn-aurora rounded-2xl px-6 py-3 text-[15px]"
+                  className="brut-btn px-6 py-3 text-[15px]"
                 >
                   Explore Roadmaps
                 </Link>

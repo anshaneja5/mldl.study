@@ -1,0 +1,188 @@
+<h2>Full-size previews</h2>
+<p class="subtitle">Use the tabs to "open" each direction at (near) full size. When you've decided, hit the ★ Pick this direction button inside the preview.</p>
+
+<style>
+  .tabs { display: flex; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+  .tab-btn { padding: 10px 18px; border: 1px solid #8884; background: transparent; color: inherit; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; }
+  .tab-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; }
+  .pane { display: none; position: relative; border-radius: 12px; overflow: hidden; min-height: 68vh; border: 1px solid #8883; }
+  .pane.active { display: block; }
+  .pickbtn { position: absolute; right: 18px; bottom: 18px; z-index: 50; padding: 12px 20px; font-weight: 700; font-size: 14px; border-radius: 10px; cursor: pointer; border: 2px solid #fff; background: #111c; color: #fff; backdrop-filter: blur(4px); }
+  .pickbtn.selected { background: #16a34a; border-color: #16a34a; }
+
+  /* ============ A — NEURAL COSMOS ============ */
+  .fcosmos { position: absolute; inset: 0; background: radial-gradient(ellipse at 25% 15%, #1b1145 0%, #030014 55%), #030014; font-family: Georgia, serif; }
+  .fcosmos .stars { position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 10% 20%, #fff8 50%, transparent 50%), radial-gradient(1px 1px at 30% 70%, #fff5 50%, transparent 50%), radial-gradient(2px 2px at 45% 25%, #fff9 50%, transparent 50%), radial-gradient(1px 1px at 60% 60%, #fff6 50%, transparent 50%), radial-gradient(1px 1px at 75% 30%, #fff7 50%, transparent 50%), radial-gradient(2px 2px at 88% 75%, #fff8 50%, transparent 50%), radial-gradient(1px 1px at 15% 85%, #fff6 50%, transparent 50%), radial-gradient(1px 1px at 92% 12%, #fff7 50%, transparent 50%); }
+  .fcosmos .nav { position: relative; display: flex; justify-content: space-between; align-items: center; padding: 20px 36px; color: #cfc9ff; font-family: sans-serif; font-size: 13px; letter-spacing: .12em; }
+  .fcosmos .nav .links span { margin-left: 26px; opacity: .75; }
+  .fcosmos svg.net { position: absolute; right: 0; top: 0; width: 58%; height: 100%; }
+  .fcosmos .node { animation: fpulse 3s ease-in-out infinite; }
+  @keyframes fpulse { 0%,100% { opacity: .5 } 50% { opacity: 1 } }
+  .fcosmos .hero { position: absolute; left: 40px; top: 26%; max-width: 46%; }
+  .fcosmos h1 { color: #fff; font-size: clamp(30px, 4vw, 52px); line-height: 1.08; font-weight: 400; margin: 0 0 18px; text-shadow: 0 0 40px #7c5cff66; }
+  .fcosmos h1 em { color: #9d8cff; }
+  .fcosmos .sub { color: #a9a3c9; font-family: sans-serif; font-size: 15px; line-height: 1.6; margin-bottom: 26px; }
+  .fcosmos .cta { display: inline-block; font-family: sans-serif; font-size: 14px; font-weight: 700; color: #030014; background: linear-gradient(90deg, #9d8cff, #4cc9f0); padding: 13px 26px; border-radius: 999px; box-shadow: 0 0 34px #7c5cff88; }
+  .fcosmos .constellations { position: absolute; left: 40px; bottom: 26px; display: flex; gap: 12px; font-family: sans-serif; }
+  .fcosmos .const { border: 1px solid #7c5cff44; background: #ffffff08; color: #cfc9ff; border-radius: 10px; padding: 10px 14px; font-size: 12px; backdrop-filter: blur(3px); }
+  .fcosmos .const b { display: block; color: #fff; margin-bottom: 2px; }
+
+  /* ============ B — NEO-BRUTALIST ============ */
+  .fbrutal { position: absolute; inset: 0; background: #FFF4E0; font-family: Arial Black, Arial, sans-serif; overflow: hidden; }
+  .fbrutal .marquee { background: #000; color: #C6FF00; font-size: 13px; padding: 8px 0; white-space: nowrap; overflow: hidden; }
+  .fbrutal .marquee span { display: inline-block; animation: scroll 18s linear infinite; }
+  @keyframes scroll { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+  .fbrutal .fnav { display: flex; justify-content: space-between; padding: 14px 28px; border-bottom: 3px solid #000; background: #fff; font-size: 13px; }
+  .fbrutal h1 { margin: 30px 28px 6px; font-size: clamp(40px, 6vw, 84px); line-height: .92; color: #000; text-transform: uppercase; }
+  .fbrutal h1 .hl { background: #3300FF; color: #fff; padding: 0 10px; display: inline-block; transform: rotate(-1.2deg); }
+  .fbrutal .tag { margin: 10px 28px; font-family: monospace; font-size: 15px; color: #000; }
+  .fbrutal .btn { display: inline-block; margin: 12px 28px; background: #C6FF00; border: 3px solid #000; box-shadow: 8px 8px 0 #000; padding: 16px 26px; font-size: 17px; color: #000; cursor: pointer; }
+  .fbrutal .btn:hover { transform: translate(2px,2px); box-shadow: 6px 6px 0 #000; }
+  .fbrutal .sticker { position: absolute; right: 40px; top: 120px; background: #FF2E88; color: #fff; font-size: 15px; padding: 14px; border: 3px solid #000; border-radius: 50%; width: 110px; height: 110px; display: flex; align-items: center; justify-content: center; text-align: center; transform: rotate(12deg); box-shadow: 6px 6px 0 #000; animation: wobble 4s ease-in-out infinite; }
+  @keyframes wobble { 0%,100% { transform: rotate(9deg) } 50% { transform: rotate(15deg) } }
+  .fbrutal .row { display: flex; gap: 16px; padding: 18px 28px 28px; }
+  .fbrutal .rcard { flex: 1; border: 3px solid #000; background: #fff; box-shadow: 7px 7px 0 #000; padding: 14px; font-size: 13px; font-family: monospace; }
+  .fbrutal .rcard h4 { font-family: Arial Black; font-size: 15px; margin: 0 0 8px; }
+  .fbrutal .rcard.pink { background: #FFD6E8; transform: rotate(.8deg); }
+  .fbrutal .rcard.blue { background: #D6E4FF; transform: rotate(-.8deg); }
+  .fbrutal .rcard.yellow { background: #FFF3B0; transform: rotate(.5deg); }
+
+  /* ============ C — TERMINAL OS ============ */
+  .fterm { position: absolute; inset: 0; background: #050805; font-family: "Courier New", monospace; color: #33ff66; padding: 26px 34px; box-sizing: border-box; }
+  .fterm::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 2px, #0003 2px 4px); pointer-events: none; }
+  .fterm .bar { color: #33ff66aa; font-size: 12px; border-bottom: 1px solid #33ff6644; padding-bottom: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; }
+  .fterm pre.logo { color: #66ffaa; font-size: 11px; line-height: 1.2; margin: 0 0 14px; text-shadow: 0 0 8px #33ff6688; }
+  .fterm .line { font-size: 15px; margin: 8px 0; }
+  .fterm .dim { color: #33ff6688; }
+  .fterm .amber { color: #ffb000; }
+  .fterm .tree { font-size: 14px; line-height: 1.7; margin: 12px 0 12px 8px; color: #66ffaa; }
+  .fterm .ok { color: #C6FF00; }
+  .fterm .cursor { display: inline-block; width: 9px; height: 16px; background: #33ff66; animation: fblink 1s steps(1) infinite; vertical-align: text-bottom; }
+  @keyframes fblink { 50% { opacity: 0 } }
+
+  /* ============ D — Y2K CHROME ============ */
+  .fy2k { position: absolute; inset: 0; background: linear-gradient(160deg, #0b1040 0%, #2b1a6b 45%, #0b1040 100%); overflow: hidden; font-family: Verdana, sans-serif; }
+  .fy2k .fnav { position: relative; display: flex; justify-content: space-between; padding: 18px 32px; color: #cfd9ff; font-size: 12px; letter-spacing: .15em; z-index: 5; }
+  .fy2k .chrome { position: absolute; left: 36px; top: 22%; font-size: clamp(40px, 6vw, 80px); font-weight: 900; font-style: italic; line-height: .95; background: linear-gradient(180deg, #fff 0%, #9db4ff 35%, #34406b 50%, #cfd9ff 55%, #fff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -0.02em; filter: drop-shadow(0 4px 18px #9db4ff44); }
+  .fy2k .subline { position: absolute; left: 38px; top: calc(22% + 170px); color: #9db4ff; font-size: 14px; max-width: 420px; line-height: 1.6; }
+  .fy2k .pill { position: absolute; left: 38px; top: calc(22% + 250px); background: linear-gradient(180deg, #ffffffdd, #7f9dff99 45%, #3c55c2); border-radius: 999px; color: #0b1040; font-size: 15px; font-weight: 700; padding: 14px 30px; box-shadow: 0 6px 26px #7f9dff66, inset 0 1px 3px #fff; cursor: pointer; }
+  .fy2k .spark { position: absolute; color: #fff; text-shadow: 0 0 14px #9db4ff; animation: twinkle 2.4s ease-in-out infinite; }
+  @keyframes twinkle { 0%,100% { opacity: .4; transform: scale(.9) } 50% { opacity: 1; transform: scale(1.15) } }
+  .fy2k .grid { position: absolute; bottom: 0; left: 0; right: 0; height: 34%; }
+  .fy2k .grid::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, #ff2ea655 0 2px, transparent 2px 60px), repeating-linear-gradient(0deg, #ff2ea655 0 2px, transparent 2px 34px); transform: rotateX(58deg); transform-origin: bottom; }
+  .fy2k .sun { position: absolute; bottom: 30%; right: 12%; width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(180deg, #ffde7a, #ff2ea6); box-shadow: 0 0 70px #ff2ea688; }
+</style>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showPane(event, 'pane-a')">A · Neural Cosmos</button>
+  <button class="tab-btn" onclick="showPane(event, 'pane-b')">B · Neo-Brutalist</button>
+  <button class="tab-btn" onclick="showPane(event, 'pane-c')">C · Terminal OS</button>
+  <button class="tab-btn" onclick="showPane(event, 'pane-d')">D · Y2K Chrome</button>
+</div>
+
+<div id="pane-a" class="pane active">
+  <div class="fcosmos">
+    <div class="stars"></div>
+    <svg class="net" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice">
+      <line x1="80" y1="120" x2="200" y2="200" stroke="#7c5cff44" stroke-width="1"/>
+      <line x1="200" y1="200" x2="340" y2="130" stroke="#7c5cff44" stroke-width="1"/>
+      <line x1="200" y1="200" x2="300" y2="310" stroke="#4cc9f044" stroke-width="1"/>
+      <line x1="340" y1="130" x2="430" y2="240" stroke="#7c5cff44" stroke-width="1"/>
+      <line x1="300" y1="310" x2="430" y2="240" stroke="#4cc9f044" stroke-width="1"/>
+      <line x1="300" y1="310" x2="240" y2="430" stroke="#f7258544" stroke-width="1"/>
+      <line x1="240" y1="430" x2="380" y2="480" stroke="#f7258544" stroke-width="1"/>
+      <line x1="430" y1="240" x2="380" y2="480" stroke="#7c5cff33" stroke-width="1"/>
+      <circle class="node" cx="80" cy="120" r="6" fill="#9d8cff"/>
+      <circle class="node" cx="200" cy="200" r="9" fill="#4cc9f0" style="animation-delay:.4s"/>
+      <circle class="node" cx="340" cy="130" r="6" fill="#9d8cff" style="animation-delay:.8s"/>
+      <circle class="node" cx="300" cy="310" r="8" fill="#f72585" style="animation-delay:1.2s"/>
+      <circle class="node" cx="430" cy="240" r="6" fill="#4cc9f0" style="animation-delay:1.6s"/>
+      <circle class="node" cx="240" cy="430" r="7" fill="#9d8cff" style="animation-delay:2s"/>
+      <circle class="node" cx="380" cy="480" r="6" fill="#4cc9f0" style="animation-delay:2.4s"/>
+    </svg>
+    <div class="nav">
+      <div>MLDL.STUDY</div>
+      <div class="links"><span>ROADMAPS</span><span>PAPERS</span><span>QUESTIONS</span><span>JOURNEY</span></div>
+    </div>
+    <div class="hero">
+      <h1>Fly through the <em>map of machine intelligence</em></h1>
+      <div class="sub">Every concept in AI — one explorable universe. Chart your course from Python to transformers, star by star, with 500+ curated resources.</div>
+      <span class="cta">Launch your journey ✦</span>
+    </div>
+    <div class="constellations">
+      <div class="const"><b>◈ Prerequisites</b>12 stars</div>
+      <div class="const"><b>◈ Machine Learning</b>34 stars</div>
+      <div class="const"><b>◈ Deep Learning</b>28 stars</div>
+      <div class="const"><b>◈ Generative AI</b>22 stars</div>
+    </div>
+  </div>
+  <button class="pickbtn" data-choice="pick-neural-cosmos" onclick="toggleSelect(this)">★ Pick this direction</button>
+</div>
+
+<div id="pane-b" class="pane">
+  <div class="fbrutal">
+    <div class="marquee"><span>★ FREE FOREVER ★ NO SIGNUP ★ 500+ CURATED RESOURCES ★ BUILT BY LEARNERS ★ FREE FOREVER ★ NO SIGNUP ★ 500+ CURATED RESOURCES ★ BUILT BY LEARNERS ★</span></div>
+    <div class="fnav"><b>MLDL.STUDY</b><div>ROADMAPS &nbsp; PAPERS &nbsp; QUESTIONS &nbsp; ☰</div></div>
+    <h1>LEARN AI.<br><span class="hl">NO FLUFF.</span></h1>
+    <div class="tag">// the roadmap that 50,000 learners actually finish</div>
+    <span class="btn">START THE ROADMAP →</span>
+    <div class="sticker">100% FREE FOREVER</div>
+    <div class="row">
+      <div class="rcard pink"><h4>01 PREREQS</h4>python · math · numpy<br><br>▓▓▓▓▓▓▓▓░░ 80%</div>
+      <div class="rcard blue"><h4>02 MACHINE LEARNING</h4>regression → deployment<br><br>▓▓▓░░░░░░░ 30%</div>
+      <div class="rcard yellow"><h4>03 DEEP LEARNING</h4>CNNs → transformers<br><br>░░░░░░░░░░ 0%</div>
+      <div class="rcard"><h4>04 GEN AI</h4>LLMs · RAG · agents<br><br>░░░░░░░░░░ 0%</div>
+    </div>
+  </div>
+  <button class="pickbtn" data-choice="pick-neo-brutalist" onclick="toggleSelect(this)">★ Pick this direction</button>
+</div>
+
+<div id="pane-c" class="pane">
+  <div class="fterm">
+    <div class="bar"><span>mldl.study — learnOS v2.0</span><span>uptime: 3 days · streak: 🔥 12</span></div>
+    <pre class="logo">
+███╗   ███╗██╗     ██████╗ ██╗
+████╗ ████║██║     ██╔══██╗██║
+██╔████╔██║██║     ██║  ██║██║
+██║╚██╔╝██║██║     ██║  ██║██║
+██║ ╚═╝ ██║███████╗██████╔╝███████╗
+╚═╝     ╚═╝╚══════╝╚═════╝ ╚══════╝ .study</pre>
+    <div class="line dim"># the roadmap is a filesystem. your progress is real. no signup required.</div>
+    <div class="line">$ <span class="amber">learn</span> --list</div>
+    <div class="tree">
+      ├── 01_prerequisites/ &nbsp;&nbsp;<span class="dim">[████████░░] 80%</span><br>
+      ├── 02_machine_learning/ <span class="dim">[███░░░░░░░] 30%</span> <span class="ok">← you are here</span><br>
+      ├── 03_deep_learning/ &nbsp;&nbsp;<span class="dim">[░░░░░░░░░░] unlocks at ml≥60%</span><br>
+      └── 04_generative_ai/ &nbsp;&nbsp;<span class="dim">[░░░░░░░░░░] locked</span>
+    </div>
+    <div class="line">$ <span class="amber">learn</span> ml/06_regression --open</div>
+    <div class="line dim">→ opening: StatQuest — Linear Regression (24 min) ... <span class="ok">[done ✓ +10xp]</span></div>
+    <div class="line" style="margin-top:16px">$ <span class="cursor"></span></div>
+  </div>
+  <button class="pickbtn" data-choice="pick-terminal-os" onclick="toggleSelect(this)">★ Pick this direction</button>
+</div>
+
+<div id="pane-d" class="pane">
+  <div class="fy2k">
+    <div class="fnav"><b>MLDL.STUDY</b><div>ROADMAPS ✦ PAPERS ✦ QUESTIONS</div></div>
+    <div class="spark" style="left:64%;top:14%;font-size:30px">✦</div>
+    <div class="spark" style="left:10%;top:10%;font-size:18px;animation-delay:.7s">✦</div>
+    <div class="spark" style="left:88%;top:40%;font-size:22px;animation-delay:1.3s">✦</div>
+    <div class="spark" style="left:52%;top:56%;font-size:14px;animation-delay:1.9s">✦</div>
+    <div class="chrome">BECOME<br>SUPER–<br>INTELLIGENT</div>
+    <div class="subline">The free roadmap from zero to frontier AI. Curated videos, papers &amp; projects — tracked like a game, polished like it's 2099.</div>
+    <div class="pill">ENTER THE ROADMAP ▸</div>
+    <div class="sun"></div>
+    <div class="grid"></div>
+  </div>
+  <button class="pickbtn" data-choice="pick-y2k-chrome" onclick="toggleSelect(this)">★ Pick this direction</button>
+</div>
+
+<script>
+  function showPane(ev, id) {
+    document.querySelectorAll('.pane').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    ev.currentTarget.classList.add('active');
+  }
+</script>

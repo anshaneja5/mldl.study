@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter } from 'lucide-react';
+import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter, Zap, Flame, Command } from 'lucide-react';
+import { useGamification } from '../contexts/GamificationContext';
 
 const PRIMARY = [
-  { path: '/prerequisites', label: 'Prerequisites' },
+  { path: '/prerequisites', label: 'Prereqs' },
   { path: '/machinelearning', label: 'ML' },
   { path: '/deeplearning', label: 'DL' },
   { path: '/genai', label: 'GenAI' },
@@ -24,14 +25,15 @@ const REPO_URL = 'https://github.com/anshaneja5/mldl.study';
 const X_URL = 'https://x.com/vedolos/';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/anshaneja5/';
 
+const openPalette = () => window.dispatchEvent(new Event('mldl:open-palette'));
+
 const Logo = () => (
   <Link to="/" className="group flex items-center gap-2.5">
-    <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-aurora-violet via-aurora-indigo to-aurora-cyan text-[#04060f] shadow-glow transition-transform duration-300 group-hover:scale-105">
-      <Waypoints className="h-5 w-5" strokeWidth={2.4} />
-      <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/30" />
+    <span className="grid h-9 w-9 place-items-center border-[3px] border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm transition-transform duration-150 group-hover:-rotate-6">
+      <Waypoints className="h-5 w-5" strokeWidth={2.6} />
     </span>
-    <span className="font-display text-lg font-bold tracking-tight text-ink">
-      mldl<span className="text-aurora">.study</span>
+    <span className="font-display text-lg tracking-tight text-ink">
+      MLDL<span className="bg-hot-pink px-1 text-[#0a0a0a]">.STUDY</span>
     </span>
   </Link>
 );
@@ -40,68 +42,79 @@ const ThemeToggle = ({ darkMode, toggleDarkMode, className = '' }) => (
   <button
     onClick={toggleDarkMode}
     aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-    className={`group relative grid h-9 w-9 place-items-center overflow-hidden rounded-xl glass transition-all duration-300 hover:shadow-glow ${className}`}
+    className={`grid h-9 w-9 place-items-center border-[3px] border-ink bg-surface text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5 ${className}`}
   >
-    <span className="relative z-10 text-ink transition-transform duration-500 group-hover:rotate-[18deg]">
-      {darkMode ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
-    </span>
+    {darkMode ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
   </button>
 );
+
+const XpChip = ({ className = '' }) => {
+  const { xp, streak, level } = useGamification();
+  return (
+    <Link
+      to="/dashboard"
+      className={`brut-chip bg-pastel-yellow text-ink transition-transform duration-150 hover:-translate-y-0.5 ${className}`}
+      title={`Level: ${level.name}`}
+      aria-label={`${xp} XP, level ${level.name}${streak > 0 ? `, ${streak}-day streak` : ''}`}
+    >
+      <Zap size={12} strokeWidth={3} />
+      {xp} XP
+      {streak > 0 && (
+        <span className="flex items-center gap-0.5 text-hot-pink">
+          <Flame size={12} strokeWidth={3} />
+          {streak}
+        </span>
+      )}
+    </Link>
+  );
+};
 
 const DesktopLinks = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
-  const linkClass = (active) =>
-    `relative px-1 py-1 text-sm font-medium transition-colors duration-300 ${
-      active ? 'text-ink' : 'text-soft hover:text-ink'
-    }`;
-
   return (
-    <ul className="flex items-center gap-6">
+    <ul className="flex items-center gap-4">
       {PRIMARY.map((item) => {
         const active = location.pathname === item.path;
         return (
           <li key={item.path}>
-            <Link to={item.path} className={linkClass(active)} aria-current={active ? 'page' : undefined}>
+            <Link
+              to={item.path}
+              aria-current={active ? 'page' : undefined}
+              className={`px-1.5 py-0.5 text-sm font-bold uppercase tracking-wide transition-colors duration-100 ${
+                active ? 'bg-acid text-[#0a0a0a] shadow-brut-sm' : 'text-soft hover:bg-acid hover:text-[#0a0a0a]'
+              }`}
+            >
               {item.label}
-              <span
-                className={`absolute -bottom-1 left-0 h-px rounded-full bg-gradient-to-r from-aurora-violet to-aurora-cyan transition-all duration-300 ${
-                  active ? 'w-full opacity-100' : 'w-0 opacity-0'
-                }`}
-              />
             </Link>
           </li>
         );
       })}
 
-      <li
-        className="relative"
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
-      >
+      <li className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
         <button
-          className="flex items-center gap-1 px-1 py-1 text-sm font-medium text-soft transition-colors hover:text-ink"
+          className="flex items-center gap-1 px-1.5 py-0.5 text-sm font-bold uppercase tracking-wide text-soft hover:bg-acid hover:text-[#0a0a0a]"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
         >
           More
-          <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`h-4 w-4 transition-transform duration-150 ${open ? 'rotate-180' : ''}`} />
         </button>
         <div
-          className={`absolute right-0 top-full w-52 origin-top-right pt-3 transition-all duration-200 ${
-            open ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none -translate-y-1 opacity-0'
+          className={`absolute right-0 top-full w-52 pt-2 transition-all duration-100 ${
+            open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
           }`}
         >
-          <div className="glass-strong glass-sheen overflow-hidden rounded-2xl p-1.5 shadow-glass">
+          <div className="brut-card p-1.5">
             {SECONDARY.map((item) => {
               const active = location.pathname === item.path;
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`block rounded-xl px-3.5 py-2 text-sm transition-colors ${
-                    active ? 'text-aurora bg-white/5' : 'text-soft hover:bg-white/5 hover:text-ink'
+                  className={`block px-3 py-2 text-sm font-bold uppercase tracking-wide ${
+                    active ? 'bg-acid text-[#0a0a0a]' : 'text-soft hover:bg-acid hover:text-[#0a0a0a]'
                   }`}
                 >
                   {item.label}
@@ -133,30 +146,32 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] transition-opacity duration-300 ${
-        isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+      className={`fixed inset-0 z-[100] transition-opacity duration-200 ${
+        isOpen ? 'visible opacity-100' : 'invisible pointer-events-none opacity-0'
       }`}
       onClick={onClose}
       aria-hidden={!isOpen}
     >
-      <div className="absolute inset-0 bg-[#04050f]/70 backdrop-blur-md" />
+      <div className="absolute inset-0 bg-black/60" />
       <div
-        className={`glass-strong glass-sheen absolute inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto rounded-t-[2rem] p-6 shadow-glass transition-transform duration-300 ease-out ${
+        className={`absolute inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto border-t-[3px] border-ink bg-surface p-6 transition-transform duration-200 ease-out ${
           isOpen ? 'translate-y-0' : 'translate-y-full'
         }`}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
       >
-        <div className="mx-auto mb-5 h-1.5 w-12 rounded-full bg-white/15" />
         <div className="mb-5 flex items-center justify-between">
-          <span className="font-display text-lg font-bold text-ink">Menu</span>
-          <button onClick={onClose} aria-label="Close menu" className="grid h-9 w-9 place-items-center rounded-xl glass text-ink">
-            <X size={20} />
-          </button>
+          <span className="font-display text-lg uppercase text-ink">Menu</span>
+          <div className="flex items-center gap-2">
+            <XpChip />
+            <button onClick={onClose} aria-label="Close menu" className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-surface text-ink shadow-brut-sm">
+              <X size={20} />
+            </button>
+          </div>
         </div>
 
-        <nav className="grid grid-cols-2 gap-2">
+        <nav className="grid grid-cols-2 gap-3">
           {allItems.map((item) => {
             const active = location.pathname === item.path;
             return (
@@ -164,8 +179,8 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
                 key={item.path}
                 to={item.path}
                 onClick={onClose}
-                className={`rounded-2xl px-4 py-3 text-[15px] font-medium transition-colors ${
-                  active ? 'text-aurora glass' : 'text-soft hover:text-ink'
+                className={`border-[3px] border-ink px-4 py-3 text-[15px] font-bold uppercase tracking-wide shadow-brut-sm ${
+                  active ? 'bg-acid text-[#0a0a0a]' : 'bg-surface text-ink'
                 }`}
               >
                 {item.label}
@@ -174,8 +189,8 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
           })}
         </nav>
 
-        <div className="mt-5 rounded-3xl border border-white/10 bg-white/[0.04] p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-aurora">Follow Ansh</p>
+        <div className="brut-card mt-5 p-4">
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-hot-pink">Follow Ansh</p>
           <p className="mt-1 text-sm text-soft">Get AI resources, Claude Code, Cursor, agentic coding, and build notes.</p>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <a
@@ -183,7 +198,7 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={onClose}
-              className="flex items-center justify-center gap-2 rounded-2xl bg-[#0f1419] px-4 py-3 text-sm font-semibold text-white shadow-lg"
+              className="flex items-center justify-center gap-2 border-[3px] border-[#0a0a0a] bg-[#0f1419] px-4 py-3 text-sm font-bold uppercase text-white shadow-brut-sm"
             >
               <Twitter size={18} />
               Follow on X
@@ -193,7 +208,7 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={onClose}
-              className="flex items-center justify-center gap-2 rounded-2xl bg-[#0a66c2] px-4 py-3 text-sm font-semibold text-white shadow-lg"
+              className="flex items-center justify-center gap-2 border-[3px] border-[#0a0a0a] bg-[#0a66c2] px-4 py-3 text-sm font-bold uppercase text-white shadow-brut-sm"
             >
               <Linkedin size={18} />
               LinkedIn
@@ -201,19 +216,19 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
           </div>
         </div>
 
-        <div className="mt-5 flex items-center justify-between gap-3 border-t border-white/10 pt-5">
+        <div className="mt-5 flex items-center justify-between gap-3 border-t-[3px] border-ink pt-5">
           <button
             onClick={toggleDarkMode}
-            className="flex items-center gap-2 rounded-xl glass px-4 py-2.5 text-sm font-medium text-ink"
+            className="flex items-center gap-2 border-[3px] border-ink bg-surface px-4 py-2.5 text-sm font-bold uppercase text-ink shadow-brut-sm"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
             {darkMode ? 'Light mode' : 'Dark mode'}
           </button>
           <div className="flex items-center gap-2">
-            <a href={REPO_URL} target="_blank" rel="noopener noreferrer" onClick={onClose} className="grid h-10 w-10 place-items-center rounded-xl glass text-ink">
+            <a href={REPO_URL} target="_blank" rel="noopener noreferrer" onClick={onClose} className="grid h-10 w-10 place-items-center border-[3px] border-ink bg-surface text-ink shadow-brut-sm">
               <Github size={18} />
             </a>
-            <a href={BMC_URL} target="_blank" rel="noopener noreferrer" onClick={onClose} className="grid h-10 w-10 place-items-center rounded-xl glass text-aurora-amber">
+            <a href={BMC_URL} target="_blank" rel="noopener noreferrer" onClick={onClose} className="grid h-10 w-10 place-items-center border-[3px] border-[#0a0a0a] bg-cyber-yellow text-[#0a0a0a] shadow-brut-sm">
               <Coffee size={18} />
             </a>
           </div>
@@ -225,57 +240,51 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
 
 const Navbar = ({ darkMode, toggleDarkMode }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   return (
     <>
-      <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4">
-        <nav
-          className={`mx-auto flex h-14 max-w-7xl items-center justify-between rounded-2xl px-3 transition-all duration-500 sm:px-5 ${
-            scrolled ? 'glass-strong glass-sheen shadow-glass' : 'border border-transparent'
-          }`}
-        >
+      <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-canvas">
+        <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Logo />
 
-          <div className="hidden items-center gap-7 md:flex">
+          <div className="hidden items-center gap-5 md:flex">
             <DesktopLinks />
-            <div className="flex items-center gap-2 border-l border-white/10 pl-5">
-              <div className="hidden items-center gap-2 rounded-2xl glass px-2 py-1 lg:flex">
-                <span className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-faint xl:inline">Follow</span>
-                <a
-                  href={X_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow Ansh on X"
-                  className="flex h-9 items-center gap-1.5 rounded-xl bg-[#0f1419] px-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow"
-                >
-                  <Twitter className="h-[16px] w-[16px]" />
-                  <span>X</span>
-                </a>
-                <a
-                  href={LINKEDIN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Connect with Ansh on LinkedIn"
-                  className="flex h-9 items-center gap-1.5 rounded-xl bg-[#0a66c2] px-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow"
-                >
-                  <Linkedin className="h-[16px] w-[16px]" />
-                  <span>LinkedIn</span>
-                </a>
-              </div>
+            <div className="flex items-center gap-2 border-l-[3px] border-ink pl-5">
+              <XpChip className="hidden lg:inline-flex" />
+              <button
+                onClick={openPalette}
+                aria-label="Open command palette"
+                className="hidden h-9 items-center gap-1.5 border-[3px] border-ink bg-surface px-2.5 font-mono text-xs font-bold uppercase text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5 lg:flex"
+              >
+                <Command size={13} strokeWidth={3} />
+                K
+              </button>
+              <a
+                href={X_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Ansh on X"
+                className="flex h-9 items-center gap-1.5 border-[3px] border-[#0a0a0a] bg-[#0f1419] px-3 text-sm font-bold text-white shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5"
+              >
+                <Twitter className="h-[16px] w-[16px]" />
+                <span className="hidden xl:inline">X</span>
+              </a>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect with Ansh on LinkedIn"
+                className="flex h-9 items-center gap-1.5 border-[3px] border-[#0a0a0a] bg-[#0a66c2] px-3 text-sm font-bold text-white shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5"
+              >
+                <Linkedin className="h-[16px] w-[16px]" />
+                <span className="hidden xl:inline">in</span>
+              </a>
               <a
                 href={REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub repository"
-                className="grid h-9 w-9 place-items-center rounded-xl glass text-ink transition-all duration-300 hover:shadow-glow"
+                className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-surface text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5"
               >
                 <Github className="h-[18px] w-[18px]" />
               </a>
@@ -284,7 +293,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 href={BMC_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 items-center gap-1.5 rounded-xl bg-gradient-to-r from-aurora-amber to-amber-500 px-3.5 text-sm font-semibold text-[#1a1206] transition-transform duration-300 hover:scale-[1.03]"
+                className="flex h-9 items-center gap-1.5 border-[3px] border-[#0a0a0a] bg-cyber-yellow px-3 text-sm font-bold uppercase text-[#0a0a0a] shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5"
               >
                 <Coffee className="h-[16px] w-[16px]" />
                 <span>Support</span>
@@ -292,14 +301,17 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             </div>
           </div>
 
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="grid h-10 w-10 place-items-center rounded-xl glass text-ink md:hidden"
-            aria-label="Open navigation menu"
-            aria-expanded={mobileOpen}
-          >
-            <Menu size={22} />
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <XpChip />
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="grid h-10 w-10 place-items-center border-[3px] border-ink bg-surface text-ink shadow-brut-sm"
+              aria-label="Open navigation menu"
+              aria-expanded={mobileOpen}
+            >
+              <Menu size={22} />
+            </button>
+          </div>
         </nav>
       </header>
 

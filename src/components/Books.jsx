@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactGA from 'react-ga4';
 import { Book, ExternalLink, Search, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import { Helmet } from 'react-helmet';
 import useDarkMode from './useDarkMode';
 
@@ -32,8 +32,8 @@ const articles = [
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }),
+  hidden: { opacity: 0, y: 18 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.04, duration: 0.3, ease: 'easeOut' } }),
 };
 
 const ResourceCard = ({ item, index, ctaLabel }) => (
@@ -43,18 +43,18 @@ const ResourceCard = ({ item, index, ctaLabel }) => (
     href={item.link}
     target="_blank"
     rel="noopener noreferrer"
-    className="glass glass-sheen group flex flex-col rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+    className={`brut-card brut-hover group flex flex-col p-6 ${index % 2 === 0 ? 'rotate-[-0.4deg]' : 'rotate-[0.4deg]'} hover:rotate-0`}
   >
     <div className="flex items-start justify-between gap-3">
-      <h3 className="line-clamp-2 text-lg font-semibold text-ink">{item.title}</h3>
-      <span className="shrink-0 rounded-full glass px-3 py-1 text-xs font-medium text-soft">
+      <h3 className="line-clamp-2 text-lg font-bold text-ink">{item.title}</h3>
+      <span className="brut-chip shrink-0">
         {item.category}
       </span>
     </div>
     <p className="mb-5 mt-2 text-sm text-soft">by {item.author}</p>
-    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-aurora">
+    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold uppercase text-hot-pink">
       {ctaLabel}
-      <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+      <ExternalLink className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" />
     </span>
   </motion.a>
 );
@@ -93,7 +93,7 @@ const Books = () => {
         <link rel="canonical" href="https://mldl.study/books" />
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
 
       <div className="flex min-h-screen flex-col">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} isTransitioning={false} />
@@ -105,8 +105,9 @@ const Books = () => {
             animate="visible"
             className="mx-auto mb-12 max-w-2xl text-center"
           >
-            <motion.h1 variants={fadeUp} custom={0} className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-              Books &amp; <span className="text-aurora">Articles</span>
+            <motion.h1 variants={fadeUp} custom={0} className="font-display text-4xl uppercase tracking-tight text-ink sm:text-5xl">
+              Books &amp;{' '}
+              <span className="inline-block rotate-[-1deg] bg-hot-pink px-2 text-white shadow-brut-sm">Articles</span>
             </motion.h1>
             <motion.p variants={fadeUp} custom={1} className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-soft">
               A curated collection of essential resources for Machine Learning and Deep Learning
@@ -122,7 +123,7 @@ const Books = () => {
               <input
                 type="text"
                 placeholder="Search by title or author..."
-                className="w-full rounded-2xl glass py-2.5 pl-11 pr-4 text-ink outline-none transition-all duration-300 placeholder:text-faint focus:shadow-glow"
+                className="w-full border-[3px] border-ink bg-surface py-2.5 pl-11 pr-4 text-ink shadow-brut-sm outline-none placeholder:text-faint"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -132,10 +133,10 @@ const Books = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  className={`whitespace-nowrap border-2 border-ink px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all duration-150 ${
                     selectedCategory === category
-                      ? 'bg-gradient-to-r from-aurora-violet to-aurora-cyan text-[#06070f] shadow-glow'
-                      : 'glass text-soft hover:text-ink hover:shadow-glow'
+                      ? 'bg-ink text-canvas shadow-brut-sm'
+                      : 'bg-surface text-soft hover:-translate-y-0.5 hover:text-ink'
                   }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -146,12 +147,14 @@ const Books = () => {
 
           {/* Books Section */}
           <section className="mb-16">
-            <h2 className="mb-6 flex items-center gap-2 font-display text-2xl font-bold text-ink">
-              <Book className="h-6 w-6 text-aurora-violet" />
+            <h2 className="mb-6 flex items-center gap-3 font-display text-2xl uppercase text-ink">
+              <span className="grid h-10 w-10 place-items-center border-[3px] border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm">
+                <Book className="h-5 w-5" />
+              </span>
               Books
             </h2>
             <motion.div
-              variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+              variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
@@ -165,12 +168,14 @@ const Books = () => {
 
           {/* Articles Section */}
           <section>
-            <h2 className="mb-6 flex items-center gap-2 font-display text-2xl font-bold text-ink">
-              <FileText className="h-6 w-6 text-aurora-cyan" />
+            <h2 className="mb-6 flex items-center gap-3 font-display text-2xl uppercase text-ink">
+              <span className="grid h-10 w-10 place-items-center border-[3px] border-[#0a0a0a] bg-electric text-white shadow-brut-sm">
+                <FileText className="h-5 w-5" />
+              </span>
               Articles
             </h2>
             <motion.div
-              variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+              variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
@@ -186,9 +191,9 @@ const Books = () => {
           {filteredBooks.length === 0 && filteredArticles.length === 0 && (
             <div className="py-16 text-center">
               <div className="mb-4 text-5xl">🔍</div>
-              <h3 className="mb-2 font-display text-xl font-semibold text-ink">No resources found</h3>
+              <h3 className="mb-2 font-display text-xl uppercase text-ink">No resources found</h3>
               <p className="text-soft">
-                Try adjusting your search or filter to find what you're looking for.
+                Try adjusting your search or filter to find what you&apos;re looking for.
               </p>
             </div>
           )}

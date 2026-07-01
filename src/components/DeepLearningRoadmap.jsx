@@ -20,11 +20,8 @@ const connections = [
 ];
 
 const accent = {
-  ringFrom: '#a78bfa',
-  ringTo: '#e879f9',
-  lineActive: '#c084fc',
-  glow: 'rgba(192,132,252,0.30)',
-  text: '#d8b4fe',
+  fill: 'var(--pastel-pink)',
+  loud: '#ff2e88',
 };
 
 const DeepLearningRoadmap = () => (

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import researchPapers from '../../categorizedRPContent';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 
@@ -21,22 +21,17 @@ const CATEGORY_NAMES = {
   complexity_and_systems: 'Complexity and Systems',
 };
 
-// rotating aurora accents so each category reads distinctly
+// rotating loud accent fills so each category reads distinctly
 const ACCENTS = [
-  'from-aurora-violet to-aurora-indigo',
-  'from-aurora-cyan to-aurora-blue',
-  'from-aurora-fuchsia to-aurora-violet',
-  'from-emerald-400 to-teal-400',
-  'from-aurora-blue to-aurora-cyan',
-  'from-amber-400 to-orange-400',
-  'from-aurora-indigo to-aurora-fuchsia',
-  'from-aurora-teal to-aurora-cyan',
-  'from-violet-400 to-fuchsia-400',
+  'bg-acid text-[#0a0a0a]',
+  'bg-electric text-white',
+  'bg-hot-pink text-white',
+  'bg-cyber-yellow text-[#0a0a0a]',
 ];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }),
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.04, duration: 0.28, ease: 'easeOut' } }),
 };
 
 const ResearchPaper = () => {
@@ -76,7 +71,7 @@ const ResearchPaper = () => {
         <link rel="canonical" href="https://mldl.study/researchpapers" />
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
 
       <div className="flex min-h-screen flex-col">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -86,14 +81,14 @@ const ResearchPaper = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             className="mx-auto mb-10 max-w-2xl text-center"
           >
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-aurora">
+            <span className="brut-chip mb-4 bg-pastel-yellow">
               Paper Library
             </span>
-            <h1 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-              Research <span className="text-aurora">Papers</span>
+            <h1 className="font-display text-4xl uppercase tracking-tight text-ink sm:text-5xl">
+              Research <span className="inline-block rotate-[-1deg] bg-hot-pink px-2 text-white shadow-brut-sm">Papers</span>
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-soft">
               A curated collection of essential papers in AI and Machine Learning — from the foundations to the frontier.
@@ -106,7 +101,7 @@ const ResearchPaper = () => {
                 placeholder="Search papers by title…"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full rounded-2xl glass py-3.5 pl-12 pr-4 text-ink outline-none transition-shadow placeholder:text-faint focus:shadow-glow"
+                className="w-full border-[3px] border-ink bg-surface py-3.5 pl-12 pr-4 text-ink shadow-brut-sm outline-none placeholder:text-faint"
               />
             </div>
           </motion.div>
@@ -115,7 +110,7 @@ const ResearchPaper = () => {
           {entries.length === 0 ? (
             <div className="py-16 text-center">
               <div className="mb-4 text-5xl">🔍</div>
-              <h3 className="font-display text-xl font-bold text-ink">No papers found</h3>
+              <h3 className="font-display text-xl uppercase text-ink">No papers found</h3>
               <p className="mt-2 text-soft">Try a different title or keyword.</p>
             </div>
           ) : (
@@ -130,41 +125,41 @@ const ResearchPaper = () => {
                     variants={fadeUp}
                     initial="hidden"
                     animate="visible"
-                    className="glass glass-sheen overflow-hidden rounded-3xl"
+                    className="brut-card overflow-hidden"
                   >
                     <button
                       onClick={() => handleCategoryClick(key)}
                       aria-expanded={isOpen}
-                      className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-white/[0.02] sm:px-6"
+                      className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors duration-150 hover:bg-surface-soft sm:px-6"
                     >
                       <div className="flex items-center gap-4">
-                        <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${accent} text-[#06070f] shadow-lg`}>
+                        <span className={`grid h-11 w-11 shrink-0 place-items-center border-[3px] border-[#0a0a0a] shadow-brut-sm ${accent}`}>
                           <Book className="h-5 w-5" />
                         </span>
                         <div>
-                          <h2 className="text-lg font-semibold text-ink sm:text-xl">{CATEGORY_NAMES[key] || key}</h2>
-                          <span className="font-mono text-xs text-faint">{papers.length} papers</span>
+                          <h2 className="font-display text-lg uppercase text-ink sm:text-xl">{CATEGORY_NAMES[key] || key}</h2>
+                          <span className="font-mono text-xs font-bold uppercase tracking-wider text-faint">{papers.length} papers</span>
                         </div>
                       </div>
-                      <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl glass text-soft transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                      <span className={`grid h-9 w-9 shrink-0 place-items-center border-2 border-ink bg-surface text-soft transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
                         <ChevronDown className="h-5 w-5" />
                       </span>
                     </button>
 
-                    <div className={`grid transition-all duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                    <div className={`grid transition-all duration-200 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                       <div className="overflow-hidden">
                         <div className="grid gap-3 px-5 pb-5 sm:px-6">
                           {papers.map((paper, index) => (
                             <div
                               key={index}
-                              className="flex flex-col items-start justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:bg-white/[0.04] sm:flex-row sm:items-center sm:p-5"
+                              className="flex flex-col items-start justify-between gap-3 border-2 border-ink bg-surface-soft p-4 transition-colors duration-150 hover:bg-surface sm:flex-row sm:items-center sm:p-5"
                             >
                               <h3 className="font-medium text-ink">{paper.title}</h3>
                               <a
                                 href={paper.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`inline-flex shrink-0 items-center gap-2 rounded-xl bg-gradient-to-r ${accent} px-4 py-2 text-sm font-semibold text-[#06070f] transition-transform duration-200 hover:scale-[1.03]`}
+                                className={`inline-flex shrink-0 items-center gap-2 border-2 border-[#0a0a0a] px-4 py-2 text-sm font-bold uppercase shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5 ${accent}`}
                               >
                                 Read Paper <ExternalLink className="h-4 w-4" />
                               </a>

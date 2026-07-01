@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 
 const QuestionBank = () => {
   const [darkMode, toggleDarkMode] = useDarkMode();
@@ -41,55 +41,55 @@ const QuestionBank = () => {
       id: 'python',
       name: 'Python Basics',
       icon: Code2,
-      color: 'from-emerald-400 to-teal-400',
+      color: 'bg-acid text-[#0a0a0a]',
     },
     {
       id: 'sql',
       name: 'SQL',
       icon: Database,
-      color: 'from-aurora-cyan to-aurora-blue',
+      color: 'bg-electric text-white',
     },
     {
       id: 'ml',
       name: 'Machine Learning',
       icon: Brain,
-      color: 'from-aurora-blue to-aurora-indigo',
+      color: 'bg-hot-pink text-white',
     },
     {
       id: 'dl',
       name: 'Deep Learning',
       icon: Cpu,
-      color: 'from-aurora-violet to-aurora-fuchsia',
+      color: 'bg-cyber-yellow text-[#0a0a0a]',
     },
     {
       id: 'genai',
       name: 'Generative AI',
       icon: Sparkles,
-      color: 'from-aurora-amber to-orange-400',
+      color: 'bg-acid text-[#0a0a0a]',
     },
     {
       id: 'rag',
       name: 'RAG',
       icon: Sparkles,
-      color: 'from-teal-400 to-aurora-cyan',
+      color: 'bg-electric text-white',
     },
     {
       id: 'statistics',
       name: 'Statistics',
       icon: BarChart3,
-      color: 'from-aurora-cyan to-emerald-400',
+      color: 'bg-hot-pink text-white',
     },
     {
       id: 'algorithms',
       name: 'Algorithms',
       icon: GitBranch,
-      color: 'from-aurora-indigo to-aurora-violet',
+      color: 'bg-cyber-yellow text-[#0a0a0a]',
     },
     {
       id: 'bookmarks',
       name: 'Bookmarked Questions',
       icon: Bookmark,
-      color: 'from-aurora-fuchsia to-pink-400',
+      color: 'bg-acid text-[#0a0a0a]',
     }
   ];
 
@@ -319,26 +319,26 @@ const QuestionBank = () => {
   if (!selectedTopic && !isCreatingTest && !isTestMode) {
     return (
       <>
-        <AuroraBackground />
+        <BrutalBackground />
         <div className="flex min-h-screen flex-col">
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
               className="mx-auto mb-12 max-w-2xl text-center"
             >
-              <span className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-soft">
+              <span className="brut-chip mb-4 bg-pastel-blue">
                 Practice & Quiz
               </span>
-              <h1 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-                Question <span className="text-aurora">Bank</span>
+              <h1 className="font-display text-4xl uppercase tracking-tight text-ink sm:text-5xl">
+                Question <span className="inline-block rotate-[-1deg] bg-electric px-2 text-white shadow-brut-sm">Bank</span>
               </h1>
               <p className="mx-auto mt-4 max-w-xl text-soft">
                 Test your knowledge across various topics.
               </p>
-              <p className="mt-1 text-sm text-faint">
+              <p className="mt-1 font-mono text-sm text-faint">
                 Select a topic to start practicing
               </p>
             </motion.div>
@@ -346,7 +346,7 @@ const QuestionBank = () => {
             <div className="mb-12 text-center">
               <button
                 onClick={() => setIsCreatingTest(true)}
-                className="btn-aurora rounded-2xl px-6 py-3 text-[15px]"
+                className="brut-btn px-6 py-3 text-[15px]"
               >
                 <FilePlus className="h-[18px] w-[18px]" /> Create a Custom Test
               </button>
@@ -366,13 +366,13 @@ const QuestionBank = () => {
                   <motion.div
                     key={topic.id}
                     onClick={() => setSelectedTopic(topic.id)}
-                    className="group relative cursor-pointer overflow-hidden rounded-3xl glass glass-sheen p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
+                    className={`brut-card brut-hover group relative cursor-pointer p-7 ${index % 2 === 0 ? 'rotate-[-0.6deg]' : 'rotate-[0.6deg]'}`}
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                   >
-                    <div className={`mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br ${topic.color} text-[#06070f] shadow-lg transition-transform duration-300 group-hover:scale-105`}>
+                    <div className={`mb-5 grid h-14 w-14 place-items-center border-[3px] border-[#0a0a0a] shadow-brut-sm ${topic.color} transition-transform duration-150 group-hover:-rotate-6`}>
                       <Icon size={28} />
                     </div>
-                    <h3 className="font-display text-xl font-bold text-ink">
+                    <h3 className="font-display text-xl uppercase text-ink">
                       {topic.name}
                     </h3>
                     <p className="mt-1.5 text-sm text-soft">
@@ -393,22 +393,22 @@ const QuestionBank = () => {
   if (isCreatingTest) {
     return (
       <>
-        <AuroraBackground />
+        <BrutalBackground />
         <div className="flex min-h-screen flex-col">
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
             <div className="mx-auto max-w-4xl">
               <button
                 onClick={() => setIsCreatingTest(false)}
-                className="mb-6 inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 text-sm font-medium text-ink transition-all duration-300 hover:shadow-glow"
+                className="brut-btn brut-btn-surface mb-6 px-5 py-2.5 text-sm"
               >
                 <ArrowLeft size={18} /> Back to Topics
               </button>
-              <div className="rounded-3xl glass glass-sheen p-8">
-                <h2 className="font-display text-3xl font-bold text-ink">Create Your Custom Test</h2>
+              <div className="brut-card p-8">
+                <h2 className="font-display text-3xl uppercase text-ink">Create Your Custom Test</h2>
 
                 <div className="mt-8 mb-8">
-                  <h3 className="mb-4 font-display text-lg font-semibold text-ink">1. Select Topics</h3>
+                  <h3 className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-soft">1. Select Topics</h3>
                   <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
                     {topics.map(topic => {
                       const isSelected = selectedTestTopics.includes(topic.id);
@@ -416,14 +416,14 @@ const QuestionBank = () => {
                         <button
                           key={topic.id}
                           onClick={() => handleTopicToggle(topic.id)}
-                          className={`rounded-2xl border p-4 text-center transition-all duration-200 ${
+                          className={`border-[3px] p-4 text-center transition-all duration-150 ${
                             isSelected
-                              ? 'border-emerald-400/60 bg-emerald-500/10 shadow-glow'
-                              : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.04]'
+                              ? 'border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm'
+                              : 'border-ink bg-surface hover:bg-surface-soft'
                           }`}
                         >
-                          <topic.icon className={`mx-auto mb-2 ${isSelected ? 'text-emerald-400' : 'text-soft'}`} size={24} />
-                          <span className={`text-sm ${isSelected ? 'text-ink' : 'text-soft'}`}>{topic.name}</span>
+                          <topic.icon className={`mx-auto mb-2 ${isSelected ? 'text-[#0a0a0a]' : 'text-soft'}`} size={24} />
+                          <span className={`text-sm ${isSelected ? 'font-bold text-[#0a0a0a]' : 'text-soft'}`}>{topic.name}</span>
                         </button>
                       );
                     })}
@@ -432,34 +432,34 @@ const QuestionBank = () => {
 
                 <div className="mb-8 grid gap-6 md:grid-cols-2">
                   <div>
-                    <h3 className="mb-4 font-display text-lg font-semibold text-ink">2. Number of Questions</h3>
+                    <h3 className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-soft">2. Number of Questions</h3>
                     <input
                       type="number"
                       value={numQuestions}
                       onChange={(e) => setNumQuestions(Math.max(1, parseInt(e.target.value, 10)))}
-                      className="w-full rounded-2xl glass px-4 py-2.5 text-ink outline-none transition-shadow placeholder:text-faint focus:shadow-glow"
+                      className="w-full border-[3px] border-ink bg-surface px-4 py-2.5 font-mono text-ink outline-none placeholder:text-faint"
                       min="1"
                       max="50"
                     />
                   </div>
                   <div>
-                    <h3 className="mb-4 font-display text-lg font-semibold text-ink">3. Time Limit (minutes)</h3>
+                    <h3 className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-soft">3. Time Limit (minutes)</h3>
                     <input
                       type="number"
                       value={timeLimit}
                       onChange={(e) => setTimeLimit(Math.max(1, parseInt(e.target.value, 10)))}
-                      className="w-full rounded-2xl glass px-4 py-2.5 text-ink outline-none transition-shadow placeholder:text-faint focus:shadow-glow"
+                      className="w-full border-[3px] border-ink bg-surface px-4 py-2.5 font-mono text-ink outline-none placeholder:text-faint"
                       min="1"
                     />
                   </div>
                 </div>
 
-                {error && <p className="mb-4 text-center text-rose-400">{error}</p>}
+                {error && <p className="mb-4 text-center font-bold text-hot-pink">{error}</p>}
 
                 <button
                   onClick={loadTestQuestions}
                   disabled={selectedTestTopics.length === 0 || loading}
-                  className="btn-aurora w-full rounded-2xl px-6 py-3.5 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="brut-btn w-full px-6 py-3.5 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {loading ? 'Generating Test...' : 'Start Test'}
                 </button>
@@ -475,13 +475,13 @@ const QuestionBank = () => {
   if (loading) {
     return (
       <>
-        <AuroraBackground />
+        <BrutalBackground />
         <div className="flex min-h-screen flex-col">
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <main className="mx-auto flex w-full max-w-7xl flex-grow items-center justify-center px-4 pb-20 pt-10 sm:pt-14">
             <div className="text-center">
-              <div className="mx-auto mb-4 h-16 w-16 animate-spin rounded-full border-t-4 border-aurora-cyan"></div>
-              <p className="text-xl text-ink">Loading questions...</p>
+              <div className="mx-auto mb-4 h-14 w-14 animate-spin border-[3px] border-[#0a0a0a] bg-acid shadow-brut-sm"></div>
+              <p className="font-mono text-xl font-bold uppercase tracking-wider text-ink">Loading questions...</p>
             </div>
           </main>
           <Footer darkMode={darkMode} />
@@ -493,17 +493,17 @@ const QuestionBank = () => {
   if (error) {
     return (
       <>
-        <AuroraBackground />
+        <BrutalBackground />
         <div className="flex min-h-screen flex-col">
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <main className="mx-auto flex w-full max-w-7xl flex-grow items-center justify-center px-4 pb-20 pt-10 sm:pt-14">
-            <div className="max-w-md rounded-3xl glass glass-sheen p-8 text-center">
+            <div className="brut-card-lg max-w-md rotate-[-0.8deg] p-8 text-center">
               <div className="mb-4 text-6xl">😞</div>
-              <h2 className="mb-4 font-display text-2xl font-bold text-ink">Oops!</h2>
+              <h2 className="mb-4 font-display text-2xl uppercase text-ink">Oops!</h2>
               <p className="mb-6 text-soft">{error}</p>
               <button
                 onClick={() => { setSelectedTopic(null); setIsCreatingTest(false); setError(null); }}
-                className="mx-auto inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 font-medium text-ink transition-all duration-300 hover:shadow-glow"
+                className="brut-btn brut-btn-surface mx-auto px-5 py-2.5"
               >
                 <ArrowLeft size={18} />
                 Back to Topics
@@ -520,34 +520,34 @@ const QuestionBank = () => {
     const accuracy = score.attempted > 0 ? (score.correct / score.attempted) * 100 : 0;
     return (
       <>
-        <AuroraBackground />
+        <BrutalBackground />
         <div className="flex min-h-screen flex-col">
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
             <div className="mx-auto max-w-2xl">
-              <div className="rounded-3xl glass glass-sheen p-8 text-center">
-                <h2 className="font-display text-4xl font-bold text-ink">Test Completed!</h2>
+              <div className="brut-card-lg p-8 text-center">
+                <h2 className="font-display text-4xl uppercase text-ink">Test Completed!</h2>
                 <p className="mt-3 mb-8 text-lg text-soft">Here's your performance summary.</p>
 
                 <div className="mb-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+                  <div className="rotate-[-0.8deg] border-[3px] border-ink bg-pastel-mint p-6 shadow-brut-sm">
                     <div className="flex items-center justify-center gap-3">
-                      <CheckCircle className="text-emerald-400" size={28} />
-                      <h3 className="text-lg font-semibold text-soft">Correct</h3>
+                      <CheckCircle className="text-ink" size={28} />
+                      <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-soft">Correct</h3>
                     </div>
                     <p className="mt-2 font-mono text-4xl font-bold text-ink">{score.correct}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+                  <div className="rotate-[0.8deg] border-[3px] border-ink bg-pastel-pink p-6 shadow-brut-sm">
                     <div className="flex items-center justify-center gap-3">
-                      <XCircle className="text-rose-400" size={28} />
-                      <h3 className="text-lg font-semibold text-soft">Incorrect</h3>
+                      <XCircle className="text-ink" size={28} />
+                      <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-soft">Incorrect</h3>
                     </div>
                     <p className="mt-2 font-mono text-4xl font-bold text-ink">{score.attempted - score.correct}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+                  <div className="rotate-[-0.8deg] border-[3px] border-ink bg-pastel-blue p-6 shadow-brut-sm">
                     <div className="flex items-center justify-center gap-3">
-                      <Target className="text-aurora-cyan" size={28} />
-                      <h3 className="text-lg font-semibold text-soft">Accuracy</h3>
+                      <Target className="text-ink" size={28} />
+                      <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-soft">Accuracy</h3>
                     </div>
                     <p className="mt-2 font-mono text-4xl font-bold text-ink">{accuracy.toFixed(1)}%</p>
                   </div>
@@ -562,13 +562,13 @@ const QuestionBank = () => {
                       setShowTestSummary(false);
                       clearInterval(timerId);
                     }}
-                    className="inline-flex items-center justify-center gap-2 rounded-2xl glass px-6 py-3 text-[15px] font-medium text-ink transition-all duration-300 hover:shadow-glow"
+                    className="brut-btn brut-btn-surface px-6 py-3 text-[15px]"
                   >
                     <ArrowLeft size={18} /> Back to Topics
                   </button>
                   <button
                     onClick={handleReset}
-                    className="btn-aurora rounded-2xl px-6 py-3 text-[15px]"
+                    className="brut-btn px-6 py-3 text-[15px]"
                   >
                     <RotateCcw size={18} /> Retake Test
                   </button>
@@ -585,11 +585,11 @@ const QuestionBank = () => {
   if (!loading && questions.length === 0 && !isCreatingTest) {
     return (
       <>
-        <AuroraBackground />
+        <BrutalBackground />
         <div className="flex min-h-screen flex-col">
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <main className="mx-auto flex w-full max-w-7xl flex-grow items-center justify-center px-4 pb-20 pt-10 sm:pt-14">
-            <p className="text-xl text-ink">No questions available</p>
+            <p className="font-mono text-xl font-bold uppercase tracking-wider text-ink">No questions available</p>
           </main>
           <Footer darkMode={darkMode} />
         </div>
@@ -605,19 +605,19 @@ const QuestionBank = () => {
 
   return (
     <>
-      <AuroraBackground />
+      <BrutalBackground />
       <div className="flex min-h-screen flex-col">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-20 pt-10 sm:pt-14">
           <button
             onClick={() => { setSelectedTopic(null); setIsTestMode(false); clearInterval(timerId); setShowTestSummary(false); }}
-            className="mb-6 inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 text-sm font-medium text-ink transition-all duration-300 hover:shadow-glow"
+            className="brut-btn brut-btn-surface mb-6 px-5 py-2.5 text-sm"
           >
             <ArrowLeft size={18} /> Back to Topics
           </button>
-          <div className="rounded-3xl glass glass-sheen p-6 sm:p-8">
+          <div className="brut-card p-6 sm:p-8">
             {/* Header */}
-            <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="mb-6 flex items-center justify-between border-b-2 border-ink pb-4">
               <div className="flex items-center gap-4">
                 <div className="text-soft">
                   Question <span className="font-bold text-ink">{currentQuestion + 1}</span> of{' '}
@@ -627,23 +627,23 @@ const QuestionBank = () => {
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => toggleBookmark(question.topicId || selectedTopic, question.id)}
-                  className={`grid h-9 w-9 place-items-center rounded-xl transition-all duration-200 ${
+                  className={`grid h-9 w-9 place-items-center border-2 transition-all duration-150 ${
                     isBookmarked
-                      ? 'bg-aurora-amber text-[#1a1206]'
-                      : 'glass text-soft hover:text-ink'
+                      ? 'border-[#0a0a0a] bg-cyber-yellow text-[#0a0a0a] shadow-brut-sm'
+                      : 'border-ink bg-surface text-soft hover:text-ink'
                   }`}
                   aria-label={isBookmarked ? 'Remove bookmark' : 'Add bookmark'}
                 >
                   <Bookmark size={18} fill={isBookmarked ? 'currentColor' : 'none'} />
                 </button>
                 {isTestMode && timeLeft !== null ? (
-                  <div className={`flex items-center gap-2 font-mono font-semibold ${timeLeft < 60 ? 'text-rose-400' : 'text-soft'}`}>
+                  <div className={`flex items-center gap-2 font-mono font-bold ${timeLeft < 60 ? 'text-hot-pink' : 'text-soft'}`}>
                     <Clock size={18} />
                     <span>{formatTime(timeLeft)}</span>
                   </div>
                 ) : (
                   <div className="text-soft">
-                    Score: <span className="font-bold text-emerald-400">{score.correct}</span>/
+                    Score: <span className="bg-acid px-1 font-bold text-[#0a0a0a]">{score.correct}</span>/
                     <span className="font-bold text-ink">{score.attempted}</span>
                   </div>
                 )}
@@ -652,23 +652,20 @@ const QuestionBank = () => {
 
             {/* Progress Bar */}
             <div className="mb-6">
-              <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
-                <div
-                  className="h-2 rounded-full bg-gradient-to-r from-aurora-violet to-aurora-cyan transition-all duration-300"
-                  style={{ width: `${progress}%` }}
-                ></div>
+              <div className="brut-progress">
+                <div style={{ width: `${progress}%` }} data-full={progress >= 100} />
               </div>
             </div>
 
             {/* Difficulty Badge */}
             <div className="mb-6">
               <span
-                className={`inline-block rounded-full border px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide ${
+                className={`inline-block border-2 border-ink px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wide text-ink shadow-brut-sm ${
                   question.difficulty === 'easy'
-                    ? 'border-emerald-400/40 bg-emerald-500/10 text-emerald-400'
+                    ? 'bg-pastel-mint'
                     : question.difficulty === 'medium'
-                    ? 'border-aurora-amber/40 bg-amber-500/10 text-aurora-amber'
-                    : 'border-rose-400/40 bg-rose-500/10 text-rose-400'
+                    ? 'bg-pastel-yellow'
+                    : 'bg-pastel-pink'
                 }`}
               >
                 {question.difficulty.toUpperCase()}
@@ -676,7 +673,7 @@ const QuestionBank = () => {
             </div>
 
             {/* Question */}
-            <h2 className="mb-8 font-display text-2xl font-bold text-ink sm:text-3xl">
+            <h2 className="mb-8 font-display text-2xl text-ink sm:text-3xl">
               {question.question}
             </h2>
 
@@ -686,16 +683,16 @@ const QuestionBank = () => {
                 <div
                   key={index}
                   onClick={() => handleAnswerSelect(index)}
-                  className={`cursor-pointer rounded-2xl border p-5 transition-all duration-200 ${
+                  className={`cursor-pointer border-[3px] p-5 transition-all duration-150 ${
                     showResult
                       ? index === question.correctAnswer
-                        ? 'border-emerald-400/60 bg-emerald-500/10 text-ink'
+                        ? 'border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm'
                         : index === selectedAnswer
-                        ? 'border-rose-400/60 bg-rose-500/10 text-ink'
-                        : 'border-white/10 bg-white/[0.02] text-soft'
+                        ? 'border-[#0a0a0a] bg-hot-pink text-white shadow-brut-sm'
+                        : 'border-ink bg-surface text-soft opacity-60'
                       : selectedAnswer === index
-                      ? 'border-aurora-violet/60 bg-aurora-violet/10 text-ink shadow-glow'
-                      : 'border-white/10 bg-white/[0.02] text-soft hover:bg-white/[0.04] hover:text-ink'
+                      ? 'border-[#0a0a0a] bg-electric text-white shadow-brut-sm'
+                      : 'border-ink bg-surface text-soft hover:bg-surface-soft hover:text-ink'
                   }`}
                 >
                   <div className="flex items-center">
@@ -711,13 +708,13 @@ const QuestionBank = () => {
             {/* Explanation */}
             {showResult && (
               <div
-                className={`mb-8 rounded-2xl border p-6 ${
+                className={`mb-8 border-[3px] border-ink p-6 text-ink shadow-brut-sm ${
                   selectedAnswer === question.correctAnswer
-                    ? 'border-emerald-400/40 bg-emerald-500/10 text-ink'
-                    : 'border-rose-400/40 bg-rose-500/10 text-ink'
+                    ? 'bg-pastel-mint'
+                    : 'bg-pastel-pink'
                 }`}
               >
-                <p className={`mb-3 text-xl font-bold ${selectedAnswer === question.correctAnswer ? 'text-emerald-400' : 'text-rose-400'}`}>
+                <p className="mb-3 font-display text-xl uppercase text-ink">
                   {selectedAnswer === question.correctAnswer ? '✓ Correct!' : '✗ Incorrect'}
                 </p>
                 <p className="text-lg text-soft">{question.explanation}</p>
@@ -729,14 +726,14 @@ const QuestionBank = () => {
               <button
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0}
-                className="inline-flex items-center gap-2 rounded-2xl glass px-5 py-2.5 font-medium text-ink transition-all duration-300 hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-40"
+                className="brut-btn brut-btn-surface px-5 py-2.5 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 ← Previous
               </button>
 
               <button
                 onClick={handleReset}
-                className="hidden items-center gap-2 rounded-2xl glass px-5 py-2.5 font-medium text-ink transition-all duration-300 hover:shadow-glow sm:inline-flex"
+                className="brut-btn brut-btn-surface hidden px-5 py-2.5 sm:inline-flex"
               >
                 <RotateCcw size={18} />
                 Reset
@@ -746,7 +743,7 @@ const QuestionBank = () => {
                 <button
                   onClick={handleSubmit}
                   disabled={selectedAnswer === null || (isTestMode && timeLeft !== null && timeLeft === 0)}
-                  className="btn-aurora rounded-2xl px-6 py-3 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="brut-btn px-6 py-3 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Submit Answer
                 </button>
@@ -754,7 +751,7 @@ const QuestionBank = () => {
                 <button
                   onClick={handleNext}
                   disabled={(isTestMode && timeLeft !== null && timeLeft === 0)}
-                  className="btn-aurora rounded-2xl px-6 py-3 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="brut-btn px-6 py-3 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {currentQuestion === questions.length - 1 ? 'Finish Test' : 'Next Question →'}
                 </button>

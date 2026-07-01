@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MachineLearningRoadmap from './components/MachineLearningRoadmap';
 import DeepLearning from './components/DeepLearningRoadmap';
@@ -25,6 +24,8 @@ import {
   RAGGuide,
 } from './components/LongTailGuides';
 import { BookmarksProvider } from './contexts/BookmarksContext';
+import { GamificationProvider } from './contexts/GamificationContext';
+import CommandPalette from './components/CommandPalette';
 import ReactGA from 'react-ga4';
 const trackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
 if (trackingId) {
@@ -33,8 +34,10 @@ if (trackingId) {
 
 const App = () => {
   return (
+    <GamificationProvider>
     <BookmarksProvider>
       <Router>
+        <CommandPalette />
         <div className="min-h-screen">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -63,6 +66,7 @@ const App = () => {
         </div>
       </Router>
     </BookmarksProvider>
+    </GamificationProvider>
   );
 };
 

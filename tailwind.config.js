@@ -8,59 +8,45 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Sora', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ['"Hanken Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Archivo Black"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        aurora: {
-          violet: '#7c5cff',
-          indigo: '#6366f1',
-          blue: '#3b82f6',
-          cyan: '#22d3ee',
-          teal: '#2dd4bf',
-          fuchsia: '#e879f9',
-          amber: '#fbbf24',
-        },
-      },
-      borderRadius: {
-        '4xl': '2rem',
-        '5xl': '2.5rem',
+        // Theme-adaptive (resolve via CSS custom properties)
+        ink: 'var(--ink)',
+        surface: 'var(--surface)',
+        'surface-soft': 'var(--surface-soft)',
+        canvas: 'var(--bg)',
+        // Loud accents (fixed across themes; pair with black borders/text)
+        acid: '#c6ff00',
+        electric: '#3300ff',
+        'hot-pink': '#ff2e88',
+        'cyber-yellow': '#ffd400',
+        // Pastel fills (theme-adaptive)
+        'pastel-pink': 'var(--pastel-pink)',
+        'pastel-blue': 'var(--pastel-blue)',
+        'pastel-yellow': 'var(--pastel-yellow)',
+        'pastel-mint': 'var(--pastel-mint)',
       },
       boxShadow: {
-        glow: '0 8px 30px -10px rgba(124,92,255,0.45)',
-        'glow-lg': '0 0 50px -8px rgba(124,92,255,0.5), 0 0 90px -28px rgba(34,211,238,0.4)',
-        'glow-cyan': '0 8px 30px -10px rgba(34,211,238,0.5)',
-        glass: '0 20px 60px -22px rgba(2,4,16,0.7)',
-        'inner-top': 'inset 0 1px 0 0 rgba(255,255,255,0.08)',
-      },
-      backgroundImage: {
-        'grid-dark':
-          'linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)',
-        'grid-light':
-          'linear-gradient(rgba(15,23,42,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.05) 1px, transparent 1px)',
-      },
-      backgroundSize: {
-        grid: '44px 44px',
+        brut: '6px 6px 0 0 var(--shadow-color)',
+        'brut-sm': '4px 4px 0 0 var(--shadow-color)',
+        'brut-lg': '10px 10px 0 0 var(--shadow-color)',
+        'brut-xl': '14px 14px 0 0 var(--shadow-color)',
       },
       keyframes: {
-        'aurora-1': {
-          '0%,100%': { transform: 'translate(0,0) scale(1)' },
-          '33%': { transform: 'translate(7%,-5%) scale(1.18)' },
-          '66%': { transform: 'translate(-5%,7%) scale(0.92)' },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
-        'aurora-2': {
-          '0%,100%': { transform: 'translate(0,0) scale(1.08)' },
-          '33%': { transform: 'translate(-9%,6%) scale(0.9)' },
-          '66%': { transform: 'translate(6%,-8%) scale(1.22)' },
+        wobble: {
+          '0%,100%': { transform: 'rotate(6deg)' },
+          '50%': { transform: 'rotate(12deg)' },
         },
-        'aurora-3': {
-          '0%,100%': { transform: 'translate(0,0) scale(1)' },
-          '50%': { transform: 'translate(5%,5%) scale(1.15)' },
-        },
-        float: {
-          '0%,100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-7px)' },
+        'stamp-in': {
+          '0%': { opacity: '0', transform: 'scale(1.4) rotate(-4deg)' },
+          '100%': { opacity: '1', transform: 'scale(1) rotate(0deg)' },
         },
         'fade-up': {
           '0%': { opacity: '0', transform: 'translateY(18px)' },
@@ -70,36 +56,17 @@ module.exports = {
           '0%': { opacity: '0', transform: 'scale(0.95)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '200% center' },
-          '100%': { backgroundPosition: '-200% center' },
-        },
-        flow: {
-          to: { strokeDashoffset: '-24' },
-        },
-        'glow-pulse': {
-          '0%,100%': { opacity: '0.55' },
-          '50%': { opacity: '1' },
-        },
-        'spin-slow': {
-          to: { transform: 'rotate(360deg)' },
-        },
-        'border-spin': {
-          to: { transform: 'rotate(360deg)' },
+        blink: {
+          '50%': { opacity: '0' },
         },
       },
       animation: {
-        'aurora-1': 'aurora-1 19s ease-in-out infinite',
-        'aurora-2': 'aurora-2 24s ease-in-out infinite',
-        'aurora-3': 'aurora-3 30s ease-in-out infinite',
-        float: 'float 6s ease-in-out infinite',
-        'fade-up': 'fade-up 0.7s cubic-bezier(0.22,1,0.36,1) both',
-        'scale-in': 'scale-in 0.55s cubic-bezier(0.22,1,0.36,1) both',
-        shimmer: 'shimmer 7s linear infinite',
-        flow: 'flow 1.1s linear infinite',
-        'glow-pulse': 'glow-pulse 3.2s ease-in-out infinite',
-        'spin-slow': 'spin-slow 16s linear infinite',
-        'border-spin': 'border-spin 6s linear infinite',
+        marquee: 'marquee 26s linear infinite',
+        wobble: 'wobble 4.5s ease-in-out infinite',
+        'stamp-in': 'stamp-in 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both',
+        'fade-up': 'fade-up 0.5s ease-out both',
+        'scale-in': 'scale-in 0.3s ease-out both',
+        blink: 'blink 1s steps(1) infinite',
       },
     },
   },

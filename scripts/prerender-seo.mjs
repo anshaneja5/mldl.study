@@ -93,6 +93,59 @@ const escapeAttr = (value) =>
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;');
 
+/* Static JSON-LD so crawlers that skip JS still get structured data.
+   The SPA adds richer page-level schema client-side via react-helmet. */
+const ROADMAP_APP_ROUTES = new Set(['/machinelearning', '/deeplearning', '/genai', '/prerequisites']);
+
+const buildJsonLd = (route, canonical) => {
+  if (route.path === '/') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      name: 'mldl.study',
+      url: siteUrl,
+      description: route.description,
+      inLanguage: 'en',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: `${siteUrl}/search?q={search_term_string}` },
+        'query-input': 'required name=search_term_string',
+      },
+    };
+  }
+  if (ROADMAP_APP_ROUTES.has(route.path)) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      '@id': `${canonical}#course`,
+      name: route.title.replace(' | mldl.study', ''),
+      description: route.description,
+      url: canonical,
+      isAccessibleForFree: true,
+      provider: { '@type': 'Organization', name: 'mldl.study', url: siteUrl },
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', category: 'Free' },
+      hasCourseInstance: {
+        '@type': 'CourseInstance',
+        courseMode: 'online',
+        courseWorkload: 'PT10H',
+      },
+    };
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${canonical}#article`,
+    headline: route.title.replace(' | mldl.study', ''),
+    description: route.description,
+    url: canonical,
+    mainEntityOfPage: canonical,
+    image: ogImage,
+    author: { '@type': 'Person', name: 'Ansh Aneja', url: siteUrl },
+    publisher: { '@type': 'Organization', name: 'mldl.study', url: siteUrl },
+  };
+};
+
 const replaceTag = (html, pattern, replacement) => html.replace(pattern, replacement);
 
 const renderRoute = (template, route) => {
@@ -111,6 +164,9 @@ const renderRoute = (template, route) => {
   html = replaceTag(html, /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${escapeAttr(route.title)}" />`);
   html = replaceTag(html, /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escapeAttr(route.description)}" />`);
   html = replaceTag(html, /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/>/, `<meta name="twitter:image" content="${ogImage}" />`);
+
+  const jsonLd = JSON.stringify(buildJsonLd(route, canonical)).replaceAll('</', '<\\/');
+  html = html.replace('</head>', `  <script type="application/ld+json">${jsonLd}</script>\n  </head>`);
 
   return html;
 };

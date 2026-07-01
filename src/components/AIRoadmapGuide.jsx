@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Brain, CheckCircle2, Code, Layers, Rocket, Sparkles } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 import { AuthorBlock, DEFAULT_OG_IMAGE } from './SEOGuidePage';
 
 const SITE_URL = 'https://mldl.study';
+
+const PHASE_FILLS = ['bg-pastel-mint', 'bg-pastel-blue', 'bg-pastel-pink', 'bg-pastel-yellow', 'bg-pastel-mint'];
 
 const phases = [
   {
@@ -122,48 +124,48 @@ const AIRoadmapGuide = () => {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
       <div className="flex min-h-screen flex-col">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <main className="mx-auto w-full max-w-6xl flex-grow px-4 pb-20 pt-10 sm:pt-16">
           <section className="mx-auto max-w-4xl text-center">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm font-semibold text-aurora">
+            <p className="brut-chip mb-4 bg-pastel-mint">
               <Sparkles className="h-4 w-4" />
               Free AI roadmap
             </p>
-            <h1 className="font-display text-5xl font-extrabold leading-tight text-ink sm:text-6xl">
+            <h1 className="font-display text-5xl uppercase leading-tight tracking-tight text-ink sm:text-6xl">
               AI Roadmap for Beginners
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-soft">
               A practical path to learn artificial intelligence from scratch: Python, math, machine learning, deep learning, generative AI, RAG, agents, deployment, and projects.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link to="/prerequisites" className="btn-aurora rounded-2xl px-6 py-3 text-[15px]">
+              <Link to="/prerequisites" className="brut-btn px-6 py-3 text-[15px]">
                 Start the roadmap <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/machinelearning" className="rounded-2xl glass px-6 py-3 text-[15px] font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+              <Link to="/machinelearning" className="brut-btn brut-btn-surface px-6 py-3 text-[15px]">
                 Open ML roadmap
               </Link>
             </div>
           </section>
 
           <section className="mt-16 grid gap-5 lg:grid-cols-5">
-            {phases.map((phase) => (
-              <Link key={phase.title} to={phase.href} className="border-aurora glass glass-sheen group rounded-3xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
-                <span className="mb-4 inline-grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-aurora-violet to-aurora-cyan text-[#04060f]">
+            {phases.map((phase, index) => (
+              <Link key={phase.title} to={phase.href} className={`brut-hover group block border-[3px] border-ink p-5 shadow-brut ${PHASE_FILLS[index % PHASE_FILLS.length]} ${index % 2 === 0 ? 'rotate-[-0.6deg]' : 'rotate-[0.6deg]'} hover:rotate-0`}>
+                <span className="mb-4 inline-grid h-11 w-11 place-items-center border-[3px] border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm transition-transform duration-150 group-hover:-rotate-6">
                   {phase.icon}
                 </span>
-                <h2 className="font-display text-lg font-bold text-ink">{phase.title}</h2>
+                <h2 className="font-display text-lg uppercase text-ink">{phase.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-soft">{phase.description}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-aurora">
-                  Study this step <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold uppercase text-ink">
+                  Study this step <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={3} />
                 </span>
               </Link>
             ))}
           </section>
 
-          <section className="glass glass-sheen mt-16 rounded-[2rem] p-7 sm:p-10">
-            <h2 className="font-display text-3xl font-bold text-ink">How to use this AI roadmap</h2>
+          <section className="brut-card-lg mt-16 p-7 sm:p-10">
+            <h2 className="font-display text-3xl uppercase text-ink">How to use this AI roadmap</h2>
             <div className="mt-5 grid gap-6 text-sm leading-relaxed text-soft md:grid-cols-2">
               <p>
                 If you are new to AI, do not start by jumping straight into LLM apps. First build enough Python, math, and machine learning intuition to understand what models are doing. Then use the deep learning and GenAI tracks to connect those foundations to modern systems.
@@ -185,19 +187,19 @@ const AIRoadmapGuide = () => {
               'Build projects after each major phase, not only at the end.',
               'Subscribe for weekly updates on new AI tools and breakthroughs.',
             ].map((item) => (
-              <div key={item} className="glass rounded-2xl p-5">
-                <CheckCircle2 className="mb-3 h-5 w-5 text-aurora-cyan" />
+              <div key={item} className="brut-card-sm p-5">
+                <CheckCircle2 className="mb-3 h-5 w-5 text-hot-pink" />
                 <p className="font-medium text-ink">{item}</p>
               </div>
             ))}
           </section>
 
-          <section className="glass glass-sheen mt-16 rounded-[2rem] p-7 sm:p-10">
-            <h2 className="font-display text-3xl font-bold text-ink">AI roadmap FAQ</h2>
-            <div className="mt-6 divide-y divide-white/10">
+          <section className="brut-card-lg mt-16 p-7 sm:p-10">
+            <h2 className="font-display text-3xl uppercase text-ink">AI roadmap FAQ</h2>
+            <div className="mt-6 divide-y-2 divide-ink">
               {faqs.map((faq) => (
                 <div key={faq.question} className="py-5">
-                  <h3 className="font-semibold text-ink">{faq.question}</h3>
+                  <h3 className="font-bold text-ink">{faq.question}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-soft">{faq.answer}</p>
                 </div>
               ))}
@@ -205,12 +207,14 @@ const AIRoadmapGuide = () => {
           </section>
 
           <section className="mt-16 text-center">
-            <Code className="mx-auto mb-4 h-8 w-8 text-aurora-cyan" />
-            <h2 className="font-display text-3xl font-bold text-ink">Ready to start?</h2>
+            <span className="mx-auto mb-4 grid h-14 w-14 rotate-[-3deg] place-items-center border-[3px] border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm">
+              <Code className="h-8 w-8" />
+            </span>
+            <h2 className="font-display text-3xl uppercase text-ink">Ready to start?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-soft">
               Start with the foundations, then move into machine learning, deep learning, and GenAI as your skills grow.
             </p>
-            <Link to="/prerequisites" className="btn-aurora mt-6 rounded-2xl px-7 py-3.5 text-[15px]">
+            <Link to="/prerequisites" className="brut-btn mt-6 px-7 py-3.5 text-[15px]">
               Begin with prerequisites
             </Link>
           </section>

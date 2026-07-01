@@ -21,11 +21,8 @@ const connections = [
 ];
 
 const accent = {
-  ringFrom: '#60a5fa',
-  ringTo: '#6366f1',
-  lineActive: '#6366f1',
-  glow: 'rgba(99,102,241,0.30)',
-  text: '#a5b4fc',
+  fill: 'var(--pastel-blue)',
+  loud: '#3300ff',
 };
 
 const MachineLearningRoadmap = () => (

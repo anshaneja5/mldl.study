@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Github, Linkedin, Mail, Sparkles, Twitter } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 
@@ -57,26 +57,26 @@ export const buildGuideSchema = ({ path, title, description, faqs, steps = [] })
 });
 
 export const AuthorBlock = () => (
-  <aside className="glass glass-sheen rounded-3xl p-5">
-    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-aurora">Maintained by</p>
-    <h2 className="mt-2 font-display text-2xl font-bold text-ink">Ansh Aneja</h2>
+  <aside className="brut-card p-5">
+    <p className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-hot-pink">Maintained by</p>
+    <h2 className="mt-2 font-display text-2xl uppercase text-ink">Ansh Aneja</h2>
     <p className="mt-2 text-sm leading-relaxed text-soft">
       I build and maintain mldl.study, track new AI tools and breakthroughs, and share weekly notes on Claude Code, Cursor, Codex, GenAI systems, and practical learning paths.
     </p>
     <div className="mt-4 grid gap-2 sm:grid-cols-2">
-      <a href="https://x.com/vedolos/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-2xl bg-[#0f1419] px-4 py-3 text-sm font-semibold text-white">
+      <a href="https://x.com/vedolos/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-[#0a0a0a] bg-[#0f1419] px-4 py-3 text-sm font-bold text-white shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5">
         <Twitter className="h-4 w-4" />
         Follow on X
       </a>
-      <a href="https://www.linkedin.com/in/anshaneja5/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-2xl bg-[#0a66c2] px-4 py-3 text-sm font-semibold text-white">
+      <a href="https://www.linkedin.com/in/anshaneja5/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-[#0a0a0a] bg-[#0a66c2] px-4 py-3 text-sm font-bold text-white shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5">
         <Linkedin className="h-4 w-4" />
         LinkedIn
       </a>
-      <a href="https://github.com/anshaneja5/mldl.study" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-2xl glass px-4 py-3 text-sm font-semibold text-ink">
+      <a href="https://github.com/anshaneja5/mldl.study" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-ink bg-surface px-4 py-3 text-sm font-bold text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5">
         <Github className="h-4 w-4" />
         GitHub
       </a>
-      <a href="https://anshaneja.substack.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-2xl glass px-4 py-3 text-sm font-semibold text-ink">
+      <a href="https://anshaneja.substack.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-ink bg-surface px-4 py-3 text-sm font-bold text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5">
         <Mail className="h-4 w-4" />
         Newsletter
       </a>
@@ -125,22 +125,22 @@ const SEOGuidePage = ({
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
       <div className="flex min-h-screen flex-col">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <main className="mx-auto w-full max-w-6xl flex-grow px-4 pb-20 pt-10 sm:pt-16">
           <section className="mx-auto max-w-4xl text-center">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm font-semibold text-aurora">
+            <p className="brut-chip mb-4 bg-pastel-pink">
               <Sparkles className="h-4 w-4" />
               {badge}
             </p>
-            <h1 className="font-display text-5xl font-extrabold leading-tight text-ink sm:text-6xl">{title}</h1>
+            <h1 className="font-display text-5xl uppercase leading-tight tracking-tight text-ink sm:text-6xl">{title}</h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-soft">{intro}</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link to={primaryCta.href} className="btn-aurora rounded-2xl px-6 py-3 text-[15px]">
+              <Link to={primaryCta.href} className="brut-btn px-6 py-3 text-[15px]">
                 {primaryCta.label} <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to={secondaryCta.href} className="rounded-2xl glass px-6 py-3 text-[15px] font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+              <Link to={secondaryCta.href} className="brut-btn brut-btn-surface px-6 py-3 text-[15px]">
                 {secondaryCta.label}
               </Link>
             </div>
@@ -148,17 +148,17 @@ const SEOGuidePage = ({
 
           <section className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {steps.map((step, index) => (
-              <article key={step.title} className="glass glass-sheen rounded-3xl p-5">
-                <p className="font-mono text-xs text-faint">{String(index + 1).padStart(2, '0')}</p>
-                <h2 className="mt-2 font-display text-xl font-bold text-ink">{step.title}</h2>
+              <article key={step.title} className={`brut-card p-5 ${index % 2 === 0 ? 'rotate-[-0.5deg]' : 'rotate-[0.5deg]'}`}>
+                <p className="font-mono text-xs font-bold text-faint">{String(index + 1).padStart(2, '0')}</p>
+                <h2 className="mt-2 font-display text-xl uppercase text-ink">{step.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-soft">{step.description}</p>
               </article>
             ))}
           </section>
 
           <section className="mt-16 grid gap-8 lg:grid-cols-[1fr_0.45fr]">
-            <article className="glass glass-sheen rounded-[2rem] p-7 sm:p-10">
-              <h2 className="font-display text-3xl font-bold text-ink">{bodyTitle}</h2>
+            <article className="brut-card-lg p-7 sm:p-10">
+              <h2 className="font-display text-3xl uppercase text-ink">{bodyTitle}</h2>
               <div className="mt-5 space-y-4 text-sm leading-relaxed text-soft sm:text-base">
                 {body.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -170,19 +170,19 @@ const SEOGuidePage = ({
 
           <section className="mt-16 grid gap-4 md:grid-cols-2">
             {checklist.map((item) => (
-              <div key={item} className="glass rounded-2xl p-5">
-                <CheckCircle2 className="mb-3 h-5 w-5 text-aurora-cyan" />
+              <div key={item} className="brut-card-sm p-5">
+                <CheckCircle2 className="mb-3 h-5 w-5 text-hot-pink" />
                 <p className="font-medium text-ink">{item}</p>
               </div>
             ))}
           </section>
 
-          <section className="glass glass-sheen mt-16 rounded-[2rem] p-7 sm:p-10">
-            <h2 className="font-display text-3xl font-bold text-ink">Frequently asked questions</h2>
-            <div className="mt-6 divide-y divide-white/10">
+          <section className="brut-card-lg mt-16 p-7 sm:p-10">
+            <h2 className="font-display text-3xl uppercase text-ink">Frequently asked questions</h2>
+            <div className="mt-6 divide-y-2 divide-ink">
               {faqs.map((faq) => (
                 <div key={faq.question} className="py-5">
-                  <h3 className="font-semibold text-ink">{faq.question}</h3>
+                  <h3 className="font-bold text-ink">{faq.question}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-soft">{faq.answer}</p>
                 </div>
               ))}

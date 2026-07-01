@@ -3,68 +3,71 @@
 @tailwind utilities;
 
 /* ============================================================
-   Aurora Glass — design tokens
+   Brutal — design tokens
+   Light (default) is the signature cream look; dark is true
+   brutalist dark (cream ink + cream borders on near-black),
+   never gray glass. No blur, no gradients, anywhere.
    ============================================================ */
 @layer base {
   :root {
     /* surfaces */
-    --bg: #f6f7fb;
-    --bg-soft: #eceefa;
-    --glass-bg: rgba(255, 255, 255, 0.66);
-    --glass-bg-strong: rgba(255, 255, 255, 0.82);
-    --glass-border: rgba(15, 23, 42, 0.08);
-    --glass-border-strong: rgba(15, 23, 42, 0.14);
-    --hairline: rgba(15, 23, 42, 0.08);
+    --bg: #fff4e0;
+    --surface: #ffffff;
+    --surface-soft: #fffaef;
 
-    /* type */
-    --text: #0a0f1f;
-    --text-muted: #4b5675;
-    --text-faint: #7a86a3;
+    /* ink */
+    --ink: #0a0a0a;
+    --muted: #4a4a44;
+    --faint: #6e6a5e; /* ≥4.5:1 on cream for small text */
 
-    /* accents */
-    --accent: #6d4bff;
-    --accent-2: #0891b2;
+    /* loud accents (same across themes; always paired with black
+       borders/text so they read on any canvas) */
+    --acid: #c6ff00;
+    --electric: #3300ff;
+    --hot-pink: #ff2e88;
+    --cyber-yellow: #ffd400;
 
-    /* aurora blob colors (light) */
-    --aurora-a: rgba(124, 92, 255, 0.40);
-    --aurora-b: rgba(34, 211, 238, 0.34);
-    --aurora-c: rgba(59, 130, 246, 0.30);
-    --aurora-d: rgba(232, 121, 249, 0.26);
-    --grid-color: rgba(15, 23, 42, 0.05);
+    /* pastel card fills */
+    --pastel-pink: #ffd6e8;
+    --pastel-blue: #d6e4ff;
+    --pastel-yellow: #fff3b0;
+    --pastel-mint: #d8ffdb;
+
+    /* structure */
+    --shadow-color: #0a0a0a;
+    --border-w: 3px;
+    --halftone: rgba(10, 10, 10, 0.07);
   }
 
   .dark {
-    --bg: #060713;
-    --bg-soft: #0a0c1a;
-    --glass-bg: rgba(255, 255, 255, 0.045);
-    --glass-bg-strong: rgba(255, 255, 255, 0.07);
-    --glass-border: rgba(255, 255, 255, 0.09);
-    --glass-border-strong: rgba(255, 255, 255, 0.15);
-    --hairline: rgba(255, 255, 255, 0.08);
+    --bg: #0d0d0d;
+    --surface: #1a1a1a;
+    --surface-soft: #141414;
 
-    --text: #e9ebf6;
-    --text-muted: #9aa3bd;
-    --text-faint: #69728f;
+    --ink: #fff4e0;
+    --muted: #b8b2a0;
+    --faint: #7a766a;
 
-    --accent: #8b76ff;
-    --accent-2: #22d3ee;
+    /* darkened pastels that keep cream ink readable */
+    --pastel-pink: #46203a;
+    --pastel-blue: #1f2c4d;
+    --pastel-yellow: #453d1a;
+    --pastel-mint: #1c4228;
 
-    --aurora-a: rgba(139, 110, 255, 0.70);
-    --aurora-b: rgba(34, 211, 238, 0.55);
-    --aurora-c: rgba(59, 130, 246, 0.58);
-    --aurora-d: rgba(232, 121, 249, 0.48);
-    --grid-color: rgba(255, 255, 255, 0.045);
+    --shadow-color: #fff4e0;
+    --halftone: rgba(255, 244, 224, 0.06);
   }
 
   * {
-    border-color: var(--hairline);
+    border-color: var(--ink);
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    /* Base color lives on <html> (the canvas) so the fixed -z-10 aurora
-       layer paints above it; an opaque <body> background would cover it. */
+    /* Base color lives on <html> (the canvas) so the fixed -z-10
+       halftone layer paints above it; an opaque <body> background
+       would cover it. */
     background-color: var(--bg);
   }
 
@@ -72,160 +75,202 @@
     margin: 0;
     min-height: 100vh;
     background-color: transparent;
-    color: var(--text);
-    font-family: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5 {
-    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
-    letter-spacing: -0.02em;
+    font-family: "Archivo Black", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
   }
 
   ::selection {
-    background: rgba(124, 92, 255, 0.32);
-    color: inherit;
+    background: var(--acid);
+    color: #0a0a0a;
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 11px; height: 11px; }
-  ::-webkit-scrollbar-track { background: transparent; }
+  /* Chunky square scrollbar */
+  ::-webkit-scrollbar { width: 14px; height: 14px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb {
-    background: var(--glass-border-strong);
-    border-radius: 999px;
-    border: 3px solid transparent;
-    background-clip: padding-box;
+    background: var(--ink);
+    border: 3px solid var(--bg);
+    border-radius: 0;
   }
-  ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); background-clip: padding-box; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--hot-pink); }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 3px solid var(--hot-pink);
     outline-offset: 2px;
-    border-radius: 6px;
+    border-radius: 0;
   }
 }
 
 /* ============================================================
-   Reusable surfaces & effects
+   Reusable brutalist surfaces & effects
    ============================================================ */
 @layer components {
-  .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(18px) saturate(150%);
-    -webkit-backdrop-filter: blur(18px) saturate(150%);
-    border: 1px solid var(--glass-border);
+  /* The workhorse: thick border + hard offset shadow */
+  .brut-card {
+    background: var(--surface);
+    border: var(--border-w) solid var(--ink);
+    box-shadow: 6px 6px 0 var(--shadow-color);
   }
 
-  .glass-strong {
-    background: var(--glass-bg-strong);
-    backdrop-filter: blur(28px) saturate(160%);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
-    border: 1px solid var(--glass-border-strong);
+  .brut-card-sm {
+    background: var(--surface);
+    border: var(--border-w) solid var(--ink);
+    box-shadow: 4px 4px 0 var(--shadow-color);
   }
 
-  /* hairline highlight at top edge for depth */
-  .glass-sheen {
-    position: relative;
-  }
-  .glass-sheen::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0) 35%
-    );
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .dark .glass-sheen::before { opacity: 0.25; }
-
-  .text-aurora {
-    background: linear-gradient(105deg, #8b5cf6 0%, #22d3ee 48%, #6366f1 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .brut-card-lg {
+    background: var(--surface);
+    border: var(--border-w) solid var(--ink);
+    box-shadow: 10px 10px 0 var(--shadow-color);
   }
 
-  .text-aurora-anim {
-    background: linear-gradient(105deg, #a78bfa, #22d3ee, #60a5fa, #e879f9, #a78bfa);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 7s linear infinite;
+  /* Hover-lift for interactive cards: rises against its shadow */
+  .brut-hover {
+    transition: transform 0.14s ease-out, box-shadow 0.14s ease-out;
+  }
+  .brut-hover:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--shadow-color);
   }
 
-  /* aurora gradient hairline border (animated) */
-  .border-aurora {
-    position: relative;
-    isolation: isolate;
-  }
-  .border-aurora::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: conic-gradient(from var(--angle, 0deg), #7c5cff, #22d3ee, #3b82f6, #e879f9, #7c5cff);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .border-aurora:hover::after { opacity: 0.9; }
-
-  /* primary call-to-action */
-  .btn-aurora {
+  /* Primary action: acid fill, black everything, press-down effect.
+     Colored fills always keep black borders/text in both themes. */
+  .brut-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-weight: 600;
-    color: #04060f;
-    background: linear-gradient(100deg, #a78bfa, #22d3ee 65%, #38bdf8);
-    box-shadow: 0 10px 30px -10px rgba(124, 92, 255, 0.6);
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--acid);
+    color: #0a0a0a;
+    border: var(--border-w) solid #0a0a0a;
+    box-shadow: 5px 5px 0 var(--shadow-color);
+    transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+    cursor: pointer;
   }
-  .btn-aurora:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 45px -12px rgba(124, 92, 255, 0.7), 0 0 30px -8px rgba(34, 211, 238, 0.5);
-    filter: brightness(1.05);
+  .brut-btn:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--shadow-color);
   }
-  .btn-aurora:active { transform: translateY(0); }
+  .brut-btn:active {
+    transform: translate(5px, 5px);
+    box-shadow: 0 0 0 var(--shadow-color);
+  }
 
-  /* subtle film grain over a layer */
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.5;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  .brut-btn-pink { background: var(--hot-pink); color: #0a0a0a; } /* black on pink: 5.9:1; white fails AA */
+  .brut-btn-electric { background: var(--electric); color: #ffffff; }
+  .brut-btn-yellow { background: var(--cyber-yellow); }
+  .brut-btn-surface { background: var(--surface); color: var(--ink); border-color: var(--ink); }
+
+  /* Small mono label chip */
+  .brut-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.6rem;
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--shadow-color);
+  }
+
+  /* Rotated circular badge */
+  .brut-sticker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 9999px;
+    border: var(--border-w) solid #0a0a0a;
+    box-shadow: 5px 5px 0 var(--shadow-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    transform: rotate(9deg);
+    animation: wobble 4.5s ease-in-out infinite;
+  }
+
+  /* Looping strip: <div class="brut-marquee"><div class="brut-marquee-track">…×2</div></div>
+     Put content twice inside the track for a seamless loop. */
+  .brut-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: var(--border-w) solid var(--ink);
+    border-bottom: var(--border-w) solid var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .brut-marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: marquee 26s linear infinite;
+  }
+
+  /* Slight tilts — nudge cards off-grid */
+  .brut-tilt-l { transform: rotate(-1.2deg); }
+  .brut-tilt-r { transform: rotate(1.1deg); }
+
+  /* Chunky segmented progress bar shell; fill with an accent div */
+  .brut-progress {
+    height: 1.1rem;
+    border: var(--border-w) solid var(--ink);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .brut-progress > div {
+    height: 100%;
+    background: var(--acid);
+    border-right: var(--border-w) solid var(--ink);
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .brut-progress > div[data-full="true"] { border-right: none; }
+
+  /* Window chrome for modals: pair with .brut-card-lg; title bar inside */
+  .brut-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.5rem 0.85rem;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 }
 
 @layer utilities {
   .bg-app { background-color: var(--bg); }
-  .text-ink { color: var(--text); }
-  .text-soft { color: var(--text-muted); }
-  .text-faint { color: var(--text-faint); }
-  .perspective { perspective: 1200px; }
-  .preserve-3d { transform-style: preserve-3d; }
+  .text-ink { color: var(--ink); }
+  .text-soft { color: var(--muted); }
+  .text-faint { color: var(--faint); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(6deg); }
+  50% { transform: rotate(12deg); }
 }
 
 /* honor reduced-motion preferences globally */
