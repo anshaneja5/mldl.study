@@ -63,7 +63,7 @@ const Footer = () => (
               <Waypoints className="h-5 w-5" strokeWidth={2.6} />
             </span>
             <span className="font-display text-xl text-ink">
-              MLDL<span className="bg-hot-pink px-1 text-white">.STUDY</span>
+              MLDL<span className="bg-hot-pink px-1 text-[#0a0a0a]">.STUDY</span>
             </span>
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-soft">
@@ -85,7 +85,7 @@ const Footer = () => (
                 {s.icon}
                 <span className="flex flex-col leading-tight">
                   <span>{s.label}</span>
-                  <span className="text-xs font-medium opacity-70">{s.handle}</span>
+                  <span className="text-xs font-medium">{s.handle}</span>
                 </span>
               </a>
             ))}

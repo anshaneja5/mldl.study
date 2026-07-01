@@ -17,6 +17,10 @@ const SITE_URL = 'https://mldl.study';
 
 const DEFAULT_ACCENT = { fill: 'var(--pastel-blue)', loud: '#3300ff' };
 
+/* AA contrast on the loud badge fills: only electric blue is dark
+   enough for white text; the rest need black. */
+const loudInk = (loud) => (loud === '#3300ff' ? '#ffffff' : '#0a0a0a');
+
 const RoadmapView = ({
   topics,
   connections,
@@ -260,8 +264,8 @@ const RoadmapView = ({
               style={{ background: progress === 100 ? 'var(--pastel-mint)' : a.fill }}
             >
               <span
-                className="absolute -left-2.5 -top-2.5 grid h-7 w-7 place-items-center border-2 border-[#0a0a0a] font-mono text-[12px] font-bold text-white"
-                style={{ background: a.loud }}
+                className="absolute -left-2.5 -top-2.5 grid h-7 w-7 place-items-center border-2 border-[#0a0a0a] font-mono text-[12px] font-bold"
+                style={{ background: a.loud, color: loudInk(a.loud) }}
               >
                 {topic.id}
               </span>
@@ -317,7 +321,7 @@ const RoadmapView = ({
                     <span className="border-2 border-ink bg-acid px-1 font-mono text-[10px] font-bold text-[#0a0a0a]">DONE</span>
                   )}
                 </div>
-                <h3 className="text-base font-bold leading-tight text-ink">{topic.name}</h3>
+                <h2 className="text-base font-bold leading-tight text-ink">{topic.name}</h2>
                 <div className="mt-2 h-2.5 border-2 border-ink bg-surface">
                   <div className="h-full bg-acid" style={{ width: `${progress}%` }} />
                 </div>
@@ -401,6 +405,7 @@ const RoadmapView = ({
                 />
               </div>
               <select
+                aria-label="Sort topics"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 className="border-[3px] border-ink bg-surface px-3 py-2.5 text-sm font-bold text-ink shadow-brut-sm outline-none"

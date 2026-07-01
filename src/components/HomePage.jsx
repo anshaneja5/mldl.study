@@ -375,7 +375,7 @@ const HomePage = () => {
                     {social.icon}
                     <span className="flex flex-col leading-tight">
                       <span>{social.label}</span>
-                      <span className="text-xs font-medium opacity-75">{social.handle}</span>
+                      <span className="text-xs font-medium">{social.handle}</span>
                     </span>
                   </a>
                 ))}

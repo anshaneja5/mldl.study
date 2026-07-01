@@ -33,6 +33,7 @@ const PAGES = [
 ];
 
 const score = (query, text) => {
+  if (!text) return -1;
   const q = query.toLowerCase();
   const t = text.toLowerCase();
   const idx = t.indexOf(q);
@@ -60,11 +61,15 @@ const buildIndex = () => {
         path: `${r.path}?topic=${encodeURIComponent(topic)}`,
       });
       for (const item of items) {
+        // Some curated entries are article-only (no video url/title)
+        const label = item.title || item.articleTitle;
+        const url = item.url || item.articleLink;
+        if (!label || !url) continue;
         entries.push({
           kind: 'resource',
-          label: item.title,
+          label,
           sub: `${r.label} → ${topic}`,
-          url: item.url,
+          url,
         });
       }
     }

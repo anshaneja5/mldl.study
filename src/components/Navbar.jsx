@@ -33,7 +33,7 @@ const Logo = () => (
       <Waypoints className="h-5 w-5" strokeWidth={2.6} />
     </span>
     <span className="font-display text-lg tracking-tight text-ink">
-      MLDL<span className="bg-hot-pink px-1 text-white">.STUDY</span>
+      MLDL<span className="bg-hot-pink px-1 text-[#0a0a0a]">.STUDY</span>
     </span>
   </Link>
 );
@@ -147,7 +147,7 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
   return (
     <div
       className={`fixed inset-0 z-[100] transition-opacity duration-200 ${
-        isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        isOpen ? 'visible opacity-100' : 'invisible pointer-events-none opacity-0'
       }`}
       onClick={onClose}
       aria-hidden={!isOpen}

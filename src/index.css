@@ -18,7 +18,7 @@
     /* ink */
     --ink: #0a0a0a;
     --muted: #4a4a44;
-    --faint: #8a8578;
+    --faint: #6e6a5e; /* ≥4.5:1 on cream for small text */
 
     /* loud accents (same across themes; always paired with black
        borders/text so they read on any canvas) */
@@ -169,7 +169,7 @@
     box-shadow: 0 0 0 var(--shadow-color);
   }
 
-  .brut-btn-pink { background: var(--hot-pink); color: #ffffff; }
+  .brut-btn-pink { background: var(--hot-pink); color: #0a0a0a; } /* black on pink: 5.9:1; white fails AA */
   .brut-btn-electric { background: var(--electric); color: #ffffff; }
   .brut-btn-yellow { background: var(--cyber-yellow); }
   .brut-btn-surface { background: var(--surface); color: var(--ink); border-color: var(--ink); }
