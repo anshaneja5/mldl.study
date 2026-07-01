@@ -1,33 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">mldl.study AI Roadmap</title>
-  <desc id="desc">A dark aurora gradient social preview for mldl.study.</desc>
-  <defs>
-    <radialGradient id="g1" cx="20%" cy="20%" r="65%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.95"/>
-      <stop offset="60%" stop-color="#111827" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g2" cx="78%" cy="22%" r="60%">
-      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.85"/>
-      <stop offset="60%" stop-color="#111827" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g3" cx="58%" cy="85%" r="70%">
-      <stop offset="0%" stop-color="#e879f9" stop-opacity="0.5"/>
-      <stop offset="70%" stop-color="#111827" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="text" x1="0%" x2="100%">
-      <stop offset="0%" stop-color="#c4b5fd"/>
-      <stop offset="50%" stop-color="#67e8f9"/>
-      <stop offset="100%" stop-color="#93c5fd"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="#060713"/>
-  <rect width="1200" height="630" fill="url(#g1)"/>
-  <rect width="1200" height="630" fill="url(#g2)"/>
-  <rect width="1200" height="630" fill="url(#g3)"/>
-  <rect x="70" y="70" width="1060" height="490" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)"/>
-  <text x="110" y="155" fill="#a5b4fc" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="4">MLDL.STUDY</text>
-  <text x="110" y="280" fill="url(#text)" font-family="Arial, sans-serif" font-size="82" font-weight="800">AI Roadmap</text>
-  <text x="110" y="370" fill="#e9ebf6" font-family="Arial, sans-serif" font-size="54" font-weight="700">ML, DL, GenAI, Agents, RAG</text>
-  <text x="110" y="445" fill="#b6bed4" font-family="Arial, sans-serif" font-size="30">Free structured learning paths with curated resources.</text>
-  <text x="110" y="510" fill="#67e8f9" font-family="Arial, sans-serif" font-size="28" font-weight="700">mldl.study</text>
+  <desc id="desc">A loud neo-brutalist social preview for mldl.study: the AI roadmap, no fluff.</desc>
+
+  <!-- cream canvas + heavy frame -->
+  <rect width="1200" height="630" fill="#fff4e0"/>
+  <rect x="10" y="10" width="1180" height="610" fill="none" stroke="#0a0a0a" stroke-width="14"/>
+
+  <!-- halftone corner -->
+  <g fill="#0a0a0a" opacity="0.12">
+    <circle cx="920" cy="70" r="6"/><circle cx="960" cy="70" r="6"/><circle cx="1000" cy="70" r="6"/><circle cx="1040" cy="70" r="6"/><circle cx="1080" cy="70" r="6"/><circle cx="1120" cy="70" r="6"/>
+    <circle cx="920" cy="110" r="6"/><circle cx="960" cy="110" r="6"/><circle cx="1000" cy="110" r="6"/><circle cx="1040" cy="110" r="6"/><circle cx="1080" cy="110" r="6"/><circle cx="1120" cy="110" r="6"/>
+    <circle cx="920" cy="150" r="6"/><circle cx="960" cy="150" r="6"/><circle cx="1000" cy="150" r="6"/><circle cx="1040" cy="150" r="6"/><circle cx="1080" cy="150" r="6"/><circle cx="1120" cy="150" r="6"/>
+    <circle cx="920" cy="190" r="6"/><circle cx="960" cy="190" r="6"/><circle cx="1000" cy="190" r="6"/><circle cx="1040" cy="190" r="6"/><circle cx="1080" cy="190" r="6"/><circle cx="1120" cy="190" r="6"/>
+  </g>
+
+  <!-- brand chip -->
+  <g>
+    <rect x="64" y="64" width="270" height="56" fill="#c6ff00" stroke="#0a0a0a" stroke-width="5"/>
+    <text x="88" y="102" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="28" font-weight="700" fill="#0a0a0a" letter-spacing="2">MLDL.STUDY</text>
+  </g>
+
+  <!-- headline -->
+  <text x="64" y="248" font-family="'Archivo Black', 'Arial Black', Arial, sans-serif" font-size="92" font-weight="900" fill="#0a0a0a" letter-spacing="-1">THE AI ROADMAP</text>
+  <g transform="rotate(-1.4 64 330)">
+    <rect x="58" y="278" width="446" height="106" fill="#3300ff" stroke="#0a0a0a" stroke-width="6"/>
+    <text x="86" y="356" font-family="'Archivo Black', 'Arial Black', Arial, sans-serif" font-size="76" font-weight="900" fill="#ffffff">NO FLUFF.</text>
+  </g>
+
+  <!-- progress bar -->
+  <g>
+    <rect x="64" y="440" width="700" height="58" fill="#ffffff" stroke="#0a0a0a" stroke-width="6"/>
+    <rect x="70" y="446" width="440" height="46" fill="#c6ff00"/>
+    <rect x="510" y="446" width="6" height="46" fill="#0a0a0a"/>
+    <text x="790" y="484" font-family="'Archivo Black', 'Arial Black', Arial, sans-serif" font-size="40" font-weight="900" fill="#0a0a0a">ML → DL → GENAI</text>
+  </g>
+
+  <!-- footer strip -->
+  <g>
+    <rect x="10" y="556" width="1180" height="64" fill="#0a0a0a"/>
+    <text x="64" y="598" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="26" font-weight="700" fill="#c6ff00" letter-spacing="2">★ FREE FOREVER ★ NO SIGNUP ★ 400+ CURATED RESOURCES ★ mldl.study</text>
+  </g>
+
+  <!-- rotated sticker -->
+  <g transform="rotate(12 1044 448)">
+    <circle cx="1044" cy="448" r="86" fill="#ff2e88" stroke="#0a0a0a" stroke-width="6"/>
+    <text x="1044" y="438" text-anchor="middle" font-family="'Archivo Black', 'Arial Black', Arial, sans-serif" font-size="34" font-weight="900" fill="#ffffff">100%</text>
+    <text x="1044" y="478" text-anchor="middle" font-family="'Archivo Black', 'Arial Black', Arial, sans-serif" font-size="34" font-weight="900" fill="#ffffff">FREE</text>
+  </g>
 </svg>

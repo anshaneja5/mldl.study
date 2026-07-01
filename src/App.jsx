@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MachineLearningRoadmap from './components/MachineLearningRoadmap';
 import DeepLearning from './components/DeepLearningRoadmap';

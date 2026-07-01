@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart3, BookOpen, Brain, CheckCircle2, GitBranch, SlidersHorizontal, Wrench } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AuroraBackground from './AuroraBackground';
+import BrutalBackground from './BrutalBackground';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
 import { AuthorBlock, DEFAULT_OG_IMAGE } from './SEOGuidePage';
@@ -117,26 +117,26 @@ const MachineLearningGuide = () => {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <AuroraBackground />
+      <BrutalBackground />
       <div className="flex min-h-screen flex-col">
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <main className="mx-auto w-full max-w-6xl flex-grow px-4 pb-20 pt-10 sm:pt-16">
           <section className="mx-auto max-w-4xl text-center">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm font-semibold text-aurora">
+            <p className="brut-chip mb-4 bg-pastel-blue">
               <GitBranch className="h-4 w-4" />
               Free ML roadmap
             </p>
-            <h1 className="font-display text-5xl font-extrabold leading-tight text-ink sm:text-6xl">
+            <h1 className="font-display text-5xl uppercase leading-tight tracking-tight text-ink sm:text-6xl">
               Machine Learning Roadmap for Beginners
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-soft">
               A structured ML roadmap from Python and math to preprocessing, regression, classification, clustering, model evaluation, feature engineering, ensemble learning, and projects.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link to="/machinelearning" className="btn-aurora rounded-2xl px-6 py-3 text-[15px]">
+              <Link to="/machinelearning" className="brut-btn px-6 py-3 text-[15px]">
                 Open interactive ML roadmap <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/ai-roadmap" className="rounded-2xl glass px-6 py-3 text-[15px] font-semibold text-ink transition-all duration-300 hover:shadow-glow">
+              <Link to="/ai-roadmap" className="brut-btn brut-btn-surface px-6 py-3 text-[15px]">
                 See full AI roadmap
               </Link>
             </div>
@@ -144,19 +144,19 @@ const MachineLearningGuide = () => {
 
           <section className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
             {steps.map((step, index) => (
-              <article key={step.title} className="glass glass-sheen rounded-3xl p-5">
-                <span className="mb-4 inline-grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-400 text-[#04060f]">
+              <article key={step.title} className={`brut-card p-5 ${index % 2 === 0 ? 'rotate-[-0.5deg]' : 'rotate-[0.5deg]'}`}>
+                <span className="mb-4 inline-grid h-11 w-11 place-items-center border-[3px] border-[#0a0a0a] bg-electric text-white shadow-brut-sm">
                   {step.icon}
                 </span>
-                <p className="font-mono text-xs text-faint">{String(index + 1).padStart(2, '0')}</p>
-                <h2 className="mt-1 font-display text-lg font-bold text-ink">{step.title}</h2>
+                <p className="font-mono text-xs font-bold text-faint">{String(index + 1).padStart(2, '0')}</p>
+                <h2 className="mt-1 font-display text-lg uppercase text-ink">{step.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-soft">{step.description}</p>
               </article>
             ))}
           </section>
 
-          <section className="glass glass-sheen mt-16 rounded-[2rem] p-7 sm:p-10">
-            <h2 className="font-display text-3xl font-bold text-ink">The practical order for learning machine learning</h2>
+          <section className="brut-card-lg mt-16 p-7 sm:p-10">
+            <h2 className="font-display text-3xl uppercase text-ink">The practical order for learning machine learning</h2>
             <div className="mt-5 space-y-4 text-sm leading-relaxed text-soft sm:text-base">
               <p>
                 A good machine learning roadmap should not start with random algorithms. It should start with data: how to load it, clean it, inspect it, split it, and measure whether a model is actually improving. Once that workflow is clear, algorithms become tools instead of isolated theory.
@@ -178,8 +178,8 @@ const MachineLearningGuide = () => {
               'Build small tabular projects before neural networks.',
               'Use the interactive roadmap to track each topic.',
             ].map((item) => (
-              <div key={item} className="glass rounded-2xl p-5">
-                <CheckCircle2 className="mb-3 h-5 w-5 text-aurora-cyan" />
+              <div key={item} className="brut-card-sm p-5">
+                <CheckCircle2 className="mb-3 h-5 w-5 text-hot-pink" />
                 <p className="font-medium text-ink">{item}</p>
               </div>
             ))}

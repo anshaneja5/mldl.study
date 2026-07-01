@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, Bookmark, Check, ExternalLink, FileText, Pin } from 'lucide-react';
 import { useBookmarks } from '../contexts/BookmarksContext';

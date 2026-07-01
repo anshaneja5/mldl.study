@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useCallback, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useCallback, useEffect, useMemo, useState } from 'react';
 import prerequisiteContent from '../../categorizedPrerequisiteContent';
 import mlContent from '../../categorizedMLContent';
 import dlContent from '../../categorizedDLContent';
