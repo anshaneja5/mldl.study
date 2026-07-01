@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import { Bookmark, Trash2, ExternalLink, BookOpen, Brain, Zap, Sparkles, Book, Pin } from 'lucide-react';

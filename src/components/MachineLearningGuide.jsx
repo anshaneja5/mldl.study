@@ -185,12 +185,12 @@ const MachineLearningGuide = () => {
             ))}
           </section>
 
-          <section className="glass glass-sheen mt-16 rounded-[2rem] p-7 sm:p-10">
-            <h2 className="font-display text-3xl font-bold text-ink">Machine learning roadmap FAQ</h2>
-            <div className="mt-6 divide-y divide-white/10">
+          <section className="brut-card-lg mt-16 p-7 sm:p-10">
+            <h2 className="font-display text-3xl uppercase text-ink">Machine learning roadmap FAQ</h2>
+            <div className="mt-6 divide-y-2 divide-ink">
               {faqs.map((faq) => (
                 <div key={faq.question} className="py-5">
-                  <h3 className="font-semibold text-ink">{faq.question}</h3>
+                  <h3 className="font-bold text-ink">{faq.question}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-soft">{faq.answer}</p>
                 </div>
               ))}

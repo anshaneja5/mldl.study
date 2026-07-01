@@ -235,8 +235,8 @@ const Journey = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="mx-auto mt-16 max-w-2xl"
           >
-            <div className="glass glass-sheen rounded-3xl p-8 text-center sm:p-10">
-              <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Join Our Journey</h2>
+            <div className="brut-card rotate-[0.4deg] bg-pastel-yellow p-8 text-center sm:p-10">
+              <h2 className="font-display text-2xl uppercase text-ink sm:text-3xl">Join Our Journey</h2>
               <p className="mx-auto mt-3 max-w-xl text-soft">
                 Be part of our growing community and help shape the future of ML/DL education.
               </p>
@@ -244,7 +244,7 @@ const Journey = () => {
                 href="https://github.com/anshaneja5/mldl.study"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-aurora mt-7 rounded-2xl px-6 py-3 text-[15px]"
+                className="brut-btn mt-7 px-6 py-3 text-[15px]"
               >
                 <span>Contribute on GitHub</span>
                 <ArrowRight className="h-5 w-5" />
