@@ -18,11 +18,8 @@ const connections = [
 ];
 
 const accent = {
-  ringFrom: '#34d399',
-  ringTo: '#2dd4bf',
-  lineActive: '#2dd4bf',
-  glow: 'rgba(45,212,191,0.28)',
-  text: '#5eead4',
+  fill: 'var(--pastel-mint)',
+  loud: '#00873c',
 };
 
 const PrerequisiteRoadmap = () => (

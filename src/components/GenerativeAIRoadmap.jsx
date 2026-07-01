@@ -29,11 +29,8 @@ const connections = [
 ];
 
 const accent = {
-  ringFrom: '#fbbf24',
-  ringTo: '#fb923c',
-  lineActive: '#fb923c',
-  glow: 'rgba(251,146,60,0.28)',
-  text: '#fcd34d',
+  fill: 'var(--pastel-yellow)',
+  loud: '#e07800',
 };
 
 const GenerativeAIRoadmap = () => (
