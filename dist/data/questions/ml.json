@@ -1,0 +1,524 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the main goal of supervised learning?",
+      "options": [
+        "Find hidden patterns in data",
+        "Learn from labeled data to make predictions",
+        "Group similar data points",
+        "Reduce dimensionality"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supervised learning uses labeled training data to learn a mapping from inputs to outputs.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "Which metric is best for imbalanced classification problems?",
+      "options": [
+        "Accuracy",
+        "F1-Score",
+        "Mean Squared Error",
+        "R-squared"
+      ],
+      "correctAnswer": 1,
+      "explanation": "F1-Score is the harmonic mean of precision and recall, making it ideal for imbalanced datasets.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "question": "What is overfitting?",
+      "options": [
+        "Model performs poorly on all data",
+        "Model performs well on training data but poorly on new data",
+        "Model performs poorly on training data",
+        "Model has too few parameters"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Overfitting occurs when a model learns the training data too well, including noise, and fails to generalize.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "Which algorithm is used for dimensionality reduction?",
+      "options": [
+        "Linear Regression",
+        "PCA",
+        "Logistic Regression",
+        "K-Means"
+      ],
+      "correctAnswer": 1,
+      "explanation": "PCA (Principal Component Analysis) is a popular technique for reducing the number of features.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Which of the following is a supervised learning algorithm?",
+      "options": [
+        "K-Means Clustering",
+        "Linear Regression",
+        "Apriori Algorithm",
+        "PCA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Linear Regression is a supervised learning algorithm that uses labeled data to predict continuous values.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "What is the main difference between classification and regression?",
+      "options": [
+        "Regression predicts categories, classification predicts continuous values",
+        "Classification predicts categories, regression predicts continuous values",
+        "Both are the same",
+        "Regression uses deep learning"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Classification predicts discrete labels, while regression predicts continuous numeric outputs.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "Which algorithm is commonly used for clustering?",
+      "options": [
+        "Decision Trees",
+        "K-Means",
+        "Linear Regression",
+        "Naive Bayes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "K-Means is an unsupervised learning algorithm used to group data into clusters based on similarity.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "question": "What is the purpose of a confusion matrix?",
+      "options": [
+        "Measure model speed",
+        "Visualize feature importance",
+        "Evaluate classification performance",
+        "Reduce overfitting"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A confusion matrix shows the number of true and false predictions, helping evaluate classification performance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 9,
+      "question": "What is feature scaling?",
+      "options": [
+        "Reducing the number of features",
+        "Normalizing data to a common scale",
+        "Selecting the best features",
+        "Removing correlated features"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Feature scaling normalizes data so that all features contribute equally during training.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "Which of the following techniques helps prevent overfitting?",
+      "options": [
+        "Increasing model complexity",
+        "Adding more parameters",
+        "Using regularization",
+        "Decreasing training data"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Regularization techniques like L1 and L2 penalize large weights, helping prevent overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "What does the k in k-NN represent?",
+      "options": [
+        "Number of features",
+        "Number of nearest neighbors considered",
+        "Number of layers",
+        "Number of clusters"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In k-NN (k-Nearest Neighbors), k defines how many nearest data points are used to classify a new sample.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 12,
+      "question": "Which algorithm builds a tree structure to make decisions?",
+      "options": [
+        "K-Means",
+        "SVM",
+        "Decision Tree",
+        "PCA"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Decision Trees split data into branches based on feature values to make predictions.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "What is gradient descent used for?",
+      "options": [
+        "Finding clusters",
+        "Optimizing model parameters by minimizing loss",
+        "Initializing weights",
+        "Normalizing data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Gradient descent iteratively updates model parameters in the direction that minimizes the loss function.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "Which kernel is commonly used in Support Vector Machines?",
+      "options": [
+        "Sigmoid",
+        "Polynomial",
+        "RBF (Radial Basis Function)",
+        "Linear"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The RBF kernel is popular because it can map data into higher dimensions to make it linearly separable.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 15,
+      "question": "What is ensemble learning?",
+      "options": [
+        "Combining multiple models to improve performance",
+        "Training a single large model",
+        "Using only neural networks",
+        "Reducing dataset size"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ensemble learning combines predictions from multiple models to reduce variance and improve accuracy (e.g., Random Forest, Bagging).",
+      "difficulty": "hard"
+    },
+    {
+      "id": 16,
+      "question": "What is the vanishing gradient problem in deep neural networks?",
+      "options": [
+        "Gradients become too large during backpropagation",
+        "Gradients become too small, making early layers learn slowly",
+        "Gradients disappear completely after one epoch",
+        "Learning rate decreases automatically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In deep networks, gradients can become exponentially small as they propagate backward, causing early layers to learn very slowly or not at all.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 17,
+      "question": "Which activation function helps mitigate the vanishing gradient problem?",
+      "options": [
+        "Sigmoid",
+        "Tanh",
+        "ReLU",
+        "Softmax"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ReLU (Rectified Linear Unit) maintains a constant gradient for positive values, preventing gradient decay during backpropagation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "What is the purpose of dropout in neural networks?",
+      "options": [
+        "Increase training speed",
+        "Reduce overfitting by randomly deactivating neurons",
+        "Normalize gradients",
+        "Initialize weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dropout randomly sets a fraction of neurons to zero during training, forcing the network to learn robust features and preventing co-adaptation.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "question": "What is the difference between batch gradient descent and stochastic gradient descent?",
+      "options": [
+        "Batch uses all data per update, SGD uses one sample per update",
+        "SGD is faster but less accurate than batch",
+        "Batch is only for classification, SGD is for regression",
+        "They are the same algorithm"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Batch gradient descent computes gradients using the entire dataset, while SGD updates parameters after each individual training example.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 20,
+      "question": "What is the bias-variance tradeoff?",
+      "options": [
+        "Balancing model simplicity vs complexity to minimize total error",
+        "Choosing between accuracy and speed",
+        "Trading training time for inference time",
+        "Balancing positive and negative classes"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The bias-variance tradeoff describes the balance between underfitting (high bias) and overfitting (high variance) to achieve optimal generalization.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 21,
+      "question": "What does the learning rate control in gradient descent?",
+      "options": [
+        "The size of weight updates during optimization",
+        "The number of epochs to train",
+        "The batch size",
+        "The number of hidden layers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Learning rate determines the step size when updating parameters - too large can overshoot minima, too small can slow convergence.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 22,
+      "question": "What is cross-validation used for?",
+      "options": [
+        "Training multiple models simultaneously",
+        "Assessing model performance and reducing overfitting to test set",
+        "Increasing dataset size",
+        "Feature engineering"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cross-validation splits data into multiple folds, training and testing on different subsets to get a robust estimate of model performance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 23,
+      "question": "What is the purpose of batch normalization?",
+      "options": [
+        "Reduce training time",
+        "Normalize layer inputs to stabilize and accelerate training",
+        "Increase model capacity",
+        "Prevent data leakage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Batch normalization normalizes inputs to each layer, reducing internal covariate shift and allowing higher learning rates.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 24,
+      "question": "What is transfer learning?",
+      "options": [
+        "Using a pre-trained model as a starting point for a new task",
+        "Transferring data between training and testing sets",
+        "Converting models between frameworks",
+        "Moving models from CPU to GPU"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Transfer learning leverages knowledge from a model trained on one task to improve performance on a related task, often with less data.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 25,
+      "question": "What is the Adam optimizer?",
+      "options": [
+        "A data augmentation technique",
+        "An adaptive learning rate optimization algorithm",
+        "A regularization method",
+        "A loss function"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adam combines momentum and RMSprop, using adaptive learning rates for each parameter based on first and second moments of gradients.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 26,
+      "question": "What is the purpose of the softmax function?",
+      "options": [
+        "Convert raw scores to probability distribution for multi-class classification",
+        "Normalize input features",
+        "Prevent overfitting",
+        "Speed up training"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Softmax transforms logits into probabilities that sum to 1, making it ideal for multi-class classification output layers.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 27,
+      "question": "What is the difference between L1 and L2 regularization?",
+      "options": [
+        "L1 adds absolute values of weights, L2 adds squared weights to loss",
+        "L1 is for classification, L2 is for regression",
+        "L1 is faster than L2",
+        "They are the same"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L1 (Lasso) can produce sparse models by driving some weights to zero, while L2 (Ridge) shrinks weights but rarely zeros them out.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 28,
+      "question": "What is a convolutional layer in CNNs primarily used for?",
+      "options": [
+        "Reducing dimensionality",
+        "Extracting spatial features using learned filters",
+        "Classification",
+        "Data augmentation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Convolutional layers apply learned filters to input data to detect features like edges, textures, and patterns in spatial hierarchies.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 29,
+      "question": "What is the purpose of an LSTM in recurrent neural networks?",
+      "options": [
+        "Speed up training",
+        "Handle long-term dependencies and mitigate vanishing gradients",
+        "Reduce model size",
+        "Normalize sequences"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LSTMs use gating mechanisms to maintain and control information flow, allowing them to learn long-term dependencies in sequential data.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 30,
+      "question": "What is the ROC-AUC score used for?",
+      "options": [
+        "Measuring regression performance",
+        "Evaluating binary classifier performance across all thresholds",
+        "Clustering quality",
+        "Feature importance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ROC-AUC measures the area under the Receiver Operating Characteristic curve, indicating how well a binary classifier distinguishes between classes.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 31,
+      "question": "What is the purpose of the activation function in a neural network?",
+      "options": [
+        "To introduce non-linearity",
+        "To normalize input data",
+        "To reduce overfitting",
+        "To initialize weights"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Activation functions introduce non-linearity, enabling neural networks to learn complex patterns.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 32,
+      "question": "Which method is commonly used to prevent overfitting in deep learning models?",
+      "options": [
+        "Dropout",
+        "Increasing learning rate",
+        "Reducing dataset size",
+        "Disabling early stopping"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Dropout randomly deactivates neurons during training to prevent co-adaptation and overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 33,
+      "question": "What is the vanishing gradient problem?",
+      "options": [
+        "Gradients become too small during backpropagation, slowing learning",
+        "Gradients become too large and cause overflow",
+        "Loss function is unstable",
+        "Training accuracy decreases"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Vanishing gradients cause earlier layers in deep networks to learn slowly or not at all.",
+      "difficulty": "hard"
+    },
+    {
+      "id": 34,
+      "question": "What does the term 'epoch' mean in machine learning training?",
+      "options": [
+        "One complete pass over the entire training dataset",
+        "One update of model parameters",
+        "One evaluation on validation data",
+        "Number of neurons in a layer"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An epoch is one full iteration over the entire training dataset.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 35,
+      "question": "Which algorithm is best suited for high-dimensional sparse data?",
+      "options": [
+        "Naive Bayes",
+        "K-Means",
+        "Decision Trees",
+        "SVM with linear kernel"
+      ],
+      "correctAnswer": 3,
+      "explanation": "SVM with a linear kernel performs well on high-dimensional sparse datasets.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 36,
+      "question": "Which technique helps to tune the hyperparameters of a machine learning model?",
+      "options": [
+        "Grid Search",
+        "Batch Normalization",
+        "Dropout",
+        "Feature Scaling"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Grid search systematically explores hyperparameter combinations to find the best settings.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 37,
+      "question": "What is the key idea behind ensemble learning?",
+      "options": [
+        "Combining multiple models to improve predictions",
+        "Training a single very deep model",
+        "Using unsupervised learning",
+        "Data augmentation"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ensemble methods aggregate predictions from many models to reduce errors and variance.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 38,
+      "question": "What is early stopping in model training?",
+      "options": [
+        "Stop training as soon as training loss is minimized",
+        "Stop training when validation performance degrades",
+        "Stop training at a fixed number of epochs",
+        "Stop training when model size exceeds threshold"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Early stopping halts training when validation loss or accuracy worsens to prevent overfitting.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "Which metric is considered best for evaluating imbalanced classification tasks?",
+      "options": [
+        "Accuracy",
+        "F1-Score",
+        "Mean Squared Error",
+        "R-Squared"
+      ],
+      "correctAnswer": 1,
+      "explanation": "F1-Score balances precision and recall, useful for imbalanced datasets.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 40,
+      "question": "What does regularization do in machine learning models?",
+      "options": [
+        "Adds penalty to loss to reduce overfitting",
+        "Increases model complexity",
+        "Increases training time",
+        "Removes outliers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Regularization adds a penalty term to the loss function to discourage complex models and help generalize better.",
+      "difficulty": "medium"
+    }
+  ]
+}

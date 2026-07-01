@@ -1,0 +1,138 @@
+<h2>Which direction should the new mldl.study go?</h2>
+<p class="subtitle">Four "wild" directions, each shown as a miniature homepage hero. Click the one that feels right — click around freely, your exploration is recorded. These are rough vibes, not final designs.</p>
+
+<style>
+  .dir-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 24px; margin-top: 20px; }
+  .dir-card .card-image { height: 300px; overflow: hidden; position: relative; border-radius: 8px 8px 0 0; display: block; aspect-ratio: auto; }
+  .dir-card .card-image > div { width: 100%; }
+
+  /* A — Neural Cosmos */
+  .cosmos { background: radial-gradient(ellipse at 30% 20%, #1b1145 0%, #030014 60%); height: 100%; position: relative; font-family: Georgia, serif; }
+  .cosmos .stars { position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 30%, #fff8 50%, transparent 50%), radial-gradient(1px 1px at 70% 15%, #fff6 50%, transparent 50%), radial-gradient(1.5px 1.5px at 85% 60%, #fff9 50%, transparent 50%), radial-gradient(1px 1px at 40% 80%, #fff5 50%, transparent 50%), radial-gradient(1px 1px at 55% 45%, #fff7 50%, transparent 50%); }
+  .cosmos svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cosmos .headline { position: absolute; left: 24px; bottom: 48px; color: #fff; font-size: 26px; line-height: 1.15; text-shadow: 0 0 30px #7c5cff88; }
+  .cosmos .headline em { color: #9d8cff; font-style: italic; }
+  .cosmos .sub { position: absolute; left: 24px; bottom: 22px; color: #9aa; font-size: 11px; font-family: sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+  .cosmos .node { animation: pulse 3s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: .6 } 50% { opacity: 1 } }
+
+  /* B — Neo-Brutalist */
+  .brutal { background: #FFF4E0; height: 100%; position: relative; font-family: Arial Black, sans-serif; overflow: hidden; }
+  .brutal .marquee { background: #000; color: #C6FF00; font-size: 10px; padding: 4px 0; white-space: nowrap; letter-spacing: .05em; }
+  .brutal .big { margin: 18px 20px 8px; font-size: 34px; line-height: .95; color: #000; text-transform: uppercase; }
+  .brutal .big .hl { background: #3300FF; color: #fff; padding: 0 6px; display: inline-block; transform: rotate(-1deg); }
+  .brutal .sticker { position: absolute; right: 18px; top: 52px; background: #FF2E88; color: #fff; font-size: 11px; padding: 10px; border: 3px solid #000; border-radius: 50%; width: 74px; height: 74px; display: flex; align-items: center; justify-content: center; text-align: center; transform: rotate(12deg); box-shadow: 4px 4px 0 #000; }
+  .brutal .btn { display: inline-block; margin: 10px 20px; background: #C6FF00; border: 3px solid #000; box-shadow: 6px 6px 0 #000; padding: 10px 18px; font-size: 14px; color: #000; }
+  .brutal .cards-row { display: flex; gap: 10px; padding: 8px 20px; }
+  .brutal .mini { flex: 1; border: 3px solid #000; background: #fff; box-shadow: 5px 5px 0 #000; padding: 8px; font-size: 10px; font-family: monospace; }
+  .brutal .mini.pink { background: #FFD6E8; transform: rotate(1deg); }
+  .brutal .mini.blue { background: #D6E4FF; transform: rotate(-1deg); }
+
+  /* C — Terminal OS */
+  .term { background: #050805; height: 100%; position: relative; font-family: "Courier New", monospace; color: #33ff66; padding: 16px 20px; box-sizing: border-box; }
+  .term::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 2px, #0002 2px 4px); pointer-events: none; }
+  .term .bar { color: #33ff66aa; font-size: 10px; border-bottom: 1px solid #33ff6644; padding-bottom: 6px; margin-bottom: 12px; }
+  .term .line { font-size: 13px; margin: 6px 0; }
+  .term .dim { color: #33ff6688; }
+  .term .amber { color: #ffb000; }
+  .term .cursor { display: inline-block; width: 8px; height: 14px; background: #33ff66; animation: blink 1s steps(1) infinite; vertical-align: text-bottom; }
+  @keyframes blink { 50% { opacity: 0 } }
+  .term .tree { font-size: 11px; line-height: 1.5; margin-top: 10px; color: #66ffaa; }
+
+  /* D — Y2K Chrome */
+  .y2k { background: linear-gradient(160deg, #0b1040 0%, #2b1a6b 50%, #0b1040 100%); height: 100%; position: relative; overflow: hidden; font-family: Verdana, sans-serif; }
+  .y2k .orb { position: absolute; border-radius: 50%; filter: blur(2px); }
+  .y2k .chrome-text { position: absolute; left: 20px; top: 60px; font-size: 34px; font-weight: 900; font-style: italic; background: linear-gradient(180deg, #fff 0%, #9db4ff 35%, #34406b 50%, #cfd9ff 55%, #fff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -0.02em; }
+  .y2k .pill { position: absolute; left: 20px; top: 150px; background: linear-gradient(180deg, #ffffffcc, #7f9dff88 45%, #3c55c2); border-radius: 999px; color: #0b1040; font-size: 12px; font-weight: 700; padding: 10px 22px; box-shadow: 0 4px 18px #7f9dff66, inset 0 1px 2px #fff; }
+  .y2k .spark { position: absolute; color: #fff; text-shadow: 0 0 12px #9db4ff; }
+  .y2k .grid { position: absolute; bottom: 0; left: 0; right: 0; height: 90px; background: linear-gradient(transparent, #ff2ea622); perspective: 200px; }
+  .y2k .grid::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, #ff2ea644 0 1px, transparent 1px 40px), repeating-linear-gradient(0deg, #ff2ea644 0 1px, transparent 1px 22px); transform: rotateX(55deg); transform-origin: bottom; }
+</style>
+
+<div class="cards dir-cards">
+
+  <div class="card dir-card" data-choice="neural-cosmos" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="cosmos">
+        <div class="stars"></div>
+        <svg viewBox="0 0 400 300">
+          <line x1="60" y1="70" x2="150" y2="120" stroke="#7c5cff55" stroke-width="1"/>
+          <line x1="150" y1="120" x2="260" y2="80" stroke="#7c5cff55" stroke-width="1"/>
+          <line x1="150" y1="120" x2="230" y2="180" stroke="#4cc9f055" stroke-width="1"/>
+          <line x1="260" y1="80" x2="330" y2="140" stroke="#7c5cff55" stroke-width="1"/>
+          <line x1="230" y1="180" x2="330" y2="140" stroke="#4cc9f055" stroke-width="1"/>
+          <circle class="node" cx="60" cy="70" r="5" fill="#9d8cff"/>
+          <circle class="node" cx="150" cy="120" r="7" fill="#4cc9f0" style="animation-delay:.5s"/>
+          <circle class="node" cx="260" cy="80" r="5" fill="#9d8cff" style="animation-delay:1s"/>
+          <circle class="node" cx="230" cy="180" r="6" fill="#f72585" style="animation-delay:1.5s"/>
+          <circle class="node" cx="330" cy="140" r="5" fill="#4cc9f0" style="animation-delay:2s"/>
+        </svg>
+        <div class="headline">Fly through the<br><em>map of machine intelligence</em></div>
+        <div class="sub">An explorable 3D universe of AI knowledge</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A · Neural Cosmos</h3>
+      <p>The whole site is a living 3D neural universe. Roadmaps are constellations you fly through; each topic is a glowing star. Cinematic, immersive, screenshot-bait. (Three.js — you already ship react-force-graph-3d.)</p>
+    </div>
+  </div>
+
+  <div class="card dir-card" data-choice="neo-brutalist" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="brutal">
+        <div class="marquee">★ FREE FOREVER ★ NO SIGNUP ★ 500+ CURATED RESOURCES ★ FREE FOREVER ★ NO SIGNUP ★</div>
+        <div class="big">LEARN AI.<br><span class="hl">NO FLUFF.</span></div>
+        <div class="sticker">100% FREE</div>
+        <a class="btn">START THE ROADMAP →</a>
+        <div class="cards-row">
+          <div class="mini pink">ML ROADMAP<br>▓▓▓░░ 60%</div>
+          <div class="mini blue">DEEP LEARNING<br>▓▓░░░ 40%</div>
+          <div class="mini">GEN AI<br>▓░░░░ 20%</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B · Neo-Brutalist</h3>
+      <p>Loud, raw, anti-AI-slop. Thick borders, hard shadows, clashing colors, sticker energy, huge type. Zero dark-gradient sameness — instantly memeable and unmistakable in a sea of glassy AI sites.</p>
+    </div>
+  </div>
+
+  <div class="card dir-card" data-choice="terminal-os" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="term">
+        <div class="bar">mldl.study — learnOS v2.0 — /home/you</div>
+        <div class="line dim"># the roadmap is a filesystem. your progress is real.</div>
+        <div class="line">$ <span class="amber">learn</span> ml --start</div>
+        <div class="tree">
+          ├── 01_prerequisites/ <span class="dim">[████████░░] 80%</span><br>
+          ├── 02_machine_learning/ <span class="dim">[███░░░░░░░] 30%</span><br>
+          ├── 03_deep_learning/ <span class="dim">[░░░░░░░░░░] locked</span><br>
+          └── 04_generative_ai/ <span class="dim">[░░░░░░░░░░] locked</span>
+        </div>
+        <div class="line" style="margin-top:12px">$ <span class="cursor"></span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C · Terminal OS</h3>
+      <p>The site is a retro "learning OS": command prompt navigation, roadmaps as file trees, CRT scanlines, achievements as sysadmin logs. Deeply nerdy — devs love it, and it photographs great on X/HN.</p>
+    </div>
+  </div>
+
+  <div class="card dir-card" data-choice="y2k-chrome" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="y2k">
+        <div class="spark" style="left:70%;top:18%;font-size:22px">✦</div>
+        <div class="spark" style="left:12%;top:12%;font-size:14px">✦</div>
+        <div class="spark" style="left:85%;top:55%;font-size:16px">✦</div>
+        <div class="chrome-text">BECOME<br>SUPERINTELLIGENT</div>
+        <div class="pill">ENTER THE ROADMAP ▸</div>
+        <div class="grid"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D · Y2K Chrome Maximalism</h3>
+      <p>Retro-futurist chrome type, glossy pills, sparkles, synthwave grids. Playful and nostalgic-futuristic — the "the future used to look like this" vibe, very current on design Twitter.</p>
+    </div>
+  </div>
+
+</div>
