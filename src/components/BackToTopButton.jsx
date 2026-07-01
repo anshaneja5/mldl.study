@@ -31,7 +31,7 @@ const BackToTopButton = () => {
 
   return (
     <button
-      className={`fixed bottom-7 right-7 z-50 grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-aurora-violet to-aurora-cyan text-[#04060f] shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow-lg ${isVisible ? 'pointer-events-auto opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-90'}`}
+      className={`fixed bottom-7 right-7 z-50 grid h-12 w-12 place-items-center border-[3px] border-[#0a0a0a] bg-acid text-[#0a0a0a] shadow-brut-sm transition-all duration-150 hover:-translate-y-1 ${isVisible ? 'pointer-events-auto opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-90'}`}
       onClick={scrollToTop}
       aria-label="Go to top"
     >
