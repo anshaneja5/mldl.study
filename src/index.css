@@ -284,3 +284,218 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   LEGACY — Aurora Glass (frozen)
+   Everything below is scoped to the `.legacy-root` wrapper (and the
+   `legacy` class on <html>) so the old design system can coexist with
+   Brutal in one stylesheet. Shared theme vars (--bg/--ink/--muted/
+   --faint) are remapped inside the wrapper so shared utilities
+   (.text-ink etc.) render in the legacy palette; the old aurora/glass
+   tokens are defined here too. Rendered only by src/legacy/* components.
+   ============================================================ */
+@layer base {
+  .legacy-root {
+    /* remap the shared Brutal vars used by .bg-app/.text-ink/-soft/-faint */
+    --bg: #f6f7fb;
+    --ink: #0a0f1f;
+    --muted: #4b5675;
+    --faint: #7a86a3;
+
+    /* legacy-only tokens */
+    --bg-soft: #eceefa;
+    --glass-bg: rgba(255, 255, 255, 0.66);
+    --glass-bg-strong: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --glass-border-strong: rgba(15, 23, 42, 0.14);
+    --hairline: rgba(15, 23, 42, 0.08);
+    --text: #0a0f1f;
+    --text-muted: #4b5675;
+    --text-faint: #7a86a3;
+    --accent: #6d4bff;
+    --accent-2: #0891b2;
+    --aurora-a: rgba(124, 92, 255, 0.4);
+    --aurora-b: rgba(34, 211, 238, 0.34);
+    --aurora-c: rgba(59, 130, 246, 0.3);
+    --aurora-d: rgba(232, 121, 249, 0.26);
+    --grid-color: rgba(15, 23, 42, 0.05);
+
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .dark .legacy-root {
+    --bg: #060713;
+    --ink: #e9ebf6;
+    --muted: #9aa3bd;
+    --faint: #69728f;
+
+    --bg-soft: #0a0c1a;
+    --glass-bg: rgba(255, 255, 255, 0.045);
+    --glass-bg-strong: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --glass-border-strong: rgba(255, 255, 255, 0.15);
+    --hairline: rgba(255, 255, 255, 0.08);
+    --text: #e9ebf6;
+    --text-muted: #9aa3bd;
+    --text-faint: #69728f;
+    --accent: #8b76ff;
+    --accent-2: #22d3ee;
+    --aurora-a: rgba(139, 110, 255, 0.7);
+    --aurora-b: rgba(34, 211, 238, 0.55);
+    --aurora-c: rgba(59, 130, 246, 0.58);
+    --aurora-d: rgba(232, 121, 249, 0.48);
+    --grid-color: rgba(255, 255, 255, 0.045);
+  }
+
+  /* <html> carries the canvas color; legacy paints its own so the fixed
+     aurora layer sits above it (matches the pre-revamp behavior). */
+  html.legacy { background-color: #f6f7fb; }
+  html.legacy.dark { background-color: #060713; }
+
+  .legacy-root h1,
+  .legacy-root h2,
+  .legacy-root h3,
+  .legacy-root h4,
+  .legacy-root h5 {
+    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  /* the old hairline default (beats Brutal's `* { border-color: var(--ink) }`
+     by specificity; still lower priority than Tailwind border utilities) */
+  .legacy-root,
+  .legacy-root * {
+    border-color: var(--hairline);
+  }
+
+  .legacy-root ::selection {
+    background: rgba(124, 92, 255, 0.32);
+    color: inherit;
+  }
+
+  html.legacy ::-webkit-scrollbar-track { background: transparent; }
+  html.legacy ::-webkit-scrollbar-thumb {
+    background: var(--glass-border-strong, rgba(15, 23, 42, 0.14));
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .legacy-root :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .legacy-root .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid var(--glass-border);
+  }
+
+  .legacy-root .glass-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid var(--glass-border-strong);
+  }
+
+  .legacy-root .glass-sheen { position: relative; }
+  .legacy-root .glass-sheen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 35%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .dark .legacy-root .glass-sheen::before { opacity: 0.25; }
+
+  .legacy-root .text-aurora {
+    background: linear-gradient(105deg, #8b5cf6 0%, #22d3ee 48%, #6366f1 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .legacy-root .text-aurora-anim {
+    background: linear-gradient(105deg, #a78bfa, #22d3ee, #60a5fa, #e879f9, #a78bfa);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 7s linear infinite;
+  }
+
+  .legacy-root .border-aurora {
+    position: relative;
+    isolation: isolate;
+  }
+  .legacy-root .border-aurora::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--angle, 0deg), #7c5cff, #22d3ee, #3b82f6, #e879f9, #7c5cff);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .legacy-root .border-aurora:hover::after { opacity: 0.9; }
+
+  .legacy-root .btn-aurora {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #04060f;
+    background: linear-gradient(100deg, #a78bfa, #22d3ee 65%, #38bdf8);
+    box-shadow: 0 10px 30px -10px rgba(124, 92, 255, 0.6);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  }
+  .legacy-root .btn-aurora:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 45px -12px rgba(124, 92, 255, 0.7), 0 0 30px -8px rgba(34, 211, 238, 0.5);
+    filter: brightness(1.05);
+  }
+  .legacy-root .btn-aurora:active { transform: translateY(0); }
+
+  .legacy-root .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+}
+
+@layer utilities {
+  /* Brutal owns the `font-display`/`font-sans` class names in the config
+     (Archivo / Space Grotesk); re-point them to the legacy families inside
+     the wrapper. Higher specificity wins within the utilities layer. */
+  .legacy-root .font-display { font-family: "Sora", ui-sans-serif, system-ui, sans-serif; }
+  .legacy-root .font-sans { font-family: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif; }
+  .legacy-root .perspective { perspective: 1200px; }
+  .legacy-root .preserve-3d { transform-style: preserve-3d; }
+}
