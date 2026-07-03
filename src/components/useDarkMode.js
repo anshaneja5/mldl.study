@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { syncCanvasBg } from '../theme';
 
 const useDarkMode = () => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -23,8 +24,9 @@ const useDarkMode = () => {
   useEffect(() => {
     // Update class on <html> when darkMode changes
     document.documentElement.classList.toggle('dark', darkMode);
-    // Keep the canvas color in sync (the pre-paint inline style overrides CSS)
-    document.documentElement.style.backgroundColor = darkMode ? '#0d0d0d' : '#fff4e0';
+    // Keep the canvas color in sync (the pre-paint inline style overrides CSS).
+    // syncCanvasBg picks the right hex from the dark + legacy classes now set.
+    syncCanvasBg();
 
     // Save to localStorage when user explicitly toggles
     // (not on initial load from browser preference)
