@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter, Zap, Flame, Command } from 'lucide-react';
+import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter, Zap, Flame, Command, History } from 'lucide-react';
 import { useGamification } from '../contexts/GamificationContext';
+import { useUIMode } from '../contexts/UIModeContext';
 
 const PRIMARY = [
   { path: '/prerequisites', label: 'Prereqs' },
@@ -47,6 +48,22 @@ const ThemeToggle = ({ darkMode, toggleDarkMode, className = '' }) => (
     {darkMode ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
   </button>
 );
+
+// Drops the visitor back onto the pre-revamp Aurora Glass site.
+const LegacySwitch = ({ className = '', onNavigate }) => {
+  const { setMode } = useUIMode();
+  return (
+    <button
+      onClick={() => { setMode('legacy'); onNavigate?.(); }}
+      aria-label="Switch to the old (legacy) site"
+      title="Switch to the old (legacy) site"
+      className={`flex h-9 items-center gap-1.5 border-[3px] border-ink bg-surface px-2.5 font-mono text-xs font-bold uppercase text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5 ${className}`}
+    >
+      <History size={14} strokeWidth={2.6} />
+      <span className="hidden xl:inline">Old UI</span>
+    </button>
+  );
+};
 
 const XpChip = ({ className = '' }) => {
   const { xp, streak, level } = useGamification();
@@ -130,6 +147,7 @@ const DesktopLinks = () => {
 
 const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
   const location = useLocation();
+  const { setMode } = useUIMode();
 
   useEffect(() => {
     const handleEsc = (e) => e.key === 'Escape' && isOpen && onClose();
@@ -216,6 +234,14 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
           </div>
         </div>
 
+        <button
+          onClick={() => { setMode('legacy'); onClose(); }}
+          className="mt-5 flex w-full items-center justify-center gap-2 border-[3px] border-ink bg-surface px-4 py-3 text-sm font-bold uppercase text-ink shadow-brut-sm"
+        >
+          <History size={18} />
+          Switch to old site
+        </button>
+
         <div className="mt-5 flex items-center justify-between gap-3 border-t-[3px] border-ink pt-5">
           <button
             onClick={toggleDarkMode}
@@ -289,6 +315,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 <Github className="h-[18px] w-[18px]" />
               </a>
               <ThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+              <LegacySwitch />
               <a
                 href={BMC_URL}
                 target="_blank"
