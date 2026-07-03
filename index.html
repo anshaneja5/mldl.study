@@ -53,8 +53,14 @@
           var saved = localStorage.getItem('darkMode');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           var isDark = saved !== null ? saved === 'true' : prefersDark;
-          document.documentElement.classList.toggle('dark', isDark);
-          document.documentElement.style.backgroundColor = isDark ? '#0d0d0d' : '#fff4e0';
+          var isLegacy = localStorage.getItem('mldlUiMode') === 'legacy';
+          var el = document.documentElement;
+          el.classList.toggle('dark', isDark);
+          el.classList.toggle('legacy', isLegacy);
+          var bg = isLegacy
+            ? (isDark ? '#060713' : '#f6f7fb')
+            : (isDark ? '#0d0d0d' : '#fff4e0');
+          el.style.backgroundColor = bg;
         } catch (e) {}
       })();
     </script>

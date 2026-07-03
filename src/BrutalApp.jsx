@@ -1,0 +1,59 @@
+import { Route, Routes } from 'react-router-dom';
+import MachineLearningRoadmap from './components/MachineLearningRoadmap';
+import DeepLearning from './components/DeepLearningRoadmap';
+import PrerequisiteRoadmap from './components/PrerequisiteRoadmap';
+import GenerativeAIRoadmap from './components/GenerativeAIRoadmap';
+import ResearchPaper from './components/ResearchPaper';
+import Error404 from './components/Error404';
+import HomePage from './components/HomePage';
+import Books from './components/Books';
+import Journey from './components/Journey';
+import QuestionBank from './components/QuestionBank';
+import Search from './components/Search';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfUse from './components/TermsOfUse';
+import LearnerDashboard from './components/LearnerDashboard';
+import Bookmarks from './components/Bookmarks';
+import AIRoadmapGuide from './components/AIRoadmapGuide';
+import MachineLearningGuide from './components/MachineLearningGuide';
+import {
+  AIAgentsGuide,
+  DeepLearningGuide,
+  GenerativeAIGuide,
+  LearnAIFromScratchGuide,
+  RAGGuide,
+} from './components/LongTailGuides';
+import CommandPalette from './components/CommandPalette';
+
+// The current neo-brutalist site.
+const BrutalApp = () => (
+  <>
+    <CommandPalette />
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/ai-roadmap" element={<AIRoadmapGuide />} />
+      <Route path="/ml-roadmap" element={<MachineLearningGuide />} />
+      <Route path="/deep-learning-roadmap" element={<DeepLearningGuide />} />
+      <Route path="/generative-ai-roadmap" element={<GenerativeAIGuide />} />
+      <Route path="/ai-agents-roadmap" element={<AIAgentsGuide />} />
+      <Route path="/rag-roadmap" element={<RAGGuide />} />
+      <Route path="/learn-ai-from-scratch" element={<LearnAIFromScratchGuide />} />
+      <Route path="/deeplearning" element={<DeepLearning />} />
+      <Route path="/machinelearning" element={<MachineLearningRoadmap />} />
+      <Route path="/prerequisites" element={<PrerequisiteRoadmap />} />
+      <Route path="/researchpapers" element={<ResearchPaper />} />
+      <Route path="/genai" element={<GenerativeAIRoadmap />} />
+      <Route path="/books" element={<Books />} />
+      <Route path="/journey" element={<Journey />} />
+      <Route path="/questionbank" element={<QuestionBank />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/dashboard" element={<LearnerDashboard />} />
+      <Route path="/bookmarks" element={<Bookmarks />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfUse />} />
+      <Route path="*" element={<Error404 />} />
+    </Routes>
+  </>
+);
+
+export default BrutalApp;
