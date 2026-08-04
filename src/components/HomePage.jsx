@@ -14,6 +14,8 @@ import BrutalBackground from './BrutalBackground';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import ShareDialog from './ShareCard';
+import MentorshipCTA from './MentorshipCTA';
+import { TOPMATE_URL } from '../data/mentorship';
 import { useGamification } from '../contexts/GamificationContext';
 
 const FAQ_DATA = [
@@ -249,6 +251,7 @@ const HomePage = () => {
           'https://www.linkedin.com/in/anshaneja5/',
           'https://anshaneja.substack.com/',
           'https://github.com/anshaneja5',
+          TOPMATE_URL,
         ],
       },
       {
@@ -402,6 +405,9 @@ const HomePage = () => {
               <RoadmapCard key={r.id} roadmap={r} index={i} stats={roadmaps[r.id]} unlocked={unlocked[r.id]} />
             ))}
           </motion.div>
+
+          {/* 1:1 mentorship (Topmate) */}
+          <MentorshipCTA className="mb-16" />
 
           {/* Newsletter CTA */}
           <motion.section

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter, Sparkles } from 'lucide-react';
+import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter, Sparkles, CalendarCheck } from 'lucide-react';
 import { useUIMode } from '../contexts/UIModeContext';
+import { TOPMATE_URL } from '../data/mentorship';
 
 const PRIMARY = [
   { path: '/prerequisites', label: 'Prerequisites' },
@@ -18,6 +19,7 @@ const SECONDARY = [
   { path: '/researchpapers', label: 'Papers' },
   { path: '/journey', label: 'Journey' },
   { path: '/questionbank', label: 'Questions' },
+  { path: TOPMATE_URL, label: '1:1 Mentorship', external: true },
 ];
 
 const BMC_URL = 'https://buymeacoffee.com/anshaneja';
@@ -113,7 +115,18 @@ const DesktopLinks = () => {
           <div className="glass-strong glass-sheen overflow-hidden rounded-2xl p-1.5 shadow-glass">
             {SECONDARY.map((item) => {
               const active = location.pathname === item.path;
-              return (
+              return item.external ? (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 flex items-center gap-2 rounded-xl bg-[#e0554b] px-3.5 py-2 text-sm font-semibold text-[#0a0a0a] transition-opacity hover:opacity-90"
+                >
+                  <CalendarCheck className="h-4 w-4" />
+                  {item.label}
+                </a>
+              ) : (
                 <Link
                   key={item.path}
                   to={item.path}
@@ -177,6 +190,21 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
         <nav className="grid grid-cols-2 gap-2">
           {allItems.map((item) => {
             const active = location.pathname === item.path;
+            if (item.external) {
+              return (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  className="col-span-2 flex items-center justify-center gap-2 rounded-2xl bg-[#e0554b] px-4 py-3 text-[15px] font-semibold text-[#0a0a0a]"
+                >
+                  <CalendarCheck size={18} />
+                  {item.label}
+                </a>
+              );
+            }
             return (
               <Link
                 key={item.path}
