@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, CornerDownLeft, Map, FileText, ExternalLink } from 'lucide-react';
 import { ROADMAPS } from '../contexts/GamificationContext';
+import { TOPMATE_URL } from '../data/mentorship';
 
 /**
  * Cmd/Ctrl+K palette over everything the site already knows:
@@ -50,8 +51,14 @@ const score = (query, text) => {
   return Math.max(1, 90 - gaps);
 };
 
+// External destinations worth surfacing next to the site's own pages.
+const EXTERNAL_PAGES = [
+  { label: '1:1 Mentorship — book a call', sub: 'topmate.io/anshaneja', url: TOPMATE_URL },
+];
+
 const buildIndex = () => {
   const entries = PAGES.map((p) => ({ kind: 'page', label: p.label, sub: p.path, path: p.path }));
+  entries.push(...EXTERNAL_PAGES.map((p) => ({ kind: 'page', label: p.label, sub: p.sub, url: p.url })));
   for (const r of ROADMAPS) {
     for (const [topic, items] of Object.entries(r.content)) {
       entries.push({

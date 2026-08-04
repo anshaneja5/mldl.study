@@ -14,6 +14,8 @@ import BrutalBackground from './BrutalBackground';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import ShareDialog from './ShareCard';
+import MentorshipCTA from './MentorshipCTA';
+import { TOPMATE_URL } from '../data/mentorship';
 import { useGamification } from '../contexts/GamificationContext';
 
 const FAQ_DATA = [
@@ -84,6 +86,8 @@ const ContributionModal = ({ isOpen, onClose }) => {
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 0.18, ease: [0.34, 1.56, 0.64, 1] }}
         className="brut-card-lg relative w-full max-w-md"
+        role="dialog"
+        aria-modal="true"
       >
         <div className="brut-titlebar">
           <span>contribute.md</span>
@@ -249,6 +253,7 @@ const HomePage = () => {
           'https://www.linkedin.com/in/anshaneja5/',
           'https://anshaneja.substack.com/',
           'https://github.com/anshaneja5',
+          TOPMATE_URL,
         ],
       },
       {
@@ -402,6 +407,9 @@ const HomePage = () => {
               <RoadmapCard key={r.id} roadmap={r} index={i} stats={roadmaps[r.id]} unlocked={unlocked[r.id]} />
             ))}
           </motion.div>
+
+          {/* 1:1 mentorship (Topmate) */}
+          <MentorshipCTA className="mb-16" />
 
           {/* Newsletter CTA */}
           <motion.section

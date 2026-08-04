@@ -12,6 +12,8 @@ import Footer from './Footer';
 import AuroraBackground from './AuroraBackground';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
+import MentorshipCTA from './MentorshipCTA';
+import { TOPMATE_URL } from '../data/mentorship';
 
 const FAQ_DATA = [
   { question: 'What is mldl.study?', answer: 'mldl.study is a free AI roadmap, machine learning roadmap, deep learning roadmap, and generative AI roadmap built to help learners move from fundamentals to practical projects with curated resources.' },
@@ -67,6 +69,8 @@ const ContributionModal = ({ isOpen, onClose }) => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="glass-strong glass-sheen relative w-full max-w-md rounded-3xl p-7 shadow-glass"
+        role="dialog"
+        aria-modal="true"
       >
         <button onClick={onClose} aria-label="Close" className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-xl glass text-soft hover:text-ink">
           <X className="h-5 w-5" />
@@ -200,6 +204,7 @@ const HomePage = () => {
           'https://www.linkedin.com/in/anshaneja5/',
           'https://anshaneja.substack.com/',
           'https://github.com/anshaneja5',
+          TOPMATE_URL,
         ],
       },
       {
@@ -389,6 +394,9 @@ const HomePage = () => {
               <RoadmapCard key={r.id} roadmap={r} index={i} />
             ))}
           </motion.div>
+
+          {/* 1:1 mentorship (Topmate) */}
+          <MentorshipCTA className="mb-16" />
 
           {/* SEO overview */}
           <SectionShell className="mb-12">

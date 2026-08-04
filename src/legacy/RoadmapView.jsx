@@ -8,6 +8,7 @@ import Footer from './Footer';
 import AuroraBackground from './AuroraBackground';
 import Modal from './Modal';
 import BackToTopButton from './BackToTopButton';
+import MentorshipCTA from './MentorshipCTA';
 import useDarkMode from './useDarkMode';
 
 const SITE_URL = 'https://mldl.study';
@@ -389,6 +390,9 @@ const RoadmapView = ({
               <Graph />
             )}
           </div>
+
+          {/* 1:1 mentorship (Topmate) */}
+          <MentorshipCTA variant="compact" className="mb-10" />
 
           {/* Next steps */}
           {next && (

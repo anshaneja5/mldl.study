@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter, Zap, Flame, Command, History } from 'lucide-react';
+import { Sun, Moon, Menu, X, Waypoints, ChevronDown, Coffee, Github, Linkedin, Twitter, Zap, Flame, Command, History, CalendarCheck } from 'lucide-react';
 import { useGamification } from '../contexts/GamificationContext';
 import { useUIMode } from '../contexts/UIModeContext';
+import { TOPMATE_URL } from '../data/mentorship';
 
 const PRIMARY = [
   { path: '/prerequisites', label: 'Prereqs' },
@@ -19,6 +20,7 @@ const SECONDARY = [
   { path: '/researchpapers', label: 'Papers' },
   { path: '/journey', label: 'Journey' },
   { path: '/questionbank', label: 'Questions' },
+  { path: TOPMATE_URL, label: '1:1 Mentorship', external: true },
 ];
 
 const BMC_URL = 'https://buymeacoffee.com/anshaneja';
@@ -126,14 +128,22 @@ const DesktopLinks = () => {
           <div className="brut-card p-1.5">
             {SECONDARY.map((item) => {
               const active = location.pathname === item.path;
-              return (
-                <Link
+              const cls = `block px-3 py-2 text-sm font-bold uppercase tracking-wide ${
+                active ? 'bg-acid text-[#0a0a0a]' : 'text-soft hover:bg-acid hover:text-[#0a0a0a]'
+              }`;
+              return item.external ? (
+                <a
                   key={item.path}
-                  to={item.path}
-                  className={`block px-3 py-2 text-sm font-bold uppercase tracking-wide ${
-                    active ? 'bg-acid text-[#0a0a0a]' : 'text-soft hover:bg-acid hover:text-[#0a0a0a]'
-                  }`}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 flex items-center gap-2 border-[2px] border-[#0a0a0a] bg-[#e0554b] px-3 py-2 text-sm font-bold uppercase tracking-wide text-[#0a0a0a]"
                 >
+                  <CalendarCheck size={15} strokeWidth={2.6} />
+                  {item.label}
+                </a>
+              ) : (
+                <Link key={item.path} to={item.path} className={cls}>
                   {item.label}
                 </Link>
               );
@@ -192,14 +202,25 @@ const MobileSheet = ({ isOpen, onClose, darkMode, toggleDarkMode }) => {
         <nav className="grid grid-cols-2 gap-3">
           {allItems.map((item) => {
             const active = location.pathname === item.path;
-            return (
+            const base = 'border-[3px] px-4 py-3 text-[15px] font-bold uppercase tracking-wide shadow-brut-sm';
+            return item.external ? (
+              <a
+                key={item.path}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                className={`${base} col-span-2 flex items-center justify-center gap-2 border-[#0a0a0a] bg-[#e0554b] text-[#0a0a0a]`}
+              >
+                <CalendarCheck size={18} strokeWidth={2.6} />
+                {item.label}
+              </a>
+            ) : (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={onClose}
-                className={`border-[3px] border-ink px-4 py-3 text-[15px] font-bold uppercase tracking-wide shadow-brut-sm ${
-                  active ? 'bg-acid text-[#0a0a0a]' : 'bg-surface text-ink'
-                }`}
+                className={`${base} border-ink ${active ? 'bg-acid text-[#0a0a0a]' : 'bg-surface text-ink'}`}
               >
                 {item.label}
               </Link>
