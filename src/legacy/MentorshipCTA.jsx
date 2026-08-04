@@ -9,7 +9,42 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
 };
 
-const MentorshipCTA = ({ className = '' }) => (
+/* Roadmap-sized strip: same offer, no session list. */
+const CompactCTA = ({ className }) => (
+  <motion.section
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.3 }}
+    className={`glass glass-sheen mx-auto w-full max-w-6xl rounded-3xl p-5 sm:p-6 ${className}`}
+  >
+    <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-start gap-4">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#e0554b] text-[#0a0a0a]">
+          <CalendarCheck className="h-5 w-5" />
+        </span>
+        <div>
+          <p className="font-display text-lg font-bold text-ink">Stuck on this roadmap?</p>
+          <p className="mt-1 text-sm leading-relaxed text-soft">
+            Book a 1:1 with me — resume reviews, interview prep, and career guidance. Priority DM is free,
+            calls start at {PRICE_FROM}.
+          </p>
+        </div>
+      </div>
+      <a
+        href={TOPMATE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-aurora shrink-0 whitespace-nowrap rounded-2xl px-6 py-3 text-[15px]"
+      >
+        Book a 1:1
+        <ArrowRight className="h-4 w-4" />
+      </a>
+    </div>
+  </motion.section>
+);
+
+const FullCTA = ({ className }) => (
   <motion.section
     variants={fadeUp}
     initial="hidden"
@@ -77,5 +112,8 @@ const MentorshipCTA = ({ className = '' }) => (
     </div>
   </motion.section>
 );
+
+const MentorshipCTA = ({ className = '', variant }) =>
+  variant === 'compact' ? <CompactCTA className={className} /> : <FullCTA className={className} />;
 
 export default MentorshipCTA;

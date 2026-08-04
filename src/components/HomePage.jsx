@@ -86,6 +86,8 @@ const ContributionModal = ({ isOpen, onClose }) => {
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 0.18, ease: [0.34, 1.56, 0.64, 1] }}
         className="brut-card-lg relative w-full max-w-md"
+        role="dialog"
+        aria-modal="true"
       >
         <div className="brut-titlebar">
           <span>contribute.md</span>

@@ -69,6 +69,8 @@ const ContributionModal = ({ isOpen, onClose }) => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="glass-strong glass-sheen relative w-full max-w-md rounded-3xl p-7 shadow-glass"
+        role="dialog"
+        aria-modal="true"
       >
         <button onClick={onClose} aria-label="Close" className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-xl glass text-soft hover:text-ink">
           <X className="h-5 w-5" />

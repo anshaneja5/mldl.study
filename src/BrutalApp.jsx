@@ -24,11 +24,13 @@ import {
   RAGGuide,
 } from './components/LongTailGuides';
 import CommandPalette from './components/CommandPalette';
+import MentorshipToast from './components/MentorshipToast';
 
 // The current neo-brutalist site.
 const BrutalApp = () => (
   <>
     <CommandPalette />
+    <MentorshipToast />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/ai-roadmap" element={<AIRoadmapGuide />} />

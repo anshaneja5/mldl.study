@@ -23,12 +23,14 @@ import {
   LearnAIFromScratchGuide,
   RAGGuide,
 } from './legacy/LongTailGuides';
+import MentorshipToast from './legacy/MentorshipToast';
 
 // The pre-revamp Aurora Glass site, kept as a frozen snapshot. The
 // `.legacy-root` wrapper scopes the old design tokens/typography (see the
 // LEGACY block in index.css); routes mirror the current site exactly.
 const LegacyApp = () => (
   <div className="legacy-root">
+    <MentorshipToast />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/ai-roadmap" element={<AIRoadmapGuide />} />

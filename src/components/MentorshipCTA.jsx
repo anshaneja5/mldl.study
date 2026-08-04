@@ -2,14 +2,57 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CalendarCheck, MessageSquare, Video } from 'lucide-react';
 import { PITCH, PRICE_FROM, SESSIONS, TOPMATE_BRAND, TOPMATE_URL } from '../data/mentorship';
 
-/** Topmate promo (Brutal UI). Lives on the home page and the Journey page. */
+/**
+ * Topmate promo (Brutal UI). Full section on the home and Journey pages;
+ * `variant="compact"` is the one-line strip used at the foot of each roadmap.
+ */
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
 };
 
-const MentorshipCTA = ({ className = '' }) => (
+/* Roadmap-sized strip: same offer, no session list — the roadmap page is
+   already dense, so it stays one row on desktop. */
+const CompactCTA = ({ className }) => (
+  <motion.section
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.3 }}
+    className={`brut-card mx-auto w-full max-w-6xl p-5 sm:p-6 ${className}`}
+  >
+    <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-start gap-4">
+        <span
+          className="grid h-11 w-11 shrink-0 place-items-center border-[3px] border-[#0a0a0a] text-[#0a0a0a] shadow-brut-sm"
+          style={{ background: TOPMATE_BRAND }}
+        >
+          <CalendarCheck className="h-5 w-5" strokeWidth={2.6} />
+        </span>
+        <div>
+          <p className="font-display text-lg uppercase text-ink">Stuck on this roadmap?</p>
+          <p className="mt-1 text-sm leading-relaxed text-soft">
+            Book a 1:1 with me — resume reviews, interview prep, and career guidance. Priority DM is free,
+            calls start at {PRICE_FROM}.
+          </p>
+        </div>
+      </div>
+      <a
+        href={TOPMATE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="brut-btn shrink-0 whitespace-nowrap px-6 py-3 text-[15px] text-[#0a0a0a]"
+        style={{ background: TOPMATE_BRAND }}
+      >
+        Book a 1:1
+        <ArrowRight className="h-4 w-4" strokeWidth={3} />
+      </a>
+    </div>
+  </motion.section>
+);
+
+const FullCTA = ({ className }) => (
   <motion.section
     variants={fadeUp}
     initial="hidden"
@@ -86,5 +129,8 @@ const MentorshipCTA = ({ className = '' }) => (
     </div>
   </motion.section>
 );
+
+const MentorshipCTA = ({ className = '', variant }) =>
+  variant === 'compact' ? <CompactCTA className={className} /> : <FullCTA className={className} />;
 
 export default MentorshipCTA;
