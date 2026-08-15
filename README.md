@@ -103,11 +103,11 @@ Feel free to reach out if you have any questions:
   
 ## Star History
 
-<a href="https://www.star-history.com/#anshaneja5/mldl.study&Date">
+<a href="https://star-history.dera.page/#anshaneja5/mldl.study&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=anshaneja5/mldl.study&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=anshaneja5/mldl.study&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=anshaneja5/mldl.study&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=anshaneja5/mldl.study&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=anshaneja5/mldl.study&type=Date" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=anshaneja5/mldl.study&type=Date" />
  </picture>
 </a>
 
