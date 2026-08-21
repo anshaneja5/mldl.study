@@ -3,6 +3,7 @@ import ReactGA from 'react-ga4';
 import { Book, ExternalLink, Search, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
+import DatasetsGuideCTA from './DatasetsGuideCTA';
 import Footer from './Footer';
 import BrutalBackground from './BrutalBackground';
 import { Helmet } from 'react-helmet';
@@ -197,6 +198,7 @@ const Books = () => {
               </p>
             </div>
           )}
+          <DatasetsGuideCTA variant="compact" className="mt-12" />
         </main>
 
         <Footer darkMode={darkMode} />

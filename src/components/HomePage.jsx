@@ -15,6 +15,7 @@ import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import ShareDialog from './ShareCard';
 import MentorshipCTA from './MentorshipCTA';
+import DatasetsGuideCTA from './DatasetsGuideCTA';
 import { TOPMATE_URL } from '../data/mentorship';
 import { useGamification } from '../contexts/GamificationContext';
 
@@ -409,6 +410,8 @@ const HomePage = () => {
           </motion.div>
 
           {/* 1:1 mentorship (Topmate) */}
+          <DatasetsGuideCTA className="mb-16" />
+
           <MentorshipCTA className="mb-16" />
 
           {/* Newsletter CTA */}
