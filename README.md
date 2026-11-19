@@ -49,7 +49,7 @@ We welcome community contributions! Here's how you can help:
 
 ### Adding New Resources
 
-1. Open the relevant file (`categorizedMLVideos.js` or `categorizedDLVideos.js`)
+1. Open the relevant file: `categorizedMLContent.js` (ML), `categorizedDLContent.js` (DL), or `categorizedGenAIContent.js` (GenAI)`
 2. Follow the existing structure to add your resource:
    ```javascript
     {
