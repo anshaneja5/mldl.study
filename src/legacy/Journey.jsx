@@ -8,7 +8,6 @@ import Footer from './Footer';
 import AuroraBackground from './AuroraBackground';
 import BackToTopButton from './BackToTopButton';
 import useDarkMode from './useDarkMode';
-import MentorshipCTA from './MentorshipCTA';
 
 const journeyData = [
   {
@@ -227,9 +226,6 @@ const Journey = () => {
               ))}
             </div>
           </div>
-
-          {/* 1:1 mentorship (Topmate) */}
-          <MentorshipCTA className="mx-auto mt-16" />
 
           {/* CTA Section */}
           <motion.div

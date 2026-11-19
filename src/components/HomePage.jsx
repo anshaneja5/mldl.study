@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import {
   ChevronDown, X, GitBranch, BookOpen, Map, ArrowRight, Sparkles, Zap,
-  Book, Code, Brain, Users, Play, Compass, Linkedin, Twitter, Mail, CheckCircle2,
+  Book, Code, Brain, Users, Play, Compass, Linkedin, Twitter,
   Flame, Share2, Lock,
+  Youtube, Instagram,
 } from 'lucide-react';
+import { IG_GRADIENT, IG_HANDLE, IG_URL, YT_CHANNEL_URL, YT_HANDLE } from '../data/youtube';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import Navbar from './Navbar';
@@ -14,8 +16,7 @@ import BrutalBackground from './BrutalBackground';
 import useDarkMode from './useDarkMode';
 import BackToTopButton from './BackToTopButton';
 import ShareDialog from './ShareCard';
-import MentorshipCTA from './MentorshipCTA';
-import { TOPMATE_URL } from '../data/mentorship';
+import YouTubeCTA from './YouTubeCTA';
 import { useGamification } from '../contexts/GamificationContext';
 
 const FAQ_DATA = [
@@ -43,20 +44,13 @@ const FEATURES = [
 ];
 
 const SOCIAL_LINKS = [
+  { label: 'Life in Japan on YouTube', handle: YT_HANDLE, href: YT_CHANNEL_URL, icon: <Youtube className="h-5 w-5" />, className: 'bg-[#ff0033] text-white' },
+  { label: 'Japan life on Instagram', handle: IG_HANDLE, href: IG_URL, icon: <Instagram className="h-5 w-5" />, className: 'text-white', style: { background: IG_GRADIENT } },
   { label: 'Follow on X', handle: '@vedolos', href: 'https://x.com/vedolos/', icon: <Twitter className="h-5 w-5" />, className: 'bg-[#0f1419] text-white' },
   { label: 'Connect on LinkedIn', handle: 'Ansh Aneja', href: 'https://www.linkedin.com/in/anshaneja5/', icon: <Linkedin className="h-5 w-5" />, className: 'bg-[#0a66c2] text-white' },
 ];
 
-const SUBSTACK_URL = 'https://anshaneja.substack.com/';
-
-const NEWSLETTER_POINTS = [
-  'New Claude Code, Cursor, and Codex features',
-  'Breakthrough AI research and product changes',
-  'Useful GenAI tools before they get noisy',
-  'One clear weekly email to keep you updated',
-];
-
-const MARQUEE_ITEMS = ['FREE FOREVER', 'NO SIGNUP', '400+ CURATED RESOURCES', 'COMMUNITY-DRIVEN', 'OPEN SOURCE'];
+const MARQUEE_ITEMS = ['FREE FOREVER', 'NO SIGNUP', '400+ CURATED RESOURCES', 'COMMUNITY-DRIVEN', 'OPEN SOURCE', 'LIFE IN JAPAN: YOUTUBE @THEANSHANEJA + INSTA @ANSH.JAPAN'];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -253,7 +247,8 @@ const HomePage = () => {
           'https://www.linkedin.com/in/anshaneja5/',
           'https://anshaneja.substack.com/',
           'https://github.com/anshaneja5',
-          TOPMATE_URL,
+          YT_CHANNEL_URL,
+          IG_URL,
         ],
       },
       {
@@ -372,6 +367,7 @@ const HomePage = () => {
                 {SOCIAL_LINKS.map((social) => (
                   <a
                     key={social.href}
+                    style={social.style}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -408,56 +404,8 @@ const HomePage = () => {
             ))}
           </motion.div>
 
-          {/* 1:1 mentorship (Topmate) */}
-          <MentorshipCTA className="mb-16" />
-
-          {/* Newsletter CTA */}
-          <motion.section
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            className="brut-card-lg relative mb-16 w-full max-w-5xl rotate-[-0.4deg] bg-pastel-yellow p-6 sm:p-8 lg:p-10"
-          >
-            <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div>
-                <div className="brut-chip mb-4 bg-surface">
-                  <Mail className="h-4 w-4" />
-                  Free newsletter
-                </div>
-                <h2 className="font-display text-3xl uppercase leading-tight text-ink sm:text-4xl md:text-5xl">
-                  Stay ahead of every important AI shift
-                </h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-soft sm:text-lg">
-                  I track what is new in AI every week — Claude Code, Cursor, Codex, GenAI tools, model launches, research breakthroughs, and practical changes builders should know. You get the useful signal first, in one clear weekly email.
-                </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <a
-                    href={SUBSTACK_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="brut-btn brut-btn-pink px-7 py-4 text-base"
-                  >
-                    Subscribe free
-                    <ArrowRight className="h-5 w-5" strokeWidth={3} />
-                  </a>
-                  <span className="text-sm font-medium text-soft">No spam. Unsubscribe anytime. Emails handled by Substack.</span>
-                </div>
-              </div>
-
-              <div className="border-[3px] border-ink bg-surface p-5 shadow-brut-sm">
-                <p className="mb-4 font-display text-lg uppercase text-ink">What you will get</p>
-                <ul className="space-y-3">
-                  {NEWSLETTER_POINTS.map((point) => (
-                    <li key={point} className="flex items-start gap-3 text-sm leading-relaxed text-soft">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-ink" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.section>
+          {/* YouTube channel */}
+          <YouTubeCTA className="mb-16" />
 
           {/* SEO overview */}
           <SectionShell className="mb-12">

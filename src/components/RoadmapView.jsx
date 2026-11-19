@@ -10,7 +10,6 @@ import BrutalBackground from './BrutalBackground';
 import Modal from './Modal';
 import BackToTopButton from './BackToTopButton';
 import ShareDialog from './ShareCard';
-import MentorshipCTA from './MentorshipCTA';
 import useDarkMode from './useDarkMode';
 import { useGamification, XP_PER_RESOURCE } from '../contexts/GamificationContext';
 
@@ -432,9 +431,6 @@ const RoadmapView = ({
               <Graph />
             )}
           </div>
-
-          {/* 1:1 mentorship (Topmate) */}
-          <MentorshipCTA variant="compact" className="mb-10" />
 
           {/* Next steps */}
           {next && (
