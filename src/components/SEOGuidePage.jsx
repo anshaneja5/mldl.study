@@ -1,7 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Github, Linkedin, Mail, Sparkles, Twitter } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Github, Linkedin, Sparkles, Twitter, Youtube, Instagram } from 'lucide-react';
+import { IG_GRADIENT, IG_URL, YT_CHANNEL_URL } from '../data/youtube';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import BrutalBackground from './BrutalBackground';
@@ -61,7 +62,7 @@ export const AuthorBlock = () => (
     <p className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-hot-pink">Maintained by</p>
     <h2 className="mt-2 font-display text-2xl uppercase text-ink">Ansh Aneja</h2>
     <p className="mt-2 text-sm leading-relaxed text-soft">
-      I build and maintain mldl.study, track new AI tools and breakthroughs, and share weekly notes on Claude Code, Cursor, Codex, GenAI systems, and practical learning paths.
+      I build and maintain mldl.study, track new AI tools and breakthroughs, and share notes on Claude Code, Cursor, Codex, GenAI systems, and practical learning paths. I also share my life as a software engineer in Japan on YouTube and Instagram.
     </p>
     <div className="mt-4 grid gap-2 sm:grid-cols-2">
       <a href="https://x.com/vedolos/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-[#0a0a0a] bg-[#0f1419] px-4 py-3 text-sm font-bold text-white shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5">
@@ -76,9 +77,13 @@ export const AuthorBlock = () => (
         <Github className="h-4 w-4" />
         GitHub
       </a>
-      <a href="https://anshaneja.substack.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-ink bg-surface px-4 py-3 text-sm font-bold text-ink shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5">
-        <Mail className="h-4 w-4" />
-        Newsletter
+      <a href={YT_CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-[#0a0a0a] bg-[#ff0033] px-4 py-3 text-sm font-bold text-white shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5">
+        <Youtube className="h-4 w-4" />
+        YouTube
+      </a>
+      <a href={IG_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[3px] border-[#0a0a0a] px-4 py-3 text-sm font-bold text-white shadow-brut-sm transition-transform duration-150 hover:-translate-y-0.5" style={{ background: IG_GRADIENT }}>
+        <Instagram className="h-4 w-4" />
+        Instagram
       </a>
     </div>
   </aside>

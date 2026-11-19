@@ -1,12 +1,13 @@
 import React from 'react';
-import { Github, Linkedin, Compass, BookCopy, Shield, Waypoints, Twitter, CalendarCheck } from 'lucide-react';
+import { Github, Linkedin, Compass, BookCopy, Shield, Waypoints, Twitter, Youtube, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { TOPMATE_URL } from '../data/mentorship';
+import { IG_GRADIENT, IG_HANDLE, IG_URL, YT_CHANNEL_URL, YT_HANDLE } from '../data/youtube';
 
 const SOCIALS = [
+  { icon: <Youtube className="h-[18px] w-[18px]" />, href: YT_CHANNEL_URL, label: 'Watch on YouTube', handle: YT_HANDLE, className: 'bg-[#ff0033] text-white' },
+  { icon: <Instagram className="h-[18px] w-[18px]" />, href: IG_URL, label: 'Follow on Instagram', handle: IG_HANDLE, className: 'text-white', style: { background: IG_GRADIENT } },
   { icon: <Twitter className="h-[18px] w-[18px]" />, href: 'https://x.com/vedolos/', label: 'Follow on X', handle: '@vedolos', className: 'bg-[#0f1419] text-white' },
   { icon: <Linkedin className="h-[18px] w-[18px]" />, href: 'https://www.linkedin.com/in/anshaneja5/', label: 'Connect on LinkedIn', handle: 'Ansh Aneja', className: 'bg-[#0a66c2] text-white' },
-  { icon: <CalendarCheck className="h-[18px] w-[18px]" />, href: TOPMATE_URL, label: 'Book a 1:1', handle: 'Mentorship on Topmate', className: 'bg-[#e0554b] text-[#0a0a0a]' },
   { icon: <Github className="h-[18px] w-[18px]" />, href: 'https://github.com/anshaneja5/mldl.study', label: 'GitHub', handle: 'Source code', className: 'bg-surface text-ink' },
 ];
 
@@ -78,6 +79,7 @@ const Footer = () => (
             {SOCIALS.map((s, i) => (
               <a
                 key={i}
+                style={s.style}
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"

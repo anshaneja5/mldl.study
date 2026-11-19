@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, CornerDownLeft, Map, FileText, ExternalLink } from 'lucide-react';
 import { ROADMAPS } from '../contexts/GamificationContext';
-import { TOPMATE_URL } from '../data/mentorship';
 
 /**
  * Cmd/Ctrl+K palette over everything the site already knows:
@@ -53,7 +52,6 @@ const score = (query, text) => {
 
 // External destinations worth surfacing next to the site's own pages.
 const EXTERNAL_PAGES = [
-  { label: '1:1 Mentorship — book a call', sub: 'topmate.io/anshaneja', url: TOPMATE_URL },
 ];
 
 const buildIndex = () => {

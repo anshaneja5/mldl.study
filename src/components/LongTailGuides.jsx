@@ -151,7 +151,7 @@ const guides = {
     bodyTitle: 'A realistic way to learn AI as a beginner',
     body: [
       'Learning AI from scratch is not about memorizing every algorithm. It is about building layers of understanding: programming, data, math, models, evaluation, and then modern GenAI workflows.',
-      'Use mldl.study as a map. Start small, finish projects, revisit weak topics, and keep up with major AI shifts through the newsletter instead of trying to track every launch manually.',
+      'Use mldl.study as a map. Start small, finish projects, revisit weak topics, and keep up with major AI shifts without trying to track every launch manually.',
     ],
     checklist: [
       'Do not skip Python and data basics.',
